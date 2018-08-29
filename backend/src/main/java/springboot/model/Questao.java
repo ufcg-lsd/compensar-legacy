@@ -1,5 +1,14 @@
 package springboot.model;
 
+/**
+ * Classe abstrata que representa um molde de uma Questão, que pode ser Objetiva ou Subjetiva.
+ * 
+ * Ambiente de Estudo ao Pensamento Computacional
+ * 
+ * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
+ */
+
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +17,13 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.Table;
 
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Questao {
+@Table(name = "Questao")
+public abstract class Questao {
 	
 	
     @Id
