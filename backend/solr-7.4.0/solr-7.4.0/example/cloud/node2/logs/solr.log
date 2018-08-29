@@ -440,3 +440,7 @@ INFO  - 2018-08-27 20:25:05.607; [c:aepc s:shard1 r:core_node5 x:aepc_shard1_rep
 INFO  - 2018-08-27 20:25:05.675; [c:aepc s:shard1 r:core_node5 x:aepc_shard1_replica_n2] org.apache.solr.handler.SolrConfigHandler; I already have the expected version 0 of config
 INFO  - 2018-08-27 20:25:05.675; [c:aepc s:shard1 r:core_node5 x:aepc_shard1_replica_n2] org.apache.solr.handler.SolrConfigHandler; isStale false , resourceloader org.apache.solr.cloud.ZkSolrResourceLoader
 INFO  - 2018-08-27 20:25:05.675; [c:aepc s:shard1 r:core_node5 x:aepc_shard1_replica_n2] org.apache.solr.core.SolrCore.Request; [aepc_shard1_replica_n2]  webapp=/solr path=/config/znodeVersion params={overlay=0&wt=javabin&version=2} status=0 QTime=0
+WARN  - 2018-08-29 17:15:44.806; [   ] org.apache.zookeeper.ClientCnxn; Client session timed out, have not heard from server in 6667ms for sessionid 0x1005ec5930c0006
+WARN  - 2018-08-29 17:15:48.421; [   ] org.apache.solr.common.cloud.ConnectionManager; Watcher org.apache.solr.common.cloud.ConnectionManager@372848f7 name: ZooKeeperConnection Watcher:localhost:9983 got event WatchedEvent state:Disconnected type:None path:null path: null type: None
+WARN  - 2018-08-29 17:15:48.446; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has disconnected
+INFO  - 2018-08-29 17:15:49.892; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has connected
