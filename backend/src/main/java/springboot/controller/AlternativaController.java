@@ -28,11 +28,13 @@ public class AlternativaController {
 	public Alternativa save(@RequestBody Alternativa alternativa) {
 		return alternativaService.save(alternativa);
 	}
-	
+
+	/*
 	@RequestMapping(value = "/alternativa", method = RequestMethod.GET)    //// verificar se faz sentido
 	public Alternativa getById(@PathVariable("id") Long id) {
 		return alternativaService.getById(id);
 	}
+	*/
 	
 	@RequestMapping(value = "/alternativa", method = RequestMethod.GET)
 	public List<Alternativa> getAll() {

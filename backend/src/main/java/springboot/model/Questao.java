@@ -32,7 +32,7 @@ public abstract class Questao {
     private Long id;
     
     @Column(nullable = false)
-    private Questao tipo;
+    private String tipo;
     
     @Column(nullable = false)
     private String enunciado;
@@ -48,7 +48,7 @@ public abstract class Questao {
     private byte[] image;
     
     
-    public Questao(Questao tipo, String enunciado, String fonte, String autor, byte[] image) {
+    public Questao(String tipo, String enunciado, String fonte, String autor, byte[] image) {
     	this.tipo = tipo;
     	this.enunciado = enunciado;
     	this.fonte = fonte;
@@ -68,11 +68,11 @@ public abstract class Questao {
 		this.id = id;
 	}
 
-	public Questao getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(Questao tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 

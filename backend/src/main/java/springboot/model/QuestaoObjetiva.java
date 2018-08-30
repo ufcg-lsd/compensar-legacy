@@ -23,7 +23,7 @@ public class QuestaoObjetiva extends Questao {
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;
 	
-	public QuestaoObjetiva(Questao tipo, String enunciado, String fonte, String autor, byte[] image, List<Alternativa> alternativas) {
+	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image, List<Alternativa> alternativas) {
 		super(tipo,enunciado,fonte,autor,image);
 		this.alternativas = alternativas;
 	}

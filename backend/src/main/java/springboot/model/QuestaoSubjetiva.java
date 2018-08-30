@@ -18,7 +18,7 @@ public class QuestaoSubjetiva extends Questao	{
 	@Column(nullable = false)
 	private String espelho;
 	
-	public QuestaoSubjetiva(Questao tipo, String enunciado, String fonte, String autor, byte[] image, String espelho) {
+	public QuestaoSubjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image, String espelho) {
 		super(tipo,enunciado,fonte,autor,image);
 		this.espelho = espelho;
 	}
