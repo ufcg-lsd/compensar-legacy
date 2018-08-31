@@ -1,6 +1,7 @@
 package springboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,26 +20,56 @@ public class AlternativaService {
 		alternativaRepository.save(alternativa);
 		return alternativa;
 	}
-
-	public Alternativa getById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 	public Alternativa delete(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
+
+		/*
+		if (!optAluno.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+		*/
+
+		Alternativa alternativa = optAlternativa.get();
+		alternativaRepository.delete(alternativa);
+
+		return alternativa;
+	}
+	
+	public Alternativa update(Alternativa alternativa, Long id) {
+		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
+
+		/*
+		if (!optAlternativa.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+		*/
+		Alternativa novaAlternativa = optAlternativa.get();
+		novaAlternativa.setCorreta(alternativa.isCorreta());
+		novaAlternativa.setTexto(alternativa.getTexto());
+	
+
+		alternativaRepository.save(novaAlternativa);
+
+		return novaAlternativa;
 	}
 
 	public List<Alternativa> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return alternativaRepository.findAll();
+	}
+	
+	public Alternativa getById(Long id) {
+		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
+
+		/*
+		if (!optAlternativa.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+		*/	
+		return optAlternativa.get();
 	}
 
-	public Alternativa update(Alternativa alternativa, Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 
 }

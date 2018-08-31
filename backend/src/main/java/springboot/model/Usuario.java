@@ -2,17 +2,10 @@ package springboot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name = "Usuario")
 public class Usuario {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)	
-	private Long id;
 	
 	@Column(nullable = false)
 	private String nomeCompleto;
@@ -20,6 +13,7 @@ public class Usuario {
 	@Column(nullable = false)
 	private String nomeInstituicao;
 	
+	@Id
 	@Column(nullable = false)
 	private String email;
 	
@@ -32,14 +26,6 @@ public class Usuario {
 	
 	public Usuario() {
 		
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getNomeCompleto() {
@@ -70,7 +56,7 @@ public class Usuario {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		return result;
 	}
 
@@ -83,10 +69,10 @@ public class Usuario {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!email.equals(other.email))
 			return false;
 		return true;
 	}
