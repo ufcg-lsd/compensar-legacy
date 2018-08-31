@@ -444,3 +444,11 @@ WARN  - 2018-08-29 17:15:44.806; [   ] org.apache.zookeeper.ClientCnxn; Client s
 WARN  - 2018-08-29 17:15:48.421; [   ] org.apache.solr.common.cloud.ConnectionManager; Watcher org.apache.solr.common.cloud.ConnectionManager@372848f7 name: ZooKeeperConnection Watcher:localhost:9983 got event WatchedEvent state:Disconnected type:None path:null path: null type: None
 WARN  - 2018-08-29 17:15:48.446; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has disconnected
 INFO  - 2018-08-29 17:15:49.892; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has connected
+WARN  - 2018-08-31 14:04:47.602; [   ] org.apache.zookeeper.ClientCnxn; Client session timed out, have not heard from server in 10003ms for sessionid 0x1005ec5930c0005
+WARN  - 2018-08-31 14:04:47.602; [   ] org.apache.zookeeper.ClientCnxn; Client session timed out, have not heard from server in 6667ms for sessionid 0x1005ec5930c0006
+WARN  - 2018-08-31 14:04:52.080; [   ] org.apache.solr.common.cloud.ConnectionManager; Watcher org.apache.solr.common.cloud.ConnectionManager@372848f7 name: ZooKeeperConnection Watcher:localhost:9983 got event WatchedEvent state:Disconnected type:None path:null path: null type: None
+WARN  - 2018-08-31 14:04:52.080; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has disconnected
+INFO  - 2018-08-31 14:04:52.083; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has connected
+WARN  - 2018-08-31 14:04:52.950; [   ] org.apache.solr.common.cloud.ConnectionManager; Watcher org.apache.solr.common.cloud.ConnectionManager@6ea984ff name: ZooKeeperConnection Watcher:localhost:9983 got event WatchedEvent state:Disconnected type:None path:null path: null type: None
+WARN  - 2018-08-31 14:04:52.950; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has disconnected
+INFO  - 2018-08-31 14:04:52.950; [   ] org.apache.solr.common.cloud.ConnectionManager; zkClient has connected

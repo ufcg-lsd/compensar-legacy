@@ -30,6 +30,10 @@ public class Alternativa {
 		this.texto = texto;
 		this.correta = correta;
 	}
+	
+	public Alternativa() {
+		
+	}
 
 	public Long getId_alternativa() {
 		return id_alternativa;

@@ -57,6 +57,19 @@ public class UsuarioService {
 	public List<Usuario> getAll() {
 		return usuarioRepository.findAll();
 	}
+	
+	public Usuario getById(String email) {
+		Optional<Usuario> optUsuario = usuarioRepository.findById(email);
+
+		/*
+		if (!optAluno.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+		*/
+
+		return optUsuario.get();
+	}
+
 
 	/*
 	public Usuario pesquisarPorNome(String nome) {

@@ -45,6 +45,12 @@ public class UsuarioController {
 	public List<Usuario> getAll() {
 		return usuarioService.getAll();
 	}
+	
+	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.GET)
+	public Usuario getByEmail(@PathVariable("email") String email) {
+		return usuarioService.getById(email);
+	}
+
 
 	/*
 	@RequestMapping(value = "/usuario/search/{nome}", method = RequestMethod.GET)

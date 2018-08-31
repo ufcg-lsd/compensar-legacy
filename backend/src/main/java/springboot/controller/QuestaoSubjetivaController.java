@@ -50,6 +50,10 @@ public class QuestaoSubjetivaController {
 		return questaoSubjService.getById(id);
 	}
 	
+	// get by autor
+	//get by tipo
+	// get by fonte
+	
 	
 	
 
