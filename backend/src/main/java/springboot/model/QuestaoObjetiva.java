@@ -9,6 +9,8 @@ package springboot.model;
  */
 
 import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,7 +20,7 @@ import javax.persistence.OneToMany;
 @Entity(name = "Quest_Obj")
 public class QuestaoObjetiva extends Questao {
 	
-	@OneToMany   // Revisar essa relação
+	@OneToMany(cascade = CascadeType.ALL)   // Revisar essa relação
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;
 	
@@ -30,7 +32,6 @@ public class QuestaoObjetiva extends Questao {
 	public QuestaoObjetiva() {
 	}
 
-	@JoinColumn(name = "QuestAlternativa")
 	public List<Alternativa> getAlternativas() {
 		return alternativas;
 	}

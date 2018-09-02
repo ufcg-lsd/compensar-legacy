@@ -1,5 +1,10 @@
 package springboot.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+
 /**
  * Classe abstrata que representa um molde de uma Questão, que pode ser Objetiva ou Subjetiva.
  * 
@@ -17,8 +22,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -28,7 +33,7 @@ public abstract class Questao {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false, nullable = false)
+    @Column(name = "id_questao", updatable = false, nullable = false)
     private Long id;
     
     @Column(nullable = false)
@@ -47,6 +52,10 @@ public abstract class Questao {
     @Column(nullable=true, columnDefinition="mediumblob")
     private byte[] image;
     
+    @OneToMany(cascade = CascadeType.ALL)
+    @Column(nullable = true)
+    private List<Competencia> competencias;
+    
     
     public Questao(String tipo, String enunciado, String fonte, String autor, byte[] image) {
     	this.tipo = tipo;
@@ -54,6 +63,7 @@ public abstract class Questao {
     	this.fonte = fonte;
     	this.autor = autor;
     	this.image = image;
+    	this.competencias = new ArrayList<Competencia>();
     }
     
     public Questao() {
@@ -107,7 +117,42 @@ public abstract class Questao {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
+	
+	/**
+	 * 
+	 * Métodos referentes as competências de uma questão.
+	 * 
+	 */
+	
+	
+	public List<Competencia> getCompetencias() {
+		return competencias;
+	}
 
+	public void setCompetencias(List<Competencia> competencias) {
+		this.competencias = competencias;
+	}
+
+	public void addCompetencias(Competencia competencia) {
+		competencias.add(competencia);
+	}
+	
+	public boolean containsCompetencia(Competencia competencia) {
+		return competencias.contains(competencia);
+	}
+	
+	public void removeCompetencia(Competencia competencia) {
+		competencias.remove(competencia);
+	}
+	
+	public boolean semCompetencia() {
+		return competencias.isEmpty();
+	}
+	
+	public Object[] toArray() {
+		return competencias.toArray();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

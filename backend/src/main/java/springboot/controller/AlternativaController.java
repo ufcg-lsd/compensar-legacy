@@ -52,6 +52,8 @@ public class AlternativaController {
 	public List<Alternativa> getAll() {
 		return alternativaService.getAll();
 	}
+	
+	
 
 	
 	

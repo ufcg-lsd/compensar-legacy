@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import springboot.model.QuestaoObjetiva;
 
 @Repository
-@Transactional
 public interface QuestaoObjetivaRepository extends JpaRepository<QuestaoObjetiva, Long> {
 	
 	
