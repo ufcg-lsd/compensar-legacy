@@ -71,4 +71,47 @@ public class QuestaoCompetenciaService {
 	private boolean isObjetiva(Long id) {
 		return questaoObjRepository.existsById(id);
 	}
+
+	public Questao removeCompetencia(Long id_competencia, Long id_questao) {
+		Questao novaQuestao;
+		
+		if (isObjetiva(id_questao)) {
+			Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id_questao);
+			
+			Optional<Competencia> optCompetencia = competenciaRepository.findById(id_competencia);
+
+			QuestaoObjetiva novaQuestaoObj = optQuestaoObj.get();
+			
+			Competencia competencia = optCompetencia.get();
+			
+			novaQuestaoObj.removeCompetencia(competencia);
+			
+			novaQuestao = novaQuestaoObj;
+			
+			questaoObjRepository.save(novaQuestaoObj);
+			
+		} else {
+			Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id_questao);
+			
+			Optional<Competencia> optCompetencia = competenciaRepository.findById(id_competencia);
+
+			QuestaoSubjetiva novaQuestaoSubj = optQuestaoSubj.get();
+			
+			Competencia competencia = optCompetencia.get();
+			
+			novaQuestaoSubj.removeCompetencia(competencia);
+			
+			novaQuestao = novaQuestaoSubj;
+			
+			questaoSubjRepository.save(novaQuestaoSubj);
+			
+		}
+
+		/*
+		if (!optAlternativa.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+		*/
+		return novaQuestao;
+	}
 }

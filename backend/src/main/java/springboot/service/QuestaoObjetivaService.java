@@ -46,7 +46,7 @@ public class QuestaoObjetivaService {
 		QuestaoObjetiva novaQuestaoObj = optQuestaoObj.get();
 		novaQuestaoObj.setFonte(questaoObj.getFonte());
 		novaQuestaoObj.setAutor(questaoObj.getAutor());
-		novaQuestaoObj.setImage(questaoObj.getImage());
+		novaQuestaoObj.setImage(questaoObj.getImagem());
 		novaQuestaoObj.setTipo(questaoObj.getTipo());
 		novaQuestaoObj.setEnunciado(questaoObj.getEnunciado());
 		novaQuestaoObj.setAlternativas(questaoObj.getAlternativas());

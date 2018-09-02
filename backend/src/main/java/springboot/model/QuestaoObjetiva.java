@@ -13,14 +13,13 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
 @Entity(name = "Quest_Obj")
 public class QuestaoObjetiva extends Questao {
 	
-	@OneToMany(cascade = CascadeType.ALL)   // Revisar essa relação
+	@OneToMany(cascade = CascadeType.ALL)  
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;
 	

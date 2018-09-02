@@ -20,7 +20,6 @@ import springboot.service.CompetenciaService;
 @CrossOrigin(origins = "+")
 public class CompetenciaController {
 	
-	
 	@Autowired
 	CompetenciaService competenciaService;
 	
@@ -46,7 +45,7 @@ public class CompetenciaController {
 		return competenciaService.getAll();
 	}
 	
-	@RequestMapping(value = "/competencia/search/{id}", method = RequestMethod.GET)    //// verificar se faz sentido
+	@RequestMapping(value = "/competencia/{id}", method = RequestMethod.GET)   
 	public Competencia getById(@PathVariable("id") Long id) {
 		return competenciaService.getById(id);
 	}

@@ -45,7 +45,7 @@ public class QuestaoObjetivaController {
 		return questaoObjService.getAll();
 	}
 	
-	@RequestMapping(value = "/questaoObj/search/{id}", method = RequestMethod.GET)    //// verificar se faz sentido
+	@RequestMapping(value = "/questaoObj/{id}", method = RequestMethod.GET)    //// verificar se faz sentido
 	public QuestaoObjetiva getById(@PathVariable("id") Long id) {
 		return questaoObjService.getById(id);
 	}

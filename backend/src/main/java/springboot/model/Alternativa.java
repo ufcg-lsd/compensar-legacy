@@ -11,8 +11,8 @@ public class Alternativa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(updatable = false, nullable = false)	
-	private Long id_alternativa;
+	@Column(name = "id_alternativa",updatable = false, nullable = false)	
+	private Long id;
 	
 	/*
 	@ManyToOne // revisar esse relacionamento
@@ -36,11 +36,11 @@ public class Alternativa {
 	}
 
 	public Long getId_alternativa() {
-		return id_alternativa;
+		return id;
 	}
 
 	public void setId_alternativa(Long id_alternativa) {
-		this.id_alternativa = id_alternativa;
+		this.id = id_alternativa;
 	}
 
 

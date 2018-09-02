@@ -48,7 +48,7 @@ public class QuestaoSubjetivaService {
 		QuestaoSubjetiva novaQuestaoSubj = optQuestaoSubj.get();
 		novaQuestaoSubj.setFonte(questaoSubj.getFonte());
 		novaQuestaoSubj.setAutor(questaoSubj.getAutor());
-		novaQuestaoSubj.setImage(questaoSubj.getImage());
+		novaQuestaoSubj.setImage(questaoSubj.getImagem());
 		novaQuestaoSubj.setTipo(questaoSubj.getTipo());
 		novaQuestaoSubj.setEnunciado(questaoSubj.getEnunciado());
 		novaQuestaoSubj.setEspelho(questaoSubj.getEspelho());

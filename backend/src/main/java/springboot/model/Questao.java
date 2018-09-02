@@ -50,19 +50,19 @@ public abstract class Questao {
     
     @Lob
     @Column(nullable=true, columnDefinition="mediumblob")
-    private byte[] image;
+    private byte[] imagem;
     
     @OneToMany(cascade = CascadeType.ALL)
     @Column(nullable = true)
     private List<Competencia> competencias;
     
     
-    public Questao(String tipo, String enunciado, String fonte, String autor, byte[] image) {
+    public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
     	this.tipo = tipo;
     	this.enunciado = enunciado;
     	this.fonte = fonte;
     	this.autor = autor;
-    	this.image = image;
+    	this.imagem = imagem;
     	this.competencias = new ArrayList<Competencia>();
     }
     
@@ -110,12 +110,12 @@ public abstract class Questao {
 		this.autor = autor;
 	}
 
-	public byte[] getImage() {
-		return image;
+	public byte[] getImagem() {
+		return imagem;
 	}
 
-	public void setImage(byte[] image) {
-		this.image = image;
+	public void setImage(byte[] imagem) {
+		this.imagem = imagem;
 	}
 	
 	/**

@@ -23,12 +23,6 @@ public class AlternativaController {
 	@Autowired
 	AlternativaService alternativaService;
 	
-	
-	@RequestMapping(value = "/alternativa", method = RequestMethod.POST)
-	public Alternativa save(@RequestBody Alternativa alternativa) {
-		return alternativaService.save(alternativa);
-	}
-	
 	@RequestMapping(value = "/alternativa/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Alternativa> delete(@PathVariable("id") Long id) {
 		Alternativa alternativa = alternativaService.delete(id);
@@ -41,23 +35,14 @@ public class AlternativaController {
 		return new ResponseEntity<Alternativa>(updatedAlternativa, HttpStatus.OK);
 	}
 
-
-	@RequestMapping(value = "/alternativa/search/{id}", method = RequestMethod.GET)    //// verificar se faz sentido
+	@RequestMapping(value = "/alternativa/{id}", method = RequestMethod.GET)   
 	public Alternativa getById(@PathVariable("id") Long id) {
 		return alternativaService.getById(id);
 	}
 
-	
 	@RequestMapping(value = "/alternativa", method = RequestMethod.GET)
 	public List<Alternativa> getAll() {
 		return alternativaService.getAll();
 	}
-	
-	
-
-	
-	
-	
-	
 	
 }

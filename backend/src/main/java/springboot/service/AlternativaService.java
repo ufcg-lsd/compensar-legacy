@@ -16,11 +16,6 @@ public class AlternativaService {
 	private AlternativaRepository alternativaRepository;
 	
 	
-	public Alternativa save(Alternativa alternativa) {
-		alternativaRepository.save(alternativa);
-		return alternativa;
-	}
-	
 	public Alternativa delete(Long id) {
 		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
 
