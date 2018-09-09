@@ -4,6 +4,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import io.swagger.annotations.ApiModel;
+
+
 @Entity(name = "Usuario")
 public class Usuario {
 	

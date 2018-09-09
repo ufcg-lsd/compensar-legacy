@@ -41,6 +41,19 @@
             <artifactId>spring-boot-starter-data-rest</artifactId>
         </dependency>
 		-->
+		
+		<!--  Springfox-swagger dependency -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>2.6.1</version>
+		</dependency>
+		<!--  Starterfox-swagger2 dependency -->
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>2.6.1</version>
+		</dependency>
 		<!--  Devtools dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
