@@ -1,3 +1,5 @@
+
+
 package springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -5,11 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import springboot.model.Alternativa;
 import springboot.model.Questao;
+import springboot.model.QuestaoCompetencia;
 import springboot.service.QuestaoCompetenciaService;
 
 @RestController
@@ -20,6 +25,15 @@ public class QuestaoCompetenciaController {
 	@Autowired
 	QuestaoCompetenciaService questaoCompetenciaService;
 	
+	@RequestMapping(value = "/questaoCompetencia", method = RequestMethod.POST)
+	public QuestaoCompetencia save(@RequestBody QuestaoCompetencia questaoCompetencia) {
+
+		return questaoCompetenciaService.save(questaoCompetencia);
+	}
+	
+}
+	
+	/**
 	@RequestMapping(value = "/questaoCompetencia/add/{id_questao}/{id_competencia}", method = RequestMethod.PUT)
 	public ResponseEntity<Questao> addCompetencia(@PathVariable("id") Long id_questao, @PathVariable("id_competencia") Long id_competencia) {
 		Questao updatedQuestao = questaoCompetenciaService.addCompetencia(id_competencia, id_questao);
@@ -33,8 +47,5 @@ public class QuestaoCompetenciaController {
 	}
 	
 	
-	
-	
-	
 
-}
+*/

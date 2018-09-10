@@ -46,15 +46,15 @@ public abstract class Questao {
     private String fonte;
     
     @Column(nullable = true)
-    private String autor;  // depois setar o tipo para Usuario
+    private String autor;  
     
     @Lob
     @Column(nullable=true, columnDefinition="mediumblob")
     private byte[] imagem;
     
-    @OneToMany(cascade = CascadeType.ALL)
-    @Column(nullable = true)
-    private List<Competencia> competencias;
+  //  @OneToMany(cascade = CascadeType.ALL)
+ //   @Column(nullable = true)
+  //  private List<Competencia> competencias;
     
     
     public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
@@ -63,7 +63,7 @@ public abstract class Questao {
     	this.fonte = fonte;
     	this.autor = autor;
     	this.imagem = imagem;
-    	this.competencias = new ArrayList<Competencia>();
+    ///	this.competencias = new ArrayList<Competencia>();
     }
     
     public Questao() {
@@ -124,7 +124,7 @@ public abstract class Questao {
 	 * 
 	 */
 	
-	
+	/**
 	public List<Competencia> getCompetencias() {
 		return competencias;
 	}
@@ -152,6 +152,8 @@ public abstract class Questao {
 	public Object[] toArray() {
 		return competencias.toArray();
 	}
+	
+	*/
 	
 	@Override
 	public int hashCode() {

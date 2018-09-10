@@ -1,3 +1,4 @@
+
 package springboot.service;
 
 import java.util.Optional;
@@ -5,11 +6,12 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springboot.model.Competencia;
 import springboot.model.Questao;
+import springboot.model.QuestaoCompetencia;
 import springboot.model.QuestaoObjetiva;
 import springboot.model.QuestaoSubjetiva;
-import springboot.repository.CompetenciaRepository;
+import springboot.model.Usuario;
+import springboot.repository.QuestaoCompetenciaRepository;
 import springboot.repository.QuestaoObjetivaRepository;
 import springboot.repository.QuestaoSubjetivaRepository;
 
@@ -23,7 +25,24 @@ public class QuestaoCompetenciaService {
 	private QuestaoSubjetivaRepository questaoSubjRepository;
 	
 	@Autowired
+	private QuestaoCompetenciaRepository questaoCompetenciaRepository;
+	
+	public QuestaoCompetencia save(QuestaoCompetencia questaoCompetencia) {
+		questaoCompetenciaRepository.save(questaoCompetencia);
+		return questaoCompetencia;
+	}
+	
+}
+	
+	
+	
+	
+	
+	/**
+	@Autowired
 	private CompetenciaRepository competenciaRepository;
+	
+
 
 	public Questao addCompetencia(Long id_competencia, Long id_questao) {
 		Questao novaQuestao;
@@ -64,7 +83,7 @@ public class QuestaoCompetenciaService {
 		}
 		*/
 
-
+/**
 		return novaQuestao;
 	}
 	
@@ -112,6 +131,14 @@ public class QuestaoCompetenciaService {
 			throw new RegisterNotFoundException(errorMessage);
 		}
 		*/
+	/**
 		return novaQuestao;
 	}
+	
+	
 }
+
+*/
+
+
+
