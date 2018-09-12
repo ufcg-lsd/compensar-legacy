@@ -1,9 +1,5 @@
 package springboot.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 
 /**
  * Classe abstrata que representa um molde de uma Questão, que pode ser Objetiva ou Subjetiva.
@@ -22,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -52,10 +47,7 @@ public abstract class Questao {
     @Column(nullable=true, columnDefinition="mediumblob")
     private byte[] imagem;
     
-  //  @OneToMany(cascade = CascadeType.ALL)
- //   @Column(nullable = true)
-  //  private List<Competencia> competencias;
-    
+   
     
     public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
     	this.tipo = tipo;
@@ -63,7 +55,6 @@ public abstract class Questao {
     	this.fonte = fonte;
     	this.autor = autor;
     	this.imagem = imagem;
-    ///	this.competencias = new ArrayList<Competencia>();
     }
     
     public Questao() {
