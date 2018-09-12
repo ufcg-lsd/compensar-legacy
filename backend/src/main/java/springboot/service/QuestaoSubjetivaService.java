@@ -6,11 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springboot.exception.RegisterNotFoundException;
 import springboot.model.QuestaoSubjetiva;
 import springboot.repository.QuestaoSubjetivaRepository;
 
 @Service
 public class QuestaoSubjetivaService {
+	
+	private final String errorMessage = "A questão subjetiva não está cadastrada.";
 	
 	@Autowired
 	private QuestaoSubjetivaRepository questaoSubjRepository;
@@ -24,11 +27,11 @@ public class QuestaoSubjetivaService {
 	
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		/*
-		if (!optAluno.isPresent()) {
+		
+		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+		
 
 		QuestaoSubjetiva questaoSubj = optQuestaoSubj.get();
 		questaoSubjRepository.delete(questaoSubj);
@@ -40,11 +43,11 @@ public class QuestaoSubjetivaService {
 		
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		/*
-		if (!optAlternativa.isPresent()) {
+		
+		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+		
 		QuestaoSubjetiva novaQuestaoSubj = optQuestaoSubj.get();
 		novaQuestaoSubj.setFonte(questaoSubj.getFonte());
 		novaQuestaoSubj.setAutor(questaoSubj.getAutor());
@@ -68,11 +71,11 @@ public class QuestaoSubjetivaService {
 	public QuestaoSubjetiva getById(Long id) {
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		/*
-		if (!optAlternativa.isPresent()) {
+		
+		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/	
+		
 		return optQuestaoSubj.get();
 	}
 

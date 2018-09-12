@@ -7,12 +7,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springboot.exception.RegisterNotFoundException;
 import springboot.model.QuestaoCompetencia;
 import springboot.model.QuestaoCompetenciaPK;
 import springboot.repository.QuestaoCompetenciaRepository;
 
 @Service
 public class QuestaoCompetenciaService {
+	
+	private final String errorMessage = "A QuestãoCompetência não está cadastrada!";
 
 	@Autowired
 	private QuestaoCompetenciaRepository questaoCompetenciaRepository;
@@ -26,11 +29,11 @@ public class QuestaoCompetenciaService {
 
 		Optional<QuestaoCompetencia> optQuestaoCompetencia = questaoCompetenciaRepository.findById(questaoCompetenciaPK);
 
-		/*
-		if (!optUsuario.isPresent()) {
+	
+		if (!optQuestaoCompetencia.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+	
 
 		QuestaoCompetencia questaoCompetencia = optQuestaoCompetencia.get();
 		questaoCompetenciaRepository.delete(questaoCompetencia);
@@ -44,11 +47,11 @@ public class QuestaoCompetenciaService {
 		
 		Optional<QuestaoCompetencia> optQuestaoCompetencia = questaoCompetenciaRepository.findById(questaoCompetenciaPK);
 		
-		/*
-		if (!optUsuario.isPresent()) {
+		
+		if (!optQuestaoCompetencia.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+		
 
 		QuestaoCompetencia novaQuestaoCompetencia = optQuestaoCompetencia.get();
 		novaQuestaoCompetencia.setCompetencia(questaoCompetencia.getCompetencia());

@@ -6,11 +6,14 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springboot.exception.RegisterNotFoundException;
 import springboot.model.QuestaoObjetiva;
 import springboot.repository.QuestaoObjetivaRepository;
 
 @Service
 public class QuestaoObjetivaService {
+	
+	private final String errorMessage = "A questão objetiva não está cadastrada.";
 	
 	@Autowired
 	private QuestaoObjetivaRepository questaoObjRepository;
@@ -23,11 +26,11 @@ public class QuestaoObjetivaService {
 	public QuestaoObjetiva delete(Long id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
-		/*
-		if (!optAluno.isPresent()) {
+		
+		if (!optQuestaoObj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+		
 
 		QuestaoObjetiva questaoObj = optQuestaoObj.get();
 		questaoObjRepository.delete(questaoObj);
@@ -38,11 +41,11 @@ public class QuestaoObjetivaService {
 	public QuestaoObjetiva update(QuestaoObjetiva questaoObj, Long id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
-		/*
-		if (!optAlternativa.isPresent()) {
+		
+		if (!optQuestaoObj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/
+	
 		QuestaoObjetiva novaQuestaoObj = optQuestaoObj.get();
 		novaQuestaoObj.setFonte(questaoObj.getFonte());
 		novaQuestaoObj.setAutor(questaoObj.getAutor());
@@ -64,11 +67,11 @@ public class QuestaoObjetivaService {
 	public QuestaoObjetiva getById(Long id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
-		/*
-		if (!optAlternativa.isPresent()) {
+		
+		if (!optQuestaoObj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		*/	
+		
 		return optQuestaoObj.get();
 	}
 

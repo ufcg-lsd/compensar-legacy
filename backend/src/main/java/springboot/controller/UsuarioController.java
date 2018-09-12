@@ -30,7 +30,7 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 	
-	@ApiOperation("Permite registrar um novo usuário no sistemal. Requer que o corpo do request contenha um objeto com os campos: nomeCompleto, nomeInstituicao e email.\r\n" + 
+	@ApiOperation("Permite registrar um novo usuário no sistema. Requer que o corpo do request contenha um objeto com os campos: nomeCompleto, nomeInstituicao e email.\r\n" + 
 			"")
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "OK", response = Usuario.class)})
 	@RequestMapping(value = "/usuario", method = RequestMethod.POST)
