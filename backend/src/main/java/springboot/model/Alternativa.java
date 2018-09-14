@@ -14,12 +14,6 @@ public class Alternativa {
 	@Column(name = "id_alternativa",updatable = false, nullable = false)	
 	private Long id;
 	
-	/*
-	@ManyToOne // revisar esse relacionamento
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private Long id_questao; // revisar esse tratamento de chave estrangeira
-	*/
-	
 	@Column(nullable = false)
 	private String texto;
 	
