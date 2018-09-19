@@ -64,7 +64,7 @@ private MockMvc mockMvc;
 	@Test
 	public void testDELETEQuestaoCompetencia() throws Exception {
 	    this.mockMvc.perform(MockMvcRequestBuilders
-	            .delete("/api/questaoCompetencia/1/coleta")
+	            .delete("/api/questaoCompetencia/"+ this.questaoCompetencia.getId()+"/"+this.questaoCompetencia.getCompetencia())
 	            .contentType(MediaType.APPLICATION_JSON))
 	    		.andExpect(MockMvcResultMatchers.status().isOk());
 	}	
@@ -76,6 +76,7 @@ private MockMvc mockMvc;
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
+  	
 	
 	@After
 	public void tearDown() {

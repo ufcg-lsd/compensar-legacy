@@ -34,13 +34,15 @@ public class UsuarioControllerTest extends AepcApplicationTests{
 	private JdbcTemplate jdbcTemplate;	
 	
 	private Usuario usuario;
+	private Usuario usuarioUpdated;
+
 
 	
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioController).build();
 		this.usuario = new Usuario("Marcelo G D S Q Vitorino", "UFCG","marcelo.vitorino@gmail.com");
-		//this.usuarioUpdated = new Usuario("Marcelo G D S Q Vitorino", "USP","marcelo.vitorino@usp.com");
+		this.usuarioUpdated = new Usuario("Marcelo G D S Q Vitorino", "USP","marcelo.vitorino@usp.com");
 	}
 	
 	@Test
@@ -70,45 +72,30 @@ public class UsuarioControllerTest extends AepcApplicationTests{
 	    }
 	}  
 	
-	/**
-
-	@Test
-	public void testGETbyEmail() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/usuario/marcelo.vitorino@gmail.com"))
-			.andExpect(MockMvcResultMatchers.model().attributeExists("string"))	
-			.andExpect(MockMvcResultMatchers.status().isOk());
-	}
-	
-	
-	*/
 	
 	@Test
 	public void testDELETEUsuario() throws Exception {
 	    this.mockMvc.perform(MockMvcRequestBuilders
-	            .delete("/api/usuario/marcelo.vitorino@gmail.com")
+	            .delete("/api/usuario/"+ this.usuario.getEmail())
 	            .contentType(MediaType.APPLICATION_JSON))
 	    		.andExpect(MockMvcResultMatchers.status().isOk());
 	}	
 
-		/**
 	@Test
-	public void nao_deve_permitir_salvar_cliente_pf_com_nome_cpf_duplicado() throws Exception {
-
-	    this.mockMvc.perform(MockMvcRequestBuilders.post("/api/cliente/pessoafisica/post")
-	            .contentType(MediaType.APPLICATION_JSON)
-	            .content("teste"))
-	            .andDo(print())
-	            .andExpect(status().is2xxSuccessful());
+	public void testGETQuestaoUsuarioById() throws Exception {
+		this.mockMvc
+				.perform(MockMvcRequestBuilders.get("/api/usuario/"+ this.usuario.getEmail())
+				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
-
 
 	@Test
 	public void testPUTUsuario() throws Exception {
-		Usuario usuario = (Usuario) usuarioService.save(new Usuario("Marcelo G D S Q Vitorino", "UFCG","marcelo.vitorino@gmail.com"));
-		this.mockMvc.perform(MockMvcRequestBuilders.put("/api/usuario/" + usuario.getEmail())).andExpect(MockMvcResultMatchers.redirectedUrl("/usuario"));
+		String body = (new ObjectMapper()).valueToTree(usuarioUpdated).toString();
+		this.mockMvc.perform(
+				MockMvcRequestBuilders.put("/api/usuario/"+ this.usuario.getEmail()).content(body).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
-
-	*/
 
 	@After
 	public void tearDown() {

@@ -17,7 +17,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.QuestaoSubjetivaController;
-
 import springboot.model.QuestaoSubjetiva;
 
 public class QuestaoSubjControllerTest extends AepcApplicationTests{
@@ -31,12 +30,15 @@ public class QuestaoSubjControllerTest extends AepcApplicationTests{
 	
 	private QuestaoSubjetiva questaoSubj;
 	
+	private QuestaoSubjetiva updatedQuestaoSubj;
+
+	
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(questaoSubjController).build();
 
 		this.questaoSubj =  new QuestaoSubjetiva("subjetiva", "quanto é 2 + 2?", "PISA", null, null, "a resposta é 2 * 2");
-
+		this.updatedQuestaoSubj = new QuestaoSubjetiva("subjetiva", "quanto é 2 * 2?", "PISA", null, null, "a resposta é 2 + 2");
 	}
 	
 	@Test
@@ -73,6 +75,21 @@ public class QuestaoSubjControllerTest extends AepcApplicationTests{
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 	
+	@Test
+	public void testGETQuestaoSubjById() throws Exception {
+		this.mockMvc
+				.perform(MockMvcRequestBuilders.get("/api/questaoSubj/1")
+				.accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
+
+	@Test
+	public void testPUTQuestaoSubj() throws Exception {
+		String body = (new ObjectMapper()).valueToTree(updatedQuestaoSubj).toString();
+		this.mockMvc.perform(
+				MockMvcRequestBuilders.put("/api/questaoSubj/1").content(body).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
+	}
 	
 	@After
 	public void tearDown() {
