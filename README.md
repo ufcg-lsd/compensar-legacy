@@ -9,7 +9,7 @@ Essas instruções vão ajudar você a utilizar o projeto e rodar em sua máquin
 É necessário que você execute os comandos SQL contidos no seguinte arquivo para utilizar um banco de dados MySql na aplicação utilizando um servidor (Ex.:XAMPP).
 
 ```
-aepc/backend/src/resources/import.sql
+aepc/backend/src/main/resources/import.sql
 ```
 
 ### Executar
@@ -29,7 +29,7 @@ Grupos de usuários pré-defindos permanentemente com um tipo de permissão se e
 
 
 ```
-aepc/backend/src/resources/import.sql
+aepc/backend/src/main/resources/import.sql
 ```
 
 Para login e acesso aos endpoints, é utilizado o email e senha de três digitos. No mesmo arquivo se encontram a inserção de alguns usuários exemplo.
