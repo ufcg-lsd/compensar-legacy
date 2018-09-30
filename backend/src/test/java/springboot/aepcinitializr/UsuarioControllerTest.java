@@ -18,6 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.UsuarioController;
 import springboot.model.Usuario;
+import springboot.model.UsuarioPermissao;
 
 
 
@@ -36,13 +37,12 @@ public class UsuarioControllerTest extends AepcApplicationTests{
 	private Usuario usuario;
 	private Usuario usuarioUpdated;
 
-
 	
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioController).build();
-		this.usuario = new Usuario("Marcelo G D S Q Vitorino", "UFCG","marcelo.vitorino@gmail.com");
-		this.usuarioUpdated = new Usuario("Marcelo G D S Q Vitorino", "USP","marcelo.vitorino@usp.com");
+		this.usuario = new Usuario("marcelo", "UFCG", "marcelo@gmail.com", "$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS", true);
+		this.usuarioUpdated = new Usuario("marcelo Gabriel Vitorino", "UFCG", "marcelo@gmail.com", "$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS", true);
 	}
 	
 	@Test

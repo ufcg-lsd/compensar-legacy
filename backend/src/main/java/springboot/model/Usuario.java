@@ -31,10 +31,12 @@ public class Usuario {
 	@Column(nullable = false)
 	private boolean ativo;
 
-	public Usuario(String nomeCompleto, String nomeInstituicao, String email) {
-		this.nome = nomeCompleto;
+	public Usuario(String nome, String nomeInstituicao, String email, String senha, boolean ativo) {
+		this.nome = nome;
 		this.nomeInstituicao = nomeInstituicao;
 		this.email = email;
+		this.senha = senha;
+		this.ativo = ativo;
 	}
 
 	public Usuario() {

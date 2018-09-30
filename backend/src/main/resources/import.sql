@@ -5,6 +5,10 @@ create database db_aepc;
 create user 'marcelovitorino'@'localhost' identified by 'marcelopassword';
 grant all on db_aepc.* to 'marcelovitorino'@'localhost';
 
+create database db_aepc_test;
+grant all on db_aepc_test.* to 'marcelovitorino'@'localhost';
+
+
 -- Cria Enum de Competencias
 ALTER TABLE questao_competencia MODIFY competencia ENUM('coleta','paralelização','analise','representacao','decomposicao','abstracao','simulacao','automacao');
 -- Cria Enum de Permissao
