@@ -8,24 +8,22 @@ import javax.persistence.IdClass;
 @Entity(name = "Questao_Competencia")
 @IdClass(QuestaoCompetenciaPK.class)
 public class QuestaoCompetencia {
-	
-	
+
 	@Id
-	@Column(name = "id_questao",updatable = false, nullable = false)	
+	@Column(name = "id_questao", updatable = false, nullable = false)
 	private Long id_questao;
-	
+
 	@Id
-	@Column(name = "competencia",nullable = false)
+	@Column(name = "competencia", nullable = false)
 	private String competencia;
-	
+
 	public QuestaoCompetencia(Long id_questao, String competencia) {
 		this.competencia = competencia;
 		this.id_questao = id_questao;
 	}
-	
-	
-	public QuestaoCompetencia () {
-		
+
+	public QuestaoCompetencia() {
+
 	}
 
 	public Long getId() {
@@ -48,8 +46,5 @@ public class QuestaoCompetencia {
 	public String toString() {
 		return "QuestaoCompetencia [id=" + id_questao + ", competencia=" + competencia + "]";
 	}
-
-	
-	
 
 }

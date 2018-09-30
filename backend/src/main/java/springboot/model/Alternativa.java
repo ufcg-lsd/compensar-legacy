@@ -8,25 +8,25 @@ import javax.persistence.Id;
 
 @Entity(name = "Alternativa")
 public class Alternativa {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_alternativa",updatable = false, nullable = false)	
+	@Column(name = "id_alternativa", updatable = false, nullable = false)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String texto;
-	
+
 	@Column(nullable = false)
 	private boolean correta;
-	
+
 	public Alternativa(String texto, boolean correta) {
 		this.texto = texto;
 		this.correta = correta;
 	}
-	
+
 	public Alternativa() {
-		
+
 	}
 
 	public Long getId_alternativa() {
@@ -36,7 +36,6 @@ public class Alternativa {
 	public void setId_alternativa(Long id_alternativa) {
 		this.id = id_alternativa;
 	}
-
 
 	public String getTexto() {
 		return texto;
@@ -59,5 +58,4 @@ public class Alternativa {
 		return "Alternativa [texto=" + texto + ", correta=" + correta + "]";
 	}
 
-	
 }

@@ -12,9 +12,9 @@ import springboot.repository.QuestaoSubjetivaRepository;
 
 @Service
 public class QuestaoSubjetivaService {
-	
+
 	private final String errorMessage = "A questão subjetiva não está cadastrada.";
-	
+
 	@Autowired
 	private QuestaoSubjetivaRepository questaoSubjRepository;
 
@@ -24,14 +24,12 @@ public class QuestaoSubjetivaService {
 	}
 
 	public QuestaoSubjetiva delete(Long id) {
-	
+
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		
 		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		
 
 		QuestaoSubjetiva questaoSubj = optQuestaoSubj.get();
 		questaoSubjRepository.delete(questaoSubj);
@@ -40,14 +38,13 @@ public class QuestaoSubjetivaService {
 	}
 
 	public QuestaoSubjetiva update(QuestaoSubjetiva questaoSubj, Long id) {
-		
+
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		
 		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		
+
 		QuestaoSubjetiva novaQuestaoSubj = optQuestaoSubj.get();
 		novaQuestaoSubj.setFonte(questaoSubj.getFonte());
 		novaQuestaoSubj.setAutor(questaoSubj.getAutor());
@@ -55,8 +52,6 @@ public class QuestaoSubjetivaService {
 		novaQuestaoSubj.setTipo(questaoSubj.getTipo());
 		novaQuestaoSubj.setEnunciado(questaoSubj.getEnunciado());
 		novaQuestaoSubj.setEspelho(questaoSubj.getEspelho());
-
-	
 
 		questaoSubjRepository.save(novaQuestaoSubj);
 
@@ -71,11 +66,10 @@ public class QuestaoSubjetivaService {
 	public QuestaoSubjetiva getById(Long id) {
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
-		
 		if (!optQuestaoSubj.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		
+
 		return optQuestaoSubj.get();
 	}
 

@@ -12,40 +12,35 @@ import springboot.repository.AlternativaRepository;
 
 @Service
 public class AlternativaService {
-	
+
 	private final String errorMessage = "A alternativa não está cadastrada!";
 
 	@Autowired
 	private AlternativaRepository alternativaRepository;
-	
-	
+
 	public Alternativa delete(Long id) {
 		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
 
-		
 		if (!optAlternativa.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-		
 
 		Alternativa alternativa = optAlternativa.get();
 		alternativaRepository.delete(alternativa);
 
 		return alternativa;
 	}
-	
+
 	public Alternativa update(Alternativa alternativa, Long id) {
 		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
 
-		
 		if (!optAlternativa.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-	
+
 		Alternativa novaAlternativa = optAlternativa.get();
 		novaAlternativa.setCorreta(alternativa.isCorreta());
 		novaAlternativa.setTexto(alternativa.getTexto());
-	
 
 		alternativaRepository.save(novaAlternativa);
 
@@ -55,19 +50,15 @@ public class AlternativaService {
 	public List<Alternativa> getAll() {
 		return alternativaRepository.findAll();
 	}
-	
+
 	public Alternativa getById(Long id) {
 		Optional<Alternativa> optAlternativa = alternativaRepository.findById(id);
 
-	
 		if (!optAlternativa.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
-	
+
 		return optAlternativa.get();
 	}
-
-
-
 
 }

@@ -15,19 +15,19 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-
 @Entity(name = "Quest_Obj")
 public class QuestaoObjetiva extends Questao {
-	
-	@OneToMany(cascade = CascadeType.ALL)  
+
+	@OneToMany(cascade = CascadeType.ALL)
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;
-	
-	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image, List<Alternativa> alternativas) {
-		super(tipo,enunciado,fonte,autor,image);
+
+	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image,
+			List<Alternativa> alternativas) {
+		super(tipo, enunciado, fonte, autor, image);
 		this.alternativas = alternativas;
 	}
-	
+
 	public QuestaoObjetiva() {
 	}
 
@@ -40,4 +40,3 @@ public class QuestaoObjetiva extends Questao {
 	}
 
 }
-

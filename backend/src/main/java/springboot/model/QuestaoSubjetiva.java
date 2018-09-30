@@ -8,23 +8,22 @@ package springboot.model;
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity(name = "Quest_Subj")
-public class QuestaoSubjetiva extends Questao	{
-									
+public class QuestaoSubjetiva extends Questao {
+
 	@Column(nullable = false)
 	private String espelho;
-	
+
 	public QuestaoSubjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image, String espelho) {
-		super(tipo,enunciado,fonte,autor,image);
+		super(tipo, enunciado, fonte, autor, image);
 		this.espelho = espelho;
 	}
-	
+
 	public QuestaoSubjetiva() {
-		
+
 	}
 
 	public String getEspelho() {

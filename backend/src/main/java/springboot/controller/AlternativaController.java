@@ -29,8 +29,8 @@ public class AlternativaController {
 	@Autowired
 	AlternativaService alternativaService;
 
-	@ApiOperation("Permite apagar uma alternativa do sistema, consequentemente, da questão que estava associada. \n" + 
-			"")
+	@ApiOperation("Permite apagar uma alternativa do sistema, consequentemente, da questão que estava associada. \n"
+			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Alternativa.class) })
 	@RequestMapping(value = "/alternativa/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Alternativa> delete(@PathVariable("id") Long id) {
@@ -38,8 +38,8 @@ public class AlternativaController {
 		return new ResponseEntity<Alternativa>(alternativa, HttpStatus.OK);
 	}
 
-	@ApiOperation("Permite atualizar uma alternativa do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma alternativa, no formato:  \"<atributo>:<valor>\".\n" + 
-			"")
+	@ApiOperation("Permite atualizar uma alternativa do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma alternativa, no formato:  \"<atributo>:<valor>\".\n"
+			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Alternativa.class) })
 	@RequestMapping(value = "/alternativa/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Alternativa> update(@PathVariable("id") Long id, @RequestBody Alternativa alternativa) {

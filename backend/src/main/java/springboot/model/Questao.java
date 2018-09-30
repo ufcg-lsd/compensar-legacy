@@ -1,6 +1,5 @@
 package springboot.model;
 
-
 /**
  * Classe abstrata que representa um molde de uma Questão, que pode ser Objetiva ou Subjetiva.
  * 
@@ -8,7 +7,6 @@ package springboot.model;
  * 
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
-
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,42 +22,39 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Questao")
 public abstract class Questao {
-	
-	
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_questao", updatable = false, nullable = false)
-    private Long id;
-    
-    @Column(nullable = false)
-    private String tipo;
-    
-    @Column(nullable = false)
-    private String enunciado;
-    
-    @Column(nullable = true)
-    private String fonte;
-    
-    @Column(nullable = true)
-    private String autor;  
-    
-    @Lob
-    @Column(nullable=true, columnDefinition="mediumblob")
-    private byte[] imagem;
-    
-   
-    
-    public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
-    	this.tipo = tipo;
-    	this.enunciado = enunciado;
-    	this.fonte = fonte;
-    	this.autor = autor;
-    	this.imagem = imagem;
-    }
-    
-    public Questao() {
-    	
-    }
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id_questao", updatable = false, nullable = false)
+	private Long id;
+
+	@Column(nullable = false)
+	private String tipo;
+
+	@Column(nullable = false)
+	private String enunciado;
+
+	@Column(nullable = true)
+	private String fonte;
+
+	@Column(nullable = true)
+	private String autor;
+
+	@Lob
+	@Column(nullable = true, columnDefinition = "mediumblob")
+	private byte[] imagem;
+
+	public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
+		this.tipo = tipo;
+		this.enunciado = enunciado;
+		this.fonte = fonte;
+		this.autor = autor;
+		this.imagem = imagem;
+	}
+
+	public Questao() {
+
+	}
 
 	public Long getId() {
 		return id;
@@ -108,44 +103,34 @@ public abstract class Questao {
 	public void setImage(byte[] imagem) {
 		this.imagem = imagem;
 	}
-	
+
 	/**
 	 * 
 	 * Métodos referentes as competências de uma questão.
 	 * 
 	 */
-	
+
 	/**
-	public List<Competencia> getCompetencias() {
-		return competencias;
-	}
+	 * public List<Competencia> getCompetencias() { return competencias; }
+	 * 
+	 * public void setCompetencias(List<Competencia> competencias) {
+	 * this.competencias = competencias; }
+	 * 
+	 * public void addCompetencias(Competencia competencia) {
+	 * competencias.add(competencia); }
+	 * 
+	 * public boolean containsCompetencia(Competencia competencia) { return
+	 * competencias.contains(competencia); }
+	 * 
+	 * public void removeCompetencia(Competencia competencia) {
+	 * competencias.remove(competencia); }
+	 * 
+	 * public boolean semCompetencia() { return competencias.isEmpty(); }
+	 * 
+	 * public Object[] toArray() { return competencias.toArray(); }
+	 * 
+	 */
 
-	public void setCompetencias(List<Competencia> competencias) {
-		this.competencias = competencias;
-	}
-
-	public void addCompetencias(Competencia competencia) {
-		competencias.add(competencia);
-	}
-	
-	public boolean containsCompetencia(Competencia competencia) {
-		return competencias.contains(competencia);
-	}
-	
-	public void removeCompetencia(Competencia competencia) {
-		competencias.remove(competencia);
-	}
-	
-	public boolean semCompetencia() {
-		return competencias.isEmpty();
-	}
-	
-	public Object[] toArray() {
-		return competencias.toArray();
-	}
-	
-	*/
-	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -7,11 +7,8 @@ import org.springframework.stereotype.Repository;
 
 import springboot.model.Alternativa;
 
-
 @Repository
 @Transactional
-public interface AlternativaRepository extends JpaRepository<Alternativa, Long>{
+public interface AlternativaRepository extends JpaRepository<Alternativa, Long> {
 
-	
-	
 }

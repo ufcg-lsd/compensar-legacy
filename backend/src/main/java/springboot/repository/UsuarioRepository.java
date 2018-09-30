@@ -10,11 +10,13 @@ import springboot.model.Usuario;
 
 @Repository
 @Transactional
-public interface UsuarioRepository  extends JpaRepository<Usuario, String>{
+public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
 	/*
-	@Query("SELECT d FROM Disciplina d WHERE LOWER(d.nome) LIKE CONCAT('%', LOWER(:nome), '%')")
-	public List<Usuario> pesquisarPorNome(@Param("nome") String nome);
-	*/
-	
+	 * @Query("SELECT d FROM Disciplina d WHERE LOWER(d.nome) LIKE CONCAT('%', LOWER(:nome), '%')"
+	 * ) public List<Usuario> pesquisarPorNome(@Param("nome") String nome);
+	 */
+
+	Usuario findByEmail(String email);
+
 }
