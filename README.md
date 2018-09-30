@@ -23,20 +23,22 @@ aepc/backend/src/main/java/springboot/AepcApplication.java
 
 ### Segurança 
 
-A segurança nos endpoints está implemetada utilizando HTTP Basic e busca dos usuários no banco de dados utilizando o serviço que implementa UserDetailsService, do Spring Security. Cada usuário pertence a um grupo que possui determinada permissão.
+A segurança nos endpoints está implemetada utilizando HTTP Basic e busca dos usuários no banco de dados utilizando o serviço que implementa UserDetailsService, do Spring Security. Cada usuário possui uma determinada permissão.
 
-Grupos de usuários pré-defindos permanentemente com um tipo de permissão se encontram também no seguinte arquivo:
-
+Usuários para testes pré-defindos com um tipo de permissão se encontram também no seguinte arquivo:
 
 ```
 aepc/backend/src/main/resources/import.sql
 ```
 
+Obs.: Há endpoints específicos para criação de um usuário, e de adição de uma permissão a um usuário (Mais a frente)
+
+
 Para login e acesso aos endpoints, é utilizado o email e senha de três digitos. No mesmo arquivo se encontram a inserção de alguns usuários exemplo.
 
 
 ### API REST
-Para obter uma visualização interativa da API acesse, localmente, o seguinte endereço:
+Para obter uma visualização interativa da API com os endpoints acesse, localmente, o seguinte endereço:
 
 ```
 http://localhost:8080/swagger-ui.html
