@@ -69,7 +69,7 @@ public class AlternativaControllerTest extends AepcApplicationTests {
 	
 	@After
 	public void tearDown() {
-	  JdbcTestUtils.deleteFromTables(jdbcTemplate, "usuario");
+	  JdbcTestUtils.deleteFromTables(jdbcTemplate, "alternativa");
 	}
 	
 

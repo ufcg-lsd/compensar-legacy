@@ -11,9 +11,9 @@ public class UsuarioSistema extends User {
 
 	private String nome;
 
-	public UsuarioSistema(String nome, String username, String password,
+	public UsuarioSistema(String nome, String email, String password,
 			Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
+		super(email, password, authorities);
 
 		this.nome = nome;
 	}
