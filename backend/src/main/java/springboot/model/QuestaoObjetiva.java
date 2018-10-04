@@ -22,19 +22,49 @@ public class QuestaoObjetiva extends Questao {
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;
 
-	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image,
+
+	/**
+	 * Cria uma QuestaoObjetiva com tipo, enunciado, fonte, autor, imagem e alternativas.
+	 *
+	 * @param tipo
+	 *            O tipo da questão.
+	 * @param enunciado
+	 *            O enunciado da questão.
+	 * @param fonte 
+	 * 			  A fonte da questão.
+	 * @param autor 
+	 * 			  O autor da questão.
+	 * @param imagem 
+	 * 			  A imagem da questão.          
+	 * @param alternativas
+	 * 			  A coleção de alternativas de uma questão
+	 * 
+	 */
+	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, byte[] imagem,
 			List<Alternativa> alternativas) {
-		super(tipo, enunciado, fonte, autor, image);
+		super(tipo, enunciado, fonte, autor, imagem);
 		this.alternativas = alternativas;
 	}
 
 	public QuestaoObjetiva() {
 	}
 
+	/**
+	 * Recupera as alternativas da questão.     
+	 *
+	 * @return As alternativas da questão.     
+	 */
 	public List<Alternativa> getAlternativas() {
 		return alternativas;
 	}
-
+	
+	/**
+	 * @param alternativas
+	 *            As alternativas da questão.           
+	 *
+	 *            Atualiza a coleção de alternativas da questão.        
+	 *
+	 */
 	public void setAlternativas(List<Alternativa> alternativas) {
 		this.alternativas = alternativas;
 	}

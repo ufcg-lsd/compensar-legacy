@@ -17,8 +17,25 @@ public class QuestaoSubjetiva extends Questao {
 	@Column(nullable = false)
 	private String espelho;
 
-	public QuestaoSubjetiva(String tipo, String enunciado, String fonte, String autor, byte[] image, String espelho) {
-		super(tipo, enunciado, fonte, autor, image);
+	/**
+	 * Cria uma QuestaoObjetiva com tipo, enunciado, fonte, autor, imagem e alternativas.
+	 *
+	 * @param tipo
+	 *            O tipo da questão.
+	 * @param enunciado
+	 *            O enunciado da questão.
+	 * @param fonte 
+	 * 			  A fonte da questão.
+	 * @param autor 
+	 * 			  O autor da questão.
+	 * @param imagem 
+	 * 			  A imagem da questão.          
+	 * @param espelho
+	 * 			  O espelho de uma questão
+	 * 
+	 */
+	public QuestaoSubjetiva(String tipo, String enunciado, String fonte, String autor, byte[] imagem, String espelho) {
+		super(tipo, enunciado, fonte, autor, imagem);
 		this.espelho = espelho;
 	}
 
@@ -26,14 +43,30 @@ public class QuestaoSubjetiva extends Questao {
 
 	}
 
+	/**
+	 * Recupera o espelho da questão.     
+	 *
+	 * @return O espelho da questão.     
+	 */
 	public String getEspelho() {
 		return espelho;
 	}
 
+	/**
+	 * @param espelho
+	 *            O espelho da questão.      
+	 *
+	 *            Atualiza o espelho da questão.        
+	 *
+	 */
 	public void setEspelho(String espelho) {
 		this.espelho = espelho;
 	}
-
+	/**
+	 * Representacao em string da questão subjetiva.
+	 *
+	 * @return A representacao em string da questão subjetiva.
+	 */
 	@Override
 	public String toString() {
 		return "QuestaoSubjetiva [espelho=" + espelho + "]";

@@ -43,7 +43,24 @@ public abstract class Questao {
 	@Lob
 	@Column(nullable = true, columnDefinition = "mediumblob")
 	private byte[] imagem;
+	
 
+	/**
+	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
+	 *
+	 * @param tipo
+	 *            O tipo da questão.
+	 * @param enunciado
+	 *            O enunciado da questão.
+	 * @param fonte 
+	 * 			  A fonte da questão.
+	 * @param autor 
+	 * 			  O autor da questão.
+	 * @param imagem 
+	 * 			  A imagem da questão.          
+	 *         
+	 * 
+	 */
 	public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
 		this.tipo = tipo;
 		this.enunciado = enunciado;
@@ -56,80 +73,127 @@ public abstract class Questao {
 
 	}
 
+
+	/**
+	 * Recupera o id da questão.     
+	 *
+	 * @return O id da questão.     
+	 */
 	public Long getId() {
 		return id;
 	}
-
+	/**
+	 * @param id
+	 *            O id da questão.     
+	 *
+	 *            Atualiza o id da questão.     
+	 *
+	 */
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+	/**
+	 * Recupera o tipo da questão.     
+	 *
+	 * @return O tipo da questão.     
+	 */
 	public String getTipo() {
 		return tipo;
 	}
 
+	/**
+	 * @param tipo
+	 *            O tipo da questão.        
+	 *
+	 *            Atualiza o tipo da questão.        
+	 *
+	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 
+	/**
+	 * Recupera o enunciado da questão.     
+	 *
+	 * @return O enunciado da questão.     
+	 */
 	public String getEnunciado() {
 		return enunciado;
 	}
 
+	/**
+	 * @param enunciado
+	 *            O enunciado da questão.        
+	 *
+	 *            Atualiza o enunciado da questão.        
+	 *
+	 */
 	public void setEnunciado(String enunciado) {
 		this.enunciado = enunciado;
 	}
 
+	/**
+	 * Recupera a fonte da questão.     
+	 *
+	 * @return A fonte da questão.     
+	 */
 	public String getFonte() {
 		return fonte;
 	}
 
+	/**
+	 * @param fonte
+	 *            A fonte da questão.        
+	 *
+	 *            Atualiza a fonte da questão.        
+	 *
+	 */
 	public void setFonte(String fonte) {
 		this.fonte = fonte;
 	}
 
+	/**
+	 * Recupera o autor da questão.     
+	 *
+	 * @return O autor da questão.     
+	 */
 	public String getAutor() {
 		return autor;
 	}
 
+	/**
+	 * @param autor
+	 *            O autor da questão.        
+	 *
+	 *            Atualiza o autor da questão.        
+	 *
+	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-
+	
+	/**
+	 * Recupera a imagem da questão.     
+	 *
+	 * @return A imagem da questão.     
+	 */
 	public byte[] getImagem() {
 		return imagem;
 	}
 
+	/**
+	 * @param imagem
+	 *            A imagem da questão.        
+	 *
+	 *            Atualiza a imagem da questão.        
+	 *
+	 */
 	public void setImage(byte[] imagem) {
 		this.imagem = imagem;
 	}
 
-	/**
-	 * 
-	 * Métodos referentes as competências de uma questão.
-	 * 
-	 */
 
-	/**
-	 * public List<Competencia> getCompetencias() { return competencias; }
-	 * 
-	 * public void setCompetencias(List<Competencia> competencias) {
-	 * this.competencias = competencias; }
-	 * 
-	 * public void addCompetencias(Competencia competencia) {
-	 * competencias.add(competencia); }
-	 * 
-	 * public boolean containsCompetencia(Competencia competencia) { return
-	 * competencias.contains(competencia); }
-	 * 
-	 * public void removeCompetencia(Competencia competencia) {
-	 * competencias.remove(competencia); }
-	 * 
-	 * public boolean semCompetencia() { return competencias.isEmpty(); }
-	 * 
-	 * public Object[] toArray() { return competencias.toArray(); }
-	 * 
-	 */
 
 	@Override
 	public int hashCode() {
