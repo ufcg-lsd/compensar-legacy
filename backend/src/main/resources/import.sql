@@ -26,12 +26,39 @@ ALTER TABLE usuario_permissao MODIFY permissao ENUM('ALL','RESPONDE_QUESTOES','C
 
 -- Cria usuarios para testes.
 insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (1, 'marcelo', 'UFCG','marcelo@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
-insert into Usuario (id, nome,nome_instituicao,email, senha, ativo) values (2, 'erick', 'UFCG','erick@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
-insert into Usuario (id, nome,nome_instituicao,email, senha, ativo) values (3, 'prof', 'UFCG','prof@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
+insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (2, 'erick', 'UFCG','erick@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
+insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (3, 'prof', 'UFCG','prof@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
 
 
 -- Adiciona permissão para um usuario.
 insert into usuario_permissao (email, permissao) values ('marcelo@gmail.com', 'ALL');
-insert into Usuario_Permissao (email, permissao) values ('erick@gmail.com', 'RESPONDE_QUESTOES');
-insert into Usuario_Permissao (email, permissao) values ('prof@gmail.com', 'CRIA_QUESTOES');
+insert into usuario_permissao (email, permissao) values ('erick@gmail.com', 'RESPONDE_QUESTOES');
+insert into usuario_permissao (email, permissao) values ('prof@gmail.com', 'CRIA_QUESTOES');
+
+
+-- Adição de questões
+
+insert into questao (autor,enunciado,fonte,imagem,tipo) values ('marcelo@gmail.com','Quanto é o triplo do quadrado de 10','PISA',null,'subj');
+insert into quest_subj (autor,enunciado,fonte,imagem,tipo) values ('marcelo@gmail.com','Quanto é o triplo do quadrado de 10','PISA',null,'subj');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

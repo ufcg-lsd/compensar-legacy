@@ -71,5 +71,7 @@ public class QuestaoSubjetiva extends Questao {
 	public String toString() {
 		return "QuestaoSubjetiva [espelho=" + espelho + "]";
 	}
+	
+	
 
 }

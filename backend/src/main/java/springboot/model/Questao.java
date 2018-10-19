@@ -21,11 +21,11 @@ import javax.persistence.Table;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "Questao")
-public abstract class Questao {
+public class Questao {
 
 	@Id
+	@Column(name = "id_questao",unique=true, updatable = false, nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_questao", updatable = false, nullable = false)
 	private Long id;
 
 	@Column(nullable = false)
