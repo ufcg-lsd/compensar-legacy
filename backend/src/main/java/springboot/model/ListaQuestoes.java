@@ -1,22 +1,22 @@
 package springboot.model;
 
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
-@Entity(name = "ListaQuestoes")
+@Entity
+@Table(name = "ListaQuestoes")
 public class ListaQuestoes {
 
 	@Id
-	@Column(unique=true)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)
@@ -24,7 +24,8 @@ public class ListaQuestoes {
 
 	
 	@Column(nullable = false)
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany
+	@JoinColumn(name = "id")
 	private Set<Questao> questoes;
 
 	public ListaQuestoes(String email, Set<Questao> questoes) {

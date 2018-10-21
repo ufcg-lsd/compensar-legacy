@@ -47,9 +47,9 @@ public class QuestaoObjControllerTest extends AepcApplicationTests {
 		this.alternativas.add(new Alternativa("2", true));
 		this.alternativas.add(new Alternativa("3", false));
 
-		this.questaoObj = new QuestaoObjetiva("objetiva", "o quadrado de PI elevado ao cubo é:", "ENEM", null, null,
+		this.questaoObj = new QuestaoObjetiva((long) 1,"objetiva", "o quadrado de PI elevado ao cubo é:", "ENEM", null, null,
 				alternativas);
-		this.updatedQuestaoObj = new QuestaoObjetiva("objetiva", "o quadrado de PI elevado ao quadrado é:", "ENEM",
+		this.updatedQuestaoObj = new QuestaoObjetiva((long) 2,"objetiva", "o quadrado de PI elevado ao quadrado é:", "ENEM",
 				null, null, alternativas);
 	}
 

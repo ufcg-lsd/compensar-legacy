@@ -10,8 +10,6 @@ package springboot.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -24,8 +22,7 @@ import javax.persistence.Table;
 public class Questao {
 
 	@Id
-	@Column(name = "id_questao",unique=true, updatable = false, nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(nullable = false)
 	private Long id;
 
 	@Column(nullable = false)
@@ -61,7 +58,8 @@ public class Questao {
 	 *         
 	 * 
 	 */
-	public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
+	public Questao(Long id,String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
+		this.id = id;
 		this.tipo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
@@ -193,8 +191,6 @@ public class Questao {
 		this.imagem = imagem;
 	}
 
-
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -219,5 +215,9 @@ public class Questao {
 			return false;
 		return true;
 	}
+
+
+
+
 
 }
