@@ -1,10 +1,13 @@
 package springboot.model;
 
+
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 
 /**
@@ -15,7 +18,8 @@ import javax.persistence.Id;
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
 
-@Entity(name = "Alternativa")
+
+@Document(collection = "alternativa")
 public class Alternativa {
 
 	@Id
@@ -23,6 +27,7 @@ public class Alternativa {
 	@Column(name = "id_alternativa", updatable = false, nullable = false)
 	private Long id;
 
+	@Indexed
 	@Column(nullable = false)
 	private String texto;
 

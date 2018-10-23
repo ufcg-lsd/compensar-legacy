@@ -16,9 +16,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
-@Entity
+import org.springframework.data.mongodb.core.mapping.Document;
+
+
 @Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "Questao")
+@Document(collection = "questao")
 public class Questao {
 
 	@Id

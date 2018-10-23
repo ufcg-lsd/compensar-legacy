@@ -5,7 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
-@Entity(name = "Questao_Competencia")
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "questao-competencia")
 @IdClass(QuestaoCompetenciaPK.class)
 public class QuestaoCompetencia {
 

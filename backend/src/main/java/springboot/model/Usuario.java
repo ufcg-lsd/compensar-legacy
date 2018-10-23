@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
-@Entity(name = "Usuario")
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "usuario")
 public class Usuario {
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

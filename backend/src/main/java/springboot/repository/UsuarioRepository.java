@@ -1,16 +1,15 @@
 package springboot.repository;
 
-import javax.transaction.Transactional;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import springboot.model.Usuario;
 
 @Repository
 @Transactional
-public interface UsuarioRepository extends JpaRepository<Usuario, String> {
+public interface UsuarioRepository extends MongoRepository<Usuario, String> {
 
 	/*
 	 * @Query("SELECT d FROM Disciplina d WHERE LOWER(d.nome) LIKE CONCAT('%', LOWER(:nome), '%')"

@@ -15,7 +15,9 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
-@Entity(name = "Quest_Obj")
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "questao-obj")
 public class QuestaoObjetiva extends Questao {
 
 	@OneToMany(cascade = CascadeType.ALL)

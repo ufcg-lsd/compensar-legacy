@@ -68,12 +68,13 @@ public class ListaQuestoesController {
 		return listaQuestoesService.getAll();
 	}
 	
+	
 	@ApiOperation("Fornece os dados de lista de questões registradas por determinado email. \r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
 	@RequestMapping(value = "/listaquestoes/{email}", method = RequestMethod.GET)
 	public ListaQuestoes getByEmail(@PathVariable("email") String email) {
 		return listaQuestoesService.getByEmail(email);
-	}
+	} 
 
 }
