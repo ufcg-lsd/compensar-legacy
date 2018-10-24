@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "listaquestoes")
@@ -18,10 +19,11 @@ public class ListaQuestoes {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Indexed
 	@Column(nullable = false)
 	private String email;
 
-	
+	@Indexed
 	@Column(nullable = false)
 	@ManyToMany
 	@JoinColumn(name = "id")

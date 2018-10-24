@@ -31,6 +31,7 @@ public class Alternativa {
 	@Column(nullable = false)
 	private String texto;
 
+	@Indexed
 	@Column(nullable = false)
 	private boolean correta;
 	

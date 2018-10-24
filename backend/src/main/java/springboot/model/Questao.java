@@ -16,6 +16,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -27,18 +28,23 @@ public class Questao {
 	@Column(nullable = false)
 	private Long id;
 
+	@Indexed
 	@Column(nullable = false)
 	private String tipo;
 
+	@Indexed
 	@Column(nullable = false)
 	private String enunciado;
 
+	@Indexed
 	@Column(nullable = true)
 	private String fonte;
 
+	@Indexed
 	@Column(nullable = true)
 	private String autor;
 
+	@Indexed
 	@Lob
 	@Column(nullable = true, columnDefinition = "mediumblob")
 	private byte[] imagem;

@@ -2,6 +2,7 @@ package springboot.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,13 +31,13 @@ public class AepcUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		Usuario usuario = usuarioRepository.findByEmail(email);
+		Optional<Usuario> usuario = usuarioRepository.findById(email);
 
 		if (usuario == null) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
 
-		return new UsuarioSistema(usuario.getNome(), usuario.getEmail(), usuario.getSenha(), authorities(usuario.getEmail()));
+		return new UsuarioSistema(usuario.get().getNome(), usuario.get().getEmail(), usuario.get().getSenha(), authorities(usuario.get().getEmail()));
 	}
 
 

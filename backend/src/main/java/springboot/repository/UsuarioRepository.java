@@ -16,6 +16,6 @@ public interface UsuarioRepository extends MongoRepository<Usuario, String> {
 	 * ) public List<Usuario> pesquisarPorNome(@Param("nome") String nome);
 	 */
 
-	Usuario findByEmail(String email);
+	//Usuario findByEmail(String email);
 
 }

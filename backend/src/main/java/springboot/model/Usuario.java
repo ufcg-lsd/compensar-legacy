@@ -9,27 +9,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usuario")
 public class Usuario {
 
+	@Indexed
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Indexed
 	@Column(nullable = false)
 	private String nome;
 
+	@Indexed
 	@Column(nullable = false)
 	private String nomeInstituicao;
 
+	@Indexed
 	@Column(nullable = false)
 	private String senha;
-
-	@Id
+	
+	@Indexed
+	@Id	
 	@Column(nullable = false)
 	private String email;
 
+	@Indexed
 	@Column(nullable = false)
 	private boolean ativo;
 

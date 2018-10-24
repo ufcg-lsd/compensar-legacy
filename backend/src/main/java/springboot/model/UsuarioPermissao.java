@@ -3,14 +3,16 @@ package springboot.model;
 
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection = "permissao")
+@Document(collection = "usuario-permissao")
 public class UsuarioPermissao {
 	
 	@Id
 	private String email;
+	@Indexed
 	private String permissao;
 	
 	

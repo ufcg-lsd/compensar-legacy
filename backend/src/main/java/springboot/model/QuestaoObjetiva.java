@@ -15,11 +15,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "questao-obj")
 public class QuestaoObjetiva extends Questao {
 
+	@Indexed
 	@OneToMany(cascade = CascadeType.ALL)
 	@Column(nullable = false)
 	private List<Alternativa> alternativas;

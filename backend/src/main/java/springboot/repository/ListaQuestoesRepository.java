@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import springboot.model.ListaQuestoes;
 
 
-
+@Repository
 public interface ListaQuestoesRepository extends MongoRepository<ListaQuestoes, Long>{
 
 	  @Query("{ 'email' : ?0 }")

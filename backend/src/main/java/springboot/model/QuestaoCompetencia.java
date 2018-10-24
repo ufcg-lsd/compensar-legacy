@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "questao-competencia")
@@ -12,10 +13,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class QuestaoCompetencia {
 
 	@Id
+	@Indexed
 	@Column(name = "id_questao", updatable = false, nullable = false)
 	private Long id_questao;
 
 	@Id
+	@Indexed
 	@Column(name = "competencia", nullable = false)
 	private String competencia;
 

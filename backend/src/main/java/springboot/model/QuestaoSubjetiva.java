@@ -11,11 +11,13 @@ package springboot.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "questao-subj")
 public class QuestaoSubjetiva extends Questao {
 
+	@Indexed
 	@Column(nullable = false)
 	private String espelho;
 
