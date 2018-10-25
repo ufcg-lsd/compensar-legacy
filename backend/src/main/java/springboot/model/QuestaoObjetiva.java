@@ -22,8 +22,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class QuestaoObjetiva extends Questao {
 
 	@Indexed
-	@OneToMany(cascade = CascadeType.ALL)
-	@Column(nullable = false)
 	private List<Alternativa> alternativas;
 
 

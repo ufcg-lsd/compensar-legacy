@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UsuarioPermissao {
 	
 	@Id
+	@Indexed
 	private String email;
 	@Indexed
 	private String permissao;

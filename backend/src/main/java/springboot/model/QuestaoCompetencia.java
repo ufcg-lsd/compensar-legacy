@@ -14,12 +14,10 @@ public class QuestaoCompetencia {
 
 	@Id
 	@Indexed
-	@Column(name = "id_questao", updatable = false, nullable = false)
 	private Long id_questao;
 
 	@Id
 	@Indexed
-	@Column(name = "competencia", nullable = false)
 	private String competencia;
 
 	public QuestaoCompetencia(Long id_questao, String competencia) {

@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.jdbc.JdbcTestUtils;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -25,8 +24,7 @@ public class QuestaoSubjControllerTest extends AepcApplicationTests{
 	@MockBean
 	private QuestaoSubjetivaController questaoSubjController;
 	
-	@Autowired
-	private JdbcTemplate jdbcTemplate;	
+
 	
 	private QuestaoSubjetiva questaoSubj;
 	
@@ -90,12 +88,6 @@ public class QuestaoSubjControllerTest extends AepcApplicationTests{
 				MockMvcRequestBuilders.put("/api/questaoSubj/1").content(body).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
-	
-	@After
-	public void tearDown() {
-	  JdbcTestUtils.deleteFromTables(jdbcTemplate, "questao");
-	}
-	
 	
 	
 }

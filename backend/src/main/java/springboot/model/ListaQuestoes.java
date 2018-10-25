@@ -16,17 +16,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ListaQuestoes {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Indexed
-	@Column(nullable = false)
 	private String email;
 
 	@Indexed
-	@Column(nullable = false)
-	@ManyToMany
-	@JoinColumn(name = "id")
 	private Set<Questao> questoes;
 
 	public ListaQuestoes(String email, Set<Questao> questoes) {

@@ -1,5 +1,9 @@
 package springboot.model;
 
+import javax.persistence.Lob;
+
+import org.springframework.data.annotation.Id;
+
 /**
  * Classe abstrata que representa um molde de uma Questão, que pode ser Objetiva ou Subjetiva.
  * 
@@ -8,45 +12,32 @@ package springboot.model;
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Inheritance(strategy = InheritanceType.JOINED)
 @Document(collection = "questao")
 public class Questao {
 
 	@Id
-	@Column(nullable = false)
 	private Long id;
 
 	@Indexed
-	@Column(nullable = false)
 	private String tipo;
 
 	@Indexed
-	@Column(nullable = false)
 	private String enunciado;
 
 	@Indexed
-	@Column(nullable = true)
 	private String fonte;
 
 	@Indexed
-	@Column(nullable = true)
 	private String autor;
 
 	@Indexed
 	@Lob
-	@Column(nullable = true, columnDefinition = "mediumblob")
 	private byte[] imagem;
 	
 

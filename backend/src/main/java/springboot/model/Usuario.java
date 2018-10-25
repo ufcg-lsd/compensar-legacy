@@ -16,28 +16,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Usuario {
 
 	@Indexed
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@Indexed
-	@Column(nullable = false)
 	private String nome;
 
 	@Indexed
-	@Column(nullable = false)
 	private String nomeInstituicao;
 
 	@Indexed
-	@Column(nullable = false)
 	private String senha;
 	
 	@Indexed
 	@Id	
-	@Column(nullable = false)
 	private String email;
 
 	@Indexed
-	@Column(nullable = false)
 	private boolean ativo;
 
 	public Usuario(String nome, String nomeInstituicao, String email, String senha, boolean ativo) {
@@ -82,14 +73,6 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public boolean isAtivo() {

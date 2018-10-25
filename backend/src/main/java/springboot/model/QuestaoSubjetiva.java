@@ -18,7 +18,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class QuestaoSubjetiva extends Questao {
 
 	@Indexed
-	@Column(nullable = false)
 	private String espelho;
 
 	/**

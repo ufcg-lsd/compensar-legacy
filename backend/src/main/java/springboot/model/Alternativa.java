@@ -23,16 +23,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Alternativa {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id_alternativa", updatable = false, nullable = false)
 	private Long id;
 
 	@Indexed
-	@Column(nullable = false)
 	private String texto;
 
 	@Indexed
-	@Column(nullable = false)
 	private boolean correta;
 	
 	
