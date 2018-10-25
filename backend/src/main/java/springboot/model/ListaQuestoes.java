@@ -2,11 +2,8 @@ package springboot.model;
 
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -15,12 +12,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "listaquestoes")
 public class ListaQuestoes {
 
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	@Indexed
 	private String email;
 
+	@NotNull
 	@Indexed
 	private Set<Questao> questoes;
 

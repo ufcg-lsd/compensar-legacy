@@ -1,33 +1,33 @@
 package springboot.model;
 
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usuario")
 public class Usuario {
 
+    @NotNull
 	@Indexed
 	private String nome;
 
+    @NotNull
 	@Indexed
 	private String nomeInstituicao;
 
+    @NotNull
 	@Indexed
 	private String senha;
 	
+    @NotNull
 	@Indexed
 	@Id	
 	private String email;
 
+    @NotNull
 	@Indexed
 	private boolean ativo;
 

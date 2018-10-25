@@ -29,11 +29,28 @@ insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (1, '
 insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (2, 'erick', 'UFCG','erick@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
 insert into usuario (id, nome,nome_instituicao,email, senha, ativo) values (3, 'prof', 'UFCG','prof@gmail.com', '$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS', true);
 
+db.usuario.insert({
+    "_id" : "marcelo@gmail.com",
+    "nome" : "marcelo",
+    "nomeInstituicao" : "ufcg",
+    "senha" : "$2a$10$88JUBC8rMyoFe0M.kzifweoZsnrKemsdPXbKYUGn53V4KlbxAwwZ6",
+    "email" : "marcelo@gmail.com",
+    "ativo" : true
+})
+
+
+
 
 -- Adiciona permissão para um usuario.
 insert into usuario_permissao (email, permissao) values ('marcelo@gmail.com', 'ALL');
 insert into usuario_permissao (email, permissao) values ('erick@gmail.com', 'RESPONDE_QUESTOES');
 insert into usuario_permissao (email, permissao) values ('prof@gmail.com', 'CRIA_QUESTOES');
+
+db.usuario_permissao.insert({
+    "_id" : "marcelo@gmail.com",
+    "email" : "marcelo@gmail.com",
+    "permissao" : "ALL"
+})
 
 
 -- Adição de questões

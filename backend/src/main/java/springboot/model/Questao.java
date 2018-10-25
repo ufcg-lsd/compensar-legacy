@@ -1,6 +1,7 @@
 package springboot.model;
 
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 
@@ -21,12 +22,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "questao")
 public class Questao {
 
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	@Indexed
 	private String tipo;
 
+	@NotNull
 	@Indexed
 	private String enunciado;
 

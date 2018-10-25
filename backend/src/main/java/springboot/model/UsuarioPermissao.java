@@ -2,6 +2,8 @@ package springboot.model;
 
 
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,9 +12,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "usuario-permissao")
 public class UsuarioPermissao {
 	
+	@NotNull
 	@Id
 	@Indexed
 	private String email;
+	
+	@NotNull
 	@Indexed
 	private String permissao;
 	

@@ -1,9 +1,8 @@
 package springboot.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -22,12 +21,15 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "alternativa")
 public class Alternativa {
 
+	@NotNull
 	@Id
 	private Long id;
 
+	@NotNull
 	@Indexed
 	private String texto;
 
+	@NotNull
 	@Indexed
 	private boolean correta;
 	

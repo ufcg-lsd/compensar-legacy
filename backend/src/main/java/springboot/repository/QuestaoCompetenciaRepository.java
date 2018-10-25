@@ -1,13 +1,11 @@
 package springboot.repository;
 
-import java.util.List;
 
 
 import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import springboot.model.Questao;
+
 import springboot.model.QuestaoCompetencia;
 import springboot.model.QuestaoCompetenciaPK;
 
