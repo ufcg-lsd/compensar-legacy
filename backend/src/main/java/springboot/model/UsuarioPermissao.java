@@ -1,12 +1,15 @@
 package springboot.model;
 
 
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import springboot.enums.PermissaoType;
 
 
 @Document(collection = "usuario-permissao")
@@ -17,16 +20,17 @@ public class UsuarioPermissao {
 	@Indexed
 	private String email;
 	
+    @Enumerated(EnumType.STRING)
 	@NotNull
 	@Indexed
-	private String permissao;
+	private PermissaoType permissao;
 	
 	
 	public UsuarioPermissao() {
 		
 	}
 	
-	public UsuarioPermissao(String email, String permissao) {
+	public UsuarioPermissao(String email, PermissaoType permissao) {
 		this.email = email;
 		this.permissao = permissao;
 	}
@@ -39,11 +43,11 @@ public class UsuarioPermissao {
 		this.email = email;
 	}
 
-	public String getPermissao() {
+	public PermissaoType getPermissao() {
 		return permissao;
 	}
 
-	public void setPermissao(String permissao) {
+	public void setPermissao(PermissaoType permissao) {
 		this.permissao = permissao;
 	}
 

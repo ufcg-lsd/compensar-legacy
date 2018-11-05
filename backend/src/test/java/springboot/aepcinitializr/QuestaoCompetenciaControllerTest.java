@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.QuestaoCompetenciaController;
+import springboot.enums.CompetenciaType;
 import springboot.model.QuestaoCompetencia;
 
 public class QuestaoCompetenciaControllerTest extends AepcApplicationTests {
@@ -24,12 +25,14 @@ public class QuestaoCompetenciaControllerTest extends AepcApplicationTests {
 	private QuestaoCompetenciaController questaoCompetenciaController;
 
 	private QuestaoCompetencia questaoCompetencia;
+	
+	private CompetenciaType competenciaType;
 
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(questaoCompetenciaController).build();
 
-		this.questaoCompetencia = new QuestaoCompetencia((long) 1, "coleta");
+		this.questaoCompetencia = new QuestaoCompetencia((long) 1, this.competenciaType.COLETA);
 
 	}
 

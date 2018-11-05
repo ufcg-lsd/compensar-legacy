@@ -1,12 +1,6 @@
 -- [Permanente]
 
---Cria BD e usuário de acesso.
-create database db_aepc;
-create user 'marcelovitorino'@'localhost' identified by 'marcelopassword';
-grant all on db_aepc.* to 'marcelovitorino'@'localhost';
-
-create database db_aepc_test;
-grant all on db_aepc_test.* to 'marcelovitorino'@'localhost';
+-- BD é criado automaticamente nos arquivos de execução.
 
 
 -- Cria Enum de Competencias

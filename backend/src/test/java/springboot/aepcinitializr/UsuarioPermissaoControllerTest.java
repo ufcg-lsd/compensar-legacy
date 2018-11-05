@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.UsuarioPermissaoController;
+import springboot.enums.PermissaoType;
 import springboot.model.UsuarioPermissao;
 
 public class UsuarioPermissaoControllerTest extends AepcApplicationTests {
@@ -27,13 +28,14 @@ public class UsuarioPermissaoControllerTest extends AepcApplicationTests {
 
 	private UsuarioPermissao usuarioPermissao;
 	private UsuarioPermissao usuarioPermissaoUpdated;
+	private PermissaoType permissaoType;
 
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioPermissaoController).build();
 
-		this.usuarioPermissao = new UsuarioPermissao("prof@gmail.com", "CRIA_QUESTOES");
-		usuarioPermissaoUpdated = new UsuarioPermissao("prof@gmail.com", "ALL");
+		this.usuarioPermissao = new UsuarioPermissao("prof@gmail.com", this.permissaoType.CRIA_QUESTOES);
+		usuarioPermissaoUpdated = new UsuarioPermissao("prof@gmail.com", this.permissaoType.ALL);
 
 	}
 
