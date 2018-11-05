@@ -6,7 +6,7 @@ Essas instruções vão ajudar você a utilizar o projeto e rodar em sua máquin
 
 ### Pré-Requisitos
 
-É necessário que você execute os comandos SQL contidos no seguinte arquivo para utilizar um banco de dados MySql na aplicação utilizando um servidor (Ex.:XAMPP).
+É necessário que você execute os comandos contidos no seguinte arquivo para utilizar um banco de dados MongoDB. Pode ser utilizado ainda uma interface MongoDB, como o Robo3T, para melhor interação com os dados.
 
 ```
 aepc/backend/src/main/resources/import.sql
