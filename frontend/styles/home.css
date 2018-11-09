@@ -76,7 +76,7 @@ html {
     background-size: cover;
 }
 
-#presentacion {
+.presentacion {
   height: auto;
   background-color:  rgb(255, 255, 255);
   padding:15px 15px 100px !important;
@@ -85,11 +85,11 @@ html {
 
 
 #create-questions {
-  height: alto;
+  height: auto;
   background-color:  rgb(230, 230, 230);
   width: 100%;
   float: left;
-  text-align: left;
+  text-align: center;
 }
 
 #create-questions img{
@@ -100,18 +100,32 @@ html {
 }
 
 #export-questions {
-  height: alto;
+  height: auto;
   background-color:  rgb(230, 230, 230);
   width: 100%;
   float: right;
-  text-align: right;
+  text-align: center;
 }
 
-#create-questions img{
+#export-questions img{
   width: 50%;
   background-color:  rgb(230, 230, 230);
   height: auto;
   float: left;
+
+}
+
+.container-fluid {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
   
   /* Responsividade */
