@@ -15,15 +15,8 @@ html {
 /* =================================================== NavBar ====================================================== */
 
 #navbar {
-    overflow: hidden;
-    background-color: #f1f1f1d8;
-    padding: 90px 100px; 
     transition: 0.4s; /* Efeito de transição quando diminui o padding (com JS) */
     position: fixed; 
-    width: 100%;
-    top: 0; 
-    z-index: 99; 
-    height: auto;
   }
   
   #navbar a {
@@ -94,6 +87,33 @@ html {
   font-size: 32px;
   margin-block-start: 20%;
 }
+
+/* =================================================== Apresentação Questões ====================================================== */
+
+
+#apresentacao {
+  height: auto;
+  background-color:  rgb(255, 255, 255);
+  padding:15px 15px 300px !important;
+  font-size:16px;
+  color: rgb(90, 90, 90);
+  margin-block-start: 15%;
+
+}
+
+#apresentacao ion-icon{
+  font-size: 32px;
+
+}
+
+
+
+
+ion-icon {
+font-size: 64px;
+}
+
+
 
 
 /* =================================================== Competencias ====================================================== */
@@ -179,69 +199,37 @@ html {
 }
 
 
-/* =================================================== Apresentação Questões ====================================================== */
-
-
-#apresentacao {
-  height: auto;
-  background-color:  rgb(255, 255, 255);
-  padding:15px 15px 300px !important;
-  font-size:16px;
-  color: rgb(90, 90, 90);
-  margin-block-start: 15%;
-
-}
-
-ion-icon {
-font-size: 64px;
-}
 
 
 /* =================================================== Cadastro ====================================================== */
 
 
-#cadastro {
+.cadastro {
 height: auto;
 background-image: url("../images/nuvem.jpg");
-padding:15px 15px 150px !important;
+padding:15px 15px 300px !important;
 color: aliceblue;
 }
 
-#cadastro h2{
-margin-block-start: 10%;
-}
+.cadastro h2{
+  margin-block-start: 20%;
+  }
 
-/* =================================================== Contato ====================================================== */
 
-#contato {
-  height: auto;
-  width: 100%;
-  padding:15px 15px 80px !important;
-  color: rgb(90, 90, 90);
-}
 
-#contato img {
-  margin-block-start: 3%;
-  height: auto;
-}
 
-#contato h6{
-  color: rgb(163, 161, 161);
-}
 
-#contato #down ion-icon{
-  float: right;    
-}
 
-#contato img{
-  height: auto;
-}
 
 /* =================================================== Footer ====================================================== */
 
 
 .parallax #footer{
   margin-block-start: 30%;
+}
+
+#parallax #footer ion-icon{
+  font-size: 50px;
 }
 
 /* =================================================== Outros ====================================================== */

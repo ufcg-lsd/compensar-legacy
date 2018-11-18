@@ -1,0 +1,35 @@
+/* =================================================== Contato ====================================================== */
+
+#contato {
+    height: auto;
+    width: 100%;
+    padding:15px 15px 80px !important;
+    color: rgb(90, 90, 90);
+  }
+  
+  
+  #contato h6{
+    color: rgb(163, 161, 161);
+  }
+  
+  #contato #down ion-icon{
+    float: right;    
+  }
+  
+
+#contato  input{
+    margin-block-start: 2%;
+    margin-inline-start: 10%;
+  }
+
+  #contato  #name{
+    margin-block-start: 2%;
+  }
+
+#contato  textarea{
+    margin-inline-start: 10%;
+ }
+
+#contato  button{
+    margin-inline-start: 20%;
+ }

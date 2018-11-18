@@ -1,19 +1,40 @@
-//Ao rolar a página para baixo diminui tamanho da navbar
 
-window.onscroll = function() {scrollFunction()};
+var app = angular.module('app',['ngStorage','ngRoute','socialLogin','tld.csvDownload']);
+var host = "";
 
-function scrollFunction() {
-    const navbar =  document.getElementById("navbar");
+app.config(function($routeProvider, $locationProvider) {
+    
+    // remove o # da url
+    $locationProvider.html5Mode(true);
+
+    $routeProvider
+
+      .when('/login', {
+          templateUrl: 'app/views/Login.html',
+          controller: 'LoginController'
+      })
+
+      .when('/signup', {	
+        templateUrl: 'app/views/SignUp.html',	
+        controller: 'SignUpController',
+        requireAuth: true,
+        requireNotRegistered: true
+    })	
+      .otherwise({
+        redirectTo: '/login'
+      });
+
+    });
 
 
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    navbar.style.padding = "20px 10px";
-  } else {
-    navbar.style.padding = "50px 10px";
-  }
-}
+    app.config(function(socialProvider){
+      socialProvider.setGoogleKey("363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com");
+  });
 
-//Desliza icones automaticamente sem desordenar
+
+
+
+//Desliza icones das competencias automaticamente sem desordenar
 
 $('#carouselExample').on('slide.bs.carousel', function (e) {
 
