@@ -46,7 +46,7 @@
             </ul>
         <div class="nav-item dropdown"> 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
+            <img id = 'profile' src="images/profile.png" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <div ng-switch = "isLogged">
                 <div ng-switch-when="true">
@@ -81,7 +81,7 @@
                 </ul>
             <div class="nav-item dropdown"> 
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
+                <img id = 'profile' src="images/profile.png" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <div ng-switch = "isLogged">
                     <div ng-switch-when="true">
@@ -242,13 +242,7 @@
 
                 </div>
             </div>
-
-
-        
-
-
-
-        
+     
         <a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
 
 </div>
@@ -268,11 +262,9 @@
     </div>
 </div>
 
-
-
-
-
  <div ng-view ng-controller="MainController"></div> 
+
+ 
 
 <!-- Angular JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>

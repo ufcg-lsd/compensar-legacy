@@ -7,17 +7,20 @@ angular.module('app')
 
         $rootScope.user_type = "user";
         
+        ProfileService.update_visitant_profile();
+/* 
         if ($rootScope.isLogged) {
             ProfileService.update_user_profile();
         }
         else {
             ProfileService.update_visitant_profile();
         }
-
+*/
         $rootScope.$on('$routeChangeStart', function (angularEvent, newUrl) {
 
-            if (!AuthService.isLogged()) $location.path("/login");
-
+            //if (!AuthService.isLogged()) 
+            $location.path("/login");
+/*
             else {
 
                 $http.get('https://prematriculabackend.herokuapp.com/api/aluno/' + AuthService.getUserDetails().email).
@@ -48,10 +51,12 @@ angular.module('app')
 
 
             }
+            */
         });
 
         $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
-
+            ProfileService.update_user_profile();
+/*
             $rootScope.email = userDetails.email;
             AuthService.setUserDetails(userDetails);
             if (UserService.isCCC()) {
@@ -71,16 +76,17 @@ angular.module('app')
 
 
             }
-
+*/
 
         });
 
         $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
             ProfileService.update_visitant_profile();
+            /*
             $rootScope.isLogged = false;
             $location.path("/login");
             $window.location.href = '/login';
-
+            */
 
 
         });
