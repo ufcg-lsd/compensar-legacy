@@ -10,13 +10,40 @@ app.config(function($routeProvider, $locationProvider) {
     $routeProvider
 
       .when('/login', {
-          templateUrl: 'app/views/Login.html',
+          templateUrl: 'index.html',
           controller: 'LoginController'
+      })
+
+      .when('/contato', {
+        templateUrl: 'app/views/Contato.html',
+        controller: 'ContatoController'
       })
 
       .when('/signup', {	
         templateUrl: 'app/views/SignUp.html',	
         controller: 'SignUpController',
+        requireAuth: true,
+        requireNotRegistered: true
+    })	
+
+    .when('/userdata', {
+        templateUrl: 'app/views/UserData.html',
+        controller: 'UserDataController',
+        requireAuth: true,
+        requireRegistered:true
+      
+    })
+
+    .when('/questoes', {	
+        templateUrl: 'app/views/Questoes.html',	
+        controller: 'QuestoesController',
+        requireAuth: true,
+        requireNotRegistered: true
+    })	
+
+    .when('/addQuestao', {	
+        templateUrl: 'app/views/CriaQuestao.html',	
+        controller: 'CriaQuestaoController',
         requireAuth: true,
         requireNotRegistered: true
     })	

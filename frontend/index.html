@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title> AEPC </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -36,7 +35,7 @@
         <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                </button>
+        </button>
             
         <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="HeadController">
             <ul class="navbar-nav mr-auto">
@@ -46,7 +45,7 @@
             </ul>
         <div class="nav-item dropdown"> 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id = 'profile' src="images/profile.png" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
+            <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <div ng-switch = "isLogged">
                 <div ng-switch-when="true">
@@ -66,42 +65,40 @@
         </nav>
 
     </div>
-    <div ng-switch-when="false">
-            <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
-                
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="HeadController">
-                <ul class="navbar-nav mr-auto">
+    <div ng-switch-when = "false"><nav class= "navbar navbar-expand-lg navbar-light bg-light">
+ 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="HeadController">
+          <ul class="navbar-nav mr-auto">
                 <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="#home">Inicio</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/cria-questao'}"><a class="nav-link" href="#contato" >Criar Questão</a></li>
-                </ul>
-            <div class="nav-item dropdown"> 
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img id = 'profile' src="images/profile.png" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <div ng-switch = "isLogged">
-                    <div ng-switch-when="true">
-                        <h6 class="dropdown-header">{{nome_usuario}}</h6>
-                        <a class="dropdown-item" href ="/userdata">Meus Dados</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" ng-click="logout()" href="#">Logout</a>
-                    </div>
-                    <div ng-switch-when="false">
-                        <a class="dropdown-item" href="#" g-login>Login</a>
-                    </div>
+                <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="#criaQuestao" >Cria Questao</a></li>
+        </ul>
+        <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <div ng-switch = "isLogged">
+                 <div ng-switch-when="true">
+                 <h6 class="dropdown-header">{{nome_usuario}}</h6>
+                 <div class="dropdown-divider"></div>
+                 <a class="dropdown-item" ng-click="logout()" href="#">Logout</a>
+                 </div>
+                 <div ng-switch-when="false">
+                 <a class="dropdown-item" href="#" g-login>Login</a>
+                 </div>
                 </div>               
+                           </div>
+                          </div>
+        
             </div>
-            </div>
-                
-            </div>
-            </nav>
     </div>
 </div> 
-    
+
 
  <!-- ========================  Home  ============================================== -->
 
@@ -201,53 +198,71 @@
 
 <!-- ======================== Sing-up  ============================================== -->
 
-    <div class="cadastro">
+    <div id="cadastro">
+        
         <h2>Cadastre-se</h2>        
         <h6>Se cadastre de forma rápida e gratuita para usar todas as funcionalidades do sistema</h6>
-        <button class="btn btn-hero btn-lg" role="button">Cadastrar Agora</button>
+        
+        <div class="page-header">
+            
+            <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
+            <button g-login type="button" class="btn" id = "botao"> Entrar </button>
+        </div> 
     </div>
 
-<!-- ======================== Contact  ============================================== -->
-<div id = "contato" >
-        <h3 >Contatos</h3>
-        <h6>Se você precisar de alguma informação específica, fale conosco!</h6>
-        <div class="container">
-                <div ng-controller="formCtrl">
-                    
-                    <form name="userForm" class="form-horizontal well form-search">
-                        <div class="form-group">
-                            <label for="name" class="col-sm-2 control-label">Seu Nome</label>
-                            <div class="col-sm-10">
-                                <input type="name" ng-model="name" class="form-control" id="name" placeholder="Seu Nome" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email" class="col-sm-2 control-label">Email</label>
-                            <div class="col-sm-10">
-                                <input type="email" ng-model="email" class="form-control" id="email" placeholder="Seu Email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="Message" class="col-sm-2 control-label">Mensagem</label>
-                            <div class="col-sm-10">
-                                <textarea ng-model="message" id="Message" class="form-control" rows="3" placeholder="Sua Mensagem" required></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" ng-click="formsubmit(userForm.$valid)"  ng-disabled="userForm.$invalid" class="btn btn-primary">Enviar</button>
-                            </div>
-                        </div>
-                    </form>
 
-                </div>
+<!-- ======================== Contact  ============================================== -->
+
+<div id = "contato" >
+    <h3 >Contato</h3>
+    <h6>Se você precisar de alguma informação específica, fale conosco!</h6>
+    <div class="container" >
+            <div ng-controller="ContatoController">
+                
+                <form name="userForm" class="form-horizontal well form-search" ng-submit="sendEmail()">
+                    <div class="form-group">
+                        <label id = "name" for="name" class="col-sm-2 control-label">Seu Nome</label>
+                        <div class="col-sm-10">
+                            <input type="name" ng-model="name" class="form-control" id="name" placeholder="Seu Nome" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" ng-model="email" class="form-control" id="email" placeholder="Seu Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto" class="col-sm-2 control-label">Assunto</label>
+                        <div class="col-sm-10">
+                            <input type="assunto" ng-model="assunto" class="form-control" id="assunto" placeholder="Assunto" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Message" class="col-sm-2 control-label">Mensagem</label>
+                        <div class="col-sm-10">
+                            <textarea ng-model="message" id="Message" class="form-control" rows="3" placeholder="Sua Mensagem" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" ng-click="formsubmit(userForm.$valid)"  ng-disabled="userForm.$invalid" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+
             </div>
-     
-        <a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
+        </div>
+
+
+    
+
+
+
+    
+    <a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
 
 </div>
-
-
 
 
 <!-- ======================== Footer  ============================================== -->
@@ -262,7 +277,7 @@
     </div>
 </div>
 
- <div ng-view ng-controller="MainController"></div> 
+<div ng-view ng-controller="MainController"></div> 
 
  
 
@@ -285,13 +300,17 @@
 
 
 <!--Services-->
-<script src="app/Services/AuthService.js"></script>
-<script src="app/Services/ProfileService.js"></script>
+<script src="app/services/AuthService.js"></script>
+<script src="app/services/ProfileService.js"></script>
+<script src ="app/services/UserService.js"></script>
 
 <!--Controllers-->
 <script src="app/controllers/MainController.js"></script>
+<script src="app/controllers/HeadController.js"></script>
 <script src="app/controllers/LoginController.js"></script>
+<script src="app/controllers/UserDataController.js"> </script>
 <script src="app/controllers/SignUpController.js"> </script>
+<script src="app/controllers/ContatoController.js"></script>
 
 
 

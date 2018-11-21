@@ -204,16 +204,14 @@ font-size: 64px;
 /* =================================================== Cadastro ====================================================== */
 
 
-.cadastro {
+#cadastro {
 height: auto;
-background-image: url("../images/nuvem.jpg");
-padding:15px 15px 300px !important;
+background-color: rgb(80, 157, 245);
+padding:90px 90px 90px !important;
 color: aliceblue;
 }
 
-.cadastro h2{
-  margin-block-start: 20%;
-  }
+
 
 
 
