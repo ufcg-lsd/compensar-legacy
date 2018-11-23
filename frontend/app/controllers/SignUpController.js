@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('SignUpController', function ($rootScope,$scope, $location, UserService, $http,$q) {
+    .controller('SignUpController', function ($scope, $location, UserService, $http,$q) {
         deferred = $q.defer();
 
         $scope.nomeInstituicao = "";

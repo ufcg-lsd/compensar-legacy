@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', function ($rootScope, $location, AuthService, $localStorage, UserService, $http) {
+  .controller('LoginController', function ($rootScope, $location, AuthService, $http) {
 
     if (AuthService.isLogged()) {
         $location.path("/questoes");

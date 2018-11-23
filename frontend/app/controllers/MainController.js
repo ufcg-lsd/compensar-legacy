@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, UserService, AuthService, ProfileService, $window, $localStorage) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();

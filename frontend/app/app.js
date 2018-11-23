@@ -1,6 +1,5 @@
 
-var app = angular.module('app',['ngStorage','ngRoute','socialLogin','tld.csvDownload']);
-var host = "";
+var app = angular.module('app',['ngRoute','socialLogin']);
 
 app.config(function($routeProvider, $locationProvider) {
     

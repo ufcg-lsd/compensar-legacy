@@ -1,20 +1,20 @@
 angular.module('app')
-  .factory('AuthService', function($localStorage,socialLoginService) {
+  .factory('AuthService', function(localStorage,socialLoginService) {
    const service = {};
 
     service.getUserDetails = function () {
-      return $localStorage.UserDetails;
+      return localStorage.UserDetails;
     },
     service.setUserDetails = function (UserDetails) {
-        $localStorage.UserDetails = UserDetails;
+      localStorage.UserDetails = UserDetails;
       },
    
     service.logout = function () {
       socialLoginService.logout();
-      $localStorage.$reset();
+      localStorage.clear();
     },
 
-    service.isLogged = function(){ return $localStorage.UserDetails !== undefined};
+    service.isLogged = function(){ return localStorage.UserDetails !== undefined};
 
     return service;
   
