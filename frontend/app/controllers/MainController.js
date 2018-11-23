@@ -17,7 +17,7 @@ angular.module('app')
 
             else {
 
-                $http.get('https://localhost:8080/api/aluno/' + AuthService.getUserDetails().email).
+                $http.get('https://localhost:8001/api/aluno/' + AuthService.getUserDetails().email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;

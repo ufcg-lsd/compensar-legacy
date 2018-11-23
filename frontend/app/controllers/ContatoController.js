@@ -1,7 +1,7 @@
 angular.module('app')
     .controller('ContatoController',  function($scope, $location,$http)
     {
-         $scope.nome = "";
+        $scope.nome = "";
         $scope.email = "";
         $scope.mensagem = "";
         $scope.assunto = "";
@@ -9,13 +9,13 @@ angular.module('app')
             $scope.sendEmail = function() {
 
                 email = {
-                    nome: $scope.nome,
                     email: $scope.email,
+                    mensagem: $scope.mensagem,
                     assunto: $scope.assunto,
-                    mensagem: $scope.mensagem
+                    nome: $scope.nome
                 };
     
-                $http.post('https://localhost:8080/api/email', email).
+                $http.post('https://localhost:8001/api/email', email).
                     then(function (response) {
                         
                             window.alert("Email enviado com Sucesso!");

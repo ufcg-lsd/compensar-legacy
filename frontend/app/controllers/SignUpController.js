@@ -20,7 +20,7 @@ angular.module('app')
                 ativo: true
             };
 
-            $http.post('https://localhost:8080/api/aluno', usuario).
+            $http.post('https://localhost:8001/api/aluno', usuario).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");

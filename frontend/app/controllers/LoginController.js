@@ -9,7 +9,7 @@ angular.module('app')
 
       $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
 
-        $http.get('https://localhost:8080/api/usuario/' + AuthService.getUserDetails().email).
+        $http.get('https://localhost:8001/api/usuario/' + AuthService.getUserDetails().email).
           then(function (response) {
             $rootScope.registered = response.status == 200;
           }, function () { 
