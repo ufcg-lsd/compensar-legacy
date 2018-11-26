@@ -1,19 +1,177 @@
-<div class = "cadastro">
-<div class="page-header">
 
-        <div class = "container">
-           <div ng-switch = "isCCC">
-            <div ng-switch-when="false">
-              <div class="alert alert-danger" role="alert">
-                 Não foi possível fazer login. <strong>Entre com sua conta @ccc</strong></div>
-            </div>
-           </div>               
-          <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
-          <button g-login type="button" class="btn" id = "botao"> Login </button>
-        </div>
-      
-      </div>
-      
-      
+ 
+ <div id = "log">
+ <!-- ========================  Home  ============================================== -->
+
+ <div class = "parallax" >
+  <div class="centered">
+      <hgroup>
+          <a id = "home"><img class="col-sm-4"  src = "images/iconeAepcblue.png"></a>
+          <h1><b>ComPensar    </b></h1>       
+      </hgroup>
+      <a id = "top" href="#top"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
+  </div>
+</div>
+
+<!-- ======================== Presentation Questions  ============================================== -->
+<div id = "apresentacao" >
+<h2>Experimente um pouco</h2>
+<p > Questões serão aqui exibidas.</p>
+
+<div class = "float-right">
+<h4>Saiba mais!</h4>
+<a href="#sobre"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
+</div>
+</div>
+
+<!-- ======================== Competences  ============================================== -->
+
+<div id = "sobre" class = "presentation">
+   <h2>Explore as 9 core competências</h2>
+  <p >Manipule questões de matemática que estimulam as principais competências do Pensamento Computacional.</p>
+
+  <div class = "container-fluid">
+          <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="3000">
+                  <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                  
+                      <div class="carousel-item col-md-3 active">
+                          <img class="img-fluid mx-auto d-block" src = "images/abstração.png" alt="slide 1">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/algoritmos.png" alt="slide 2">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/analise.png" alt="slide 3">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/automacao.png" alt="slide 4">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/coleta.png" alt="slide 5">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/decomposicao.png" alt="slide 6">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/paralelizacao.png" alt="slide 7">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                          <img class="img-fluid mx-auto d-block" src = "images/representacao.png" alt="slide 8">
+                      </div>
+                      <div class="carousel-item col-md-3">
+                              <img class="img-fluid mx-auto d-block" src = "images/simulacao.png" alt="slide 9">
+                      </div>
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon"></span>
+                  </a>
+                  <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon"></span>
+                  </a>
+          </div>
+  
       </div>
 
+</div>
+
+
+
+<!-- ======================== Create Questions  ============================================== -->
+
+<div  id = "create-questions" ><img class="float-right" src = "images/hands-using-computer.png">
+      <h2>Crie Questões </h2>
+      <p>  Crie, gratuitamente, questões de matemática que exploram o pensamento computacional.
+          Estas podem ser do tipo subjetiva (Ex.: PISA) ou subjetiva (Ex.: ENEM).
+      </p>
+</div>
+
+
+<!-- ======================== Export Questions  ============================================== -->
+
+<div id = "export-questions"> <img class="float-left" src = "images/computer-form.jpg">
+  <h2 >Crie Listas de Exercícios </h2>
+  <p>Selecione, gratuitamente, questões para listas de exercícios e compartilhe-as.
+  </p>
+</div>
+
+
+
+
+<!-- ======================== Sing-up  ============================================== -->
+
+<div id="cadastro">
+  <h2>Cadastre-se</h2>        
+  <h6>Se cadastre de forma rápida e gratuita para usar todas as funcionalidades do sistema</h6>
+  
+  <div>
+      
+      <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
+      <button g-login  type="button" class="btn btn-primary" id = "botao"> Entrar </button>
+  </div> 
+</div>
+
+
+<!-- ======================== Contact  ============================================== -->
+
+<div id = "contato" >
+<h3 >Contato</h3>
+<h6>Se você precisar de alguma informação específica, fale conosco!</h6>
+<div class="container" >
+      <div ng-controller="ContatoController">
+          
+          <form name="userForm" class="form-horizontal well form-search" ng-submit="sendEmail()">
+              <div class="form-group">
+                  <label id = "name" for="name" class="col-sm-2 control-label">Seu Nome</label>
+                  <div class="col-sm-10">
+                      <input type="name" ng-model="name" class="form-control" id="name" placeholder="Seu Nome" required>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="email" class="col-sm-2 control-label">Email</label>
+                  <div class="col-sm-10">
+                      <input type="email" ng-model="email" class="form-control" id="email" placeholder="Seu Email" required>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <label for="Message" class="col-sm-2 control-label">Mensagem</label>
+                  <div class="col-sm-10">
+                      <textarea ng-model="message" id="Message" class="form-control" rows="3" placeholder="Sua Mensagem" required></textarea>
+                  </div>
+              </div>
+              <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+              </div>
+          </form>
+
+      </div>
+  </div>
+
+
+
+
+
+
+
+<a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
+
+</div>
+
+
+<!-- ======================== Footer  ============================================== -->
+
+<div id = "parallax" >
+    <div id = "footer">
+        <a href="https://www.facebook.com.br"><ion-icon name="logo-facebook"></ion-icon></a>
+        <a href="https://www.instagram.com.br"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a href="https://www.twitter.com.br"><ion-icon name="logo-twitter"></ion-icon></a>
+        <a href="https://www.youtube.com.br"><ion-icon name="logo-youtube"></ion-icon></a>
+        <p>© 2018 UFCG. All Rights Reserved</p>
+    </div>
+</div>
+
+
+
+</div>
+</div>

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, AuthService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope,$scope, $http, $location, AuthService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -17,7 +17,7 @@ angular.module('app')
 
             else {
 
-                $http.get('https://localhost:8001/api/aluno/' + AuthService.getUserDetails().email).
+                $http.get('https://localhost:8001/api/usuario/' + AuthService.getUserDetails().email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;
@@ -38,7 +38,7 @@ angular.module('app')
                                 $location.path("/login");
                             }
                             else {
-                                $location.path("/questoes");
+                                $location.path("/signup");
                             }
 
                         }
@@ -49,10 +49,22 @@ angular.module('app')
             }
         });
 
+        $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
+
+            $rootScope.email = userDetails.email;
+            AuthService.setUserDetails(userDetails);
+
+            $rootScope.isLogged = true;
+            ProfileService.update_user_profile();
+            $rootScope.$apply();
+   
+        });
+
 
         $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
             ProfileService.update_visitant_profile();
             $rootScope.isLogged = false;
+            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             $location.path("/login");
             $window.location.href = '/login';
         });

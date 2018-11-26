@@ -4,7 +4,6 @@ angular.module('app')
 
         $scope.nomeInstituicao = "";
 
-        $location.path('/questoes');
         UserService.isRegistered().then(function (value) {
             this.isRegistered = value;
             
@@ -20,7 +19,7 @@ angular.module('app')
                 ativo: true
             };
 
-            $http.post('https://localhost:8001/api/aluno', usuario).
+            $http.post('https://localhost:8001/api/usuario', usuario).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");

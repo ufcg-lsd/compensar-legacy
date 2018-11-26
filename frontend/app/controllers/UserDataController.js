@@ -1,13 +1,13 @@
 angular.module('app')
     .controller('UserDataController', function ($scope, $rootScope, $location, AuthService, UserService,$http) {
 
-        $location.path('/questoes');
+        $location.path('/userdata');
 
         $rootScope.activetab = $location.path();
         $rootScope.user_email = AuthService.getUserDetails().email;
         $scope.instituicao_usuario = "";
 
-        $http.get('https://localhost:8001/api/aluno/' + AuthService.getUserDetails().email).
+        $http.get('https://localhost:8001/api/usuario/' + AuthService.getUserDetails().email).
         then(function (response) { $scope.instituicao_usuario = response.data.nomeInstituicao});
     
         $scope.send = function send() {
@@ -19,7 +19,7 @@ angular.module('app')
                 ativo: true
             };
 
-            $http.put('https://localhost:8001/api/aluno/' + usuario.email, usuario).
+            $http.put('https://localhost:8001/api/usuario/' + usuario.email, usuario).
             then(function (response) {
 
                 if (response.status == 200) {
