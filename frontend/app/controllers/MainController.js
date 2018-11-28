@@ -17,7 +17,7 @@ angular.module('app')
 
             else {
 
-                $http.get('https://localhost:8001/api/usuario/' + AuthService.getUserDetails().email).
+                $http.get('/api/usuario/' + AuthService.getUserDetails().email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;
@@ -34,13 +34,6 @@ angular.module('app')
                             else if (newUrl.requireRegistered && !$rootScope.status) {
                                 $location.path("/signup");
                             }
-                            else if (!AuthService.isLogged() && $rootScope.status) {
-                                $location.path("/login");
-                            }
-                            else {
-                                $location.path("/signup");
-                            }
-
                         }
                     );
 

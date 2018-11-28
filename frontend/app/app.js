@@ -29,8 +29,8 @@ app.config(function($routeProvider, $locationProvider) {
     })
 
     .when('/questoes', {	
-        templateUrl: '/app/views/SignUp.html',	
-        controller: 'SignUpController',
+        templateUrl: '/app/views/UserData.html',	
+        controller: 'UserDataController',
         requireAuth: true,
         requireNotRegistered: true
     })	

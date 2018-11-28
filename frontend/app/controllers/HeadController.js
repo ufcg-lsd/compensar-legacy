@@ -14,7 +14,7 @@ angular.module('app')
     }
 
 
-        $http.get('https://localhost:8001/api/usuario').
+        $http.get('/api/usuario').
         then(function (response) {
           usuarios = response.data;
           
@@ -22,7 +22,7 @@ angular.module('app')
         }, function (response) {
           usuarios = [];
         }).then(function(){
-        $http.get('https://localhost:8001/api/listaquestoes').
+        $http.get('/api/listaquestoes').
         then(function (response) {
           listaQuestoes = response.data;
         

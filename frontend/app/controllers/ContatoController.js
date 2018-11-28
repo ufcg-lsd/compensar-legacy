@@ -15,7 +15,7 @@ angular.module('app')
                     nome: $scope.nome
                 };
     
-                $http.post('https://localhost:8001/api/email', email).
+                $http.post('/api/email', email).
                     then(function (response) {
                         
                             window.alert("Email enviado com Sucesso!");
