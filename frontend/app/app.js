@@ -7,6 +7,8 @@ app.config(function($routeProvider, $locationProvider) {
     // remove o # da url
     $locationProvider.html5Mode(true);
 
+
+
     $routeProvider
 
     .when('/login', {
@@ -24,7 +26,7 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/app/views/UserData.html',
         controller: 'UserDataController',
         requireAuth: true,
-        requireRegistered:true
+        requireNotRegistered:true
       
     })
 
@@ -32,14 +34,14 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/app/views/UserData.html',	
         controller: 'UserDataController',
         requireAuth: true,
-        requireNotRegistered: true
+        requireRegistered: true
     })	
 
     .when('/addQuestao', {	
         templateUrl: '/app/views/SignUp.html',	
         controller: 'SignUpController',
         requireAuth: true,
-        requireNotRegistered: true
+        requireRegistered: true
     })	
       .otherwise({
         redirectTo: '/login'
@@ -51,6 +53,11 @@ app.config(function($routeProvider, $locationProvider) {
     app.config(function(socialProvider){
       socialProvider.setGoogleKey("363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com");
   });
+
+     app.config(function($httpProvider) {
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
+    });
 
 
 

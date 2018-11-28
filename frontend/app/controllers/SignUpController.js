@@ -8,7 +8,7 @@ angular.module('app')
             this.isRegistered = value;
             
         }).then( function(){   if(this.isRegistered)
-        $location.path('/questoes')});
+        $location.path('/userdata')});
 
         $scope.sendSignUp = function () {
 
@@ -23,7 +23,7 @@ angular.module('app')
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");
-                        $location.path("/questoes");
+                        $location.path("/userdata");
                     }
                     else {
                         window.alert("Falha no Cadastro");

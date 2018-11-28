@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope,$scope, $http, $location, AuthService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope,$localStorage,$scope, $http, $location, AuthService,UserService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -31,8 +31,10 @@ angular.module('app')
                             if (newUrl.requireAuth && !AuthService.isLogged()) {
                                 $location.path("/login");
                             }
-                            else if (newUrl.requireRegistered && !$rootScope.status) {
+                            else if (newUrl.requireRegistered && !UserService.isRegistered()) {
                                 $location.path("/signup");
+                            } else {
+                                $location.path("/userdata");
                             }
                         }
                     );
@@ -57,6 +59,7 @@ angular.module('app')
         $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
             ProfileService.update_visitant_profile();
             $rootScope.isLogged = false;
+            $localStorage.$reset();
             if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
             $location.path("/login");
             $window.location.href = '/login';

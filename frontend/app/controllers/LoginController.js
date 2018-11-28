@@ -25,7 +25,7 @@ angular.module('app')
           .then(
             function () {
               if ($rootScope.registered) {
-                $location.path("/questoes");
+                $location.path("/userdata");
               } 
               else {
                 $location.path("/signup");
