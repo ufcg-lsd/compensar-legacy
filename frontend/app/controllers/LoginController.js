@@ -5,17 +5,13 @@ angular.module('app')
       AuthService.logout();
     }
 
-    /*
-    if (AuthService.isLogged()) {
-        $location.path("/signup");
-    }
-    */
+      
 
       $rootScope.activetab = $location.path();
 
       $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
 
-        $http.get('/api/usuario/' + AuthService.getUserDetails().email).
+        $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().email).
           then(function (response) {
             $rootScope.registered = response.status == 200;
           }, function () { 

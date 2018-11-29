@@ -31,6 +31,5 @@ import org.springframework.stereotype.Component;
 
 	    @Override
 	    public void destroy() {}
-
-	}
+}
 

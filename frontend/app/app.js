@@ -54,10 +54,5 @@ app.config(function($routeProvider, $locationProvider) {
       socialProvider.setGoogleKey("363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com");
   });
 
-     app.config(function($httpProvider) {
-    //Enable cross domain calls
-    $httpProvider.defaults.useXDomain = true;
-    });
-
 
 

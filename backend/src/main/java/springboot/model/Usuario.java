@@ -20,10 +20,6 @@ public class Usuario {
 
     @NotNull
 	@Indexed
-	private String senha;
-	
-    @NotNull
-	@Indexed
 	@Id	
 	private String email;
 
@@ -35,7 +31,6 @@ public class Usuario {
 		this.nome = nome;
 		this.nomeInstituicao = nomeInstituicao;
 		this.email = email;
-		this.senha = senha;
 		this.ativo = ativo;
 	}
 
@@ -49,14 +44,6 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public String getNomeInstituicao() {

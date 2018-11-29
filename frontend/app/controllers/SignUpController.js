@@ -7,19 +7,17 @@ angular.module('app')
         UserService.isRegistered().then(function (value) {
             this.isRegistered = value;
             
-        }).then( function(){   if(this.isRegistered)
-        $location.path('/userdata')});
+        });
 
         $scope.sendSignUp = function () {
-
             usuario = {
-                nome:  UserService.getName(),
-                nomeInstituicao: $scope.nomeInstituicao,
+                ativo: true,
                 email: UserService.getEmail(),
-                ativo: true
+                nome:  UserService.getName(),
+                nomeInstituicao: $scope.nomeInstituicao
             };
 
-            $http.post('/api/usuario', usuario).
+            $http.post('http://localhost:5458/api/usuario', usuario).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");
@@ -27,11 +25,10 @@ angular.module('app')
                     }
                     else {
                         window.alert("Falha no Cadastro");
-                        $location.path("/login");
+                        $location.path("/signup");
                     }
                 },function(){
-                    window.alert("Falha no Cadastro");
-                    $location.path("/login");
+                    $location.path("/signup");
                 }
             )
         }
