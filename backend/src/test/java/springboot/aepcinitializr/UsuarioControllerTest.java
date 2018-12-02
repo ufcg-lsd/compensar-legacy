@@ -37,8 +37,8 @@ public class UsuarioControllerTest extends AepcApplicationTests{
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioController).build();
-		this.usuario = new Usuario("marcelo", "UFCG", "marcelo@gmail.com", "$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS", true);
-		this.usuarioUpdated = new Usuario("marcelo Gabriel Vitorino", "UFCG", "marcelo@gmail.com", "$2a$10$ARppQC0FRWaGP4pnZqYbpuVyYOWIp4q1r2ViT3PGYK6BafD5PXFiS", true);
+		this.usuario = new Usuario("marcelo", "UFCG", "marcelo@gmail.com",  true);
+		this.usuarioUpdated = new Usuario("marcelo Gabriel Vitorino", "UFCG", "marcelo@gmail.com", true);
 	}
 	
 	@Test

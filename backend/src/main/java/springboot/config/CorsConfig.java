@@ -24,12 +24,14 @@ import org.springframework.stereotype.Component;
 	        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	        response.setHeader("Access-Control-Expose-Headers", "Location");
 	        chain.doFilter(req, res);
-	    }
+	    };
 
 	    @Override
-	    public void init(FilterConfig filterConfig) {}
+	    public void init(FilterConfig filterConfig) {};
 
 	    @Override
-	    public void destroy() {}
+	    public void destroy() {};
+	    
+
 }
 

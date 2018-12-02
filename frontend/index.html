@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="app" >
+<html ng-app="app">
 
 <head>
     <base href="/index.html">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com">
 
     <meta charset="UTF-8">
     <title> AEPC </title>
@@ -24,7 +26,7 @@
 
 
 <body  class = "text-center">
-    
+
 
 
 <!-- Aplicação -->
@@ -48,9 +50,25 @@
         <div class="nav-item dropdown"> 
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="10px"></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-        <a class="dropdown-item" href="#" g-login>Login</a>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div id="myctrl" ng-controller="LoginController"></div>
+
+
+
+            <script>  
+            function onSignIn(googleUser) {
+                var profile = googleUser.getBasicProfile();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                
+                angular.element(document.getElementById('myctrl')).scope().login('$rootScope',profile);
+                }
+            </script>
+
                
         </div>
         </div>
@@ -81,8 +99,28 @@
                  <h6 class="dropdown-header">{{nome_usuario}}</h6>
                  <a class="dropdown-item" href ="/userdata">Meus Dados</a>
                  <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" ng-click="logout()" href="#">Logout</a>
- 
+                 <a href="#" onclick="signOut()">Sign out</a>
+                 <div id="myctrl2" ng-controller="LoginController"></div>
+
+                 <script>
+                    function signOut() {
+                        var auth2 = gapi.auth2.getAuthInstance();
+                        auth2.signOut().then(function () {
+                            console.log('User signed out.');
+                        });
+                        angular.element(document.getElementById('myctrl2')).scope().sair("$rootScope");
+                    }
+
+                   function onLoad() {
+                    gapi.load('auth2', function() {
+                        gapi.auth2.init().then(() => { /* signout stuff here */ })
+                    });
+                    }
+
+                
+
+
+                </script>
                 </div>               
         </div>
         </div>
@@ -131,7 +169,10 @@
 
 <!--Plugins-->
 <script src="app/bower_components/angularjs-social-login/angularjs-social-login.js"></script>
-<script src="app/bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="app/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
 
 

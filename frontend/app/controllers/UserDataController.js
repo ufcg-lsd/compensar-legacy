@@ -4,10 +4,10 @@ angular.module('app')
         $location.path('/userdata');
 
         $rootScope.activetab = $location.path();
-        $rootScope.user_email = AuthService.getUserDetails().email;
+        $rootScope.user_email = AuthService.getUserDetails().Email;
         $scope.instituicao_usuario = "";
 
-        $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().email).
+        $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
         then(function (response) { $scope.instituicao_usuario = response.data.nomeInstituicao});
     
         $scope.send = function send() {
@@ -19,7 +19,7 @@ angular.module('app')
                 ativo: true
             };
 
-            $http.put('http://localhost:5458/api/usuario/' + usuario.email, usuario).
+            $http.put('http://localhost:5458/api/usuario/' + usuario.Email, usuario).
             then(function (response) {
 
                 if (response.status == 200) {

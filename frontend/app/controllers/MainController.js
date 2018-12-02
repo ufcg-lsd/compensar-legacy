@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope,$localStorage,$scope, $http, $location, AuthService,UserService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope,localStorageService,$scope, $http, $location, AuthService,UserService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -17,7 +17,7 @@ angular.module('app')
 
             else {
 
-                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().email).
+                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;
@@ -33,35 +33,15 @@ angular.module('app')
                             }
                             else if (newUrl.requireRegistered && !UserService.isRegistered()) {
                                 $location.path("/signup");
-                            } else if (newUrl.requireNotRegistered && UserService.isRegistered()){
-                                $location.path("/userdata");
-                            }
+                            } 
                         }
                     );
-
-
-
             }
         });
 
-        $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
-
-            $rootScope.email = userDetails.email;
-            AuthService.setUserDetails(userDetails);
-
-            $rootScope.isLogged = true;
-            ProfileService.update_user_profile();
-            $rootScope.$apply();
-   
-        });
 
 
-        $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
-            ProfileService.update_visitant_profile();
-            $rootScope.isLogged = false;
-            $localStorage.$reset();
-            if ($scope.$root.$$phase != '$apply' && $scope.$root.$$phase != '$digest') $scope.$apply();
-            $location.path("/login");
-            $window.location.href = '/login';
-        });
+
+
+
     });

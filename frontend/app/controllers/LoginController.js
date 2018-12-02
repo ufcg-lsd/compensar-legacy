@@ -1,35 +1,70 @@
 angular.module('app')
-  .controller('LoginController', function ($rootScope, $location, AuthService, $http) {
+  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http) {
   
-    $rootScope.logout = function(){
-      AuthService.logout();
-    }
 
-      
 
-      $rootScope.activetab = $location.path();
+        $rootScope.login = function ($rootScope,profile) {
+          $rootScope.isLogged = true;
 
-      $rootScope.$on('event:social-sign-in-success', function (event, userDetails) {
+          $location.path("/login");
+          $window.location.href = '/login';
 
-        $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().email).
-          then(function (response) {
-            $rootScope.registered = response.status == 200;
-          }, function () { 
-            $rootScope.registered = false; 
-          })
-  
-          .then(
-            function () {
-              if ($rootScope.registered) {
-                $location.path("/userdata");
-              } 
-              else {
-                $location.path("/signup");
-              }
+          var perfil = {
+            Name: profile.getName(),
+            Email: profile.getEmail(),
+            ImageUrl: profile.getImageUrl()
+          };
+        
+          AuthService.setUserDetails(perfil);
+          ProfileService.update_user_profile();
+          update_view();
+
+  };
+
+    update_view =  function () {
+
+      $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+        then(function (response) {
+          $rootScope.registered = response.status == 200;
+        }, function () { 
+          $rootScope.registered = false; 
+        })
+
+        .then(
+          function () {
+            if ($rootScope.registered) {
+              $location.path("/userdata");
+              $window.location.href = '/userdata';
+
+            } 
+            else {
+              $location.path("/signup");
+              $window.location.href = '/signup';
+
             }
-          );
- 
-      });
+          }
+        );
+
+    };
+
+
+
+  $rootScope.sair = function ($rootScope) {
+
+    $rootScope.isLogged = false;
+
+    ProfileService.update_visitant_profile();
+    $location.path("/login");
+    $window.location.href = '/login';
+
+    AuthService.logout();
+
+    $rootScope.$apply();
+
+
+  }
+
+
 
 
     //Desliza icones das competencias automaticamente sem desordenar

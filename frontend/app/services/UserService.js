@@ -4,7 +4,7 @@ angular.module('app')
     deferred = $q.defer();
 
     service.isRegistered = function () {
-      $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().email).
+      $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
         then(function (response) {
           deferred.resolve(response.status == 200);
         },function(response){
@@ -16,11 +16,11 @@ angular.module('app')
     }
 
     service.getEmail = function () {
-      return AuthService.getUserDetails().email;
+      return AuthService.getUserDetails().Email;
     }
 
     service.getName = function () {
-      return AuthService.getUserDetails().name;
+      return AuthService.getUserDetails().Name;
     }
 
     return service;

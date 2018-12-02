@@ -211,7 +211,7 @@ font-size: 64px;
   height: auto;
   background-image: url("../images/city.jpg")!important;
   
-  padding:110px 90px 100px !important;
+  padding:110px 90px 50px !important;
   color: rgb(90, 90, 90);
   }
   
@@ -277,6 +277,14 @@ font-size: 64px;
 
     .page-header{
       margin-top: 30%;
+   }
+   #create-questions h2{
+    margin-block-start: 0%;
+    font-size: 16px;
+  }
+   #export-questions h2{
+     margin-block-start: 0%;
+     font-size: 16px;
    }
   }
 

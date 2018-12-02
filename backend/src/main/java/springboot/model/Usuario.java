@@ -27,7 +27,7 @@ public class Usuario {
 	@Indexed
 	private boolean ativo;
 
-	public Usuario(String nome, String nomeInstituicao, String email, String senha, boolean ativo) {
+	public Usuario(String nome, String nomeInstituicao, String email, boolean ativo) {
 		this.nome = nome;
 		this.nomeInstituicao = nomeInstituicao;
 		this.email = email;

@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngStorage','ngRoute','socialLogin']);
+var app = angular.module('app',['LocalStorageModule','ngRoute','socialLogin']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -50,9 +50,14 @@ app.config(function($routeProvider, $locationProvider) {
     });
 
 
-    app.config(function(socialProvider){
-      socialProvider.setGoogleKey("363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com");
+
+  app.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
+
+app.config(function (localStorageServiceProvider) {
+    localStorageServiceProvider
+      .setStorageType('sessionStorage')
+      .setNotify(true, true)
   });
-
-
 
