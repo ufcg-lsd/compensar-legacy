@@ -34,6 +34,7 @@ angular.module('app')
                             else if (newUrl.requireRegistered && !UserService.isRegistered()) {
                                 $location.path("/signup");
                             } 
+
                         }
                     );
             }
