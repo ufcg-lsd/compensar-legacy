@@ -19,7 +19,7 @@ angular.module('app')
                 ativo: true
             };
 
-            $http.put('http://localhost:5458/api/usuario/' + usuario.Email, usuario).
+            $http.put('http://localhost:5458/api/usuario/' + usuario.email, usuario).
             then(function (response) {
 
                 if (response.status == 200) {

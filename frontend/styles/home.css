@@ -53,6 +53,23 @@ html {
     transition: 0.4s;
   }
 
+  .g-signin2{
+    width: 100%;
+  }
+  
+  .g-signin2 > div{
+    margin: 0 auto;
+  }
+
+  #nav{
+    padding:0px 0px 0px !important;
+   }
+
+
+  
+
+
+
 /* =================================================== Capa ====================================================== */
 
 
@@ -61,7 +78,7 @@ html {
   height: auto;
   background-image: url("../images/cit.jpeg")!important;
   
-  padding:110px 90px 850px !important;
+  padding:110px 90px 600px !important;
   color: rgb(90, 90, 90);
 
     /* parallax scrolling effect */
@@ -84,11 +101,13 @@ html {
 
 .parallax .centered img{
   margin-inline-start: 5%;
+  margin-block-start: 20%;
+
 }
 
 .parallax .centered ion-icon{
   font-size: 32px;
-  margin-block-start: 20%;
+  margin-block-start: 40%;
 }
 
 /* =================================================== Apresentação Questões ====================================================== */

@@ -38,7 +38,7 @@ app.config(function($routeProvider, $locationProvider) {
     })	
 
     .when('/addQuestao', {	
-        templateUrl: '/app/views/SignUp.html',	
+        templateUrl: '/app/views/AddQuestao.html',	
         controller: 'SignUpController',
         requireAuth: true,
         requireRegistered: true

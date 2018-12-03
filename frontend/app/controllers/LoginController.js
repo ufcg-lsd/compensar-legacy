@@ -3,7 +3,7 @@ angular.module('app')
   
 
 
-        $rootScope.login = function ($rootScope,profile) {
+    $rootScope.login = function ($rootScope,profile) {
           $rootScope.isLogged = true;
 
           $location.path("/login");
