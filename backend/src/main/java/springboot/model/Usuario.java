@@ -13,10 +13,22 @@ public class Usuario {
     @NotNull
 	@Indexed
 	private String nome;
+    
+    @NotNull
+	@Indexed
+	private int idade;
 
     @NotNull
 	@Indexed
 	private String nomeInstituicao;
+    
+    @NotNull
+	@Indexed
+	private String cargo;
+    
+    @NotNull
+	@Indexed
+	private String cidade;
 
     @NotNull
 	@Indexed
@@ -27,9 +39,12 @@ public class Usuario {
 	@Indexed
 	private boolean ativo;
 
-	public Usuario(String nome, String nomeInstituicao, String email, boolean ativo) {
+	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {
 		this.nome = nome;
+		this.idade = idade;
 		this.nomeInstituicao = nomeInstituicao;
+		this.cargo = cargo;
+		this.cidade = cidade;
 		this.email = email;
 		this.ativo = ativo;
 	}
@@ -44,6 +59,30 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	public int getIdade() {
+		return idade;
+	}
+
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	public String getNomeInstituicao() {

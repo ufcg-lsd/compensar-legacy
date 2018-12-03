@@ -8,15 +8,43 @@
         <div class="container" ng-controller="SignUpController">
     
             <form id="my_data" name="myDataForm" ng-submit="sendSignUp()">
-    
+                <div class="form-group row">
+                    <label for="staticName" class="col-sm-2 col-form-label">Autor:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="inputText" class="col-sm-2 col-form-label">Informe sua Idade:</label>
+                    <div class="col-sm-10">
+                        <input name="idade" type="number" class="form-control" placeholder="Digite a sua Idade" ng-model="idade">
+                    </div>
+                </div>
+
                 <div class="form-group row">
                     <label for="inputText" class="col-sm-2 col-form-label">Informe sua Instituição:</label>
                     <div class="col-sm-10">
                         <input name="instituicao" type="text" class="form-control" placeholder="Digite o nome da sua Instituição" ng-model="nomeInstituicao">
                     </div>
-                    <div class="container">
-                        <button  type="submit" class="btn btn-primary" >Registrar</button>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputText" class="col-sm-2 col-form-label">Informe seu Cargo:</label>
+                    <div class="col-sm-10">
+                        <input name="cargo" type="text" class="form-control" placeholder="Digite o nome do seu cargo" ng-model="cargo">
                     </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputText" class="col-sm-2 col-form-label">Informe sua Cidade:</label>
+                    <div class="col-sm-10">
+                        <input name="cidade" type="text" class="form-control" placeholder="Digite o nome da sua Cidade" ng-model="cidade">
+                    </div>
+
+                </div>
+                <div class="container">
+                    <button  type="submit" class="btn btn-primary" >Registrar</button>
                 </div>
 
             </form>

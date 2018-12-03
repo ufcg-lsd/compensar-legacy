@@ -3,6 +3,10 @@ angular.module('app')
         deferred = $q.defer();
 
         $scope.nomeInstituicao = "";
+        $scope.cargo = "";
+        $scope.cidade = "";
+
+
 
         UserService.isRegistered().then(function (value) {
             this.isRegistered = value;
@@ -12,7 +16,10 @@ angular.module('app')
         $scope.sendSignUp = function () {
             usuario = {
                 ativo: true,
+                cargo: $scope.cargo,
+                cidade: $scope.cidade,
                 email: UserService.getEmail(),
+                idade: $scope.idade,
                 nome:  UserService.getName(),
                 nomeInstituicao: $scope.nomeInstituicao
             };
@@ -32,14 +39,6 @@ angular.module('app')
                 }
             )
         }
-
-
-
-
-
-
-
-
 
 
         $scope.validaCadastro = function () {

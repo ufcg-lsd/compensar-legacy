@@ -7,7 +7,6 @@ angular.module('app')
           $rootScope.isLogged = true;
 
           $location.path("/login");
-          $window.location.href = '/login';
 
           var perfil = {
             Name: profile.getName(),
