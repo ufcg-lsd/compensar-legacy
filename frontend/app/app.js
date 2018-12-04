@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['LocalStorageModule','ngRoute','socialLogin']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','socialLogin']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -39,7 +39,7 @@ app.config(function($routeProvider, $locationProvider) {
 
     .when('/addQuestao', {	
         templateUrl: '/app/views/AddQuestao.html',	
-        controller: 'SignUpController',
+        controller: 'AddQuestaoController',
         requireAuth: true,
         requireRegistered: true
     })	
@@ -61,4 +61,7 @@ app.config(function (localStorageServiceProvider) {
       .setNotify(true, true)
   });
 
+  app.config(['ngQuillConfigProvider', function (ngQuillConfigProvider) {
+    ngQuillConfigProvider.set();
+}]);
 

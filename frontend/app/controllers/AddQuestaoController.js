@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('AddQuestao',  function($scope, $location,$http)
+    .controller('AddQuestaoController',  function($scope,$http)
     {
 
         $scope.title = '';
@@ -12,7 +12,6 @@ angular.module('app')
               $scope.changeDetected = true;
             console.log('editor: ', editor, 'html: ', html, 'text:', text);
         };
-    
 
 
 
