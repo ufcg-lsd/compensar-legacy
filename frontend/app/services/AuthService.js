@@ -16,6 +16,7 @@ angular.module('app')
 
     service.isLogged = function(){ return localStorageService.get("user") !== null};
 
+
     return service;
   
 });

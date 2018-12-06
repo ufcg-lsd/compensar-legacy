@@ -38,8 +38,8 @@ public class QuestaoSubjetiva extends Questao {
 	 * 			  O espelho de uma questão
 	 * 
 	 */
-	public QuestaoSubjetiva(Long id, String tipo, String enunciado, String fonte, String autor, byte[] imagem, String espelho) {
-		super(id, tipo, enunciado, fonte, autor, imagem);
+	public QuestaoSubjetiva( String tipo, String enunciado, String fonte, String autor, byte[] imagem, String espelho) {
+		super( tipo, enunciado, fonte, autor, imagem);
 		this.espelho = espelho;
 	}
 

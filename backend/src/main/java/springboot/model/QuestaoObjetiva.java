@@ -42,7 +42,7 @@ public class QuestaoObjetiva extends Questao {
 	 */
 	public QuestaoObjetiva(Long id,String tipo, String enunciado, String fonte, String autor, byte[] imagem,
 			List<Alternativa> alternativas) {
-		super(id,tipo, enunciado, fonte, autor, imagem);
+		super(tipo, enunciado, fonte, autor, imagem);
 		this.alternativas = alternativas;
 	}
 
