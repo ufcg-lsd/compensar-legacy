@@ -21,9 +21,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "alternativa")
 public class Alternativa {
 
-	@NotNull
-	@Id
-	private Long id;
 
 	@NotNull
 	@Indexed
@@ -52,25 +49,8 @@ public class Alternativa {
 
 	}
 
-	/**
-	 * Recupera o id da alternativa.
-	 *
-	 * @return O id da alternativa.
-	 */
-	public Long getId_alternativa() {
-		return id;
-	}
 
-	/**
-	 * @param id_alternativa
-	 *            O id da alternativa
-	 *
-	 *            Atualiza o id da alternativa
-	 *
-	 */
-	public void setId_alternativa(Long id_alternativa) {
-		this.id = id_alternativa;
-	}
+
 	
 	/**
 	 * Recupera o texto da alternativa.

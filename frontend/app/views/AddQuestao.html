@@ -47,7 +47,7 @@
                     </div>
             </div>
 
-            <div ng-switch = "isObjective()" >
+            <div ng-switch = "isObjective()">
                 <div ng-switch-when="false">
 
                     <div class="form-group row" >
@@ -58,6 +58,7 @@
                         </div>
                     </div>
 
+
                     <div class="form-group row">
                             <div class="container">
                                 <button  id="question-bt"  class="btn btn-primary" ng-click="sendQuestionSubjective()">Registrar</button>
@@ -66,10 +67,48 @@
 
                 </div>
                 <div ng-switch-when = "true">
-                        <label>Correta:
-                            <input type="checkbox" ng-model="correta.value1">
-                        </label>
+
+                        <div class="form-inline">
+                                <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 1:</label>
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 1" ng-model="alternativa1">
+                                    <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
+                                            <input type="checkbox" ng-model="corretaValue1">
+                        </div>
+                        
+                        <div class="form-inline">
+                                <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 2:</label>
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 2" ng-model="alternativa2">
+                                    <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
+                                            <input type="checkbox" ng-model="corretaValue2">
+                        </div>
+                        <div class="form-inline">
+                                <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 3:</label>
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 3" ng-model="alternativa3">
+                                    <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
+                                            <input type="checkbox" ng-model="corretaValue3">
+                        </div>
+                        <div class="form-inline">
+                                <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 4:</label>
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 4" ng-model="alternativa4">
+                                    <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
+                                            <input type="checkbox" ng-model="corretaValue4">
+                        </div>
+                        <div class="form-inline">
+                                <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 5:</label>
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 5" ng-model="alternativa5">
+                                    <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
+                                            <input type="checkbox" ng-model="corretaValue5">
+                        </div>
+
+                        <div class="form-group row">
+                                <div class="container">
+                                    <button  id="question-bt"  class="btn btn-primary" ng-click="sendQuestionObjective()">Registrar</button>
+                                </div>
+                            </div>
+
                 </div>
+
+
             </div>
 
 
