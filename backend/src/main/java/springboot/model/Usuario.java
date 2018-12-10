@@ -5,38 +5,39 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usuario")
 public class Usuario {
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String nome;
     
     @NotNull
-	@Indexed
+    @TextIndexed
 	private int idade;
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String nomeInstituicao;
     
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String cargo;
     
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String cidade;
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	@Id	
 	private String email;
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private boolean ativo;
 
 	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {

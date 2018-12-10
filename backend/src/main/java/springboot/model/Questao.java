@@ -3,6 +3,7 @@ package springboot.model;
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -16,29 +17,31 @@ import org.springframework.data.annotation.Id;
 
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 
 @Document(collection = "questao")
 public class Questao {
 
-
+    @Id
+	@TextIndexed 
+    private ObjectId id;
 
 	@NotNull
-	@Indexed
+	@TextIndexed 
 	private String tipo;
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private String enunciado;
 
-	@Indexed
+	@TextIndexed
 	private String fonte;
 
-	@Indexed
+	@TextIndexed
 	private String autor;
 
-	@Indexed
+	@TextIndexed
 	@Lob
 	private byte[] imagem;
 	
@@ -73,8 +76,13 @@ public class Questao {
 	}
 
 
+	public ObjectId getId() {
+		return id;
+	}
 
-
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
 
 	/**
 	 * Recupera o tipo da questão.     

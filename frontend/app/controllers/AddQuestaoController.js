@@ -1,23 +1,51 @@
 angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$scope,$http,UserService)
     {
-        $scope.title = '';
-        $scope.changeDetected = false;
+
+        $scope.editorModules = {
+            formula: true, 
+            toolbar: [
+              ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+              ['blockquote'],
+
+              //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+              [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+              [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+              [{ 'direction': 'rtl' }],                         // text direction
+
+              [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+              //[{ 'font': [] }],
+              [{ 'align': [] }],
+
+              //['clean'],                                         // remove formatting button
+
+              ['formula','link']                         // link and image, video
+            ]
+          }
 
         $scope.fonte = "";
         $scope.enunciado = "";
         $scope.espelho = "";
         $scope.tipo = "";
 
+        $scope.title = '';
+        $scope.changeDetected = false;
+
+
         $scope.isObjective = function(){ return $scope.tipo === "Objetiva"};
 
+        $scope.resposta = {}
 
         $scope.sendQuestionSubjective = function () {
 
             questaoSubj = {
                 autor:  UserService.getName(),
                 enunciado: $scope.enunciado,
-                espelho: $scope.espelho,
+                espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
                 imagem: $scope.imagem,
                 tipo: $scope.tipo
@@ -40,14 +68,11 @@ angular.module('app')
 
         }
 
-        $rootScope.alternativa1 = "";
-        $scope.alternativa2 = "";
-        $scope.alternativa3 = "";
-        $scope.alternativa4 = "";
-        $scope.alternativa5 = "";
 
-        $scope.corretaValue1 = "";
 
+
+        $scope.alternativas = {}
+        $scope.corretas = {}
 
 
         $scope.sendQuestionObjective = function () {
@@ -55,24 +80,24 @@ angular.module('app')
             questaoObj = {
                 alternativas: [
                     {
-                        correta: $scope.corretaValue1,
-                        texto: $rootScope.alternativa1
+                        correta: $scope.corretas.Value1,
+                        texto: $scope.alternativas.alternativa1
                       },
                     {
-                        correta: $scope.corretaValue2,
-                        texto: $scope.alternativa2
+                        correta: $scope.corretas.Value2,
+                        texto: $scope.alternativas.alternativa2
                       },
                       {
-                        correta: $scope.corretaValue3,
-                        texto: $scope.alternativa3
+                        correta: $scope.corretas.Value3,
+                        texto: $scope.alternativas.alternativa3
                       },
                       {
-                        correta: $scope.corretaValue4,
-                        texto: $scope.alternativa4
+                        correta: $scope.corretas.Value4,
+                        texto: $scope.alternativas.alternativa4
                       },
                       {
-                        correta: $scope.corretaValue5,
-                        texto: $scope.alternativa5
+                        correta: $scope.corretas.Value5,
+                        texto: $scope.alternativas.alternativa5
                       }
                 ],
                 autor:  UserService.getName(),
@@ -82,6 +107,8 @@ angular.module('app')
                 imagem: $scope.imagem,
                 tipo: $scope.tipo
             };
+
+
 
             $http.post('http://localhost:5458/api/questaoObj', questaoObj).
                 then(function (response) {
@@ -108,6 +135,8 @@ angular.module('app')
             console.log('editor: ', editor, 'html: ', html, 'text:', text);
         };
 
+
+        
 
 
     });

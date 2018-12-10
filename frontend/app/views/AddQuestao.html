@@ -35,8 +35,12 @@
             <div class="form-group row">
                 <label for="inputText" class="col-sm-2 col-form-label">Enunciado:</label>
                 <div class="col-sm-10">
-                    <ng-quill-editor ng-model="enunciado" on-editor-created="editorCreated(editor)" 
-                    on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
+                    <ng-quill-editor  id="quill" modules="editorModules" placeholder="Digite o enunciado da questão." 
+                    ng-model="enunciado" on-editor-created="editorCreated(editor)" 
+                    on-content-changed="contentChanged(editor, html, text)">
+                    
+                 </ng-quill-editor>
+        
                 </div>
             </div>
             
@@ -50,15 +54,15 @@
             <div ng-switch = "isObjective()">
                 <div ng-switch-when="false">
 
-                    <div class="form-group row" >
+                    <div class="form-group row" >   
                         <label for="inputText" class="col-sm-2 col-form-label">Espelho da Questão:</label>
                         <div class="col-sm-10">
-                        <ng-quill-editor ng-model="espelho" on-editor-created="editorCreated(editor)" 
+                        <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
+                        ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
                             on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
                         </div>
                     </div>
-
-
+                    
                     <div class="form-group row">
                             <div class="container">
                                 <button  id="question-bt"  class="btn btn-primary" ng-click="sendQuestionSubjective()">Registrar</button>
@@ -70,34 +74,34 @@
 
                         <div class="form-inline">
                                 <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 1:</label>
-                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 1" ng-model="alternativa1">
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 1" ng-model="alternativas.alternativa1">
                                     <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
-                                            <input type="checkbox" ng-model="corretaValue1">
+                                            <input type="checkbox" ng-model="corretas.Value1">
                         </div>
                         
                         <div class="form-inline">
                                 <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 2:</label>
-                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 2" ng-model="alternativa2">
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 2" ng-model="alternativas.alternativa2">
                                     <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
-                                            <input type="checkbox" ng-model="corretaValue2">
+                                            <input type="checkbox" ng-model="corretas.Value2">
                         </div>
                         <div class="form-inline">
                                 <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 3:</label>
-                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 3" ng-model="alternativa3">
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 3" ng-model="alternativas.alternativa3">
                                     <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
-                                            <input type="checkbox" ng-model="corretaValue3">
+                                            <input type="checkbox" ng-model="corretas.Value3">
                         </div>
                         <div class="form-inline">
                                 <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 4:</label>
-                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 4" ng-model="alternativa4">
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 4" ng-model="alternativas.alternativa4">
                                     <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
-                                            <input type="checkbox" ng-model="corretaValue4">
+                                            <input type="checkbox" ng-model="corretas.Value4">
                         </div>
                         <div class="form-inline">
                                 <label for="inlineFormInput" class="col-sm-2 col-form-label">Alternativa 5:</label>
-                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 5" ng-model="alternativa5">
+                                    <input name="fonte" type="text" class="col-sm-5 form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Digite a alternativa 5" ng-model="alternativas.alternativa5">
                                     <label class="col-sm-2 col-form-label" for="inlineFormInputGroup">  Correta:</label>
-                                            <input type="checkbox" ng-model="corretaValue5">
+                                            <input type="checkbox" ng-model="corretas.Value5">
                         </div>
 
                         <div class="form-group row">

@@ -31,8 +31,8 @@ app.config(function($routeProvider, $locationProvider) {
     })
 
     .when('/questoes', {	
-        templateUrl: '/app/views/UserData.html',	
-        controller: 'UserDataController',
+        templateUrl: '/app/views/Questoes.html',	
+        controller: 'QuestoesController',
         requireAuth: true,
         requireRegistered: true
     })	

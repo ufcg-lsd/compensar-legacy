@@ -39,9 +39,9 @@ public class QuestaoSubjetivaController {
 
 	@ApiOperation("Permite apagar uma questão subjetiva do sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoSubjetiva.class) })
-	@RequestMapping(value = "/questaoSubj/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<QuestaoSubjetiva> delete(@PathVariable("id") Long id) {
-		QuestaoSubjetiva questaoSubj = questaoSubjService.delete(id);
+	@RequestMapping(value = "/questaoSubj/{questao}", method = RequestMethod.DELETE)
+	public ResponseEntity<QuestaoSubjetiva> delete(@PathVariable("questao") QuestaoSubjetiva questao) {
+		QuestaoSubjetiva questaoSubj = questaoSubjService.delete(questao);
 		return new ResponseEntity<QuestaoSubjetiva>(questaoSubj, HttpStatus.OK);
 	}
 

@@ -13,13 +13,14 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "questao-obj")
 public class QuestaoObjetiva extends Questao {
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private List<Alternativa> alternativas;
 
 

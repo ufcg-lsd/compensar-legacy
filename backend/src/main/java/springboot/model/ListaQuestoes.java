@@ -5,23 +5,24 @@ import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "listaquestoes")
 public class ListaQuestoes {
 
-	@NotNull
-	@Id
-	private Long id;
+    @Id
+    private ObjectId id;
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private String email;
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private Set<Questao> questoes;
 
 	public ListaQuestoes(String email, Set<Questao> questoes) {
@@ -33,11 +34,11 @@ public class ListaQuestoes {
 
 	}
 
-	public Long getId() {
+	public ObjectId getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(ObjectId id) {
 		this.id = id;
 	}
 

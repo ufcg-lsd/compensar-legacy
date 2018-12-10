@@ -1,0 +1,58 @@
+  input[type=text], input[type=password] {
+  padding: 7px;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #b2c7ca;
+  outline: none;
+}
+
+button {
+  background-color: #17a2b8;
+  color: white;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+.btn-remove, .btn-danger, .btn-sm{
+  width: 7%;
+  float: right;
+}
+
+#questoes{
+  margin-block-start: 3%;
+}
+
+.questoes{
+  margin: 10px 0 10px 0;
+  border: 1px solid #aaa;
+  background: #cfc;
+  border-radius: 8px;
+  width: 50%;
+  padding:15px 15px 40px ;
+}
+button:hover {
+  opacity:5;
+}
+
+#lixeira{
+  font-size: 20px;
+}
+
+
+
+.autor{
+  color: gray;
+}
+
+.fonte, .tipo, .enunciado, .espelho{
+  color: #088;
+}
+
+
+
+

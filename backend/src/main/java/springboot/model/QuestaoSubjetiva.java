@@ -12,13 +12,14 @@ package springboot.model;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "questao-subj")
 public class QuestaoSubjetiva extends Questao {
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private String espelho;
 
 	/**

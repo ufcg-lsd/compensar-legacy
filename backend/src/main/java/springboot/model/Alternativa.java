@@ -18,16 +18,13 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 
 
-@Document(collection = "alternativa")
 public class Alternativa {
 
 
 	@NotNull
-	@Indexed
 	private String texto;
 
 	@NotNull
-	@Indexed
 	private boolean correta;
 	
 	

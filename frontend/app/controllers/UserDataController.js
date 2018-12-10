@@ -21,7 +21,7 @@ angular.module('app')
     
         $scope.send = function send() {
 
-            usuario = {
+            user = {
                 ativo: true,
                 cargo: $scope.cargo_usuario,
                 cidade: $scope.cidade_usuario,
@@ -31,7 +31,7 @@ angular.module('app')
                 nomeInstituicao: $scope.instituicao_usuario 
             };
 
-            $http.put('http://localhost:5458/api/usuario/' + usuario.email, usuario).
+            $http.put('http://localhost:5458/api/usuario/' + UserService.getEmail(), user).
             then(function (response) {
 
                 if (response.status == 200) {

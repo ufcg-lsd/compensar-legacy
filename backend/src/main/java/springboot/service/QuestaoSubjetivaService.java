@@ -23,17 +23,9 @@ public class QuestaoSubjetivaService {
 		return questaoSubj;
 	}
 
-	public QuestaoSubjetiva delete(Long id) {
+	public QuestaoSubjetiva delete(QuestaoSubjetiva questaoSubj) {
 
-		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
-
-		if (!optQuestaoSubj.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		QuestaoSubjetiva questaoSubj = optQuestaoSubj.get();
 		questaoSubjRepository.delete(questaoSubj);
-
 		return questaoSubj;
 	}
 
