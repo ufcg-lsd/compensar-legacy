@@ -17,7 +17,7 @@ angular.module('app')
             }
         };
 
-
+ 
         QuestoesService.getQuestoesSubj().then(function (value) {
             $rootScope.QuestoesSubj = value;
         });

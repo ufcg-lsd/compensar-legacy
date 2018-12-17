@@ -74,3 +74,21 @@ button:hover {
   margin-inline-start: 2%;
 }
 
+[ng-quill-editor] {
+  display: block; 
+}
+
+#quill{
+  height: 250px;
+}
+
+#question-bt {
+  margin-block-start: 6%;
+}
+
+@media screen and (max-width: 580px) {
+  #opcoesEspecificas{
+    margin-block-start: 45%;
+  }
+
+}
