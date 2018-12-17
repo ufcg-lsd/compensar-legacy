@@ -1,9 +1,21 @@
 angular.module('app')
-    .controller('QuestoesController', function ($rootScope, $scope, QuestoesService) {
+    .controller('QuestoesController', function ($rootScope, $scope, QuestoesService,$sce) {
 
         $scope.search = "";
         $rootScope.QuestoesSubj = [];
         $rootScope.QuestoesObj = [];
+        $scope.enunciado = "";
+        $scope.espelho = "";
+
+        
+
+        $scope.updateViewQuill = function(text,tipo) {
+            if (tipo === "enunciado") {
+                $scope.enunciado = $sce.trustAsHtml(text);
+            } else {
+                $scope.espelho = $sce.trustAsHtml(text);
+            }
+        };
 
 
         QuestoesService.getQuestoesSubj().then(function (value) {

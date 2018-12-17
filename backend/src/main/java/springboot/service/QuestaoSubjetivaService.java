@@ -23,13 +23,20 @@ public class QuestaoSubjetivaService {
 		return questaoSubj;
 	}
 
-	public QuestaoSubjetiva delete(QuestaoSubjetiva questaoSubj) {
+	public QuestaoSubjetiva delete(String id) {
+		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
+		if (!optQuestaoSubj.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+
+		QuestaoSubjetiva questaoSubj = optQuestaoSubj.get();
+		
 		questaoSubjRepository.delete(questaoSubj);
 		return questaoSubj;
 	}
 
-	public QuestaoSubjetiva update(QuestaoSubjetiva questaoSubj, Long id) {
+	public QuestaoSubjetiva update(QuestaoSubjetiva questaoSubj, String id) {
 
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
@@ -40,7 +47,6 @@ public class QuestaoSubjetivaService {
 		QuestaoSubjetiva novaQuestaoSubj = optQuestaoSubj.get();
 		novaQuestaoSubj.setFonte(questaoSubj.getFonte());
 		novaQuestaoSubj.setAutor(questaoSubj.getAutor());
-		novaQuestaoSubj.setImage(questaoSubj.getImagem());
 		novaQuestaoSubj.setTipo(questaoSubj.getTipo());
 		novaQuestaoSubj.setEnunciado(questaoSubj.getEnunciado());
 		novaQuestaoSubj.setEspelho(questaoSubj.getEspelho());
@@ -55,7 +61,7 @@ public class QuestaoSubjetivaService {
 		return questaoSubjRepository.findAll();
 	}
 
-	public QuestaoSubjetiva getById(Long id) {
+	public QuestaoSubjetiva getById(String id) {
 		Optional<QuestaoSubjetiva> optQuestaoSubj = questaoSubjRepository.findById(id);
 
 		if (!optQuestaoSubj.isPresent()) {

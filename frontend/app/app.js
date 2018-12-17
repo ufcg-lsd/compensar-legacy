@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','socialLogin']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','socialLogin','ngSanitize']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {

@@ -40,7 +40,7 @@ public class QuestaoObjetivaController {
 	@ApiOperation("Permite apagar uma questão objetiva do sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
 	@RequestMapping(value = "/questaoObj/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<QuestaoObjetiva> delete(@PathVariable("id") Long id) {
+	public ResponseEntity<QuestaoObjetiva> delete(@PathVariable("id") String id) {
 		QuestaoObjetiva questaoObj = questaoObjService.delete(id);
 		return new ResponseEntity<QuestaoObjetiva>(questaoObj, HttpStatus.OK);
 	}
@@ -49,7 +49,7 @@ public class QuestaoObjetivaController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
 	@RequestMapping(value = "/questaoObj/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<QuestaoObjetiva> update(@PathVariable("id") Long id,
+	public ResponseEntity<QuestaoObjetiva> update(@PathVariable("id") String id,
 			@RequestBody QuestaoObjetiva questaoObj) {
 		QuestaoObjetiva updatedQuestaoObj = questaoObjService.update(questaoObj, id);
 		return new ResponseEntity<QuestaoObjetiva>(updatedQuestaoObj, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class QuestaoObjetivaController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
 	@RequestMapping(value = "/questaoObj/{id}", method = RequestMethod.GET) //// verificar se faz sentido
-	public QuestaoObjetiva getById(@PathVariable("id") Long id) {
+	public QuestaoObjetiva getById(@PathVariable("id") String id) {
 		return questaoObjService.getById(id);
 	}
 

@@ -19,13 +19,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "questao")
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Questao {
 
     @Id
-	@TextIndexed 
-    private ObjectId id;
+    @JsonProperty
+    private String id;
 
 	@NotNull
 	@TextIndexed 
@@ -41,10 +43,6 @@ public class Questao {
 	@TextIndexed
 	private String autor;
 
-	@TextIndexed
-	@Lob
-	private byte[] imagem;
-	
 
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
@@ -62,13 +60,13 @@ public class Questao {
 	 *         
 	 * 
 	 */
-	public Questao(String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
+	public Questao(String tipo, String enunciado, String fonte, String autor) {
 
 		this.tipo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
-		this.imagem = imagem;
+
 	}
 
 	public Questao() {
@@ -76,11 +74,13 @@ public class Questao {
 	}
 
 
-	public ObjectId getId() {
+
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(ObjectId id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -164,28 +164,5 @@ public class Questao {
 		this.autor = autor;
 	}
 	
-	/**
-	 * Recupera a imagem da questão.     
-	 *
-	 * @return A imagem da questão.     
-	 */
-	public byte[] getImagem() {
-		return imagem;
-	}
-
-	/**
-	 * @param imagem
-	 *            A imagem da questão.        
-	 *
-	 *            Atualiza a imagem da questão.        
-	 *
-	 */
-	public void setImage(byte[] imagem) {
-		this.imagem = imagem;
-	}
-
-
-
-
 
 }

@@ -41,9 +41,9 @@ public class QuestaoObjetiva extends Questao {
 	 * 			  A coleção de alternativas de uma questão
 	 * 
 	 */
-	public QuestaoObjetiva(Long id,String tipo, String enunciado, String fonte, String autor, byte[] imagem,
+	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor,
 			List<Alternativa> alternativas) {
-		super(tipo, enunciado, fonte, autor, imagem);
+		super(tipo, enunciado, fonte, autor);
 		this.alternativas = alternativas;
 	}
 

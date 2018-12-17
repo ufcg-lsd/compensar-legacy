@@ -23,7 +23,7 @@ public class QuestaoObjetivaService {
 		return questaoObj;
 	}
 
-	public QuestaoObjetiva delete(Long id) {
+	public QuestaoObjetiva delete(String id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
 		if (!optQuestaoObj.isPresent()) {
@@ -36,7 +36,7 @@ public class QuestaoObjetivaService {
 		return questaoObj;
 	}
 
-	public QuestaoObjetiva update(QuestaoObjetiva questaoObj, Long id) {
+	public QuestaoObjetiva update(QuestaoObjetiva questaoObj, String id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
 		if (!optQuestaoObj.isPresent()) {
@@ -46,7 +46,6 @@ public class QuestaoObjetivaService {
 		QuestaoObjetiva novaQuestaoObj = optQuestaoObj.get();
 		novaQuestaoObj.setFonte(questaoObj.getFonte());
 		novaQuestaoObj.setAutor(questaoObj.getAutor());
-		novaQuestaoObj.setImage(questaoObj.getImagem());
 		novaQuestaoObj.setTipo(questaoObj.getTipo());
 		novaQuestaoObj.setEnunciado(questaoObj.getEnunciado());
 		novaQuestaoObj.setAlternativas(questaoObj.getAlternativas());
@@ -60,7 +59,7 @@ public class QuestaoObjetivaService {
 		return questaoObjRepository.findAll();
 	}
 
-	public QuestaoObjetiva getById(Long id) {
+	public QuestaoObjetiva getById(String id) {
 		Optional<QuestaoObjetiva> optQuestaoObj = questaoObjRepository.findById(id);
 
 		if (!optQuestaoObj.isPresent()) {

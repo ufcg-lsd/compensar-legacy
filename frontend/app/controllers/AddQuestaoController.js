@@ -18,12 +18,12 @@ angular.module('app')
               [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
               [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-              //[{ 'font': [] }],
+              [{ 'font': [] }],
               [{ 'align': [] }],
 
               //['clean'],                                         // remove formatting button
 
-              ['formula','link']                         // link and image, video
+              ['formula','link','image']                         // link and image, video
             ]
           }
 
@@ -113,7 +113,7 @@ angular.module('app')
             $http.post('http://localhost:5458/api/questaoObj', questaoObj).
                 then(function (response) {
                     if (response.status == 200) {
-                        window.alert("Questão enviada com Sucesso!");
+                        window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
                         $location.path("/addQuestao");
                     }
                     else {

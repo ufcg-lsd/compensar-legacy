@@ -1,9 +1,20 @@
+  
   input[type=text], input[type=password] {
   padding: 7px;
-  background: #f1f1f1;
+  background: #ffffff;
 }
 
 input[type=text]:focus, input[type=password]:focus {
+  background-color: #b2c7ca;
+  outline: none;
+}
+
+input[type=number], input[type=password] {
+  padding: 7px;
+  background: #ffffff;
+}
+
+input[type=number]:focus, input[type=password]:focus {
   background-color: #b2c7ca;
   outline: none;
 }
@@ -19,7 +30,7 @@ button {
 }
 
 .btn-remove, .btn-danger, .btn-sm{
-  width: 7%;
+  width: 4%;
   float: right;
 }
 
@@ -32,7 +43,7 @@ button {
   border: 1px solid #aaa;
   background: #cfc;
   border-radius: 8px;
-  width: 50%;
+  width: 100%;
   padding:15px 15px 40px ;
 }
 button:hover {
@@ -54,5 +65,12 @@ button:hover {
 }
 
 
+#opcoesEspecificas{
+  margin-block-start: 8%;
+}
 
+#addEspelho {
+  margin-block-start: 1%;
+  margin-inline-start: 2%;
+}
 

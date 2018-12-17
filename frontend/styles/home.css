@@ -270,7 +270,10 @@ font-size: 64px;
 
 
 [ng-quill-editor] {
-   display: block; 
+  display: block; 
+}
+
+#quill{
 }
 
 #question-bt {

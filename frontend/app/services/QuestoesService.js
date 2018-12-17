@@ -31,8 +31,8 @@ angular.module('app')
 
   
   service.removeQuestaoSubj = function (questaoSubj) {
-    console.log(questaoSubj);
-    $http.delete('http://localhost:5458/api/questaoSubj/' + questaoSubj).
+
+    $http.delete('http://localhost:5458/api/questaoSubj/' + questaoSubj.id).
       then(function (response) {
         if (response.status == 200) {
           $window.alert("Questão Removida com Sucesso!");
@@ -44,11 +44,6 @@ angular.module('app')
         
         $window.alert("Falha ao Remover Questão!");
       }).catch(function (response) { deferred.resolve([]); });
-
-
-  
     }
-
     return service;
-
   });

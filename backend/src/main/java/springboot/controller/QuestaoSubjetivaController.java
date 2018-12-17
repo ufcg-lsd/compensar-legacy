@@ -39,9 +39,9 @@ public class QuestaoSubjetivaController {
 
 	@ApiOperation("Permite apagar uma questão subjetiva do sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoSubjetiva.class) })
-	@RequestMapping(value = "/questaoSubj/{questao}", method = RequestMethod.DELETE)
-	public ResponseEntity<QuestaoSubjetiva> delete(@PathVariable("questao") QuestaoSubjetiva questao) {
-		QuestaoSubjetiva questaoSubj = questaoSubjService.delete(questao);
+	@RequestMapping(value = "/questaoSubj/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<QuestaoSubjetiva> delete(@PathVariable("id") String id) {
+		QuestaoSubjetiva questaoSubj = questaoSubjService.delete(id);
 		return new ResponseEntity<QuestaoSubjetiva>(questaoSubj, HttpStatus.OK);
 	}
 
@@ -49,7 +49,7 @@ public class QuestaoSubjetivaController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoSubjetiva.class) })
 	@RequestMapping(value = "/questaoSubj/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<QuestaoSubjetiva> update(@PathVariable("id") Long id,
+	public ResponseEntity<QuestaoSubjetiva> update(@PathVariable("id") String id,
 			@RequestBody QuestaoSubjetiva questaoSubj) {
 		QuestaoSubjetiva updatedQuestaoSubj = questaoSubjService.update(questaoSubj, id);
 		return new ResponseEntity<QuestaoSubjetiva>(updatedQuestaoSubj, HttpStatus.OK);
@@ -66,7 +66,7 @@ public class QuestaoSubjetivaController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoSubjetiva.class) })
 	@RequestMapping(value = "/questaoSubj/{id}", method = RequestMethod.GET)
-	public QuestaoSubjetiva getById(@PathVariable("id") Long id) {
+	public QuestaoSubjetiva getById(@PathVariable("id") String id) {
 		return questaoSubjService.getById(id);
 	}
 

@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "questao-subj")
 public class QuestaoSubjetiva extends Questao {
 
-	@NotNull
+	
 	@TextIndexed
 	private String espelho;
 
@@ -39,8 +39,8 @@ public class QuestaoSubjetiva extends Questao {
 	 * 			  O espelho de uma questão
 	 * 
 	 */
-	public QuestaoSubjetiva( String tipo, String enunciado, String fonte, String autor, byte[] imagem, String espelho) {
-		super( tipo, enunciado, fonte, autor, imagem);
+	public QuestaoSubjetiva( String tipo, String enunciado, String fonte, String autor, String espelho) {
+		super( tipo, enunciado, fonte, autor);
 		this.espelho = espelho;
 	}
 

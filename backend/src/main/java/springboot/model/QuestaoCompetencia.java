@@ -17,14 +17,14 @@ public class QuestaoCompetencia {
 
 	@Id
 	@Indexed
-	private Long id_questao;
+	private String id_questao;
 
     @Enumerated(EnumType.STRING)
 	@Id
 	@Indexed
 	private CompetenciaType competencia;
 
-	public QuestaoCompetencia(Long id_questao, CompetenciaType competencia) {
+	public QuestaoCompetencia(String id_questao, CompetenciaType competencia) {
 		this.competencia = competencia;
 		this.id_questao = id_questao;
 	}
@@ -33,11 +33,11 @@ public class QuestaoCompetencia {
 
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id_questao;
 	}
 
-	public void setId(Long id_questao) {
+	public void setId(String id_questao) {
 		this.id_questao = id_questao;
 	}
 

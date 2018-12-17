@@ -1,7 +1,7 @@
 package springboot.repository;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import springboot.model.QuestaoSubjetiva;
 
 @Repository
-public interface QuestaoSubjetivaRepository extends MongoRepository<QuestaoSubjetiva, Long> {
+public interface QuestaoSubjetivaRepository extends MongoRepository<QuestaoSubjetiva, String> {
+
+	Optional<QuestaoSubjetiva> findById(String id);
 
 	/*
 	 * @Query("SELECT q FROM QuestaoSubjetiva q WHERE LOWER(q.autor) LIKE CONCAT('%', LOWER(:autor), '%')"

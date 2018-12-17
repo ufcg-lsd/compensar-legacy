@@ -11,7 +11,13 @@ angular.module('app')
         UserService.isRegistered().then(function (value) {
             this.isRegistered = value;
             
-        });
+        }).then( function(){   
+            if(this.isRegistered) {
+                $location.path('/questoes')
+            } else {
+                $location.path('/signup')
+            }
+            });
 
         $scope.sendSignUp = function () {
             usuario = {
@@ -28,7 +34,7 @@ angular.module('app')
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");
-                        $location.path("/userdata");
+                        $location.path("/questoes");
                     }
                     else {
                         window.alert("Falha no Cadastro");

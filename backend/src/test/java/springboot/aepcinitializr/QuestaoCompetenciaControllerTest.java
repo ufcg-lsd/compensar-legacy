@@ -32,7 +32,7 @@ public class QuestaoCompetenciaControllerTest extends AepcApplicationTests {
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(questaoCompetenciaController).build();
 
-		this.questaoCompetencia = new QuestaoCompetencia((long) 1, this.competenciaType.COLETA);
+		this.questaoCompetencia = new QuestaoCompetencia("1", this.competenciaType.COLETA);
 
 	}
 
