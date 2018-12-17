@@ -13,14 +13,28 @@
 </div>
 
 <!-- ======================== Presentation Questions  ============================================== -->
-<div id = "apresentacao" >
-<h2>Experimente um pouco</h2>
-<p > Questões serão aqui exibidas.</p>
+<div id = "apresentacao" ng-controller="QuestoesController" >
+    <h2>Experimente um pouco :)</h2>
 
-<div class = "float-right">
-<h4>Saiba mais!</h4>
-<a href="#sobre"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
-</div>
+    <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | filter: search | orderBy:'-' | limitTo:5" >
+
+            <ul>      
+
+                    <div class="enunciado" > <b>Enunciado:</b>  
+                        {{updateViewQuill(questaoSubj.enunciado,"enunciado")}}</div>
+
+                    <div ng-bind-html="enunciado"></div>
+
+                    <div class="fonte"><b>Fonte:</b > {{questaoSubj.fonte}}</div>
+
+            </ul>
+
+    </div>
+
+    <div id = "mais-questoes">
+        <h4>Saiba mais!</h4>
+        <a href="#sobre"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
+    </div>
 </div>
 
 <!-- ======================== Competences  ============================================== -->

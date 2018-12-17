@@ -6,9 +6,12 @@
         <hr>
     </div>
 
+    <div class = "container"> 
+            <input type="text" ng-model = "search" class="form-control badge-light" id="inputText" placeholder="Filtrar"></div>
+    </div>
 
         <div id = "questoes" class="container">
-            <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | orderBy:'-'" class = "disciplina">
+            <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | filter: search | orderBy:'-' | limitTo:5" >
                     <ul>      
 
                             <div class="enunciado" > <b>Enunciado:</b>  

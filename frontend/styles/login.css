@@ -61,7 +61,7 @@ html {
     margin: 0 auto;
   }
 
-  #nav{
+ .navbar, .navbar-expand-lg, .navbar-light, .bg-light, .fixed-top{
     padding:0px 0px 0px !important;
    }
 
@@ -119,20 +119,16 @@ html {
   padding:15px 15px 250px !important;
   font-size:16px;
   color: rgb(90, 90, 90);
-  margin-block-start: 5%;
+  margin-block-start: 2%;
 }
 
 #apresentacao ion-icon{
   font-size: 32px;
-
-  
 }
-
 
 ion-icon {
 font-size: 64px;
 }
-
 
 
 
@@ -237,7 +233,7 @@ font-size: 64px;
   }
 
   .page-header{
-    margin-top: 10%;
+    margin-top: 7%;
 }
 
 /* =================================================== Footer ====================================================== */
