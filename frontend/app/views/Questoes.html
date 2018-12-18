@@ -6,14 +6,18 @@
         <hr>
     </div>
 
+     <!-- ========================  Filtros  ============================================== -->
+
     <div class = "container"> 
             <input type="text" ng-model = "search" class="form-control badge-light" id="inputText" placeholder="Filtrar"></div>
     </div>
 
+     <!-- ========================  Questões  ============================================== -->
+
         <div id = "questoes" class="container">
             <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | filter: search | orderBy:'-' | limitTo:5" >
-                    <ul>      
 
+                    <ul>      
                             <div class="enunciado" > <b>Enunciado:</b>  
                                 {{updateViewQuill(questaoSubj.enunciado,"enunciado")}}</div>
 
@@ -24,12 +28,10 @@
                             <div class="fonte"><b>Fonte:</b > {{questaoSubj.fonte}}</div>
 
                             <div class="tipo"><b>Tipo:</b> {{questaoSubj.tipo}}</div>
-                                
-
-                                    
-                                <!-- Imagem -->
               
                     </ul>
+
+    <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
 
                     <div ng-switch = "isObjective(questaoSubj.tipo)">
                             <div ng-switch-when="false">
@@ -48,10 +50,6 @@
                             </div>
 
                     </div>
-
-                
-
-
             </div>
         </div>
 

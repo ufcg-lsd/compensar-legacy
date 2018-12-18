@@ -14,8 +14,13 @@
 
 <!-- ======================== Presentation Questions  ============================================== -->
 <div id = "apresentacao" ng-controller="QuestoesController" >
-    <h2>Experimente um pouco :)</h2>
 
+    <div class="container"  id=headbox >
+            <h2>Experimente um pouco</h2>
+            <hr>
+    </div>
+
+    <div id = "questoes-apresentacao">
     <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | filter: search | orderBy:'-' | limitTo:5" >
 
             <ul>      
@@ -26,14 +31,15 @@
                     <div ng-bind-html="enunciado"></div>
 
                     <div class="fonte"><b>Fonte:</b > {{questaoSubj.fonte}}</div>
-
             </ul>
 
     </div>
+    </div>
 
     <div id = "mais-questoes">
+        <hr>
         <h4>Saiba mais!</h4>
-        <a href="#sobre"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
+        <a href="#mais-questoes"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
     </div>
 </div>
 
@@ -113,6 +119,7 @@
 <!-- ======================== Sing-up  ============================================== -->
 
 <div id="cadastro">
+
   <h2>Cadastre-se</h2>        
   <h6>Se cadastre de forma rápida e gratuita para usar todas as funcionalidades do sistema</h6>
   

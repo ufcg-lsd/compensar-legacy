@@ -116,10 +116,12 @@ html {
 #apresentacao {
   height: auto;
   background-color:  rgb(255, 255, 255);
-  padding:15px 15px 250px !important;
+  padding:15px 15px 50px !important;
   font-size:16px;
   color: rgb(90, 90, 90);
   margin-block-start: 2%;
+
+
 }
 
 #apresentacao ion-icon{
@@ -131,15 +133,13 @@ font-size: 64px;
 }
 
 
+#questoes-apresentacao{
+  overflow: scroll;
+  height: 500px;
+}
+
 
 /* =================================================== Competencias ====================================================== */
-
-#competencias{
-  background-color:  rgb(255, 255, 255);
-  padding:15px 15px 100px !important;
-  font-size:16px;
-  color: rgb(90, 90, 90);
-}
 
 
 .presentation {
@@ -224,7 +224,7 @@ font-size: 64px;
   height: auto;
   background-image: url("../images/city.jpg")!important;
   
-  padding:110px 90px 50px !important;
+  padding:110px 90px 100px !important;
   color: rgb(90, 90, 90);
   }
   
@@ -324,7 +324,10 @@ font-size: 64px;
      margin-block-start: 0%;
      font-size: 16px;
    }
+   .parallax{
+    padding:110px 90px 600px !important;
 
+   }
   
   }
 

@@ -44,5 +44,7 @@ angular.module('app')
            var  index = $rootScope.QuestoesSubj.indexOf(questaoSubj);
            $rootScope.QuestoesSubj.splice(index,1);
         }
+
+
     
     });

@@ -38,13 +38,18 @@ button {
   margin-block-start: 3%;
 }
 
+
 .questoes{
   margin: 10px 0 10px 0;
   border: 1px solid #aaa;
-  background: #cfc;
+  background: rgb(204, 255, 242);
   border-radius: 8px;
   width: 100%;
-  padding:15px 15px 40px ;
+  padding:15px 15px 100px ;
+
+  overflow: scroll;
+  height: 100px;
+
 }
 button:hover {
   opacity:5;
