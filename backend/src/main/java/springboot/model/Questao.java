@@ -27,6 +27,7 @@ public class Questao {
 
     @Id
     @JsonProperty
+	@TextIndexed 
     private String id;
 
 	@NotNull
