@@ -32,10 +32,7 @@
 	</lst>
 	</requestHandler>
 
-	<autoCommit>
-	   <!-- <maxTime>15000</maxTime> -->
-	    <openSearcher>true</openSearcher>
-	</autoCommit>
+
 
 
 

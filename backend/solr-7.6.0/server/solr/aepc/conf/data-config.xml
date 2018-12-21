@@ -3,7 +3,23 @@
 <dataSource name="MyMongo" type="MongoDataSource" database="aepc" />
 <document name="import">
  <!-- if query="" then it imports everything -->
-     <entity  processor="MongoEntityProcessor"
+     <uniqueKey>id</uniqueKey>    
+
+  <entity  processor="MongoEntityProcessor"
+		collection="usuario"   
+              query=""
+             datasource="MyMongo"
+             transformer="MongoMapperTransformer" name="usuario">
+
+               <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
+                     If not same than you have to refer the mongoField to field in schema.xml
+                    ( Ex: mongoField="EmpNumber" to name="EmployeeNumber"). -->                                              
+
+           <field column="_id"  name="id"/>               
+                                                                                                                                                                                                                                                                                                                                                               
+	</entity>
+
+<entity  processor="MongoEntityProcessor"
               query=""
              collection="questao-subj"   
              datasource="MyMongo"
@@ -19,6 +35,7 @@
            <field column="espelho" name="espelho" mongoField="espelho"/>          
            <field column="tipo" name="tipo" mongoField="tipo"/>  
            <field column="fonte" name="fonte" mongoField="fonte"/>   
+
                                                                                                                                                                                                        
 	</entity>
 
@@ -35,13 +52,28 @@
            <field column="_id"  name="id"/>               
            <field column="autor" name="autor" mongoField="autor"/> 
            <field column="enunciado" name="enunciado" mongoField="enunciado"/>       
-           <field column="alternativas" name="alternativas" mongoField="alternativas"/>          
-           <field column="texto" name="texto" mongoField="texto"/>
-           <field column="correta" name="correta" mongoField="correta"/>                    
+           <field column="alternativas.texto" name="alternativas.texto" mongoField="alternativas.texto"/>       
            <field column="tipo" name="tipo" mongoField="tipo"/>  
            <field column="fonte" name="fonte" mongoField="fonte"/>   
                                                                                                                                                                                                        
 	</entity>
+
+     	<entity  processor="MongoEntityProcessor"
+              query=""
+             collection="questao-competencia"   
+             datasource="MyMongo"
+             transformer="MongoMapperTransformer" name="questao-competencia">
+
+               <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
+                     If not same than you have to refer the mongoField to field in schema.xml
+                    ( Ex: mongoField="EmpNumber" to name="EmployeeNumber"). -->                                              
+
+           <field column="id_questao"  name="id"/>  
+           <field column="competencia" name="competencia" mongoField="competencia"/>               
+                                                                                                                                                                                                       
+	</entity>
+
+
 </document>
  
 

@@ -440,14 +440,24 @@
   <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
   <field name="_ts" type="plong" indexed="true" stored="true"/>
   <field name="_version_" type="plong" indexed="false" stored="false"/>
+  <field name="ativo" type="boolean" indexed="true" stored="true"/>
   <field name="autor" type="string" multiValued="false" indexed="true" stored="true"/>
+  <field name="cargo" type="string" indexed="true" stored="true"/>
+  <field name="cidade" type="string" indexed="true" stored="true"/>
+  <field name="competencia" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="enunciado" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="espelho" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="fonte" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="id" type="string" multiValued="false" indexed="true" required="true" stored="true"/>
+  <field name="id_questao" type="string" multiValued="false" indexed="true" stored="true"/>
+  <field name="idade" type="plong" indexed="true" stored="true"/>
+  <field name="nome" type="string" indexed="true" stored="true"/>
+  <field name="nomeInstituicao" type="string" indexed="true" stored="true"/>
   <field name="ns" type="string" indexed="true" stored="true"/>
+  <field name="ptexto" type="string" multiValued="true" indexed="true" stored="true"/>
   <field name="tipo" type="string" multiValued="false" indexed="true" stored="true"/>
   <dynamicField name="*_txt_en_split_tight" type="text_en_splitting_tight" indexed="true" stored="true"/>
+  <dynamicField name="alternativas.texto*" type="string" multiValued="false" indexed="true" stored="true"/>
   <dynamicField name="*_descendent_path" type="descendent_path" indexed="true" stored="true"/>
   <dynamicField name="*_ancestor_path" type="ancestor_path" indexed="true" stored="true"/>
   <dynamicField name="*_txt_en_split" type="text_en_splitting" indexed="true" stored="true"/>
@@ -514,4 +524,5 @@
   <dynamicField name="*_f" type="pfloat" indexed="true" stored="true"/>
   <dynamicField name="*_d" type="pdouble" indexed="true" stored="true"/>
   <dynamicField name="*_p" type="location" indexed="true" stored="true"/>
+  <copyField source="alternativas.texto*" dest="ptexto"/>
 </schema>

@@ -9,6 +9,8 @@ import javax.persistence.IdClass;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import springboot.enums.CompetenciaType;
 
 @Document(collection = "questao-competencia")
@@ -16,6 +18,7 @@ import springboot.enums.CompetenciaType;
 public class QuestaoCompetencia {
 
 	@Id
+    @JsonProperty
 	@Indexed
 	private String id_questao;
 

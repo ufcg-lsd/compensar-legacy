@@ -1,0 +1,131 @@
+2018-12-21 12:06:42.362 INFO  (main) [   ] o.e.j.u.log Logging initialized @561ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-21 12:06:42.477 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
+2018-12-21 12:06:42.506 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-21 12:06:42.669 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-21 12:06:42.676 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-21 12:06:42.676 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-21 12:06:42.677 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
+2018-12-21 12:06:42.707 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-21 12:06:42.744 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-21 12:06:42.747 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-21 12:06:42.748 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2018-12-21 12:06:42.748 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
+2018-12-21 12:06:42.748 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T12:06:42.748Z
+2018-12-21 12:06:42.766 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr
+2018-12-21 12:06:42.771 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr/solr.xml
+2018-12-21 12:06:42.816 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@28c4711c, but no JMX reporters were configured - adding default JMX reporter.
+2018-12-21 12:06:43.464 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2018-12-21 12:06:43.467 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2018-12-21 12:06:43.534 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@28c4711c
+2018-12-21 12:06:43.534 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@28c4711c
+2018-12-21 12:06:43.540 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@28c4711c
+2018-12-21 12:06:43.565 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 0 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr
+2018-12-21 12:06:43.603 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@5c90e579{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-21 12:06:43.611 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@64dafeed{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-21 12:06:43.611 INFO  (main) [   ] o.e.j.s.Server Started @1812ms
+2018-12-21 12:06:44.769 INFO  (qtp306980751-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=30
+2018-12-21 12:06:44.803 INFO  (qtp306980751-16) [   x:gettingstarted] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={core=gettingstarted&action=STATUS&wt=json} status=0 QTime=0
+2018-12-21 12:06:44.828 INFO  (qtp306980751-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=4
+2018-12-21 12:06:44.838 INFO  (qtp306980751-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json} status=0 QTime=4
+2018-12-21 12:06:44.845 INFO  (qtp306980751-20) [   x:gettingstarted] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={core=gettingstarted&action=STATUS&wt=json} status=0 QTime=0
+2018-12-21 12:06:44.917 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.h.a.CoreAdminOperation core create command name=gettingstarted&action=CREATE&instanceDir=gettingstarted&wt=json
+2018-12-21 12:06:44.973 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.SolrResourceLoader [gettingstarted] Added 58 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
+2018-12-21 12:06:45.127 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
+2018-12-21 12:06:45.295 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.s.IndexSchema [gettingstarted] Schema name=default-config
+2018-12-21 12:06:45.890 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2018-12-21 12:06:45.916 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.CoreContainer Creating SolrCore 'gettingstarted' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr/gettingstarted, trusted=true
+2018-12-21 12:06:45.928 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.gettingstarted' (registry 'solr.core.gettingstarted') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@28c4711c
+2018-12-21 12:06:45.943 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.SolrCore [[gettingstarted] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr/gettingstarted], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr/gettingstarted/data/]
+2018-12-21 12:06:46.125 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2018-12-21 12:06:46.534 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2018-12-21 12:06:46.534 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2018-12-21 12:06:46.544 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2018-12-21 12:06:46.545 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2018-12-21 12:06:46.564 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.s.SolrIndexSearcher Opening [Searcher@32563bd0[gettingstarted] main]
+2018-12-21 12:06:46.579 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/example/schemaless/solr/gettingstarted/conf
+2018-12-21 12:06:46.599 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2018-12-21 12:06:46.607 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2018-12-21 12:06:46.630 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2018-12-21 12:06:46.631 INFO  (searcherExecutor-10-thread-1-processing-x:gettingstarted) [   x:gettingstarted] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@32563bd0[gettingstarted] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
+2018-12-21 12:06:46.631 INFO  (searcherExecutor-10-thread-1-processing-x:gettingstarted) [   x:gettingstarted] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-21 12:06:46.631 INFO  (searcherExecutor-10-thread-1-processing-x:gettingstarted) [   x:gettingstarted] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2018-12-21 12:06:46.639 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.u.UpdateLog Could not find max version in index or recent updates, using new clock 1620463065905496064
+2018-12-21 12:06:46.642 INFO  (searcherExecutor-10-thread-1-processing-x:gettingstarted) [   x:gettingstarted] o.a.s.c.SolrCore [gettingstarted] Registered new searcher Searcher@32563bd0[gettingstarted] main{ExitableDirectoryReader(UninvertingDirectoryReader())}
+2018-12-21 12:06:46.646 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={name=gettingstarted&action=CREATE&instanceDir=gettingstarted&wt=json} status=0 QTime=1730
+2018-12-21 12:07:02.315 INFO  (qtp306980751-19) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:02.321 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=6
+2018-12-21 12:07:02.333 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=7
+2018-12-21 12:07:07.042 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:07.051 INFO  (qtp306980751-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=8
+2018-12-21 12:07:07.052 INFO  (qtp306980751-23) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/replication params={wt=json&command=details&_=1545394027035} status=0 QTime=6
+2018-12-21 12:07:07.052 INFO  (qtp306980751-20) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545394027034} status=0 QTime=7
+2018-12-21 12:07:07.056 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545394022149&ts=1545394022149} status=503 QTime=1
+2018-12-21 12:07:07.060 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/system params={wt=json&_=1545394027035} status=0 QTime=9
+2018-12-21 12:07:24.616 INFO  (qtp306980751-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:24.623 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={show=schema&wt=json&_=1545394027034} status=0 QTime=5
+2018-12-21 12:07:24.627 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=11
+2018-12-21 12:07:25.422 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:25.424 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=1
+2018-12-21 12:07:25.428 INFO  (qtp306980751-19) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:25.458 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:25.461 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:25.464 INFO  (qtp306980751-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=6
+2018-12-21 12:07:27.726 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:27.729 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:27.732 INFO  (qtp306980751-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:27.761 INFO  (qtp306980751-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:27.763 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:27.768 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=6
+2018-12-21 12:07:31.148 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:31.152 INFO  (qtp306980751-21) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/replication params={wt=json&command=details&_=1545394027035} status=0 QTime=0
+2018-12-21 12:07:31.152 INFO  (qtp306980751-17) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545394027034} status=0 QTime=0
+2018-12-21 12:07:31.153 INFO  (qtp306980751-14) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545394022149&ts=1545394022149} status=503 QTime=0
+2018-12-21 12:07:31.157 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=9
+2018-12-21 12:07:31.158 INFO  (qtp306980751-15) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/system params={wt=json&_=1545394027035} status=0 QTime=5
+2018-12-21 12:07:32.441 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:32.442 INFO  (qtp306980751-16) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:32.447 INFO  (qtp306980751-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:32.475 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:32.477 INFO  (qtp306980751-23) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:32.481 INFO  (qtp306980751-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:33.951 INFO  (qtp306980751-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:33.955 INFO  (qtp306980751-20) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={show=schema&wt=json&_=1545394027034} status=0 QTime=2
+2018-12-21 12:07:33.956 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:36.199 INFO  (qtp306980751-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:36.204 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=4
+2018-12-21 12:07:37.158 INFO  (qtp306980751-15) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/select params={q=*:*&_=1545394056161} hits=0 status=0 QTime=31
+2018-12-21 12:07:40.153 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:40.154 INFO  (qtp306980751-16) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:40.160 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=6
+2018-12-21 12:07:40.187 INFO  (qtp306980751-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:40.188 INFO  (qtp306980751-15) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:40.192 INFO  (qtp306980751-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=5
+2018-12-21 12:07:41.638 INFO  (qtp306980751-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:41.642 INFO  (qtp306980751-16) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545394027034} status=0 QTime=0
+2018-12-21 12:07:41.643 INFO  (qtp306980751-20) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/replication params={wt=json&command=details&_=1545394027035} status=0 QTime=0
+2018-12-21 12:07:41.649 INFO  (qtp306980751-17) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545394022149&ts=1545394022149} status=503 QTime=0
+2018-12-21 12:07:41.651 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=12
+2018-12-21 12:07:41.658 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/system params={wt=json&_=1545394027035} status=0 QTime=12
+2018-12-21 12:07:43.332 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:43.337 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/luke params={show=schema&wt=json&_=1545394027034} status=0 QTime=2
+2018-12-21 12:07:43.343 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=10
+2018-12-21 12:07:43.906 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:43.910 INFO  (qtp306980751-16) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:43.913 INFO  (qtp306980751-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=6
+2018-12-21 12:07:43.943 INFO  (qtp306980751-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545394022149} status=0 QTime=0
+2018-12-21 12:07:43.944 INFO  (qtp306980751-19) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545394045407} status=0 QTime=0
+2018-12-21 12:07:43.953 INFO  (qtp306980751-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545394022149} status=0 QTime=9
+2018-12-21 12:08:26.604 INFO  (qtp306980751-20) [   x:gettingstarted] o.a.s.c.S.Request [gettingstarted]  webapp=/solr path=/schema/fields params={} status=0 QTime=6
+2018-12-21 12:13:01.494 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@64dafeed{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-21 12:13:01.494 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2018-12-21 12:13:01.496 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=596470015
+2018-12-21 12:13:01.498 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
+2018-12-21 12:13:01.499 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@256f8274: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@55837f87
+2018-12-21 12:13:01.507 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
+2018-12-21 12:13:01.507 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@696f0212: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@57b2633a
+2018-12-21 12:13:01.510 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
+2018-12-21 12:13:01.511 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5733f295: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@34ad3a93
+2018-12-21 12:13:01.513 INFO  (coreCloseExecutor-15-thread-1) [   x:gettingstarted] o.a.s.c.SolrCore [gettingstarted]  CLOSING SolrCore org.apache.solr.core.SolrCore@67ba4b77
+2018-12-21 12:13:01.513 INFO  (coreCloseExecutor-15-thread-1) [   x:gettingstarted] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.gettingstarted, tag=67ba4b77
+2018-12-21 12:13:01.513 INFO  (coreCloseExecutor-15-thread-1) [   x:gettingstarted] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@1dda064e: rootName = null, domain = solr.core.gettingstarted, service url = null, agent id = null] for registry solr.core.gettingstarted / com.codahale.metrics.MetricRegistry@11944dbb
+2018-12-21 12:13:01.532 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@5c90e579{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
