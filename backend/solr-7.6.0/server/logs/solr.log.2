@@ -1,85 +1,87 @@
-2018-12-21 13:23:29.767 INFO  (main) [   ] o.e.j.u.log Logging initialized @613ms to org.eclipse.jetty.util.log.Slf4jLog
-2018-12-21 13:23:29.891 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
-2018-12-21 13:23:29.914 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
-2018-12-21 13:23:30.102 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2018-12-21 13:23:30.109 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2018-12-21 13:23:30.109 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2018-12-21 13:23:30.110 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
-2018-12-21 13:23:30.147 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
-2018-12-21 13:23:30.187 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2018-12-21 13:23:30.191 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
-2018-12-21 13:23:30.192 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2018-12-21 13:23:30.192 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
-2018-12-21 13:23:30.192 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T13:23:30.192Z
-2018-12-21 13:23:30.215 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:23:30.221 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
-2018-12-21 13:23:30.267 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
-2018-12-21 13:23:30.941 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
-2018-12-21 13:23:30.943 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2018-12-21 13:23:31.015 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:23:31.015 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:23:31.023 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:23:31.053 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:23:31.054 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
-2018-12-21 13:23:31.096 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
-2018-12-21 13:23:31.097 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
-2018-12-21 13:23:31.106 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:23:31.106 INFO  (main) [   ] o.e.j.s.Server Started @1954ms
-2018-12-21 13:23:31.239 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
-2018-12-21 13:23:31.384 WARN  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema has been upgraded to managed, but the non-managed schema schema.xml is still loadable.  PLEASE REMOVE THIS FILE.
-2018-12-21 13:23:31.438 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
-2018-12-21 13:23:31.878 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
-2018-12-21 13:23:31.904 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
-2018-12-21 13:23:31.930 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:23:31.943 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
-2018-12-21 13:23:31.979 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
-2018-12-21 13:23:32.353 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
-2018-12-21 13:23:32.353 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
-2018-12-21 13:23:32.376 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
-2018-12-21 13:23:32.376 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
-2018-12-21 13:23:32.468 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@549c0fb1[aepc] main]
-2018-12-21 13:23:32.479 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
-2018-12-21 13:23:32.495 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
-2018-12-21 13:23:32.500 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
-2018-12-21 13:23:32.512 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
-2018-12-21 13:23:32.516 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@549c0fb1[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2v(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:23:32.516 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
-2018-12-21 13:23:32.516 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
-2018-12-21 13:23:32.521 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@549c0fb1[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2v(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:23:35.825 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=2
-2018-12-21 13:23:35.841 INFO  (qtp1196695891-18) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=18
-2018-12-21 13:23:35.853 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=6
-2018-12-21 13:23:38.462 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=0
-2018-12-21 13:23:38.469 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545398618454} status=0 QTime=4
-2018-12-21 13:23:38.473 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=9
-2018-12-21 13:23:38.474 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545398615753&ts=1545398615753} status=503 QTime=1
-2018-12-21 13:23:38.473 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/replication params={wt=json&command=details&_=1545398618455} status=0 QTime=7
-2018-12-21 13:23:38.478 INFO  (qtp1196695891-14) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/system params={wt=json&_=1545398618454} status=0 QTime=10
-2018-12-21 13:23:40.220 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=0
-2018-12-21 13:23:40.222 INFO  (qtp1196695891-18) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545398620203} status=0 QTime=1
-2018-12-21 13:23:40.226 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=5
-2018-12-21 13:23:40.261 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=0
-2018-12-21 13:23:40.263 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:40.268 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=7
-2018-12-21 13:23:40.273 INFO  (qtp1196695891-38) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545398620203} status=0 QTime=8
-2018-12-21 13:23:40.283 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:40.376 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=0
-2018-12-21 13:23:40.378 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:40.384 INFO  (qtp1196695891-18) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=7
-2018-12-21 13:23:40.407 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545398615753} status=0 QTime=0
-2018-12-21 13:23:40.409 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:40.410 INFO  (qtp1196695891-18) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:40.417 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545398615753} status=0 QTime=10
-2018-12-21 13:23:40.421 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:44.354 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:44.896 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
-2018-12-21 13:23:44.907 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.c.DIHConfiguration The field :alternativas.correta present in DataConfig does not have a counterpart in Solr Schema
-2018-12-21 13:23:44.907 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.c.DIHConfiguration The field :alternativas.texto present in DataConfig does not have a counterpart in Solr Schema
-2018-12-21 13:23:44.907 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.c.DIHConfiguration The field :competencia present in DataConfig does not have a counterpart in Solr Schema
-2018-12-21 13:23:44.907 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
-2018-12-21 13:23:44.922 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
-2018-12-21 13:23:44.934 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
-2018-12-21 13:23:45.074 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a2b2ddbd8ee2352668c90, espelho=a resposta é 3, autor=Marcelo Gabriel dos Santos Queiroz Vitorino, _version_=1620467908684546048])
+2018-12-21 13:34:56.017 INFO  (main) [   ] o.e.j.u.log Logging initialized @583ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-21 13:34:56.133 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
+2018-12-21 13:34:56.156 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-21 13:34:56.319 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-21 13:34:56.326 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-21 13:34:56.326 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-21 13:34:56.327 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
+2018-12-21 13:34:56.357 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-21 13:34:56.395 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-21 13:34:56.399 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-21 13:34:56.399 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2018-12-21 13:34:56.399 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
+2018-12-21 13:34:56.400 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T13:34:56.400Z
+2018-12-21 13:34:56.421 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-21 13:34:56.426 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
+2018-12-21 13:34:56.473 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
+2018-12-21 13:34:57.267 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2018-12-21 13:34:57.270 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2018-12-21 13:34:57.328 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-21 13:34:57.328 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-21 13:34:57.334 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-21 13:34:57.362 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-21 13:34:57.363 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
+2018-12-21 13:34:57.401 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-21 13:34:57.410 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-21 13:34:57.410 INFO  (main) [   ] o.e.j.s.Server Started @1978ms
+2018-12-21 13:34:57.419 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
+2018-12-21 13:34:57.572 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
+2018-12-21 13:34:57.648 WARN  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema has been upgraded to managed, but the non-managed schema schema.xml is still loadable.  PLEASE REMOVE THIS FILE.
+2018-12-21 13:34:57.693 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
+2018-12-21 13:34:58.121 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2018-12-21 13:34:58.147 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
+2018-12-21 13:34:58.171 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-21 13:34:58.183 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
+2018-12-21 13:34:58.212 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2018-12-21 13:34:58.576 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2018-12-21 13:34:58.577 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2018-12-21 13:34:58.609 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2018-12-21 13:34:58.609 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2018-12-21 13:34:58.689 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@44ac4744[aepc] main]
+2018-12-21 13:34:58.698 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
+2018-12-21 13:34:58.714 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2018-12-21 13:34:58.719 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2018-12-21 13:34:58.730 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2018-12-21 13:34:58.734 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@44ac4744[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2y(7.6.0):C12/3:delGen=1))}
+2018-12-21 13:34:58.735 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-21 13:34:58.735 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2018-12-21 13:34:58.742 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@44ac4744[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2y(7.6.0):C12/3:delGen=1))}
+2018-12-21 13:35:04.138 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399304067} status=0 QTime=3
+2018-12-21 13:35:04.152 INFO  (qtp1196695891-18) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399304068} status=0 QTime=16
+2018-12-21 13:35:04.165 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399304068} status=0 QTime=7
+2018-12-21 13:35:06.503 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399304067} status=0 QTime=0
+2018-12-21 13:35:06.507 INFO  (qtp1196695891-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545399306499&since=0} status=0 QTime=1
+2018-12-21 13:35:06.513 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399304068} status=0 QTime=9
+2018-12-21 13:35:08.065 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399304067} status=0 QTime=0
+2018-12-21 13:35:08.070 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545399308057} status=0 QTime=4
+2018-12-21 13:35:08.072 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/replication params={wt=json&command=details&_=1545399308058} status=0 QTime=3
+2018-12-21 13:35:08.077 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399304068} status=0 QTime=11
+2018-12-21 13:35:08.078 INFO  (qtp1196695891-14) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/system params={wt=json&_=1545399308057} status=0 QTime=8
+2018-12-21 13:35:08.079 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545399304068&ts=1545399304068} status=503 QTime=1
+2018-12-21 13:35:10.637 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399310584} status=0 QTime=0
+2018-12-21 13:35:10.638 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545399310632} status=0 QTime=0
+2018-12-21 13:35:10.640 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/replication params={wt=json&command=details&_=1545399310632} status=0 QTime=0
+2018-12-21 13:35:10.645 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545399310584&ts=1545399310584} status=503 QTime=0
+2018-12-21 13:35:10.646 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399310584} status=0 QTime=8
+2018-12-21 13:35:10.655 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/system params={wt=json&_=1545399310632} status=0 QTime=12
+2018-12-21 13:35:13.436 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399310584} status=0 QTime=0
+2018-12-21 13:35:13.444 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/luke params={show=schema&wt=json&_=1545399310632} status=0 QTime=5
+2018-12-21 13:35:13.448 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399310584} status=0 QTime=11
+2018-12-21 13:35:14.118 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399310584} status=0 QTime=0
+2018-12-21 13:35:14.120 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:14.124 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399310584} status=0 QTime=5
+2018-12-21 13:35:14.155 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399310584} status=0 QTime=0
+2018-12-21 13:35:14.157 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:14.160 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399310584} status=0 QTime=5
+2018-12-21 13:35:14.165 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545399314103} status=0 QTime=7
+2018-12-21 13:35:14.176 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:18.119 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:19.769 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-21 13:35:19.780 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.c.DIHConfiguration The field :competencia present in DataConfig does not have a counterpart in Solr Schema
+2018-12-21 13:35:19.780 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-21 13:35:19.792 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-21 13:35:19.803 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-21 13:35:19.932 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a2b2ddbd8ee2352668c90, espelho=a resposta é 3, autor=Marcelo Gabriel dos Santos Queiroz Vitorino, _version_=1620468637295968256])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -161,7 +163,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.080 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a32b3dbd8ee2352668c91, espelho=a resposta é 2, autor=Marcelo Gabriel dos Santos Queiroz Vitorino, _version_=1620467908690837504])
+2018-12-21 13:35:19.937 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a32b3dbd8ee2352668c91, espelho=a resposta é 2, autor=Marcelo Gabriel dos Santos Queiroz Vitorino, _version_=1620468637302259712])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -243,7 +245,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.094 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a3420dbd8ee2352668c92, autor=prof@gmail.com, _version_=1620467908705517568])
+2018-12-21 13:35:19.948 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a3420dbd8ee2352668c92, autor=prof@gmail.com, _version_=1620468637312745472])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -325,7 +327,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.096 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a4988dbd8ee2352668c93, autor=prof@gmail.com, _version_=1620467908708663296])
+2018-12-21 13:35:19.950 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a4988dbd8ee2352668c93, autor=prof@gmail.com, _version_=1620468637314842624])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -407,7 +409,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.099 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a498cdbd8ee2352668c94, autor=prof@gmail.com, _version_=1620467908710760448])
+2018-12-21 13:35:19.952 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a498cdbd8ee2352668c94, autor=prof@gmail.com, _version_=1620468637316939776])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -489,7 +491,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.101 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1b960cdbd8ee40216fe6e1, autor=prof@gmail.com, _version_=1620467908713906176])
+2018-12-21 13:35:19.954 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1b960cdbd8ee40216fe6e1, autor=prof@gmail.com, _version_=1620468637319036928])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -571,7 +573,7 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.103 WARN  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o dobro do quadrado de 22, fonte=PISA, id=5c1b9878dbd8ee40216fe6e2, autor=prof@gmail.com, _version_=1620467908716003328])
+2018-12-21 13:35:19.956 WARN  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=subj, enunciado=Quanto é o dobro do quadrado de 22, fonte=PISA, id=5c1b9878dbd8ee40216fe6e2, autor=prof@gmail.com, _version_=1620468637321134080])
 org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
 	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
 	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
@@ -653,55 +655,34 @@ org.apache.solr.common.SolrException: TransactionLog doesn't know how to seriali
 	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-2018-12-21 13:23:45.113 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.DocBuilder Import completed successfully
-2018-12-21 13:23:45.113 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.u.DirectUpdateHandler2 start commit{_version_=1620467908726489089,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
-2018-12-21 13:23:45.113 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.u.SolrIndexWriter Calling setCommitData with IW:org.apache.solr.update.SolrIndexWriter@15a7626 commitCommandVersion:1620467908726489089
-2018-12-21 13:23:45.576 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@729bf809[aepc] main]
-2018-12-21 13:23:45.578 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.u.DirectUpdateHandler2 end_commit_flush
-2018-12-21 13:23:45.579 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@729bf809[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2w(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:23:45.579 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
-2018-12-21 13:23:45.586 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@729bf809[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2w(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:23:45.589 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
-2018-12-21 13:23:45.590 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Wrote last indexed time to dataimport.properties
-2018-12-21 13:23:45.590 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.h.d.DocBuilder Time taken = 0:0:0.655
-2018-12-21 13:23:45.591 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&optimize=false&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545398620203&verbose=false}{add=[marcelo.vitorino@ccc.ufcg.edu.br (1620467908649943040), aepc.lacina@gmail.com (1620467908675108864), 5c1a3420dbd8ee2352668c92 (1620467908725440512), 5c1a32b3dbd8ee2352668c91 (1620467908725440513), 5c1a32b3dbd8ee2352668c91 (1620467908726489088)],commit=} 0 698
-2018-12-21 13:23:45.597 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:46.356 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:48.355 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:50.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:52.356 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:54.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:56.355 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:23:58.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:00.356 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:02.354 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:04.354 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:06.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:08.354 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:10.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:12.354 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:14.354 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:16.356 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:18.354 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:20.355 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:22.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:24.355 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:26.357 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:28.356 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:30.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:32.356 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:34.355 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:36.357 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545398620203} status=0 QTime=0
-2018-12-21 13:24:36.718 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:24:36.719 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
-2018-12-21 13:24:36.722 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
-2018-12-21 13:24:36.723 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
-2018-12-21 13:24:36.724 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@4041af79
-2018-12-21 13:24:36.729 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
-2018-12-21 13:24:36.729 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@571db1e5
-2018-12-21 13:24:36.731 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
-2018-12-21 13:24:36.731 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@1a6af618
-2018-12-21 13:24:36.733 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@e1d96fc
-2018-12-21 13:24:36.733 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=e1d96fc
-2018-12-21 13:24:36.733 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@d411ec6: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@45b29b47
-2018-12-21 13:24:36.751 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-21 13:35:19.966 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DocBuilder Import completed successfully
+2018-12-21 13:35:19.966 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.DirectUpdateHandler2 start commit{_version_=1620468637332668418,optimize=false,openSearcher=true,waitSearcher=true,expungeDeletes=false,softCommit=false,prepareCommit=false}
+2018-12-21 13:35:19.967 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.SolrIndexWriter Calling setCommitData with IW:org.apache.solr.update.SolrIndexWriter@6400d04d commitCommandVersion:1620468637332668418
+2018-12-21 13:35:20.119 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:20.481 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@f3da514[aepc] main]
+2018-12-21 13:35:20.482 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.DirectUpdateHandler2 end_commit_flush
+2018-12-21 13:35:20.483 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@f3da514[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2z(7.6.0):C12/3:delGen=1))}
+2018-12-21 13:35:20.483 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-21 13:35:20.488 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@f3da514[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_2z(7.6.0):C12/3:delGen=1))}
+2018-12-21 13:35:20.491 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-21 13:35:20.491 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Wrote last indexed time to dataimport.properties
+2018-12-21 13:35:20.491 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DocBuilder Time taken = 0:0:0.688
+2018-12-21 13:35:20.491 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545399314103&verbose=false}{add=[marcelo.vitorino@ccc.ufcg.edu.br (1620468637264510976), aepc.lacina@gmail.com (1620468637288628224), 5c1a3420dbd8ee2352668c92 (1620468637331619840), 5c1a32b3dbd8ee2352668c91 (1620468637332668416), 5c1a32b3dbd8ee2352668c91 (1620468637332668417)],commit=} 0 725
+2018-12-21 13:35:20.496 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:22.119 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399314103} status=0 QTime=0
+2018-12-21 13:35:22.959 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399310584} status=0 QTime=0
+2018-12-21 13:35:22.964 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399310584} status=0 QTime=5
+2018-12-21 13:35:24.167 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545399322921} hits=9 status=0 QTime=32
+2018-12-21 13:36:40.949 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-21 13:36:40.949 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2018-12-21 13:36:40.952 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
+2018-12-21 13:36:40.953 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
+2018-12-21 13:36:40.954 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@1b40dffa
+2018-12-21 13:36:40.960 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
+2018-12-21 13:36:40.960 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@12426649
+2018-12-21 13:36:40.963 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
+2018-12-21 13:36:40.963 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@f60d4f4
+2018-12-21 13:36:40.965 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@5f800de8
+2018-12-21 13:36:40.965 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=5f800de8
+2018-12-21 13:36:40.965 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@401837f8: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@7e255a61
+2018-12-21 13:36:40.984 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}

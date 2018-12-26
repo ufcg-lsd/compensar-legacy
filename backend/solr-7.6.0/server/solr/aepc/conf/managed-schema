@@ -440,6 +440,8 @@
   <field name="_text_" type="text_general" multiValued="true" indexed="true" stored="false"/>
   <field name="_ts" type="plong" indexed="true" stored="true"/>
   <field name="_version_" type="plong" indexed="false" stored="false"/>
+  <field name="alternativas" type="string" multiValued="true" indexed="true" stored="true"/>
+  <field name="alternativas.correta" type="boolean" multiValued="false" indexed="true" stored="true"/>
   <field name="ativo" type="boolean" indexed="true" stored="true"/>
   <field name="autor" type="string" multiValued="false" indexed="true" stored="true"/>
   <field name="cargo" type="string" indexed="true" stored="true"/>

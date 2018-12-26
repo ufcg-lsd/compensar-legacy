@@ -51,8 +51,11 @@
 
            <field column="_id"  name="id"/>               
            <field column="autor" name="autor" mongoField="autor"/> 
-           <field column="enunciado" name="enunciado" mongoField="enunciado"/>       
-           <field column="alternativas.texto" name="alternativas.texto" mongoField="alternativas.texto"/>       
+           <field column="enunciado" name="enunciado" mongoField="enunciado"/>    
+           <field column="alternativas" name="alternativas" mongoField="alternativas"/> 
+           <field column="alternativas.texto" name="alternativas.texto" mongoField="alternativas.texto"/> 
+           <field column="alternativas.correta" name="alternativas.correta" mongoField="alternativas.correta"/>       
+      
            <field column="tipo" name="tipo" mongoField="tipo"/>  
            <field column="fonte" name="fonte" mongoField="fonte"/>   
                                                                                                                                                                                                        
