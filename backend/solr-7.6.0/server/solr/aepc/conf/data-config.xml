@@ -23,7 +23,7 @@
               query=""
              collection="questao-subj"   
              datasource="MyMongo"
-             transformer="MongoMapperTransformer" name="questao-subj_entity">
+             transformer="MongoMapperTransformer" name="questao-subj">
 
                <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
                      If not same than you have to refer the mongoField to field in schema.xml
@@ -43,7 +43,7 @@
               query=""
              collection="questao-obj"   
              datasource="MyMongo"
-             transformer="MongoMapperTransformer" name="questao-obj_entity">
+             transformer="MongoMapperTransformer" name="questao-obj">
 
                <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
                      If not same than you have to refer the mongoField to field in schema.xml
@@ -71,7 +71,7 @@
                      If not same than you have to refer the mongoField to field in schema.xml
                     ( Ex: mongoField="EmpNumber" to name="EmployeeNumber"). -->                                              
 
-           <field column="id_questao"  name="id"/>  
+           <field column="_id"  name="id"/>               
            <field column="competencia" name="competencia" mongoField="competencia"/>               
                                                                                                                                                                                                        
 	</entity>

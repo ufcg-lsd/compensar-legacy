@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.IdClass;
 
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,12 +20,11 @@ public class QuestaoCompetencia {
 
 	@Id
     @JsonProperty
-	@Indexed
+    @TextIndexed
 	private String id_questao;
 
     @Enumerated(EnumType.STRING)
-	@Id
-	@Indexed
+    @TextIndexed
 	private CompetenciaType competencia;
 
 	public QuestaoCompetencia(String id_questao, CompetenciaType competencia) {

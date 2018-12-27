@@ -1,76 +1,854 @@
-2018-12-21 13:45:09.602 INFO  (main) [   ] o.e.j.u.log Logging initialized @590ms to org.eclipse.jetty.util.log.Slf4jLog
-2018-12-21 13:45:09.719 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
-2018-12-21 13:45:09.743 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
-2018-12-21 13:45:09.927 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2018-12-21 13:45:09.936 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2018-12-21 13:45:09.936 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2018-12-21 13:45:09.938 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
-2018-12-21 13:45:09.967 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
-2018-12-21 13:45:10.002 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2018-12-21 13:45:10.005 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
-2018-12-21 13:45:10.006 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2018-12-21 13:45:10.006 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
-2018-12-21 13:45:10.006 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T13:45:10.006Z
-2018-12-21 13:45:10.027 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:45:10.032 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
-2018-12-21 13:45:10.085 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
-2018-12-21 13:45:11.004 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
-2018-12-21 13:45:11.006 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2018-12-21 13:45:11.060 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:45:11.061 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:45:11.067 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:45:11.100 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:45:11.101 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
-2018-12-21 13:45:11.151 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
-2018-12-21 13:45:11.152 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
-2018-12-21 13:45:11.163 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:45:11.163 INFO  (main) [   ] o.e.j.s.Server Started @2153ms
-2018-12-21 13:45:11.314 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
-2018-12-21 13:45:11.404 WARN  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema has been upgraded to managed, but the non-managed schema schema.xml is still loadable.  PLEASE REMOVE THIS FILE.
-2018-12-21 13:45:11.449 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
-2018-12-21 13:45:11.861 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
-2018-12-21 13:45:11.886 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
-2018-12-21 13:45:11.910 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:45:11.923 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
-2018-12-21 13:45:11.954 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
-2018-12-21 13:45:12.319 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
-2018-12-21 13:45:12.319 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
-2018-12-21 13:45:12.357 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
-2018-12-21 13:45:12.357 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
-2018-12-21 13:45:12.462 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@6cec18cb[aepc] main]
-2018-12-21 13:45:12.473 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
-2018-12-21 13:45:12.493 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
-2018-12-21 13:45:12.499 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
-2018-12-21 13:45:12.511 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
-2018-12-21 13:45:12.517 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@6cec18cb[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_31(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:45:12.517 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
-2018-12-21 13:45:12.517 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
-2018-12-21 13:45:12.525 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@6cec18cb[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_31(7.6.0):C12/3:delGen=1))}
-2018-12-21 13:45:12.541 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399646993} status=0 QTime=86
-2018-12-21 13:45:14.389 INFO  (qtp1196695891-15) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399646993} status=0 QTime=0
-2018-12-21 13:45:16.118 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545399646993} status=0 QTime=0
-2018-12-21 13:45:18.246 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399918176} status=0 QTime=1
-2018-12-21 13:45:18.260 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399918176} status=0 QTime=14
-2018-12-21 13:45:18.272 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399918176} status=0 QTime=7
-2018-12-21 13:45:20.646 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399918176} status=0 QTime=0
-2018-12-21 13:45:20.656 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/luke params={numTerms=0&show=index&wt=json&_=1545399920638} status=0 QTime=7
-2018-12-21 13:45:20.659 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/replication params={wt=json&command=details&_=1545399920638} status=0 QTime=10
-2018-12-21 13:45:20.660 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/ping params={action=status&wt=json&_=1545399918176&ts=1545399918176} status=503 QTime=1
-2018-12-21 13:45:20.664 INFO  (qtp1196695891-14) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/system params={wt=json&_=1545399920638} status=0 QTime=13
-2018-12-21 13:45:20.672 INFO  (qtp1196695891-22) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399918176} status=0 QTime=25
-2018-12-21 13:45:22.082 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545399918176} status=0 QTime=0
-2018-12-21 13:45:22.087 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545399918176} status=0 QTime=4
-2018-12-21 13:45:23.384 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545399922042} hits=9 status=0 QTime=36
-2018-12-21 13:46:06.425 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:46:06.425 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
-2018-12-21 13:46:06.428 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
-2018-12-21 13:46:06.429 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
-2018-12-21 13:46:06.430 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@1f10cf60
-2018-12-21 13:46:06.437 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
-2018-12-21 13:46:06.438 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@1ddd4b63
-2018-12-21 13:46:06.441 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
-2018-12-21 13:46:06.441 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@40407fac
-2018-12-21 13:46:06.444 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@5930effc
-2018-12-21 13:46:06.444 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=5930effc
-2018-12-21 13:46:06.444 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4215c293: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@7f684ab2
-2018-12-21 13:46:06.468 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:18:03.999 INFO  (main) [   ] o.e.j.u.log Logging initialized @593ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-27 12:18:04.127 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
+2018-12-27 12:18:04.150 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-27 12:18:04.315 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-27 12:18:04.322 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-27 12:18:04.322 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-27 12:18:04.324 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2018-12-27 12:18:04.354 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-27 12:18:04.391 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-27 12:18:04.394 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-27 12:18:04.394 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2018-12-27 12:18:04.395 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
+2018-12-27 12:18:04.395 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-27T12:18:04.395Z
+2018-12-27 12:18:04.413 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:18:04.418 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
+2018-12-27 12:18:04.464 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
+2018-12-27 12:18:05.235 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2018-12-27 12:18:05.237 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2018-12-27 12:18:05.291 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:18:05.291 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:18:05.297 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:18:05.327 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:18:05.327 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
+2018-12-27 12:18:05.364 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:18:05.373 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:18:05.374 INFO  (main) [   ] o.e.j.s.Server Started @1969ms
+2018-12-27 12:18:05.382 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
+2018-12-27 12:18:05.544 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
+2018-12-27 12:18:05.625 WARN  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema has been upgraded to managed, but the non-managed schema schema.xml is still loadable.  PLEASE REMOVE THIS FILE.
+2018-12-27 12:18:05.671 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
+2018-12-27 12:18:06.091 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2018-12-27 12:18:06.118 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
+2018-12-27 12:18:06.144 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:18:06.159 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
+2018-12-27 12:18:06.194 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2018-12-27 12:18:06.567 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2018-12-27 12:18:06.568 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2018-12-27 12:18:06.593 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2018-12-27 12:18:06.593 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2018-12-27 12:18:06.696 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@6cb7c0e2[aepc] main]
+2018-12-27 12:18:06.707 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
+2018-12-27 12:18:06.723 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2018-12-27 12:18:06.728 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2018-12-27 12:18:06.739 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2018-12-27 12:18:06.743 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@6cb7c0e2[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:18:06.743 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-27 12:18:06.743 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2018-12-27 12:18:06.750 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@6cb7c0e2[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:18:15.344 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=4
+2018-12-27 12:18:16.917 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:16.948 ERROR (qtp1196695891-17) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:132)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 41 more
+
+2018-12-27 12:18:16.949 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=34
+2018-12-27 12:18:16.950 ERROR (qtp1196695891-17) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.produce(EatWhatYouKill.java:132)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 41 more
+
+2018-12-27 12:18:17.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:18.131 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:18.134 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:18.135 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=5
+2018-12-27 12:18:18.136 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:19.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:19.818 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:19.822 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:19.823 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=5
+2018-12-27 12:18:19.823 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:21.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:21.930 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:21.933 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:21.934 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=4
+2018-12-27 12:18:21.934 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:23.271 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:23.698 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:23.702 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:23.703 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=5
+2018-12-27 12:18:23.703 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:25.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:25.675 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:18:25.679 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.h.RequestHandlerBase org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:25.680 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913067725&verbose=false} status=500 QTime=5
+2018-12-27 12:18:25.680 ERROR (qtp1196695891-22) [   x:aepc] o.a.s.s.HttpSolrCall null:org.apache.solr.handler.dataimport.DataImportHandlerException: Data Config problem: Attribute "name" was already specified for element "entity".
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:230)
+	at org.apache.solr.handler.dataimport.DataImporter.maybeReloadConfiguration(DataImporter.java:131)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:174)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: org.xml.sax.SAXParseException; systemId: solrres:/data-config.xml; lineNumber: 12; columnNumber: 66; Attribute "name" was already specified for element "entity".
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.createSAXParseException(ErrorHandlerWrapper.java:203)
+	at com.sun.org.apache.xerces.internal.util.ErrorHandlerWrapper.fatalError(ErrorHandlerWrapper.java:177)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:400)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLErrorReporter.reportError(XMLErrorReporter.java:284)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.scanStartElement(XMLNSDocumentScannerImpl.java:327)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl$FragmentContentDriver.next(XMLDocumentFragmentScannerImpl.java:2784)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentScannerImpl.next(XMLDocumentScannerImpl.java:602)
+	at com.sun.org.apache.xerces.internal.impl.XMLNSDocumentScannerImpl.next(XMLNSDocumentScannerImpl.java:112)
+	at com.sun.org.apache.xerces.internal.impl.XMLDocumentFragmentScannerImpl.scanDocument(XMLDocumentFragmentScannerImpl.java:505)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:841)
+	at com.sun.org.apache.xerces.internal.parsers.XML11Configuration.parse(XML11Configuration.java:770)
+	at com.sun.org.apache.xerces.internal.parsers.XMLParser.parse(XMLParser.java:141)
+	at com.sun.org.apache.xerces.internal.parsers.DOMParser.parse(DOMParser.java:243)
+	at com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderImpl.parse(DocumentBuilderImpl.java:339)
+	at org.apache.solr.handler.dataimport.DataImporter.loadDataConfig(DataImporter.java:220)
+	... 42 more
+
+2018-12-27 12:18:27.268 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:29.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:31.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:33.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:35.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:37.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:39.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:41.267 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:43.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:45.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:47.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:49.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:51.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:53.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:55.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:57.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:18:59.267 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:19:01.266 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:19:03.266 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:19:05.265 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:19:07.265 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913067725} status=0 QTime=0
+2018-12-27 12:19:08.825 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:19:08.826 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2018-12-27 12:19:08.829 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
+2018-12-27 12:19:08.830 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
+2018-12-27 12:19:08.831 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@4041af79
+2018-12-27 12:19:08.839 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
+2018-12-27 12:19:08.840 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@671d99e8
+2018-12-27 12:19:08.842 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
+2018-12-27 12:19:08.843 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@3237c5a0
+2018-12-27 12:19:08.845 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@606c132
+2018-12-27 12:19:08.845 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=606c132
+2018-12-27 12:19:08.846 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@694fa822: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@64171113
+2018-12-27 12:19:08.868 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}

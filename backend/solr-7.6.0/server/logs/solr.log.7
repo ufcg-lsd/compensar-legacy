@@ -1,83 +1,73 @@
-2018-12-21 13:59:07.184 INFO  (main) [   ] o.e.j.u.log Logging initialized @681ms to org.eclipse.jetty.util.log.Slf4jLog
-2018-12-21 13:59:07.328 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
-2018-12-21 13:59:07.354 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
-2018-12-21 13:59:07.598 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2018-12-21 13:59:07.606 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2018-12-21 13:59:07.606 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2018-12-21 13:59:07.607 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
-2018-12-21 13:59:07.641 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
-2018-12-21 13:59:07.682 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2018-12-21 13:59:07.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
-2018-12-21 13:59:07.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2018-12-21 13:59:07.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
-2018-12-21 13:59:07.688 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T13:59:07.688Z
-2018-12-21 13:59:07.713 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:59:07.719 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
-2018-12-21 13:59:07.771 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
-2018-12-21 13:59:08.560 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
-2018-12-21 13:59:08.562 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2018-12-21 13:59:08.650 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:08.651 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:08.659 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:08.695 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:59:08.696 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
-2018-12-21 13:59:08.750 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
-2018-12-21 13:59:08.751 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
-2018-12-21 13:59:08.763 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:59:08.763 INFO  (main) [   ] o.e.j.s.Server Started @2263ms
-2018-12-21 13:59:08.900 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
-2018-12-21 13:59:09.018 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema is configured as managed, but managed schema resource managed-schema not found - loading non-managed schema schema.xml instead
-2018-12-21 13:59:09.077 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
-2018-12-21 13:59:09.416 ERROR (coreContainerWorkExecutor-2-thread-1) [   ] o.a.s.c.CoreContainer Error waiting for SolrCore to be loaded on startup
-org.apache.solr.common.SolrException: Unable to create core [aepc]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1159) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.lambda$load$13(CoreContainer.java:684) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at com.codahale.metrics.InstrumentedExecutorService$InstrumentedCallable.call(InstrumentedExecutorService.java:197) ~[metrics-core-3.2.6.jar:3.2.6]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at org.apache.solr.common.util.ExecutorUtil$MDCAwareThreadPoolExecutor.lambda$execute$0(ExecutorUtil.java:209) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
-	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-Caused by: org.apache.solr.common.SolrException: Could not load conf for core aepc: Can't load schema /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf/schema.xml: Unknown fieldType 'string_lowercase' specified on field ptexto
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:97) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-Caused by: org.apache.solr.common.SolrException: Can't load schema /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf/schema.xml: Unknown fieldType 'string_lowercase' specified on field ptexto
-	at org.apache.solr.schema.IndexSchema.readSchema(IndexSchema.java:587) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.<init>(IndexSchema.java:177) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchema.<init>(ManagedIndexSchema.java:105) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:173) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:45) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchemaFactory.buildIndexSchema(IndexSchemaFactory.java:75) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.createIndexSchema(ConfigSetService.java:119) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:92) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-Caused by: org.apache.solr.common.SolrException: Unknown fieldType 'string_lowercase' specified on field ptexto
-	at org.apache.solr.schema.IndexSchema.loadFields(IndexSchema.java:645) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.readSchema(IndexSchema.java:481) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.<init>(IndexSchema.java:177) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchema.<init>(ManagedIndexSchema.java:105) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:173) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:45) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchemaFactory.buildIndexSchema(IndexSchemaFactory.java:75) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.createIndexSchema(ConfigSetService.java:119) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:92) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-2018-12-21 13:59:26.445 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545400766340} status=0 QTime=34
-2018-12-21 13:59:26.538 INFO  (qtp1196695891-15) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545400766340} status=0 QTime=128
-2018-12-21 13:59:26.553 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545400766340} status=0 QTime=6
-2018-12-21 13:59:52.203 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:59:52.203 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
-2018-12-21 13:59:52.207 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
-2018-12-21 13:59:52.208 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
-2018-12-21 13:59:52.208 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@5871c93
-2018-12-21 13:59:52.214 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
-2018-12-21 13:59:52.214 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@38159ef1
-2018-12-21 13:59:52.217 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
-2018-12-21 13:59:52.217 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@18af8298
-2018-12-21 13:59:52.220 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:22:57.255 INFO  (main) [   ] o.e.j.u.log Logging initialized @587ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-27 12:22:57.378 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
+2018-12-27 12:22:57.401 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-27 12:22:57.571 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-27 12:22:57.578 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-27 12:22:57.578 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-27 12:22:57.580 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2018-12-27 12:22:57.610 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-27 12:22:57.649 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-27 12:22:57.653 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-27 12:22:57.654 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2018-12-27 12:22:57.654 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
+2018-12-27 12:22:57.654 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-27T12:22:57.654Z
+2018-12-27 12:22:57.673 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:22:57.678 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
+2018-12-27 12:22:57.729 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
+2018-12-27 12:22:58.518 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2018-12-27 12:22:58.520 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2018-12-27 12:22:58.582 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:22:58.582 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:22:58.588 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:22:58.620 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:22:58.620 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
+2018-12-27 12:22:58.674 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:22:58.678 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
+2018-12-27 12:22:58.686 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:22:58.686 INFO  (main) [   ] o.e.j.s.Server Started @2020ms
+2018-12-27 12:22:58.837 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
+2018-12-27 12:22:58.941 WARN  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema has been upgraded to managed, but the non-managed schema schema.xml is still loadable.  PLEASE REMOVE THIS FILE.
+2018-12-27 12:22:58.986 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
+2018-12-27 12:22:59.424 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2018-12-27 12:22:59.456 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
+2018-12-27 12:22:59.483 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:22:59.497 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
+2018-12-27 12:22:59.535 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2018-12-27 12:22:59.935 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2018-12-27 12:22:59.935 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2018-12-27 12:22:59.956 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2018-12-27 12:22:59.956 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2018-12-27 12:23:00.045 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@16d7a9a[aepc] main]
+2018-12-27 12:23:00.055 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
+2018-12-27 12:23:00.079 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2018-12-27 12:23:00.086 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2018-12-27 12:23:00.098 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2018-12-27 12:23:00.104 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@16d7a9a[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:23:00.104 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-27 12:23:00.105 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2018-12-27 12:23:00.112 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@16d7a9a[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:23:00.149 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=7
+2018-12-27 12:23:02.058 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:04.059 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:06.057 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:08.058 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:10.058 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:12.058 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:14.058 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:16.057 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:18.058 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:20.057 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:22.058 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:23.511 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:23:23.511 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2018-12-27 12:23:23.514 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
+2018-12-27 12:23:23.515 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
+2018-12-27 12:23:23.516 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@1f10cf60
+2018-12-27 12:23:23.525 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
+2018-12-27 12:23:23.525 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@1ddd4b63
+2018-12-27 12:23:23.528 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
+2018-12-27 12:23:23.529 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@40407fac
+2018-12-27 12:23:23.531 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@30887687
+2018-12-27 12:23:23.532 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=30887687
+2018-12-27 12:23:23.532 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@2f0707dd: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@5449e18f
+2018-12-27 12:23:23.556 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}

@@ -1,83 +1,690 @@
-2018-12-21 13:59:54.923 INFO  (main) [   ] o.e.j.u.log Logging initialized @571ms to org.eclipse.jetty.util.log.Slf4jLog
-2018-12-21 13:59:55.047 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
-2018-12-21 13:59:55.070 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
-2018-12-21 13:59:55.245 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
-2018-12-21 13:59:55.252 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
-2018-12-21 13:59:55.252 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
-2018-12-21 13:59:55.253 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
-2018-12-21 13:59:55.283 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
-2018-12-21 13:59:55.319 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
-2018-12-21 13:59:55.323 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
-2018-12-21 13:59:55.323 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
-2018-12-21 13:59:55.323 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
-2018-12-21 13:59:55.323 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-21T13:59:55.323Z
-2018-12-21 13:59:55.342 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:59:55.347 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
-2018-12-21 13:59:55.395 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
-2018-12-21 13:59:56.124 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
-2018-12-21 13:59:56.126 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
-2018-12-21 13:59:56.190 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:56.190 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:56.199 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
-2018-12-21 13:59:56.227 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
-2018-12-21 13:59:56.228 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
-2018-12-21 13:59:56.273 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
-2018-12-21 13:59:56.282 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 13:59:56.283 INFO  (main) [   ] o.e.j.s.Server Started @1933ms
-2018-12-21 13:59:56.285 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
-2018-12-21 13:59:56.440 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
-2018-12-21 13:59:56.549 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.ManagedIndexSchemaFactory The schema is configured as managed, but managed schema resource managed-schema not found - loading non-managed schema schema.xml instead
-2018-12-21 13:59:56.591 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
-2018-12-21 13:59:56.912 ERROR (coreContainerWorkExecutor-2-thread-1) [   ] o.a.s.c.CoreContainer Error waiting for SolrCore to be loaded on startup
-org.apache.solr.common.SolrException: Unable to create core [aepc]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1159) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.lambda$load$13(CoreContainer.java:684) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at com.codahale.metrics.InstrumentedExecutorService$InstrumentedCallable.call(InstrumentedExecutorService.java:197) ~[metrics-core-3.2.6.jar:3.2.6]
-	at java.util.concurrent.FutureTask.run(FutureTask.java:266) ~[?:1.8.0_131]
-	at org.apache.solr.common.util.ExecutorUtil$MDCAwareThreadPoolExecutor.lambda$execute$0(ExecutorUtil.java:209) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_131]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_131]
+2018-12-27 12:23:26.271 INFO  (main) [   ] o.e.j.u.log Logging initialized @602ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-27 12:23:26.399 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 1.8.0_131-b11
+2018-12-27 12:23:26.423 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-27 12:23:26.604 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-27 12:23:26.611 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-27 12:23:26.611 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-27 12:23:26.613 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 660000ms
+2018-12-27 12:23:26.644 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-27 12:23:26.683 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-27 12:23:26.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-27 12:23:26.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8983
+2018-12-27 12:23:26.687 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /home/adson/marcelo/aepc/backend/solr-7.6.0
+2018-12-27 12:23:26.688 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-27T12:23:26.688Z
+2018-12-27 12:23:26.706 INFO  (main) [   ] o.a.s.c.SolrResourceLoader Using system property solr.solr.home: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:23:26.712 INFO  (main) [   ] o.a.s.c.SolrXmlConfig Loading container configuration from /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/solr.xml
+2018-12-27 12:23:26.762 INFO  (main) [   ] o.a.s.c.SolrXmlConfig MBean server found: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d, but no JMX reporters were configured - adding default JMX reporter.
+2018-12-27 12:23:27.335 INFO  (main) [   ] o.a.s.c.TransientSolrCoreCacheDefault Allocating transient cache for 2147483647 transient cores
+2018-12-27 12:23:27.337 INFO  (main) [   ] o.a.s.h.a.MetricsHistoryHandler No .system collection, keeping metrics history in memory.
+2018-12-27 12:23:27.413 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.node' (registry 'solr.node') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:23:27.414 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jvm' (registry 'solr.jvm') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:23:27.419 INFO  (main) [   ] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.jetty' (registry 'solr.jetty') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:23:27.450 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Found 1 core definitions underneath /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr
+2018-12-27 12:23:27.450 INFO  (main) [   ] o.a.s.c.CorePropertiesLocator Cores are: [aepc]
+2018-12-27 12:23:27.502 INFO  (main) [   ] o.e.j.s.h.ContextHandler Started o.e.j.w.WebAppContext@762ef0ea{/solr,file:///home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp/,AVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:23:27.508 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrResourceLoader [aepc] Added 63 libs to classloader, from paths: [/home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/clustering/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/extraction/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/langid/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/contrib/velocity/lib, /home/adson/marcelo/aepc/backend/solr-7.6.0/dist]
+2018-12-27 12:23:27.513 INFO  (main) [   ] o.e.j.s.AbstractConnector Started ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:23:27.513 INFO  (main) [   ] o.e.j.s.Server Started @1846ms
+2018-12-27 12:23:27.642 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrConfig Using Lucene MatchVersion: 7.6.0
+2018-12-27 12:23:27.807 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema [aepc] Schema name=default-config
+2018-12-27 12:23:28.236 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.IndexSchema Loaded schema default-config/1.6 with uniqueid field id
+2018-12-27 12:23:28.271 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.CoreContainer Creating SolrCore 'aepc' using configuration from instancedir /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc, trusted=true
+2018-12-27 12:23:28.283 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter JMX monitoring for 'solr.core.aepc' (registry 'solr.core.aepc') enabled at server: com.sun.jmx.mbeanserver.JmxMBeanServer@7bc1a03d
+2018-12-27 12:23:28.298 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.c.SolrCore [[aepc] ] Opening new SolrCore at [/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc], dataDir=[/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/data/]
+2018-12-27 12:23:28.334 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.XSLTResponseWriter xsltCacheLifetimeSeconds=5
+2018-12-27 12:23:28.753 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateHandler Using UpdateLog implementation: org.apache.solr.update.UpdateLog
+2018-12-27 12:23:28.753 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.UpdateLog Initializing UpdateLog: dataDir= defaultSyncLevel=FLUSH numRecordsToKeep=100 maxNumLogsToKeep=10 numVersionBuckets=65536
+2018-12-27 12:23:28.773 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Hard AutoCommit: if uncommitted for 15000ms; 
+2018-12-27 12:23:28.773 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.u.CommitTracker Soft AutoCommit: disabled
+2018-12-27 12:23:28.864 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.SolrIndexSearcher Opening [Searcher@934f8c[aepc] main]
+2018-12-27 12:23:28.874 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.r.ManagedResourceStorage File-based storage initialized to use dir: /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf
+2018-12-27 12:23:28.907 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.c.SpellCheckComponent Initializing spell checkers
+2018-12-27 12:23:28.913 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.s.DirectSolrSpellChecker init: {name=default,field=_text_,classname=solr.DirectSolrSpellChecker,distanceMeasure=internal,accuracy=0.5,maxEdits=2,minPrefix=1,maxInspections=5,minQueryLength=4,maxQueryFrequency=0.01}
+2018-12-27 12:23:28.924 INFO  (coreLoadExecutor-9-thread-1) [   x:aepc] o.a.s.h.ReplicationHandler Commits will be reserved for 10000ms.
+2018-12-27 12:23:28.929 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener sending requests to Searcher@934f8c[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:23:28.929 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.QuerySenderListener QuerySenderListener done.
+2018-12-27 12:23:28.929 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.h.c.SpellCheckComponent Loading spell index for spellchecker: default
+2018-12-27 12:23:28.936 INFO  (searcherExecutor-10-thread-1-processing-x:aepc) [   x:aepc] o.a.s.c.SolrCore [aepc] Registered new searcher Searcher@934f8c[aepc] main{ExitableDirectoryReader(UninvertingDirectoryReader(_4k(7.6.0):C1))}
+2018-12-27 12:23:30.064 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=5
+2018-12-27 12:23:32.058 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:34.057 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:35.037 INFO  (qtp1196695891-20) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=2
+2018-12-27 12:23:35.038 INFO  (qtp1196695891-15) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=1
+2018-12-27 12:23:35.052 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=15
+2018-12-27 12:23:35.074 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:23:35.077 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=1
+2018-12-27 12:23:35.083 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=9
+2018-12-27 12:23:35.083 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545913185019} status=0 QTime=6
+2018-12-27 12:23:35.090 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:37.480 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:39.480 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:40.258 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:23:40.268 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:23:40.282 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-27 12:23:40.294 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:23:40.373 ERROR (qtp1196695891-21) [   x:aepc] o.a.s.h.d.EntityProcessorBase The query failed 'aepc.usuario.find()'
+com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSONParser.parse(JSON.java:145) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSON.parse(JSON.java:81) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSON.parse(JSON.java:66) ~[mongo-java-driver-2.10.1.jar:?]
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68) ~[solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82) ~[solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40) [solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54) [solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548) [jetty-security-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335) [jetty-rewrite-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.Server.handle(Server.java:531) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
 	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-Caused by: org.apache.solr.common.SolrException: Could not load conf for core aepc: Can't load schema /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf/schema.xml: [schema.xml] Duplicate field definition for 'id' [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,docValues,useDocValuesAsStored,uninvertible}]]] and [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,required,docValues,useDocValuesAsStored,uninvertible, required=true}]]]
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:97) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-Caused by: org.apache.solr.common.SolrException: Can't load schema /home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr/aepc/conf/schema.xml: [schema.xml] Duplicate field definition for 'id' [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,docValues,useDocValuesAsStored,uninvertible}]]] and [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,required,docValues,useDocValuesAsStored,uninvertible, required=true}]]]
-	at org.apache.solr.schema.IndexSchema.readSchema(IndexSchema.java:587) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.<init>(IndexSchema.java:177) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchema.<init>(ManagedIndexSchema.java:105) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:173) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:45) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchemaFactory.buildIndexSchema(IndexSchemaFactory.java:75) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.createIndexSchema(ConfigSetService.java:119) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:92) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-Caused by: org.apache.solr.common.SolrException: [schema.xml] Duplicate field definition for 'id' [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,docValues,useDocValuesAsStored,uninvertible}]]] and [[[id{type=string,properties=indexed,stored,omitNorms,omitTermFreqAndPositions,sortMissingLast,required,docValues,useDocValuesAsStored,uninvertible, required=true}]]]
-	at org.apache.solr.schema.IndexSchema.loadFields(IndexSchema.java:661) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.readSchema(IndexSchema.java:481) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchema.<init>(IndexSchema.java:177) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchema.<init>(ManagedIndexSchema.java:105) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:173) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.ManagedIndexSchemaFactory.create(ManagedIndexSchemaFactory.java:45) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.schema.IndexSchemaFactory.buildIndexSchema(IndexSchemaFactory.java:75) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.createIndexSchema(ConfigSetService.java:119) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.ConfigSetService.getConfig(ConfigSetService.java:92) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.getConfigSet(CoreContainer.java:1187) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	at org.apache.solr.core.CoreContainer.createFromDescriptor(CoreContainer.java:1134) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
-	... 7 more
-2018-12-21 13:59:59.260 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545400799169} status=0 QTime=22
-2018-12-21 13:59:59.274 INFO  (qtp1196695891-18) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545400799169} status=0 QTime=35
-2018-12-21 13:59:59.288 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545400799169} status=0 QTime=8
-2018-12-21 14:00:51.051 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
-2018-12-21 14:00:51.051 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
-2018-12-21 14:00:51.055 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
-2018-12-21 14:00:51.056 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
-2018-12-21 14:00:51.057 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@5871c93
-2018-12-21 14:00:51.066 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
-2018-12-21 14:00:51.066 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@38159ef1
-2018-12-21 14:00:51.071 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
-2018-12-21 14:00:51.072 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@18af8298
-2018-12-21 14:00:51.075 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
+2018-12-27 12:23:40.378 ERROR (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DocBuilder Exception while processing: usuario document : SolrInputDocument(fields: []):org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:46)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54)
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415)
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330)
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233)
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424)
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198)
+	at com.mongodb.util.JSONParser.parse(JSON.java:145)
+	at com.mongodb.util.JSON.parse(JSON.java:81)
+	at com.mongodb.util.JSON.parse(JSON.java:66)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40)
+	... 49 more
+
+2018-12-27 12:23:40.378 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913185019&verbose=false}{} 0 123
+2018-12-27 12:23:40.379 ERROR (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Full Import failed:java.lang.RuntimeException: java.lang.RuntimeException: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:271)
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424)
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.RuntimeException: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:417)
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330)
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233)
+	... 43 more
+Caused by: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:46)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54)
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415)
+	... 45 more
+Caused by: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198)
+	at com.mongodb.util.JSONParser.parse(JSON.java:145)
+	at com.mongodb.util.JSON.parse(JSON.java:81)
+	at com.mongodb.util.JSON.parse(JSON.java:66)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40)
+	... 49 more
+
+2018-12-27 12:23:40.380 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.DirectUpdateHandler2 start rollback{}
+2018-12-27 12:23:40.382 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.DefaultSolrCoreState New IndexWriter is ready to be used.
+2018-12-27 12:23:40.382 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.DirectUpdateHandler2 end_rollback
+2018-12-27 12:23:40.386 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:41.480 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:43.440 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:23:43.445 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:23:43.445 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-27 12:23:43.452 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:23:43.472 ERROR (qtp1196695891-19) [   x:aepc] o.a.s.h.d.EntityProcessorBase The query failed 'aepc.usuario.find()'
+com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSONParser.parse(JSON.java:145) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSON.parse(JSON.java:81) ~[mongo-java-driver-2.10.1.jar:?]
+	at com.mongodb.util.JSON.parse(JSON.java:66) ~[mongo-java-driver-2.10.1.jar:?]
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68) ~[solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82) ~[solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40) [solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54) [solr-mongo-importer-1.0.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548) [jetty-security-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335) [jetty-rewrite-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.Server.handle(Server.java:531) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2018-12-27 12:23:43.474 ERROR (qtp1196695891-19) [   x:aepc] o.a.s.h.d.DocBuilder Exception while processing: usuario document : SolrInputDocument(fields: []):org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:46)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54)
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415)
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330)
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233)
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424)
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198)
+	at com.mongodb.util.JSONParser.parse(JSON.java:145)
+	at com.mongodb.util.JSON.parse(JSON.java:81)
+	at com.mongodb.util.JSON.parse(JSON.java:66)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40)
+	... 49 more
+
+2018-12-27 12:23:43.474 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&_=1545913185019&verbose=false}{} 0 34
+2018-12-27 12:23:43.475 ERROR (qtp1196695891-19) [   x:aepc] o.a.s.h.d.DataImporter Full Import failed:java.lang.RuntimeException: java.lang.RuntimeException: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:271)
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424)
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483)
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184)
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199)
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541)
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709)
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377)
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323)
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634)
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146)
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257)
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255)
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203)
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473)
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564)
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201)
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219)
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144)
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219)
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335)
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132)
+	at org.eclipse.jetty.server.Server.handle(Server.java:531)
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352)
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260)
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281)
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102)
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168)
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126)
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762)
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680)
+	at java.lang.Thread.run(Thread.java:748)
+Caused by: java.lang.RuntimeException: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:417)
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330)
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233)
+	... 43 more
+Caused by: org.apache.solr.handler.dataimport.DataImportHandlerException: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:46)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.nextRow(MongoEntityProcessor.java:54)
+	at org.apache.solr.handler.dataimport.EntityProcessorWrapper.nextRow(EntityProcessorWrapper.java:267)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:476)
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415)
+	... 45 more
+Caused by: com.mongodb.util.JSONParseException: 
+aepc.usuario.find()
+^
+	at com.mongodb.util.JSONParser.parse(JSON.java:198)
+	at com.mongodb.util.JSONParser.parse(JSON.java:145)
+	at com.mongodb.util.JSON.parse(JSON.java:81)
+	at com.mongodb.util.JSON.parse(JSON.java:66)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:68)
+	at org.apache.solr.handler.dataimport.MongoDataSource.getData(MongoDataSource.java:82)
+	at org.apache.solr.handler.dataimport.MongoEntityProcessor.initQuery(MongoEntityProcessor.java:40)
+	... 49 more
+
+2018-12-27 12:23:43.475 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.u.DirectUpdateHandler2 start rollback{}
+2018-12-27 12:23:43.478 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.u.DefaultSolrCoreState New IndexWriter is ready to be used.
+2018-12-27 12:23:43.478 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.u.DirectUpdateHandler2 end_rollback
+2018-12-27 12:23:43.479 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:43.484 INFO  (qtp1196695891-20) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:45.480 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:47.480 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:49.481 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:51.480 INFO  (qtp1196695891-19) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:53.480 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:23:55.404 INFO  (qtp1196695891-19) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:23:55.410 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=5
+2018-12-27 12:23:56.310 INFO  (qtp1196695891-22) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=35
+2018-12-27 12:25:13.218 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:25:13.219 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:13.225 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=6
+2018-12-27 12:25:13.249 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:25:13.251 INFO  (qtp1196695891-15) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:13.253 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:13.256 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=6
+2018-12-27 12:25:13.268 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:21.094 INFO  (qtp1196695891-38) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:23.008 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:25:23.012 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:25:23.012 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-27 12:25:23.017 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:25:23.094 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:23.104 WARN  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.SolrWriter Error creating document : SolrInputDocument(fields: [tipo=OBJ, alternativas=[{ "texto" : "22" , "correta" : true}, { "texto" : "30" , "correta" : false}], enunciado=Quanto é o triplo do quadrado de 22, fonte=PISA, id=5c1a3420dbd8ee2352668c92, autor=prof@gmail.com, _version_=1621007818358259712])
+org.apache.solr.common.SolrException: TransactionLog doesn't know how to serialize class org.bson.types.ObjectId; try implementing ObjectResolver?
+	at org.apache.solr.update.TransactionLog$1.resolve(TransactionLog.java:100) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.common.util.JavaBinCodec.writeVal(JavaBinCodec.java:239) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
+	at org.apache.solr.common.util.JavaBinCodec.writeSolrInputDocument(JavaBinCodec.java:616) ~[solr-solrj-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:53]
+	at org.apache.solr.update.TransactionLog.write(TransactionLog.java:371) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.UpdateLog.add(UpdateLog.java:573) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.UpdateLog.add(UpdateLog.java:552) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.DirectUpdateHandler2.doNormalUpdate(DirectUpdateHandler2.java:350) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.DirectUpdateHandler2.addDoc0(DirectUpdateHandler2.java:288) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.DirectUpdateHandler2.addDoc(DirectUpdateHandler2.java:235) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.RunUpdateProcessor.processAdd(RunUpdateProcessorFactory.java:67) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.DistributedUpdateProcessor.doLocalAdd(DistributedUpdateProcessor.java:961) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.DistributedUpdateProcessor.versionAdd(DistributedUpdateProcessor.java:1177) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.DistributedUpdateProcessor.processAdd(DistributedUpdateProcessor.java:653) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.LogUpdateProcessorFactory$LogUpdateProcessor.processAdd(LogUpdateProcessorFactory.java:103) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.AddSchemaFieldsUpdateProcessorFactory$AddSchemaFieldsUpdateProcessor.processAdd(AddSchemaFieldsUpdateProcessorFactory.java:475) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldMutatingUpdateProcessor.processAdd(FieldMutatingUpdateProcessor.java:118) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldMutatingUpdateProcessor.processAdd(FieldMutatingUpdateProcessor.java:118) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldMutatingUpdateProcessor.processAdd(FieldMutatingUpdateProcessor.java:118) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldMutatingUpdateProcessor.processAdd(FieldMutatingUpdateProcessor.java:118) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldNameMutatingUpdateProcessorFactory$1.processAdd(FieldNameMutatingUpdateProcessorFactory.java:75) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.FieldMutatingUpdateProcessor.processAdd(FieldMutatingUpdateProcessor.java:118) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.UpdateRequestProcessor.processAdd(UpdateRequestProcessor.java:55) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.update.processor.AbstractDefaultValueUpdateProcessorFactory$DefaultValueUpdateProcessor.processAdd(AbstractDefaultValueUpdateProcessorFactory.java:92) ~[solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.handler.dataimport.SolrWriter.upload(SolrWriter.java:80) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImportHandler$1.upload(DataImportHandler.java:258) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:527) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.buildDocument(DocBuilder.java:415) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.doFullDump(DocBuilder.java:330) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DocBuilder.execute(DocBuilder.java:233) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.doFullImport(DataImporter.java:424) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImporter.runCmd(DataImporter.java:483) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.dataimport.DataImportHandler.handleRequestBody(DataImportHandler.java:184) [solr-dataimporthandler-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:41]
+	at org.apache.solr.handler.RequestHandlerBase.handleRequest(RequestHandlerBase.java:199) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.core.SolrCore.execute(SolrCore.java:2541) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.execute(HttpSolrCall.java:709) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.HttpSolrCall.call(HttpSolrCall.java:515) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:377) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.apache.solr.servlet.SolrDispatchFilter.doFilter(SolrDispatchFilter.java:323) [solr-core-7.6.0.jar:7.6.0 719cde97f84640faa1e3525690d262946571245f - nknize - 2018-12-07 14:47:52]
+	at org.eclipse.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1634) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doHandle(ServletHandler.java:533) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:146) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.security.SecurityHandler.handle(SecurityHandler.java:548) [jetty-security-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:257) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doHandle(SessionHandler.java:1595) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextHandle(ScopedHandler.java:255) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doHandle(ContextHandler.java:1317) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:203) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.servlet.ServletHandler.doScope(ServletHandler.java:473) [jetty-servlet-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.session.SessionHandler.doScope(SessionHandler.java:1564) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.nextScope(ScopedHandler.java:201) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandler.doScope(ContextHandler.java:1219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ScopedHandler.handle(ScopedHandler.java:144) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.ContextHandlerCollection.handle(ContextHandlerCollection.java:219) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerCollection.handle(HandlerCollection.java:126) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.rewrite.handler.RewriteHandler.handle(RewriteHandler.java:335) [jetty-rewrite-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.handler.HandlerWrapper.handle(HandlerWrapper.java:132) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.Server.handle(Server.java:531) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpChannel.handle(HttpChannel.java:352) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.server.HttpConnection.onFillable(HttpConnection.java:260) [jetty-server-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.AbstractConnection$ReadCallback.succeeded(AbstractConnection.java:281) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.FillInterest.fillable(FillInterest.java:102) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.io.ChannelEndPoint$2.run(ChannelEndPoint.java:118) [jetty-io-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.runTask(EatWhatYouKill.java:333) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.doProduce(EatWhatYouKill.java:310) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.tryProduce(EatWhatYouKill.java:168) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.strategy.EatWhatYouKill.run(EatWhatYouKill.java:126) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.ReservedThreadExecutor$ReservedThread.run(ReservedThreadExecutor.java:366) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:762) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$2.run(QueuedThreadPool.java:680) [jetty-util-9.4.11.v20180605.jar:9.4.11.v20180605]
+	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
+2018-12-27 12:25:23.106 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.h.d.DocBuilder Time taken = 0:0:0.89
+2018-12-27 12:25:23.106 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&entity=questao-obj&_=1545913185019&verbose=false}{} 0 98
+2018-12-27 12:25:23.110 INFO  (qtp1196695891-38) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:25.095 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:26.928 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:25:26.933 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=5
+2018-12-27 12:25:27.968 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=0
+2018-12-27 12:25:28.639 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=0
+2018-12-27 12:25:28.943 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=0
+2018-12-27 12:25:41.145 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:25:41.148 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:41.152 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=6
+2018-12-27 12:25:41.177 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:25:41.179 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/admin/mbeans params={cat=QUERY&wt=json&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:41.181 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=show-config&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:41.187 INFO  (qtp1196695891-23) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=9
+2018-12-27 12:25:41.193 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:48.654 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:50.655 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:51.904 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:25:51.908 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:25:51.911 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=delta-import&entity=questao-obj&_=1545913185019&verbose=false} status=0 QTime=7
+2018-12-27 12:25:51.911 INFO  (Thread-18) [   ] o.a.s.h.d.DataImporter Starting Delta Import
+2018-12-27 12:25:51.916 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:51.916 INFO  (Thread-18) [   ] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:25:51.931 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Starting delta collection.
+2018-12-27 12:25:51.952 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Running ModifiedRowKey() for Entity: questao-obj
+2018-12-27 12:25:51.952 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Completed ModifiedRowKey for Entity: questao-obj rows obtained : 0
+2018-12-27 12:25:51.952 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Completed DeletedRowKey for Entity: questao-obj rows obtained : 0
+2018-12-27 12:25:51.952 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Completed parentDeltaQuery for Entity: questao-obj
+2018-12-27 12:25:51.953 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Delta Import completed successfully
+2018-12-27 12:25:51.953 INFO  (Thread-18) [   ] o.a.s.h.d.DocBuilder Time taken = 0:0:0.36
+2018-12-27 12:25:51.953 INFO  (Thread-18) [   ] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=delta-import&entity=questao-obj&_=1545913185019&verbose=false} status=0 QTime=7{} 0 49
+2018-12-27 12:25:52.654 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:54.216 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:25:54.220 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:25:54.221 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=delta-import&entity=questao-obj&_=1545913185019&verbose=false} status=0 QTime=5
+2018-12-27 12:25:54.221 INFO  (Thread-20) [   ] o.a.s.h.d.DataImporter Starting Delta Import
+2018-12-27 12:25:54.224 INFO  (Thread-20) [   ] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:25:54.227 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:54.239 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Starting delta collection.
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Running ModifiedRowKey() for Entity: questao-obj
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Completed ModifiedRowKey for Entity: questao-obj rows obtained : 0
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Completed DeletedRowKey for Entity: questao-obj rows obtained : 0
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Completed parentDeltaQuery for Entity: questao-obj
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Delta Import completed successfully
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.h.d.DocBuilder Time taken = 0:0:0.18
+2018-12-27 12:25:54.243 INFO  (Thread-20) [   ] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=delta-import&entity=questao-obj&_=1545913185019&verbose=false} status=0 QTime=5{} 0 28
+2018-12-27 12:25:54.655 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:56.655 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:25:58.654 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:00.656 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:01.615 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:26:01.620 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:26:01.620 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&entity=&_=1545913185019&verbose=false} status=0 QTime=5
+2018-12-27 12:26:01.620 INFO  (Thread-22) [   ] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-27 12:26:01.626 INFO  (Thread-22) [   ] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:26:01.626 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:01.641 INFO  (Thread-22) [   ] o.a.s.h.d.DocBuilder Time taken = 0:0:0.15
+2018-12-27 12:26:01.641 INFO  (Thread-22) [   ] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&entity=&_=1545913185019&verbose=false} status=0 QTime=5{} 0 26
+2018-12-27 12:26:02.655 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:04.655 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:05.599 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Loading DIH Configuration: data-config.xml
+2018-12-27 12:26:05.602 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Data Configuration loaded successfully
+2018-12-27 12:26:05.602 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DataImporter Starting Full Import
+2018-12-27 12:26:05.606 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.SimplePropertiesWriter Read dataimport.properties
+2018-12-27 12:26:05.617 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.h.d.DocBuilder Time taken = 0:0:0.10
+2018-12-27 12:26:05.617 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.u.p.LogUpdateProcessorFactory [aepc]  webapp=/solr path=/dataimport params={core=aepc&debug=true&indent=on&commit=true&name=dataimport&clean=false&wt=json&command=full-import&entity=&_=1545913185019&verbose=false}{} 0 18
+2018-12-27 12:26:05.621 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:06.654 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:08.655 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:10.655 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:12.655 INFO  (qtp1196695891-23) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:14.654 INFO  (qtp1196695891-21) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/dataimport params={indent=on&wt=json&command=status&_=1545913185019} status=0 QTime=0
+2018-12-27 12:26:15.494 INFO  (qtp1196695891-16) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:26:15.500 INFO  (qtp1196695891-38) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=5
+2018-12-27 12:26:16.839 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=0
+2018-12-27 12:27:02.159 INFO  (qtp1196695891-38) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=triplo&_=1545913435371} hits=0 status=0 QTime=17
+2018-12-27 12:27:02.943 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=triplo&_=1545913435371} hits=0 status=0 QTime=1
+2018-12-27 12:27:07.598 INFO  (qtp1196695891-38) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=*:*&_=1545913435371} hits=1 status=0 QTime=0
+2018-12-27 12:27:14.038 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=subj&_=1545913435371} hits=0 status=0 QTime=0
+2018-12-27 12:27:24.958 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q=tipo:subj&_=1545913435371} hits=1 status=0 QTime=7
+2018-12-27 12:27:35.503 INFO  (qtp1196695891-17) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q="triplo"&_=1545913435371} hits=0 status=0 QTime=0
+2018-12-27 12:27:36.111 INFO  (qtp1196695891-16) [   x:aepc] o.a.s.c.S.Request [aepc]  webapp=/solr path=/select params={q="triplo"&_=1545913435371} hits=0 status=0 QTime=0
+2018-12-27 12:27:45.964 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/cores params={indexInfo=false&wt=json&_=1545913171662} status=0 QTime=0
+2018-12-27 12:27:45.969 INFO  (qtp1196695891-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545913174293&since=0} status=0 QTime=1
+2018-12-27 12:27:45.978 INFO  (qtp1196695891-21) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/system params={wt=json&_=1545913171662} status=0 QTime=14
+2018-12-27 12:27:55.964 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545913174293&since=0} status=0 QTime=0
+2018-12-27 12:28:05.964 INFO  (qtp1196695891-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545913174293&since=0} status=0 QTime=0
+2018-12-27 12:28:15.964 INFO  (qtp1196695891-17) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545913174293&since=0} status=0 QTime=0
+2018-12-27 12:28:25.964 INFO  (qtp1196695891-14) [   ] o.a.s.s.HttpSolrCall [admin] webapp=null path=/admin/info/logging params={wt=json&_=1545913174293&since=0} status=0 QTime=0
+2018-12-27 12:28:27.621 INFO  (ShutdownMonitor) [   ] o.e.j.s.AbstractConnector Stopped ServerConnector@654d8173{HTTP/1.1,[http/1.1]}{0.0.0.0:8983}
+2018-12-27 12:28:27.621 INFO  (ShutdownMonitor) [   ] o.e.j.s.session node0 Stopped scavenging
+2018-12-27 12:28:27.624 INFO  (ShutdownMonitor) [   ] o.a.s.c.CoreContainer Shutting down CoreContainer instance=1650813924
+2018-12-27 12:28:27.625 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.node, tag=null
+2018-12-27 12:28:27.626 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@5c10f1c3: rootName = null, domain = solr.node, service url = null, agent id = null] for registry solr.node / com.codahale.metrics.MetricRegistry@24dfb545
+2018-12-27 12:28:27.631 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jvm, tag=null
+2018-12-27 12:28:27.631 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@7fe7c640: rootName = null, domain = solr.jvm, service url = null, agent id = null] for registry solr.jvm / com.codahale.metrics.MetricRegistry@55067257
+2018-12-27 12:28:27.633 INFO  (ShutdownMonitor) [   ] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.jetty, tag=null
+2018-12-27 12:28:27.633 INFO  (ShutdownMonitor) [   ] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@4c4748bf: rootName = null, domain = solr.jetty, service url = null, agent id = null] for registry solr.jetty / com.codahale.metrics.MetricRegistry@66b58d27
+2018-12-27 12:28:27.635 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.c.SolrCore [aepc]  CLOSING SolrCore org.apache.solr.core.SolrCore@46df0856
+2018-12-27 12:28:27.635 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.SolrMetricManager Closing metric reporters for registry=solr.core.aepc, tag=46df0856
+2018-12-27 12:28:27.635 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.m.r.SolrJmxReporter Closing reporter [org.apache.solr.metrics.reporters.SolrJmxReporter@3f0b4284: rootName = null, domain = solr.core.aepc, service url = null, agent id = null] for registry solr.core.aepc / com.codahale.metrics.MetricRegistry@1ec103f8
+2018-12-27 12:28:27.644 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.u.DirectUpdateHandler2 Committing on IndexWriter close.
+2018-12-27 12:28:27.644 INFO  (coreCloseExecutor-15-thread-1) [   x:aepc] o.a.s.u.SolrIndexWriter Calling setCommitData with IW:org.apache.solr.update.SolrIndexWriter@47f3f377 commitCommandVersion:0
+2018-12-27 12:28:28.176 INFO  (ShutdownMonitor) [   ] o.e.j.s.h.ContextHandler Stopped o.e.j.w.WebAppContext@762ef0ea{/solr,null,UNAVAILABLE}{/home/adson/marcelo/aepc/backend/solr-7.6.0/server/solr-webapp/webapp}
