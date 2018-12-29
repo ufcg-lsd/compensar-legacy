@@ -1,0 +1,14 @@
+OpenJDK 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+2018-12-29 13:55:54.499 INFO  (main) [   ] o.e.j.u.log Logging initialized @1974ms to org.eclipse.jetty.util.log.Slf4jLog
+2018-12-29 13:55:54.793 INFO  (main) [   ] o.e.j.s.Server jetty-9.4.11.v20180605; built: 2018-06-05T18:24:03.829Z; git: d5fc0523cfa96bfebfbda19606cad384d772f04c; jvm 10.0.2+13-Ubuntu-1ubuntu0.18.04.4
+2018-12-29 13:55:54.849 INFO  (main) [   ] o.e.j.d.p.ScanningAppProvider Deployment monitor [file:///mnt/c/Users/vitor/Documents/codes/aepc/backend/solr-7.6.0/server/contexts/] at interval 0
+2018-12-29 13:55:55.997 INFO  (main) [   ] o.e.j.w.StandardDescriptorProcessor NO JSP Support for /solr, did not find org.apache.jasper.servlet.JspServlet
+2018-12-29 13:55:56.014 INFO  (main) [   ] o.e.j.s.session DefaultSessionIdManager workerName=node0
+2018-12-29 13:55:56.016 INFO  (main) [   ] o.e.j.s.session No SessionScavenger set, using defaults
+2018-12-29 13:55:56.020 INFO  (main) [   ] o.e.j.s.session node0 Scavenging every 600000ms
+2018-12-29 13:55:56.106 INFO  (main) [   ] o.a.s.u.c.SSLCredentialProviderFactory Processing SSL Credential Provider chain: env;sysprop
+2018-12-29 13:55:56.273 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter Using logger factory org.apache.logging.slf4j.Log4jLoggerFactory
+2018-12-29 13:55:56.287 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter  ___      _       Welcome to Apache Solr™ version 7.6.0
+2018-12-29 13:55:56.289 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter / __| ___| |_ _   Starting in standalone mode on port 8984
+2018-12-29 13:55:56.289 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter \__ \/ _ \ | '_|  Install dir: /mnt/c/Users/vitor/Documents/codes/aepc/backend/solr-7.6.0
+2018-12-29 13:55:56.290 INFO  (main) [   ] o.a.s.s.SolrDispatchFilter |___/\___/_|_|    Start time: 2018-12-29T13:55:56.290288Z

@@ -5,8 +5,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
-import springboot.controller.AlternativaController;
-import springboot.controller.QuestaoCompetenciaController;
+import springboot.controller.EmailController;
 import springboot.controller.QuestaoObjetivaController;
 import springboot.controller.QuestaoSubjetivaController;
 import springboot.controller.UsuarioController;
@@ -19,8 +18,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @EnableSwagger2
 @PropertySource("classpath:swagger.properties")
-@ComponentScan(basePackageClasses = { UsuarioController.class, AlternativaController.class,
-		QuestaoCompetenciaController.class, QuestaoObjetivaController.class, QuestaoSubjetivaController.class })
+@ComponentScan(basePackageClasses = { UsuarioController.class,
+		EmailController.class, QuestaoObjetivaController.class, QuestaoSubjetivaController.class })
 @Configuration
 public class SwaggerConfig {
 

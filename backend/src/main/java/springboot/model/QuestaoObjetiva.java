@@ -9,12 +9,15 @@ package springboot.model;
  */
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import springboot.enums.CompetenciaType;
 
 @Document(collection = "questao-obj")
 public class QuestaoObjetiva extends Questao {
@@ -41,9 +44,9 @@ public class QuestaoObjetiva extends Questao {
 	 * 			  A coleção de alternativas de uma questão
 	 * 
 	 */
-	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor,
+	public QuestaoObjetiva(String tipo, String enunciado, String fonte, String autor, Set<CompetenciaType> competencias,
 			List<Alternativa> alternativas) {
-		super(tipo, enunciado, fonte, autor);
+		super(tipo, enunciado, fonte, autor, competencias);
 		this.alternativas = alternativas;
 	}
 

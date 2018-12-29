@@ -49,6 +49,7 @@ public class QuestaoSubjetivaService {
 		novaQuestaoSubj.setAutor(questaoSubj.getAutor());
 		novaQuestaoSubj.setTipo(questaoSubj.getTipo());
 		novaQuestaoSubj.setEnunciado(questaoSubj.getEnunciado());
+		novaQuestaoSubj.setCompetencias(questaoSubj.getCompetencias());
 		novaQuestaoSubj.setEspelho(questaoSubj.getEspelho());
 
 		questaoSubjRepository.save(novaQuestaoSubj);

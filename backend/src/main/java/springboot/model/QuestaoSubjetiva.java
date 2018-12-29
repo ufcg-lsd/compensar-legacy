@@ -1,5 +1,7 @@
 package springboot.model;
 
+import java.util.Set;
+
 /**
  * Classe concreta que estende atributos comuns da classe Questão e adiciona espelho da questão.
  * 
@@ -14,6 +16,8 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import springboot.enums.CompetenciaType;
 
 @Document(collection = "questao-subj")
 public class QuestaoSubjetiva extends Questao {
@@ -39,8 +43,8 @@ public class QuestaoSubjetiva extends Questao {
 	 * 			  O espelho de uma questão
 	 * 
 	 */
-	public QuestaoSubjetiva( String tipo, String enunciado, String fonte, String autor, String espelho) {
-		super( tipo, enunciado, fonte, autor);
+	public QuestaoSubjetiva( String tipo, String enunciado, String fonte, String autor, Set<CompetenciaType> competencias, String espelho) {
+		super( tipo, enunciado, fonte, autor,competencias);
 		this.espelho = espelho;
 	}
 

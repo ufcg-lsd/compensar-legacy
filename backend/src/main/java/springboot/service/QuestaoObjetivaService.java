@@ -48,6 +48,7 @@ public class QuestaoObjetivaService {
 		novaQuestaoObj.setAutor(questaoObj.getAutor());
 		novaQuestaoObj.setTipo(questaoObj.getTipo());
 		novaQuestaoObj.setEnunciado(questaoObj.getEnunciado());
+		novaQuestaoObj.setCompetencias(questaoObj.getCompetencias());
 		novaQuestaoObj.setAlternativas(questaoObj.getAlternativas());
 
 		questaoObjRepository.save(novaQuestaoObj);

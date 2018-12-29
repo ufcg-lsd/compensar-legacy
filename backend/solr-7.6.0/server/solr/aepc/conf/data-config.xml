@@ -32,6 +32,7 @@
            <field column="_id"  name="id"/>               
            <field column="autor" name="autor" mongoField="autor"/> 
            <field column="enunciado" name="enunciado" mongoField="enunciado"/>       
+           <field column="competencias" name="competencias" mongoField="competencias"/> 
            <field column="espelho" name="espelho" mongoField="espelho"/>          
            <field column="tipo" name="tipo" mongoField="tipo"/>  
            <field column="fonte" name="fonte" mongoField="fonte"/>   
@@ -55,26 +56,14 @@
            <field column="alternativas" name="alternativas" mongoField="alternativas"/> 
            <field column="alternativas.texto" name="alternativas.texto" mongoField="alternativas.texto"/> 
            <field column="alternativas.correta" name="alternativas.correta" mongoField="alternativas.correta"/>       
-      
+           <field column="competencias" name="competencias" mongoField="competencias"/> 
+
            <field column="tipo" name="tipo" mongoField="tipo"/>  
            <field column="fonte" name="fonte" mongoField="fonte"/>   
                                                                                                                                                                                                        
 	</entity>
 
-     	<entity  processor="MongoEntityProcessor"
-              query=""
-             collection="questao-competencia"   
-             datasource="MyMongo"
-             transformer="MongoMapperTransformer" name="questao-competencia">
 
-               <!--  If mongoField name and the field declared in schema.xml are same than no need to declare below.
-                     If not same than you have to refer the mongoField to field in schema.xml
-                    ( Ex: mongoField="EmpNumber" to name="EmployeeNumber"). -->                                              
-
-           <field column="_id"  name="id"/>               
-           <field column="competencia" name="competencia" mongoField="competencia"/>               
-                                                                                                                                                                                                       
-	</entity>
 
 
 </document>

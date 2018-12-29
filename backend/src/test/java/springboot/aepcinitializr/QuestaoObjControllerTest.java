@@ -2,6 +2,7 @@ package springboot.aepcinitializr;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.After;
 import org.junit.Before;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.QuestaoObjetivaController;
+import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
 import springboot.model.QuestaoObjetiva;
 
@@ -36,6 +38,7 @@ public class QuestaoObjControllerTest extends AepcApplicationTests {
 	private QuestaoObjetiva questaoObj;
 	private QuestaoObjetiva updatedQuestaoObj;
 	private List<Alternativa> alternativas;
+	private Set<CompetenciaType> competencias;
 
 	@Before
 	public void setUp() {
@@ -44,11 +47,14 @@ public class QuestaoObjControllerTest extends AepcApplicationTests {
 		this.alternativas = new ArrayList<>();
 		this.alternativas.add(new Alternativa("2", true));
 		this.alternativas.add(new Alternativa("3", false));
+		this.competencias.add(CompetenciaType.COLETA);
+		this.competencias.add(CompetenciaType.PARALELIZAÇÃO);
+
 
 		this.questaoObj = new QuestaoObjetiva("objetiva", "o quadrado de PI elevado ao cubo é:", "ENEM", null,
-				alternativas);
+				competencias, alternativas);
 		this.updatedQuestaoObj = new QuestaoObjetiva("objetiva", "o quadrado de PI elevado ao quadrado é:", "ENEM",
-				 null, alternativas);
+				 null,competencias, alternativas);
 	}
 
 	@Test

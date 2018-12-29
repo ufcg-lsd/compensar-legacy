@@ -1,6 +1,8 @@
 package springboot.aepcinitializr;
 
 
+import java.util.Set;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import springboot.controller.QuestaoSubjetivaController;
+import springboot.enums.CompetenciaType;
 import springboot.model.QuestaoSubjetiva;
 
 public class QuestaoSubjControllerTest extends AepcApplicationTests{
@@ -30,13 +33,17 @@ public class QuestaoSubjControllerTest extends AepcApplicationTests{
 	
 	private QuestaoSubjetiva updatedQuestaoSubj;
 
+	private Set<CompetenciaType> competencias;
 	
 	@Before
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(questaoSubjController).build();
+		
+		this.competencias.add(CompetenciaType.COLETA);
+		this.competencias.add(CompetenciaType.PARALELIZAÇÃO);
 
-		this.questaoSubj =  new QuestaoSubjetiva("subjetiva", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 * 2");
-		this.updatedQuestaoSubj = new QuestaoSubjetiva("subjetiva", "quanto é 2 * 2?", "PISA", null, "a resposta é 2 + 2");
+		this.questaoSubj =  new QuestaoSubjetiva("subjetiva", "quanto é 2 + 2?", "PISA", null,competencias, "a resposta é 2 * 2");
+		this.updatedQuestaoSubj = new QuestaoSubjetiva("subjetiva", "quanto é 2 * 2?", "PISA", null, competencias,"a resposta é 2 + 2");
 	}
 	
 	@Test

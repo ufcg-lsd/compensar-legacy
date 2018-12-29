@@ -1,5 +1,8 @@
 package springboot.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
@@ -23,6 +26,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import springboot.enums.CompetenciaType;
+
 public class Questao {
 
     @Id
@@ -43,6 +48,9 @@ public class Questao {
 
 	@TextIndexed
 	private String autor;
+	
+	@TextIndexed
+	private Set<CompetenciaType> competencias;
 
 
 	/**
@@ -61,13 +69,13 @@ public class Questao {
 	 *         
 	 * 
 	 */
-	public Questao(String tipo, String enunciado, String fonte, String autor) {
+	public Questao(String tipo, String enunciado, String fonte, String autor, Set<CompetenciaType> competencias) {
 
 		this.tipo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
-
+		this.competencias = new HashSet<CompetenciaType>();
 	}
 
 	public Questao() {
@@ -164,6 +172,16 @@ public class Questao {
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+
+	public Set<CompetenciaType> getCompetencias() {
+		return competencias;
+	}
+
+	public void setCompetencias(Set<CompetenciaType> competencias) {
+		this.competencias = competencias;
+	}
+	
+	
 	
 
 }
