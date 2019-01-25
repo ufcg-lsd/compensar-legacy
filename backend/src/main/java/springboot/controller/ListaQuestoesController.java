@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springboot.model.ListaQuestoes;
-import springboot.model.QuestaoObjetiva;
+import springboot.model.Questao;
 import springboot.service.ListaQuestoesService;
 
 @RestController
@@ -29,14 +29,14 @@ public class ListaQuestoesController {
 	
 	@ApiOperation("Permite registrar uma nova lista de questões no sistema. Requer que o corpo do request contenha um objeto com os campos: email e questoes.\r\n"
 			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes", method = RequestMethod.POST)
 	public ListaQuestoes save(@RequestBody ListaQuestoes listaQuestoes) {
 		return listaQuestoesService.save(listaQuestoes);
 	}
 	
 	@ApiOperation("Permite apagar listas de questões da autoria de determinado email no sistema.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{email}", method = RequestMethod.DELETE)
 	public ResponseEntity<ListaQuestoes> delete(@PathVariable("email") String email) {
 		ListaQuestoes listaQuestoes = listaQuestoesService.delete(email);
@@ -44,7 +44,7 @@ public class ListaQuestoesController {
 	}
 
 	@ApiOperation("Permite apagar uma lista de questões no sistema.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/delete/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<ListaQuestoes> deleteByID(@PathVariable("id") Long id) {
 		ListaQuestoes listaQuestoes = listaQuestoesService.deleteByID(id);
@@ -53,7 +53,7 @@ public class ListaQuestoesController {
 	
 	@ApiOperation("Permite atualizar uma lista de questões do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma lista de questões.\r\n"
 			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{email}", method = RequestMethod.PUT)
 	public ResponseEntity<ListaQuestoes> update(@PathVariable("email") String email,
 			@RequestBody ListaQuestoes listaQuestoes) {
@@ -62,7 +62,7 @@ public class ListaQuestoesController {
 	}
 
 	@ApiOperation("Fornece um array de objetos do tipo lista de questões registrados.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes", method = RequestMethod.GET)
 	public List<ListaQuestoes> getAll() {
 		return listaQuestoesService.getAll();
@@ -71,7 +71,7 @@ public class ListaQuestoesController {
 	
 	@ApiOperation("Fornece os dados de lista de questões registradas por determinado email. \r\n"
 			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = QuestaoObjetiva.class) })
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{email}", method = RequestMethod.GET)
 	public ListaQuestoes getByEmail(@PathVariable("email") String email) {
 		return listaQuestoesService.getByEmail(email);

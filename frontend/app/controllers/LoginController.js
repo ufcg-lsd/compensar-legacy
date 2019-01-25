@@ -1,13 +1,11 @@
 angular.module('app')
-  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http) {
+  .controller('LoginController', function (ProfileService,UserService,$window,$rootScope, $location, AuthService, $http) {
   
     $rootScope.activetab = $location.path();
 
 
     $rootScope.login = function ($rootScope,profile) {
           $rootScope.isLogged = true;
-
-          $location.path("/login");
 
           var perfil = {
             Name: profile.getName(),
@@ -21,31 +19,31 @@ angular.module('app')
 
   };
 
-    update_view =  function () {
+  update_view =  function () {
 
-      $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
-        then(function (response) {
-          $rootScope.registered = response.status == 200;
-        }, function () { 
-          $rootScope.registered = false; 
-        })
+    $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+      then(function (response) {
+        $rootScope.registered = response.status == 200;
+      }, function () { 
+        $rootScope.registered = false; 
+      })
 
-        .then(
-          function () {
-            if ($rootScope.registered) {
-              $location.path("/questoes");
-              $window.location.href = '/questoes';
+      .then(
+        function () {
+          if ($rootScope.registered) {
+            $location.path("/questoes");
+            $window.location.href = '/questoes';
 
-            } 
-            else {
-              $location.path("/signup");
-              $window.location.href = '/signup';
+          } 
+          else {
+            $location.path("/signup");
+            $window.location.href = '/signup';
 
-            }
           }
-        );
+        }
+      );
 
-    };
+  };
 
 
 
@@ -63,9 +61,6 @@ angular.module('app')
 
 
   }
-
-
-
 
     //Desliza icones das competencias automaticamente sem desordenar
 

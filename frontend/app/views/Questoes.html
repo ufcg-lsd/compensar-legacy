@@ -8,47 +8,57 @@
 
      <!-- ========================  Filtros  ============================================== -->
 
-    <div class = "container"> 
-        <input type="text" ng-model = "search" class="form-control badge-light" id="inputText" placeholder="Filtrar"></div>
-    </div>
 
      <!-- ========================  Questões  ============================================== -->
 
         <div id = "questoes" class="container">
-            <div class= "questoes" ng-repeat="questaoSubj in QuestoesSubj | filter: search | orderBy:'-' | limitTo:5" >
-
+            <div class= "questoes" ng-repeat="questao in Questoes | orderBy:'-' " >
                     <ul>      
                             <div class="enunciado" > <b>Enunciado:</b>  
-                                {{updateViewQuill(questaoSubj.enunciado,"enunciado")}}</div>
+                                {{updateViewQuill(questao.enunciado,"enunciado")}}</div>
 
                             <div ng-bind-html="enunciado"></div>
 
-                            <div class="autor">  <b>Autor:</b> {{questaoSubj.autor}}</div>
+                            <div class="autor">  <b>Autor:</b> {{questao.autor}}</div>
 
-                            <div class="fonte"><b>Fonte:</b > {{questaoSubj.fonte}}</div>
+                            <div class="fonte"><b>Fonte:</b > {{questao.fonte}}</div>
 
-                            <div class="tipo"><b>Tipo:</b> {{questaoSubj.tipo}}</div>
+                            <div class="tipo"><b>Tipo:</b> {{questao.tipo}}</div>
               
                     </ul>
 
     <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
 
-                    <div ng-switch = "isObjective(questaoSubj.tipo)">
+                    <div ng-switch = "isObjective(questao.tipo)">
                             <div ng-switch-when="false">
                                 <div class="espelho"> <b>Espelho:</b> 
-                                    {{updateViewQuill(questaoSubj.espelho,"espelho")}}</div>
+                                    {{updateViewQuill(questao.espelho,"espelho")}}</div>
 
                                     <p ng-bind-html="espelho"></p>
 
-                                <div ng-switch = "isAutor(questaoSubj.autor)">
-                                    <div ng-switch-when="true">
-                                        <button  type="button" class="btn-remove btn-danger btn-sm" ng-click="removeQuestaoSubj(questaoSubj)" >
-                                         <ion-icon id = "lixeira"name="trash"></ion-icon> </button>
+                            </div>
+                            <div ng-switch-when="true">
+                                <div class="autor"> <b>Alternativas:</b> 
                                     </div>
+                                <div ng-repeat="alternativa in questao.alternativas">
+                                    <div class="autor">  <b>Alternativa {{$index + 1}}:</b> 
+                                        Valor: {{alternativa.texto}} ---> {{alternativa.correta}}
+                                    </div>
+                                    
                                 </div>
 
                             </div>
+                    </div>
 
+                    <div class="autor"> <b>Competencias:</b> </div>
+                    <div class="competencias" ng-repeat="competencia in questao.competencias">
+                         {{competencia}}</div>
+
+                    <div ng-switch = "isAutor(questao.autor)">
+                        <div ng-switch-when="true">
+                            <button  type="button" class="btn-remove btn-danger btn-sm" ng-click="removeQuestao(questao)" >
+                             <ion-icon id = "lixeira"name="trash"></ion-icon> </button>
+                        </div>
                     </div>
             </div>
         </div>

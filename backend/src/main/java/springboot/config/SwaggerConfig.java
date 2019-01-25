@@ -6,8 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 import springboot.controller.EmailController;
-import springboot.controller.QuestaoObjetivaController;
-import springboot.controller.QuestaoSubjetivaController;
+import springboot.controller.QuestaoController;
 import springboot.controller.UsuarioController;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
@@ -19,14 +18,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @PropertySource("classpath:swagger.properties")
 @ComponentScan(basePackageClasses = { UsuarioController.class,
-		EmailController.class, QuestaoObjetivaController.class, QuestaoSubjetivaController.class })
+		EmailController.class, QuestaoController.class })
 @Configuration
 public class SwaggerConfig {
 
 	private static final String SWAGGER_API_VERSION = "1.0";
 	private static final String LICENSE_TEXT = "License";
-	private static final String title = "Ambiente de Estudo ao Pensamento Computacional REST API";
-	private static final String description = "RESTful API para AEPC";
+	private static final String title = "Ambiente de Estudo sobre o Pensamento Computacional REST API";
+	private static final String description = "RESTful API para ComPensar";
 
 	private ApiInfo apiInfo() {
 		return new ApiInfoBuilder().title(title).description(description).license(LICENSE_TEXT)

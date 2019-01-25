@@ -1,0 +1,65 @@
+<div class="page-header">
+    
+        <div class="container" id=headbox>
+            <h3>MEUS DADOS</h3>
+            <hr>
+        </div>
+    
+        <div class="container" id="data" ng-controller="MeusDadosController">
+    
+            <form name="myDataForm" ng-submit="updateUser()">
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">Email:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder={{user_email}} readonly>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticName" class="col-sm-2 col-form-label">Nome:</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
+    
+                    </div>
+                </div>
+
+                <div class="form-group row" >
+                    <label for="inputText" class="col-sm-2 col-form-label">Idade:</label>
+                    <div class="col-sm-10">
+                        <input name="idade" type="number" class="form-control"  ng-model="idade_usuario">
+                    </div>
+                </div>
+
+                <div class="form-group row"  >
+                    <label for="inputText" class="col-sm-2 col-form-label">Cargo:</label>
+                    <div class="col-sm-10">
+                        <input name="cargo" type="text" class="form-control"  ng-model="cargo_usuario">
+                    </div>
+                </div>
+
+
+                <div class="form-group row"  >
+                    <label for="inputText" class="col-sm-2 col-form-label">Cidade:</label>
+                    <div class="col-sm-10">
+                        <input name="cidade" type="text" class="form-control"  ng-model="cidade_usuario">
+                    </div>
+                </div>
+
+                <div class="form-group row"  >
+                        <label for="inputText" class="col-sm-2 col-form-label">Instituicao:</label>
+                        <div class="col-sm-10">
+                            <input name="instituicao" type="text" class="form-control"  ng-model="instituicao_usuario">
+                        </div>
+                </div>
+    
+                <div class="form-group">
+                  
+                        <button type="submit" class="btn btn-primary" >Atualizar</button>
+                  
+                </div>
+    
+            </form>
+    
+        </div>
+    
+    
+    </div>

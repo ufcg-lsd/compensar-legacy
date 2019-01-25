@@ -13,13 +13,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link href="styles/home.css" rel="stylesheet" type="text/css">
     <link href="styles/contato.css" rel="stylesheet" type="text/css">
     <link href="styles/login.css" rel="stylesheet" type="text/css">
-    <link href="styles/userdata.css" rel="stylesheet" type="text/css">
+    <link href="styles/meusdados.css" rel="stylesheet" type="text/css">
     <link href="styles/questoes.css" rel="stylesheet" type="text/css">
-
-    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link href="https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css" rel="stylesheet">
 
@@ -30,24 +27,18 @@
 
     <!-- Katex-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha256-BZ71u1P7NUocEN9mKkcAovn3q5JPm/r9xVyjWh/Kqrc=" crossorigin="anonymous" />
-
-
-
-
 </head>
+
 
 
 <body  class = "text-center">
 
-
-
 <!-- Aplicação -->
 
  <!-- ========================  NavBar  ============================================== -->
-
  <div ng-switch = "isLogged">
     <div ng-switch-when="false">
-                
+      
         <nav   class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,23 +55,22 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="10px"></a>
             <div    class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
-                <div id="myctrl"  ng-controller="LoginController"></div>
-            <script>  
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();             
-                angular.element(document.getElementById('myctrl')).scope().login('$rootScope',profile);
+                    <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
+                    <div id="myctrl"  ng-controller="LoginController"></div>
+                <script>  
+                function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();             
+                    angular.element(document.getElementById('myctrl')).scope().login('$rootScope',profile);
                 }
-            </script>
-               
-        </div>
+                </script>
+            </div>
         </div>
             
         </div>
         </nav>
-
     </div>
     <div ng-switch-when = "true">
+
         <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
  
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -101,7 +91,7 @@
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                  <h6 class="dropdown-header">{{nome_usuario}}</h6>
-                 <a class="dropdown-item" href ="/userdata">Meus Dados</a>
+                 <a class="dropdown-item" href ="/meusdados">Meus Dados</a>
                  <div class="dropdown-divider"></div>
                  <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
                  <div id="myctrl2" ng-controller="LoginController"></div>
@@ -162,9 +152,9 @@
 
 <!--Controllers-->
 <script src="app/controllers/MainController.js"></script>
-<script src="app/controllers/HeadController.js"></script>
+<script src="app/controllers/ListaQuestoesController.js"></script>
 <script src="app/controllers/LoginController.js"></script>
-<script src="app/controllers/UserDataController.js"> </script>
+<script src="app/controllers/MeusDadosController.js"> </script>
 <script src="app/controllers/SignUpController.js"> </script>
 <script src="app/controllers/ContatoController.js"></script>
 <script src="app/controllers/AddQuestaoController.js"></script>
@@ -172,21 +162,16 @@
 
 
 <!--Plugins-->
-<script src="app/bower_components/angularjs-social-login/angularjs-social-login.js"></script>
 <script src="app/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
-    <!--  Quill Editor  -->
-    <script type="text/javascript" src="https://cdn.quilljs.com/1.2.0/quill.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-quill/2.2.1/ng-quill.min.js"></script>
+<!--  Quill Editor  -->
+<script type="text/javascript" src="https://cdn.quilljs.com/1.2.0/quill.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-quill/2.2.1/ng-quill.min.js"></script>
 
- 
-    <!-- Katex-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha256-q01RVaHUJiYq9aq0FwkI6GAmMtOmRgToK8aEHHm4Xl8=" crossorigin="anonymous"></script>
-
-
-
+<!-- Katex-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha256-q01RVaHUJiYq9aq0FwkI6GAmMtOmRgToK8aEHHm4Xl8=" crossorigin="anonymous"></script>
 
 </body>
 </html>

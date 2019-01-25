@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','socialLogin','ngSanitize']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -22,11 +22,11 @@ app.config(function($routeProvider, $locationProvider) {
         requireNotRegistered: true
     })	
 
-    .when('/userdata', {
-        templateUrl: '/app/views/UserData.html',
-        controller: 'UserDataController',
+    .when('/meusdados', {
+        templateUrl: '/app/views/MeusDados.html',
+        controller: 'MeusDadosController',
         requireAuth: true,
-        requireNotRegistered:true
+        requireRegistered:true
       
     })
 

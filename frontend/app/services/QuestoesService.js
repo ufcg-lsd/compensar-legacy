@@ -3,47 +3,34 @@ angular.module('app')
    const service = {};
    deferred = $q.defer();
 
-   service.getQuestoesSubj = function () {
-
-     $http.get('http://localhost:5458/api/questaoSubj').
-       then(function (response) {
-         $rootScope.QuestoesSubj = response.data;
-         deferred.resolve(response.data);
-       }, function (response) {
-         deferred.resolve([]);
-       });
-
-     return deferred.promise;
-   }
-
-   service.getQuestoesObj = function () {
-
-    $http.get('http://localhost:5458/api/questaoObj').
+   service.getQuestoes = function () {
+      $http.get('http://localhost:5458/api/questao').
       then(function (response) {
-        $rootScope.QuestoesObj = response.data;
+        $rootScope.QuestoesSubj = response.data;
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
       });
 
     return deferred.promise;
+   }
+  
+  service.removeQuestao = function (questao) {
+
+        $http.delete('http://localhost:5458/api/questao/' + questao.id).
+          then(function (response) {
+            if (response.status == 200) {
+              $location.path("/questoes");
+              $window.alert("Questão Removida com Sucesso!");        
+            }
+
+          }, function () {
+            
+            $window.alert("Falha ao Remover Questão!");
+          }).catch(function (response) { deferred.resolve([]); });
   }
 
-  
-  service.removeQuestaoSubj = function (questaoSubj) {
 
-    $http.delete('http://localhost:5458/api/questaoSubj/' + questaoSubj.id).
-      then(function (response) {
-        if (response.status == 200) {
-          $window.alert("Questão Removida com Sucesso!");
-          $location.path("/questoes");
-    
-        }
 
-      }, function () {
-        
-        $window.alert("Falha ao Remover Questão!");
-      }).catch(function (response) { deferred.resolve([]); });
-    }
     return service;
   });

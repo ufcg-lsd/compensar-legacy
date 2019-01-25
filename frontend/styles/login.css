@@ -221,11 +221,17 @@ font-size: 64px;
 
 
 #cadastro {
-  height: auto;
   background-image: url("../images/city.jpg")!important;
   
   padding:110px 90px 100px !important;
   color: rgb(90, 90, 90);
+
+      /* parallax scrolling effect */
+      background-attachment: fixed;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+
   }
   
   #cadastro h6{

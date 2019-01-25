@@ -1,14 +1,15 @@
 angular.module('app')
-    .controller('QuestoesController', function ($rootScope, $scope, QuestoesService,$sce) {
+    .controller('QuestoesController', function ($rootScope, $scope, QuestoesService,$sce,$location) {
+
+
+        $rootScope.activetab = $location.path();
 
         $scope.search = "";
-        $rootScope.QuestoesSubj = [];
-        $rootScope.QuestoesObj = [];
+        $rootScope.Questoes = [];
         $scope.enunciado = "";
         $scope.espelho = "";
 
         
-
         $scope.updateViewQuill = function(text,tipo) {
             if (tipo === "enunciado") {
                 $scope.enunciado = $sce.trustAsHtml(text);
@@ -16,18 +17,6 @@ angular.module('app')
                 $scope.espelho = $sce.trustAsHtml(text);
             }
         };
-
- 
-        QuestoesService.getQuestoesSubj().then(function (value) {
-            $rootScope.QuestoesSubj = value;
-        });
-
-        QuestoesService.getQuestoesObj().then(function (value) {
-            $rootScope.QuestoesObj = value;
-        });
-
-        //fzr p questão objetiva --> da merge nos arrays --> embaralhar elementos
-        //fzr array para minhas questões
 
         
         $scope.isObjective = function (tipo) {
@@ -38,13 +27,22 @@ angular.module('app')
             return autor === $rootScope.nome_usuario;
         }
 
+        $scope.tuplaAlternativa = function (alternativa) {
+            const correta = alternativa.split(":");
+            const texto = correta[1].split(",");
+            const textoCorreta = [texto[0],correta[2]];
 
-        $scope.removeQuestaoSubj = function (questaoSubj) {
-           QuestoesService.removeQuestaoSubj(questaoSubj);
-           var  index = $rootScope.QuestoesSubj.indexOf(questaoSubj);
-           $rootScope.QuestoesSubj.splice(index,1);
+            return textoCorreta;  
         }
 
+
+        $scope.removeQuestao = function (questao,tipo) {   
+           QuestoesService.removeQuestao(questao,tipo);
+        }
+
+        QuestoesService.getQuestoes().then(function (value) {
+            $rootScope.Questoes = value;
+        });
 
     
     });

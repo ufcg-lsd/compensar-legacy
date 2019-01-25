@@ -1,12 +1,11 @@
 package springboot.model;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Lob;
 import javax.validation.constraints.NotNull;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -17,26 +16,23 @@ import org.springframework.data.annotation.Id;
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
 
-
-
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import springboot.enums.CompetenciaType;
 
+@Document(collection = "questao")
 public class Questao {
 
-    @Id
-    @JsonProperty
-	@TextIndexed 
-    private String id;
+	@Id
+	@JsonProperty
+	@TextIndexed
+	private String id;
 
 	@NotNull
-	@TextIndexed 
+	@TextIndexed
 	private String tipo;
 
 	@NotNull
@@ -48,42 +44,43 @@ public class Questao {
 
 	@TextIndexed
 	private String autor;
-	
+
+	@TextIndexed
+	private String espelho;
+
+	@NotNull
+	@TextIndexed
+	private List<Alternativa> alternativas;
+
 	@TextIndexed
 	private Set<CompetenciaType> competencias;
-
 
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
 	 *
-	 * @param tipo
-	 *            O tipo da questão.
-	 * @param enunciado
-	 *            O enunciado da questão.
-	 * @param fonte 
-	 * 			  A fonte da questão.
-	 * @param autor 
-	 * 			  O autor da questão.
-	 * @param imagem 
-	 * 			  A imagem da questão.          
-	 *         
+	 * @param tipo      O tipo da questão.
+	 * @param enunciado O enunciado da questão.
+	 * @param fonte     A fonte da questão.
+	 * @param autor     O autor da questão.
+	 * @param imagem    A imagem da questão.
+	 * 
 	 * 
 	 */
-	public Questao(String tipo, String enunciado, String fonte, String autor, Set<CompetenciaType> competencias) {
+	public Questao(String tipo, String enunciado, String fonte, String autor, String espelho,
+			List<Alternativa> alternativas) {
 
 		this.tipo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
+		this.espelho = espelho;
+		this.alternativas = alternativas;
 		this.competencias = new HashSet<CompetenciaType>();
 	}
 
 	public Questao() {
 
 	}
-
-
-
 
 	public String getId() {
 		return id;
@@ -94,19 +91,18 @@ public class Questao {
 	}
 
 	/**
-	 * Recupera o tipo da questão.     
+	 * Recupera o tipo da questão.
 	 *
-	 * @return O tipo da questão.     
+	 * @return O tipo da questão.
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo
-	 *            O tipo da questão.        
+	 * @param tipo O tipo da questão.
 	 *
-	 *            Atualiza o tipo da questão.        
+	 *             Atualiza o tipo da questão.
 	 *
 	 */
 	public void setTipo(String tipo) {
@@ -114,19 +110,18 @@ public class Questao {
 	}
 
 	/**
-	 * Recupera o enunciado da questão.     
+	 * Recupera o enunciado da questão.
 	 *
-	 * @return O enunciado da questão.     
+	 * @return O enunciado da questão.
 	 */
 	public String getEnunciado() {
 		return enunciado;
 	}
 
 	/**
-	 * @param enunciado
-	 *            O enunciado da questão.        
+	 * @param enunciado O enunciado da questão.
 	 *
-	 *            Atualiza o enunciado da questão.        
+	 *                  Atualiza o enunciado da questão.
 	 *
 	 */
 	public void setEnunciado(String enunciado) {
@@ -134,19 +129,18 @@ public class Questao {
 	}
 
 	/**
-	 * Recupera a fonte da questão.     
+	 * Recupera a fonte da questão.
 	 *
-	 * @return A fonte da questão.     
+	 * @return A fonte da questão.
 	 */
 	public String getFonte() {
 		return fonte;
 	}
 
 	/**
-	 * @param fonte
-	 *            A fonte da questão.        
+	 * @param fonte A fonte da questão.
 	 *
-	 *            Atualiza a fonte da questão.        
+	 *              Atualiza a fonte da questão.
 	 *
 	 */
 	public void setFonte(String fonte) {
@@ -154,23 +148,38 @@ public class Questao {
 	}
 
 	/**
-	 * Recupera o autor da questão.     
+	 * Recupera o autor da questão.
 	 *
-	 * @return O autor da questão.     
+	 * @return O autor da questão.
 	 */
 	public String getAutor() {
 		return autor;
 	}
 
 	/**
-	 * @param autor
-	 *            O autor da questão.        
+	 * @param autor O autor da questão.
 	 *
-	 *            Atualiza o autor da questão.        
+	 *              Atualiza o autor da questão.
 	 *
 	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
+	}
+
+	public String getEspelho() {
+		return espelho;
+	}
+
+	public void setEspelho(String espelho) {
+		this.espelho = espelho;
+	}
+
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
+	}
+
+	public void setAlternativas(List<Alternativa> alternativas) {
+		this.alternativas = alternativas;
 	}
 
 	public Set<CompetenciaType> getCompetencias() {
@@ -180,8 +189,5 @@ public class Questao {
 	public void setCompetencias(Set<CompetenciaType> competencias) {
 		this.competencias = competencias;
 	}
-	
-	
-	
 
 }

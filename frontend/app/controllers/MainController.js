@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope,localStorageService,$scope, $http, $location, AuthService,UserService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService,UserService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -33,7 +33,7 @@ angular.module('app')
                             }
                             else if (newUrl.requireRegistered && !UserService.isRegistered()) {
                                 $location.path("/signup");
-                            } 
+                            }
 
                         }
                     );

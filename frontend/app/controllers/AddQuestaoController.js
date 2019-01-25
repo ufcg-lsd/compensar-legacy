@@ -2,6 +2,7 @@ angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$scope,$http,UserService)
     {
 
+        // Ativadores das opções de edição no Quill Editor
         $scope.editorModules = {
             formula: true, 
             toolbar: [
@@ -51,7 +52,7 @@ angular.module('app')
                 tipo: $scope.tipo
             };
 
-            $http.post('http://localhost:5458/api/questaoSubj', questaoSubj).
+            $http.post('http://localhost:5458/api/questao', questaoSubj).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
@@ -110,7 +111,7 @@ angular.module('app')
 
 
 
-            $http.post('http://localhost:5458/api/questaoObj', questaoObj).
+            $http.post('http://localhost:5458/api/questao', questaoObj).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
