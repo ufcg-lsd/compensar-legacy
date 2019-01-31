@@ -1,13 +1,16 @@
 package springboot.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springboot.enums.CompetenciaType;
 import springboot.exception.RegisterNotFoundException;
 import springboot.model.Questao;
 import springboot.repository.QuestaoRepository;
@@ -26,6 +29,8 @@ public class QuestaoService {
 	private ArrayList<String> arrayOperadores = new ArrayList<String>();
 	private ArrayList<String> arrayQuery = new ArrayList<String>();
 	private ArrayList<Object> parametros = new ArrayList<Object>();
+	
+	private Set<CompetenciaType> competencias = new HashSet<>();
 
 
 
@@ -34,8 +39,11 @@ public class QuestaoService {
 	private QuestaoRepository questaoRepository;
 
 	public Questao save(Questao questao) {
-
+		
 		// Aqui chama o classificador e atualiza o objeto questao
+		questao.setCompetencias(getSetCompetencias());
+		
+		competencias.clear();
 
 		questaoRepository.save(questao);
 		return questao;
@@ -157,6 +165,31 @@ public class QuestaoService {
 	
 	}	
 	
+	private Set<CompetenciaType> getSetCompetencias() {
+		
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+        for (int i=1; i<10; i++) {
+        	nums.add(new Integer(i));
+        }
+        
+        Collections.shuffle(nums);
+        for (int i=0; i<9; i++) {
+        	competencias.add(getCompetencia(nums.get(i)));
+        }
+        
+        return competencias;
+	}
+	
+	
+	private CompetenciaType getCompetencia(int chave) {
+		CompetenciaType valor = null;
+		  for(CompetenciaType competencia: CompetenciaType.values()) {
+		    if(competencia.value == chave) {
+		      valor = competencia;
+		    }
+		  }
+		  return valor;
+	}
 	
 	private boolean isNull(Object parametro) {
 		return parametro.equals("null");

@@ -43,7 +43,6 @@ public class Questao {
 
 	private String espelho;
 
-	@NotNull
 	private List<Alternativa> alternativas;
 
 	private Set<CompetenciaType> competencias;
