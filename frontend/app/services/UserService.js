@@ -6,12 +6,13 @@ angular.module('app')
     service.isRegistered = function () {
       $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
         then(function (response) {
-          $rootScope.registered = response.status == 200;
-        }, function () { 
-          $rootScope.registered = false; 
-        })
+          deferred.resolve(response.status == 200);
+        },function(response){
+          deferred.resolve(response.status == 200);
+   
+        }).catch(function(response){deferred.resolve(response.status == 200);});
 
-        return $rootScope.registered;
+        return deferred.promise;
     }
 
     service.getEmail = function () {

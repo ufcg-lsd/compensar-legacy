@@ -6,13 +6,17 @@ angular.module('app')
         $scope.cargo = "";
         $scope.cidade = "";
 
-  
-            if(UserService.isRegistered()) {
+        UserService.isRegistered().then(function (value) {
+            this.isRegistered = value;
+            console.log(value);
+        }).then( function(){   
+            if(this.isRegistered) {
                 $location.path('/questoes')
             } else {
                 $location.path('/signup')
             }
-     
+            });
+
 
         $scope.sendSignUp = function () {
             usuario = {

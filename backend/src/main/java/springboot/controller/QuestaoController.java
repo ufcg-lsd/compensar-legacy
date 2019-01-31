@@ -1,7 +1,5 @@
 package springboot.controller;
 
-import java.util.HashSet;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -57,34 +55,9 @@ public class QuestaoController {
 		return new ResponseEntity<Questao>(updatedQuestao, HttpStatus.OK);
 	}
 
-	@ApiOperation("Fornece um array de objetos do tipo questão registrados.\r\n" + "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao", method = RequestMethod.GET)
-	public List<Questao> getAll() {
-		return questaoService.getAll();
-	}
 
-	@ApiOperation("Fornece os dados de uma questão em particular. O objeto contém: tipo, enunciado, fonte, autor, imagem, competencias e espelho.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/{id}", method = RequestMethod.GET)
-	public Questao getById(@PathVariable("id") String id) {
-		return questaoService.getById(id);
-	}
 
-	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado\r\n" + "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/search/{enunciado}", method = RequestMethod.GET)
-	public List<Questao> getByEnunciado(@PathVariable("enunciado") String enunciado) {
-		return questaoService.getByEnunciado(enunciado);
-	}
-
-	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado e com competências\r\n" + "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/search/{enunciado}/{competencias}", method = RequestMethod.GET)
-	public List<Questao> getByEnunciadoCompetencias(@PathVariable("enunciado") String enunciado,
-			@PathVariable("competencias") HashSet<String> competencias) {
-		return questaoService.getByEnunciadoCompetencias(enunciado, competencias);
-	}
+	
+	
 
 }

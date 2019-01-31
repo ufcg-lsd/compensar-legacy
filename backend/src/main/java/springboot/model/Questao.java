@@ -28,31 +28,24 @@ public class Questao {
 
 	@Id
 	@JsonProperty
-	@TextIndexed
 	private String id;
 
 	@NotNull
-	@TextIndexed
 	private String tipo;
 
 	@NotNull
 	@TextIndexed
 	private String enunciado;
 
-	@TextIndexed
 	private String fonte;
 
-	@TextIndexed
 	private String autor;
 
-	@TextIndexed
 	private String espelho;
 
 	@NotNull
-	@TextIndexed
 	private List<Alternativa> alternativas;
 
-	@TextIndexed
 	private Set<CompetenciaType> competencias;
 
 	/**

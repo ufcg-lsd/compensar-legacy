@@ -1,5 +1,6 @@
 package springboot.service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +14,21 @@ import springboot.repository.QuestaoRepository;
 
 @Service
 public class QuestaoService {
-
+	
+	
 	private final String errorMessage = "A questão subjetiva não está cadastrada.";
+	public static final int ENUNCIADO = 0;
+	public static final int COMPETENCIA = 1;
+
+
+	
+	private ArrayList<String> arrayParametros = new ArrayList<String>();
+	private ArrayList<String> arrayOperadores = new ArrayList<String>();
+	private ArrayList<String> arrayQuery = new ArrayList<String>();
+	private ArrayList<Object> parametros = new ArrayList<Object>();
+
+
+
 
 	@Autowired
 	private QuestaoRepository questaoRepository;
@@ -76,13 +90,81 @@ public class QuestaoService {
 
 		return optQuestao.get();
 	}
-
-	public List<Questao> getByEnunciadoCompetencias(String enunciado, HashSet<String> competencias) {
-		return questaoRepository.getByEnunciadoCompetencias(enunciado, competencias);
+	
+	
+	private void iniciaColecoes() {
+		arrayParametros.add("{$text: {$search:");
+		arrayParametros.add("{competencias:  {$all:");
+		arrayParametros.add("{autor:");
+		arrayParametros.add("{fonte:");
+		arrayParametros.add("{tipo:");
+		
+		arrayOperadores.add("{'$or':[");
+		arrayOperadores.add("{'$and':[");
+		arrayOperadores.add("{score: {$meta: \\\"textScore\\\"}}.sort({score:{$meta:\\\"textScore\\\"}})");
 	}
 
-	public List<Questao> getByEnunciado(String enunciado) {
-		return questaoRepository.getByEnunciado(enunciado);
+	
+
+	public List<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias, String autor,
+			String fonte, String tipo) {
+					
+		iniciaColecoes();
+				
+		parametros.add(enunciado);
+		if (competencias.contains("null")) parametros.add("null");
+		else parametros.add(competencias);
+		parametros.add(autor);
+		parametros.add(fonte);
+		parametros.add(tipo);
+		
+		boolean textIndex = false;
+		
+		if (!isNull(enunciado)) textIndex = true;
+		
+		// inicio da query com o operador lógico AND
+		String query = arrayOperadores.get(1);
+		
+		for (int i = 0; i < parametros.size(); i++) {
+			if (!isNull(parametros.get(i))) {
+					if (i == ENUNCIADO) {
+						//Precisa de duas chaves de fechamento e aspas
+						arrayQuery.add(arrayParametros.get(i) +" '"+ parametros.get(i) + "'}}");
+					} else if (i == COMPETENCIA) {
+						//Precisa de duas chaves de fechamento e sem aspas
+						arrayQuery.add(arrayParametros.get(i) + parametros.get(i) + "}}");
+					} else {
+						//Precisa de uma chave de fechamento e aspas
+						arrayQuery.add(arrayParametros.get(i) +" '"+ parametros.get(i) + "'}");
+					}
+			}
+		}
+		
+		query += String.join(",",arrayQuery);
+		
+		// fechamento do operador lógico AND
+		query += "]}";
+		
+		// adição do rankeamento baseado no score
+		if (textIndex) query += "," + arrayOperadores.get(2);
+		
+		System.out.println(query);
+		parametros.clear();
+		arrayQuery.clear();
+		
+		return questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query);
+	
+	
+	}	
+	
+	
+	private boolean isNull(Object parametro) {
+		return parametro.equals("null");
 	}
+	
+
+	
+
+	
 
 }
