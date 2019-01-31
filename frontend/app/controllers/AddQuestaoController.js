@@ -103,7 +103,6 @@ angular.module('app')
                 ],
                 autor:  UserService.getName(),
                 enunciado: $scope.enunciado,
-                espelho: $scope.espelho,
                 fonte: $scope.fonte,
                 imagem: $scope.imagem,
                 tipo: $scope.tipo

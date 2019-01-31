@@ -65,6 +65,14 @@ html {
     padding:0px 0px 0px !important;
    }
 
+  .nav-item .dropdown #naav {
+     margin-inline-end: 5%;
+   }
+
+   .dropdown-menu{
+     float:right;
+   }
+
 
   
 
