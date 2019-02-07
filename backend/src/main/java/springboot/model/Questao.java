@@ -42,6 +42,8 @@ public class Questao {
 	private String autor;
 
 	private String espelho;
+	
+	private String conteudo;
 
 	private List<Alternativa> alternativas;
 
@@ -58,10 +60,11 @@ public class Questao {
 	 * 
 	 * 
 	 */
-	public Questao(String tipo, String enunciado, String fonte, String autor, String espelho,
+	public Questao(String tipo, String conteudo, String enunciado, String fonte, String autor, String espelho,
 			List<Alternativa> alternativas) {
 
 		this.tipo = tipo;
+		this.conteudo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
@@ -99,6 +102,16 @@ public class Questao {
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
+	}
+	
+	
+
+	public String getConteudo() {
+		return conteudo;
+	}
+
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
 	}
 
 	/**

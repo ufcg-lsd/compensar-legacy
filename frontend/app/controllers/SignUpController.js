@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('SignUpController', function ($scope, $location, UserService, $http,$q) {
+    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q) {
         deferred = $q.defer();
 
         $scope.nomeInstituicao = "";
@@ -16,6 +16,32 @@ angular.module('app')
                 $location.path('/signup')
             }
             });
+
+  
+
+                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+                  then(function (response) {
+                    $rootScope.registered = response.status == 200;
+                  }, function () { 
+                    $rootScope.registered = false; 
+                  })
+            
+                  .then(
+                    function () {
+                      if ($rootScope.registered) {
+                        $location.path("/questoes");
+                        $window.location.href = '/questoes';
+            
+                      } 
+                      else {
+                        $location.path("/signup");
+                        $window.location.href = '/signup';
+            
+                      }
+                    }
+                  );
+            
+        
 
 
         $scope.sendSignUp = function () {

@@ -37,7 +37,9 @@ angular.module('app')
         $scope.changeDetected = false;
 
 
-        $scope.isObjective = function(){ return $scope.tipo === "Objetiva"};
+        $scope.isObjective = function(){ 
+            console.log($scope.tipo);
+            return $scope.tipo === "Objetiva"};
 
         $scope.resposta = {}
 
@@ -132,6 +134,10 @@ angular.module('app')
         $scope.contentChanged = function (editor, html, text) {
             $scope.changeDetected = true;
         };
+
+        $scope.getEspelho = function (espelho) {
+            return espelho === "Sim";
+        }
 
 
         

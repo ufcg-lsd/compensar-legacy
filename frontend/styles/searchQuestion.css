@@ -1,0 +1,72 @@
+#search-menu {
+    float:left;
+    margin-inline-start: 3%;
+
+    padding:15px 15px 30px ;
+  }
+
+#outros-tipos button {
+  margin-block-start: 4%;
+}
+
+#search-menu h3 {
+  margin-inline-start: 2%;
+}
+
+#cabecalho{
+  margin-inline-end: 63%;
+}
+
+#cabecalho-competencia{
+  margin-block-start: 2%;
+  margin-inline-end: 61%;
+
+}
+
+#cabecalho-enunciado{
+  width: 60%;
+}
+
+
+#competencias{
+  margin-block-start: 2%;
+  margin-inline-start: 1%;
+}
+
+
+.column {
+  flex: 5%;
+  max-width: 12%;
+  padding: 0 3px;
+}
+
+
+#competencias img {
+  width: 100px;
+  height: auto;
+
+}
+
+#competencias button{
+  background-color: #ffffff;
+}
+
+  
+  #lupa-icon{
+    font-size: 20px;
+  
+  }
+
+  #outros-tipos{
+    margin-block-start: 2%;
+    width: 60%;
+  }
+
+
+
+
+/* ======================================= Botão competências/autor/fonte/tipo ====================== */
+
+
+
+

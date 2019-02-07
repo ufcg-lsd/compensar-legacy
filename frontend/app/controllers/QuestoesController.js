@@ -9,7 +9,29 @@ angular.module('app')
         $scope.enunciado = "";
         $scope.espelho = "";
 
-        
+        $scope.enunciadoSearch = "";
+        $scope.fonteSearch = "";
+        $scope.tipoSearch = "";
+        $scope.autorSearch = ""
+        $scope.competencias = [];
+
+
+        $scope.sendQuery() = function () {
+
+            query = {
+                enunciado:  $scope.enunciadoSearch,
+                competencias: $scope.competencias,
+                autor: $scope.autor,
+                fonte: $scope.fonte,
+                tipo: $scope.tipo
+            }
+
+            return QuestoesService.sendQuery(query);
+        }
+
+
+
+
         $scope.updateViewQuill = function(text,tipo) {
             if (tipo === "enunciado") {
                 $scope.enunciado = $sce.trustAsHtml(text);
@@ -25,6 +47,10 @@ angular.module('app')
 
         $scope.isAutor = function (autor) {
             return autor === $rootScope.nome_usuario;
+        }
+
+        $scope.isNull = function(atributo) {
+            return atributo === null;
         }
 
         $scope.tuplaAlternativa = function (alternativa) {

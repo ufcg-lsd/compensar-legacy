@@ -6,7 +6,7 @@ angular.module('app')
    service.getQuestoes = function () {
       $http.get('http://localhost:5458/api/questao').
       then(function (response) {
-        $rootScope.QuestoesSubj = response.data;
+        $rootScope.Questoes = response.data;
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
@@ -14,6 +14,11 @@ angular.module('app')
 
     return deferred.promise;
    }
+
+
+
+
+
   
   service.removeQuestao = function (questao) {
 

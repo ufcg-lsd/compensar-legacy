@@ -5,7 +5,7 @@
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #b2c7ca;
+  background-color: #cad5da;
   outline: none;
 }
 
@@ -15,7 +15,7 @@ input[type=number], input[type=password] {
 }
 
 input[type=number]:focus, input[type=password]:focus {
-  background-color: #b2c7ca;
+  background-color: #f3f6f7;
   outline: none;
 }
 
@@ -35,16 +35,16 @@ button {
 }
 
 #questoes{
-  margin-block-start: 3%;
+  margin-inline-start: 45%;
 }
 
 
 .questoes{
-  margin: 10px 0 10px 0;
+  margin: 5px 0 5px 0;
   border: 1px solid #aaa;
-  background: rgb(204, 255, 242);
+  background: rgb(233, 242, 243);
   border-radius: 8px;
-  width: 100%;
+  width: 60%;
   padding:15px 15px 100px ;
 }
 button:hover {
@@ -62,13 +62,10 @@ button:hover {
 }
 
 .fonte, .tipo, .enunciado, .espelho{
+  margin-inline-end: 20%;
   color: #088;
 }
 
-
-#opcoesEspecificas{
-  margin-block-start: 8%;
-}
 
 #addEspelho {
   margin-block-start: 1%;
@@ -83,13 +80,47 @@ button:hover {
   height: 250px;
 }
 
-#question-bt {
-  margin-block-start: 6%;
+#bt-subjetiva {
+  margin-block-start: 8%;
 }
 
+.conteudoAdd{
+  margin-block-start: 8%;
+}
+
+
+/* Style buttons */
+.buttonload {
+  width: 10%;
+  background-color: rgb(10, 124, 255); /* Green background */
+  border: none; /* Remove borders */
+  border-radius: 8px;
+  color: white; /* White text */
+  padding: 12px 16px; /* Some padding */
+  font-size: 16px; /* Set a font size */
+  margin-inline-start: 10%;
+  margin-block-end: 90%;
+}
+
+
 @media screen and (max-width: 580px) {
+  .conteudoAdd{
+    margin-block-start: 40%;
+  }
+
+  #question-bt {
+    margin-block-start: 6%;
+  }
   #opcoesEspecificas{
-    margin-block-start: 45%;
+    margin-block-start: 5%;
+  }
+  #bt-subjetiva {
+    margin-block-start: 35%;
   }
 
 }
+
+
+
+
+
