@@ -13,10 +13,22 @@ angular.module('app')
       });
 
     return deferred.promise;
-   }
+   },
 
 
+   service.sendQuery = function (query) {
+    $http.get('http://localhost:5458/api/questao/search/'+ query.enunciado + '/' + query.competencias 
+    + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo).
+      then(function (response) {
+        $rootScope.Questoes = response.data;
+        console.log($rootScope.Questoes);
+        deferred.resolve(response.data);
+      }, function (response) {
+        deferred.resolve([]);
+      });
 
+    return deferred.promise;
+   },
 
 
   

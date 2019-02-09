@@ -31,8 +31,8 @@ angular.module('app')
       .then(
         function () {
           if ($rootScope.registered) {
-            $location.path("/questoes");
-            $window.location.href = '/questoes';
+            $location.path("/buscas");
+            $window.location.href = '/buscas';
 
           } 
           else {

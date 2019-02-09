@@ -17,35 +17,25 @@ import springboot.repository.QuestaoRepository;
 
 @Service
 public class QuestaoService {
-	
-	
+
 	private final String errorMessage = "A questão subjetiva não está cadastrada.";
 	public static final int ENUNCIADO = 0;
 	public static final int COMPETENCIA = 1;
 
-
-	
 	private ArrayList<String> arrayParametros = new ArrayList<String>();
 	private ArrayList<String> arrayOperadores = new ArrayList<String>();
 	private ArrayList<String> arrayQuery = new ArrayList<String>();
 	private ArrayList<Object> parametros = new ArrayList<Object>();
-	
-	private Set<CompetenciaType> competencias = new HashSet<>();
-
-
-
 
 	@Autowired
 	private QuestaoRepository questaoRepository;
 
 	public Questao save(Questao questao) {
-		
 		// Aqui chama o classificador e atualiza o objeto questao
 		questao.setCompetencias(getSetCompetencias());
-		
-		competencias.clear();
 
 		questaoRepository.save(questao);
+
 		return questao;
 	}
 
@@ -98,106 +88,110 @@ public class QuestaoService {
 
 		return optQuestao.get();
 	}
-	
-	
+
 	private void iniciaColecoes() {
 		arrayParametros.add("{$text: {$search:");
 		arrayParametros.add("{competencias:  {$all:");
 		arrayParametros.add("{autor:");
 		arrayParametros.add("{fonte:");
 		arrayParametros.add("{tipo:");
-		
+		arrayParametros.add("{conteudo:");
+
+
 		arrayOperadores.add("{'$or':[");
 		arrayOperadores.add("{'$and':[");
 		arrayOperadores.add("{score: {$meta: \\\"textScore\\\"}}.sort({score:{$meta:\\\"textScore\\\"}})");
 	}
 
-	
+	public List<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
+			String autor, String fonte, String tipo, String conteudo) {
 
-	public List<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias, String autor,
-			String fonte, String tipo) {
-					
 		iniciaColecoes();
-				
+
 		parametros.add(enunciado);
-		if (competencias.contains("null")) parametros.add("null");
-		else parametros.add(competencias);
+		if (competencias.contains("null"))
+			parametros.add("null");
+		else
+			parametros.add(competencias);
 		parametros.add(autor);
 		parametros.add(fonte);
 		parametros.add(tipo);
-		
+		parametros.add(conteudo);
+
 		boolean textIndex = false;
-		
-		if (!isNull(enunciado)) textIndex = true;
-		
+
+		if (!isNull(enunciado))textIndex = true;
+
 		// inicio da query com o operador lógico AND
 		String query = arrayOperadores.get(1);
-		
+
 		for (int i = 0; i < parametros.size(); i++) {
 			if (!isNull(parametros.get(i))) {
-					if (i == ENUNCIADO) {
-						//Precisa de duas chaves de fechamento e aspas
-						arrayQuery.add(arrayParametros.get(i) +" '"+ parametros.get(i) + "'}}");
-					} else if (i == COMPETENCIA) {
-						//Precisa de duas chaves de fechamento e sem aspas
-						arrayQuery.add(arrayParametros.get(i) + parametros.get(i) + "}}");
-					} else {
-						//Precisa de uma chave de fechamento e aspas
-						arrayQuery.add(arrayParametros.get(i) +" '"+ parametros.get(i) + "'}");
-					}
+				if (i == ENUNCIADO) {
+					// Precisa de duas chaves de fechamento e aspas
+					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
+				} else if (i == COMPETENCIA) {
+					// Precisa de duas chaves de fechamento e sem aspas
+					arrayQuery.add(arrayParametros.get(i) + parametros.get(i) + "}}");
+				} else {
+					// Precisa de uma chave de fechamento e aspas
+					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}");
+				}
 			}
 		}
-		
-		query += String.join(",",arrayQuery);
-		
+
+		query += String.join(",", arrayQuery);
+
 		// fechamento do operador lógico AND
 		query += "]}";
-		
+
 		// adição do rankeamento baseado no score
 		if (textIndex) query += "," + arrayOperadores.get(2);
-		
+
 		System.out.println(query);
 		parametros.clear();
 		arrayQuery.clear();
-		
+
 		return questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query);
-	
-	
-	}	
-	
-	private Set<CompetenciaType> getSetCompetencias() {
-		
-		ArrayList<Integer> nums = new ArrayList<Integer>();
-        for (int i=1; i<10; i++) {
-        	nums.add(new Integer(i));
-        }
-        
-        Collections.shuffle(nums);
-        for (int i=0; i<9; i++) {
-        	competencias.add(getCompetencia(nums.get(i)));
-        }
-        
-        return competencias;
+
 	}
-	
-	
+
+	private Set<CompetenciaType> getSetCompetencias() {
+
+		Set<CompetenciaType> competencias = new HashSet<>();
+		Set<CompetenciaType> competenciasAleatorias = new HashSet<>();
+
+		ArrayList<Integer> nums = new ArrayList<Integer>();
+		for (int i = 1; i < 10; i++) {
+			nums.add(new Integer(i));
+		}
+
+		Collections.shuffle(nums);
+		for (int i = 0; i < 9; i++) {
+			competencias.add(getCompetencia(nums.get(i)));
+		}
+
+		competenciasAleatorias.clear();
+
+		competenciasAleatorias.addAll(competencias);
+
+		competencias.clear();
+
+		return competenciasAleatorias;
+	}
+
 	private CompetenciaType getCompetencia(int chave) {
 		CompetenciaType valor = null;
-		  for(CompetenciaType competencia: CompetenciaType.values()) {
-		    if(competencia.value == chave) {
-		      valor = competencia;
-		    }
-		  }
-		  return valor;
+		for (CompetenciaType competencia : CompetenciaType.values()) {
+			if (competencia.value == chave) {
+				valor = competencia;
+			}
+		}
+		return valor;
 	}
-	
+
 	private boolean isNull(Object parametro) {
 		return parametro.equals("null");
 	}
-	
-
-	
-
-	
 
 }

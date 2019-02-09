@@ -17,19 +17,19 @@
     <link href="styles/meusdados.css" rel="stylesheet" type="text/css">
     <link href="styles/questoes.css" rel="stylesheet" type="text/css">
     <link href="styles/searchQuestion.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
-   
-    <!-- Add icon library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!--  Quill Editor  -->
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.snow.css">
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.bubble.css">
 
     <!-- Katex-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha256-BZ71u1P7NUocEN9mKkcAovn3q5JPm/r9xVyjWh/Kqrc=" crossorigin="anonymous" />
+    
+    
 </head>
 
 
@@ -83,7 +83,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/questoes'}"><a class="nav-link" href="/questoes" >Questões</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Questões</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
@@ -134,16 +134,17 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
 
 
+
 <!-- Dependências do BootStrap -->   
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
-<script src="https://bootstrap-checkbox.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
 
 <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+
+
 
 
 
@@ -167,12 +168,14 @@
 <script src="app/controllers/ContatoController.js"></script>
 <script src="app/controllers/AddQuestaoController.js"></script>
 <script src="app/controllers/QuestoesController.js"></script>
-
+<script src="app/controllers/BuscasController.js"></script>
 
 <!--Plugins-->
+<script src='node_modules/checklist-model/checklist-model.js'></script>
 <script src="app/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
 
 <!--  Quill Editor  -->
 <script type="text/javascript" src="https://cdn.quilljs.com/1.2.0/quill.js"></script>

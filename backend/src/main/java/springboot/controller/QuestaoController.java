@@ -30,7 +30,7 @@ public class QuestaoController {
 	@Autowired
 	QuestaoService questaoService;
 
-	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, espelho ou alternativas.\r\n"
+	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao", method = RequestMethod.POST)

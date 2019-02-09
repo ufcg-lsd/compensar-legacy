@@ -11,7 +11,7 @@ angular.module('app')
             console.log(value);
         }).then( function(){   
             if(this.isRegistered) {
-                $location.path('/questoes')
+                $location.path('/buscas')
             } else {
                 $location.path('/signup')
             }
@@ -29,8 +29,8 @@ angular.module('app')
                   .then(
                     function () {
                       if ($rootScope.registered) {
-                        $location.path("/questoes");
-                        $window.location.href = '/questoes';
+                        $location.path("/buscas");
+                        $window.location.href = '/buscas';
             
                       } 
                       else {
@@ -59,7 +59,7 @@ angular.module('app')
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");
-                        $location.path("/questoes");
+                        $location.path("/buscas");
                     }
                     else {
                         window.alert("Falha no Cadastro");

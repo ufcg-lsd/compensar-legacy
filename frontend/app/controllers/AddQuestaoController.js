@@ -32,6 +32,7 @@ angular.module('app')
         $scope.enunciado = "";
         $scope.espelho = "";
         $scope.tipo = "";
+        $scope.conteudo = "";
 
         $scope.title = '';
         $scope.changeDetected = false;
@@ -47,6 +48,7 @@ angular.module('app')
 
             questaoSubj = {
                 autor:  UserService.getName(),
+                conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
@@ -104,6 +106,7 @@ angular.module('app')
                       }
                 ],
                 autor:  UserService.getName(),
+                conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 fonte: $scope.fonte,
                 imagem: $scope.imagem,
@@ -141,6 +144,9 @@ angular.module('app')
 
 
         
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker();
+        });
 
 
     });

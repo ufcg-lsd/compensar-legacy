@@ -1,70 +1,12 @@
 
 <div  class="page-header" ng-controller="QuestoesController">
 
-    <div class="container" id=headbox >
-        <h3>QUESTÕES</h3>
-        <hr>
-    </div>
-
-    <!-- ========================  Filtros  ============================================== -->
-
-    <div id= "search-menu">
-        <div  class="container"  id=headbox >
-            <div id="cabecalho">
-                <h3>Filtrar Questões</h3>
-                <hr>
-            </div>
-        </div>
-
-        <div id="cabecalho-enunciado" class="form-row">
-            <div class="col-sm-8">
-                <label for="inputText" ><h6>Enunciado</h6></label>
-                <input name="enunciadoSearch" type="text" class="form-control" placeholder="Digite o enunciado" ng-model="enunciadoSearch">
-            </div>
-        </div>
-        <div id="cabecalho-competencia"> <h6>Competências</h6></div>
-
-        <div id="competencias" class="row">             
-            <div  class="column">
-                <button  type="submit"><img title="Abstração" src="images/abstração-nolabel.png"></button>
-                <button  type="submit"><img title="Algoritmos" src="images/algoritmos-nolabel.png"></button>
-                <button  type="submit"><img title="Análise" src="images/analise-nolabel.png"></button>
-            </div>
-            <div  class="column">
-                <button  type="submit"><img title="automacao" src="images/automacao-nolabel.png"></button>
-                <button  type="submit"><img title="coleta" src="images/coleta-nolabel.png"></button>
-                <button  type="submit"><img title="decomposicao" src="images/decomposicao-nolabel.png"></button>
-            </div>
-            <div  class="column">
-                <button  type="submit"><img title="paralelizacao" src="images/paralelizacao-nolabel.png"></button>
-                <button  type="submit"><img title="representacao" src="images/representacao-nolabel.png"></button>
-                <button  type="submit"><img title="simulacao" src="images/simulacao-nolabel.png"></button>
-            </div>
- 
-        </div>
-
-            <div id="outros-tipos" class="form-row">
-                <div class="col-sm-8">
-                    <label for="inputText" ><h6>Autor</h6></label>
-                    <input name="fonteSearch" type="text" class="form-control" placeholder="Digite a fonte" ng-model="fonteSearch">
-                </div>
-                <div class="col-sm-8">
-                    <label for="inputText" ><h6>Tipo</h6></label>
-                    <input name="tipoSearch" type="text" class="form-control" placeholder="Digite o tipo" ng-model="tipoSearch">
-                </div>
-                <div class="col-sm-8">
-                    <label for="inputText" ><h6>Fonte</h6></label>
-                    <input name="autorSearch" type="text" class="form-control" placeholder="Digite o autor" ng-model="autorSearch">
-                </div>
-                <div class="col-sm-8">
-                    <button class="btn btn-primary" type="submit"><span><ion-icon id="lupa-icon" name="search"></button>
-                </div>
-            </div>
-    </div>
 
      <!-- ========================  Questões  ============================================== -->
         <div id = "questoes" class="container">
                 
+         <div ng-switch = "temQuestao()">
+            <div ng-switch-when="true">
             <div class= "questoes" ng-repeat="questao in Questoes | orderBy:'-' " >
                     <ul>      
                             <div class="enunciado" > <b>Enunciado:</b>  
@@ -78,6 +20,8 @@
                             <div class="fonte"><b>Fonte:</b > {{questao.fonte}}</div>
 
                             <div class="tipo"><b>Tipo:</b> {{questao.tipo}}</div>
+
+                            <div class="conteudo"><b>Conteudo:</b> {{questao.conteudo}}</div>
 
               
                     </ul>
@@ -107,8 +51,8 @@
 
                     <div class="autor"> <b>Competencias:</b> </div>
                     
-                   <!-- <div class="competencias" ng-repeat="competencia in questao.competencias">
-                         {{competencia}}</div> -->
+                    <div class="competencias" ng-repeat="competencia in questao.competencias">
+                         {{competencia}}</div> 
 
                     <div ng-switch = "isAutor(questao.autor)">
                         <div ng-switch-when="true">
@@ -117,8 +61,15 @@
                         </div>
                     </div>
             </div>
-        </div>
+            </div>
+            <div ng-switch-when="false"  class="container">
 
+                <h6>Não foi encontrado nenhum resultado contendo todos os termos de pesquisa.</h6>
+
+
+            </div>
+        </div>
+        </div>
 
 
 </div>

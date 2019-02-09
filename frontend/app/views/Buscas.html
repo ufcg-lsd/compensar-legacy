@@ -1,0 +1,143 @@
+<div  class="page-header" ng-controller="BuscasController">
+    <div class="container" id=headbox >
+        <h3> BUSCAR QUESTÕES</h3>
+        <hr>
+
+    <div  class="form-group row conteudoSearch ">
+        <label for="conteudoSearch" class="col-sm-2 col-form-label"><h6>Conteúdo:</h6></label>
+        <div id="conteudoSearch"  >
+            <select class="col-sm-10 selectpicker" data-none-selected-text= "Selecione um conteúdo" 
+            data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
+            data-live-search-normalize="true" data-size=6  ng-model="conteudoSearch">
+            <option >Qualquer Um</option>
+            <optgroup label="">
+                <option data-tokens="somar">Adição</option>
+                <option >Conjuntos</option>
+                <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
+                <option >Critérios de Divisibilidade</option>
+                <option>Divisão</option>
+                <option>Divisão de Frações</option>
+                <option>Equação do Primeiro Grau</option>
+                <option>Equação do Segundo Grau</option>
+                <option>Estatística</option>
+                <option>Expressões Numéricas</option>
+                <option>Frações</option>
+                <option data-tokens="Formas Geométricas">Geometria</option>
+                <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
+                <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
+                <option>Inequação</option>
+                <option>Juros Compostos</option>
+                <option>Juros Simples</option>
+                <option>Matrizes</option>
+                <option>MDC: Máximo Divisor Comum</option>
+                <option>MMC: Mínimo Múltiplo Comum</option>
+                <option>Multiplicação</option>
+                <option>Multiplicação de Frações</option>
+                <option>Números Decimais</option>
+                <option>Números Primos</option>
+                <option>Potenciação</option>
+                <option>PA: Progressão Aritmética</option>
+                <option>PG: Progressão Geométrica</option>
+                <option>Plano Cartesiano</option>
+                <option>Porcentagem</option>
+                <option>Produtos Notáveis</option>
+                <option>Radiciação</option>
+                <option>Razão e Proporção</option>
+                <option>Sistemas Lineares</option>
+                <option>Soma de Frações</option>
+                <option>Subtração</option>
+                <option>Subtração de Frações</option>
+                <option>Tabuada</option>
+                <option>Triângulo de Pascal</option>
+                <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
+                <option>Unidades de Medida</option>
+            </optgroup>
+                <option>Outros</option>
+            </select>
+        </div>
+    </div>
+
+        <div  class="row">  
+            <label  class="col-sm-2 col-form-label"><h6>Selecione as competências:</h6></label>
+
+            <div class="column">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'COLETA'" id="customCheck2"> 
+                    <label class="custom-control-label" for="customCheck2">Coleta</label>
+                </div>
+                
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'PARALELIZAÇÃO'" id="customCheck3"> 
+                        <label class="custom-control-label" for="customCheck3">Paralelização</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ANÁLISE'" id="customCheck4"> 
+                        <label class="custom-control-label" for="customCheck4">Análise</label>
+                </div>
+            </div>
+
+            <div  class="column">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'REPRESENTAÇÃO'" id="customCheck5"> 
+                        <label class="custom-control-label" for="customCheck5">Representação</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'DECOMPOSIÇÃO'" id="customCheck6"> 
+                        <label class="custom-control-label" for="customCheck6">Decomposição</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ABSTRAÇÃO'" id="customCheck7"> 
+                        <label class="custom-control-label" for="customCheck7">Abstração</label>
+                </div>
+            </div>
+            <div  class="column">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'SIMULAÇÃO'" id="customCheck8"> 
+                        <label class="custom-control-label" for="customCheck8">Simulação</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'AUTOMAÇÃO'" id="customCheck9"> 
+                        <label class="custom-control-label" for="customCheck9">Automação</label>
+                </div>
+
+                <div class="custom-control custom-checkbox custom-control-inline">
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ALGORITMOS'" id="customCheck10"> 
+                        <label class="custom-control-label" for="customCheck10">Algoritmos</label>
+                </div>
+            </div>
+
+            <div  class="column">
+                <div class="custom-control custom-checkbox custom-control">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "checkAll()">
+                    <label class="custom-control-label" for="customCheck1">Todas</label>
+                </div>
+                <div class="custom-control custom-checkbox custom-control">
+                        <input type="checkbox" class="custom-control-input" id="customCheck11"  ng-click= "uncheckAll()">
+                        <label class="custom-control-label" for="customCheck11">Quaisquer</label>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-sm-9 search">
+        <button class="btn btn-primary" type="submit" ng-click="sendQuery()"><span><ion-icon id="lupa-icon" name="search"></button>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>

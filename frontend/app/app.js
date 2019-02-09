@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -33,6 +33,13 @@ app.config(function($routeProvider, $locationProvider) {
     .when('/questoes', {	
         templateUrl: '/app/views/Questoes.html',	
         controller: 'QuestoesController',
+        requireAuth: true,
+        requireRegistered: true
+    })	
+
+    .when('/buscas', {	
+        templateUrl: '/app/views/Buscas.html',	
+        controller: 'BuscasController',
         requireAuth: true,
         requireRegistered: true
     })	

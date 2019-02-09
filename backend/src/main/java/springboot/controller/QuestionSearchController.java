@@ -48,12 +48,12 @@ public class QuestionSearchController {
 	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado, competências (cada uma entre aspas), "
 			+ "autor, fonte e tipo\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/search/{enunciado}/{competencias}/{autor}/{fonte}/{tipo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/questao/search/{enunciado}/{competencias}/{autor}/{fonte}/{tipo}/{conteudo}", method = RequestMethod.GET)
 	public List<Questao> getByEnunciadoCompetenciasAutorFonteTipo(@PathVariable("enunciado") String enunciado,
 			@PathVariable("competencias") HashSet<String> competencias,@PathVariable("autor") String autor,
-			@PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo) {
+			@PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo) {
 		System.out.println(competencias);
-		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias,autor, fonte, tipo);
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias,autor, fonte, tipo,conteudo);
 	}
 	
 
