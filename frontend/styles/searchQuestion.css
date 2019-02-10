@@ -13,8 +13,9 @@
   margin-inline-start: 2%;
 }
 
-
-
+#buscas{
+  margin-inline-start: 2%;
+}
 
 
 .column {
@@ -24,19 +25,46 @@
   margin-inline-start: 7%;
 }
 
+.competenciasExibicao .column {
+  flex: 5%;
+  max-width: 12%;
+  padding: 0 4px;
+}
+
+.todasOpcoes {
+  padding:15px 15px 5px ;
+}
 
 
 
-  
+
+#circle-icon{
+  font-size: 25px;
+  color: rgb(0, 110, 255);
+}
+
   #lupa-icon{
     font-size: 20px;
   }
 
 
 
+
   #conteudoSearch{
     width: 70%;
   }
+
+  #enunciado{
+    width: 70%;
+    margin-inline-start: 30%;
+
+  }
+
+
+  #competenciasCheck {
+    margin-inline-start: 1%;
+  }
+
   
 
   .search button {

@@ -21,7 +21,6 @@ angular.module('app')
     + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo).
       then(function (response) {
         $rootScope.Questoes = response.data;
-        console.log($rootScope.Questoes);
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
