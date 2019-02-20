@@ -2,64 +2,56 @@
     
         <div class="container" id=headbox>
             <h3>MEUS DADOS</h3>
-            <hr>
+            <hr width="60%">
         </div>
+
+        <div class="container" ng-controller="MeusDadosController">
     
-        <div class="container" id="data" ng-controller="MeusDadosController">
-    
-            <form name="myDataForm" ng-submit="updateUser()">
+            <form class = "col-lg-6 offset-sm-3 " name="myDataForm">
                 <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label"><h6>Email:</h6></label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder={{user_email}} readonly>
-                    </div>
+                    <label ><h6>Email:</h6></label>
+                    <input class="form-control " type="text" placeholder={{user_email}} readonly>
+                    
                 </div>
                 <div class="form-group row">
-                    <label for="staticName" class="col-sm-2 col-form-label"><h6>Nome:</h6></label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
-    
+                    <label><h6>Nome:</h6></label>
+                     <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group row" >
+                            <label><h6>Idade:</h6></label>
+                            <input name="idade" type="number" class="form-control"  ng-model="idade_usuario">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group row" >
+                            <label><h6>Cargo:</h6></label>
+                            <input name="cargo" type="text" class="form-control"  ng-model="cargo_usuario">
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group row" >
-                    <label for="inputText" class="col-sm-2 col-form-label"><h6>Idade:</h6></label>
-                    <div class="col-sm-10">
-                        <input name="idade" type="number" class="form-control"  ng-model="idade_usuario">
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group row" >
+                            <label><h6>Cidade:</h6></label>
+                            <input name="cidade" type="text" class="form-control"  ng-model="cidade_usuario">
+                        </div>
                     </div>
-                </div>
-
-                <div class="form-group row"  >
-                    <label for="inputText" class="col-sm-2 col-form-label"><h6>Cargo:</h6></label>
-                    <div class="col-sm-10">
-                        <input name="cargo" type="text" class="form-control"  ng-model="cargo_usuario">
-                    </div>
-                </div>
-
-
-                <div class="form-group row"  >
-                    <label for="inputText" class="col-sm-2 col-form-label"><h6>Cidade:</h6></label>
-                    <div class="col-sm-10">
-                        <input name="cidade" type="text" class="form-control"  ng-model="cidade_usuario">
-                    </div>
-                </div>
-
-                <div class="form-group row"  >
-                        <label for="inputText" class="col-sm-2 col-form-label"><h6>Instituicao: </h6></label>
-                        <div class="col-sm-10">
+                    <div class="col-md-6 mb-3">
+                        <div class="form-group row" >
+                            <label><h6>Instituição: </h6></label>
                             <input name="instituicao" type="text" class="form-control"  ng-model="instituicao_usuario">
                         </div>
-                </div>
-    
-                <div class="form-group">
+                    </div>
+                </div> 
+                
+                <button type="submit" class="btn btn-primary" >Atualizar</button>
                   
-                        <button type="submit" class="btn btn-primary" >Atualizar</button>
-                  
-                </div>
     
             </form>
     
         </div>
-    
+
     
     </div>

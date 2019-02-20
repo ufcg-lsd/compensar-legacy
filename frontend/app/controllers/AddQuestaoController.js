@@ -39,7 +39,6 @@ angular.module('app')
 
 
         $scope.isObjective = function(){ 
-            console.log($scope.tipo);
             return $scope.tipo === "Objetiva"};
 
         $scope.resposta = {}
@@ -49,7 +48,7 @@ angular.module('app')
             questaoSubj = {
                 autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
-                enunciado: $scope.enunciado,
+                enunciadoCompetencia: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
                 imagem: $scope.imagem,
@@ -107,7 +106,7 @@ angular.module('app')
                 ],
                 autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
-                enunciado: $scope.enunciado,
+                enunciadoCompetencia: $scope.enunciado,
                 fonte: $scope.fonte,
                 imagem: $scope.imagem,
                 tipo: $scope.tipo

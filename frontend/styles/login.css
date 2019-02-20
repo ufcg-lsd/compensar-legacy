@@ -69,11 +69,14 @@ html {
      margin-inline-end: 5%;
    }
 
-   .dropdown-menu{
-     float:right;
-   }
 
 
+.barra img{
+  width: 40px ;
+  height: 40px ;
+  margin-block-start: 5%;
+  margin-block-end:   15%;
+}
   
 
 
@@ -247,7 +250,7 @@ font-size: 64px;
   }
 
   .page-header{
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 /* =================================================== Footer ====================================================== */
@@ -275,7 +278,7 @@ font-size: 64px;
   display: block;  
   margin-left: auto;
   margin-right: auto; 
-  margin-top: 0%;
+  margin-top: 5%;
 }
 
 #botao{
@@ -342,6 +345,16 @@ font-size: 64px;
     padding:110px 90px 600px !important;
 
    }
+
+   .justify-content-center .dropdown-menu .logged{
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .dropdown-menu .notLogged{
+
+  }
+
   
   }
 
@@ -414,6 +427,8 @@ font-size: 64px;
         display: block;
         visibility: visible;
     }
+
+
   }
 
   body .carousel-control-prev-icon,

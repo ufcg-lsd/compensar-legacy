@@ -1,12 +1,13 @@
-<div  class="page-header" ng-controller="BuscasController">
-    <div class="container" id=headbox >
+<div  class="page-header container" ng-controller="BuscasController">
+    <div class="container col-lg-6 offset-sm-3" id=headbox >
         <h3> BUSCAR QUESTÕES</h3>
         <hr>
+    </div>
 
-    <div  class="form-group row conteudoSearch ">
-        <label for="conteudoSearch" class="col-sm-2 col-form-label"><h6>Conteúdo:</h6></label>
-        <div id="conteudoSearch"  >
-            <select class="col-sm-10 selectpicker" data-none-selected-text= "Selecione um conteúdo" 
+    <div  class="form-inline">
+        <div  class="form-group conteudoSearch col-lg-6">
+            <label><h6>Conteúdo:</h6></label>
+            <select class="form-control selectpicker " data-none-selected-text= "Selecione um conteúdo" 
             data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
             data-live-search-normalize="true" data-size=6  ng-model="conteudoSearch">
             <option >Qualquer Um</option>
@@ -57,74 +58,71 @@
         </div>
     </div>
 
-        <div  class="row">  
-            <label  class="col-sm-2 col-form-label"><h6>Selecione as competências:</h6></label>
 
+    <div id = "competenciasSearchLabel"><h6>Selecione as competências:</h6></div>      
+    <div id = "competenciasSearch" class="row">  
             <div class="column">
                 <div class="custom-control custom-checkbox custom-control-inline">
-                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'COLETA'" id="customCheck2"> 
+                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_COLETA" id="customCheck2"> 
                     <label class="custom-control-label" for="customCheck2">Coleta</label>
                 </div>
                 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'PARALELIZAÇÃO'" id="customCheck3"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_PARALELIZAÇÃO" id="customCheck3" > 
                         <label class="custom-control-label" for="customCheck3">Paralelização</label>
                 </div>
 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ANÁLISE'" id="customCheck4"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ANÁLISE" id="customCheck4"> 
                         <label class="custom-control-label" for="customCheck4">Análise</label>
                 </div>
             </div>
 
             <div  class="column">
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'REPRESENTAÇÃO'" id="customCheck5"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_REPRESENTAÇÃO" id="customCheck5"> 
                         <label class="custom-control-label" for="customCheck5">Representação</label>
                 </div>
 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'DECOMPOSIÇÃO'" id="customCheck6"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_DECOMPOSIÇÃO" id="customCheck6"> 
                         <label class="custom-control-label" for="customCheck6">Decomposição</label>
                 </div>
 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ABSTRAÇÃO'" id="customCheck7"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7"> 
                         <label class="custom-control-label" for="customCheck7">Abstração</label>
                 </div>
             </div>
             <div  class="column">
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'SIMULAÇÃO'" id="customCheck8"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_SIMULAÇÃO" id="customCheck8"> 
                         <label class="custom-control-label" for="customCheck8">Simulação</label>
                 </div>
 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'AUTOMAÇÃO'" id="customCheck9"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_AUTOMAÇÃO" id="customCheck9"> 
                         <label class="custom-control-label" for="customCheck9">Automação</label>
                 </div>
 
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="'ALGORITMOS'" id="customCheck10"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ALGORITMOS" id="customCheck10"> 
                         <label class="custom-control-label" for="customCheck10">Algoritmos</label>
                 </div>
             </div>
 
             <div  class="column">
                 <div class="custom-control custom-checkbox custom-control">
-                    <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "checkAll()">
-                    <label class="custom-control-label" for="customCheck1">Todas</label>
-                </div>
-                <div class="custom-control custom-checkbox custom-control">
-                        <input type="checkbox" class="custom-control-input" id="customCheck11"  ng-click= "uncheckAll()">
-                        <label class="custom-control-label" for="customCheck11">Quaisquer</label>
+                    <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "toggleCheck()">
+                    <label class="custom-control-label" for="customCheck1" >Todas</label>
                 </div>
             </div>
     </div>
 
-    <div class="col-sm-9 search">
-        <button class="btn btn-primary" type="submit" ng-click="sendQuery('','','','')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
+    <div id="sendBusca">
+            <button class="btn btn-primary" type="submit" ng-click="setPageStart(); sendQuery('','','','', questao.competencias, conteudoSearch,'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
     </div>
+
 </div>
 
 

@@ -18,6 +18,7 @@ import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -35,7 +36,7 @@ public class Questao {
 
 	@NotNull
 	@TextIndexed
-	private String enunciado;
+	private EnunciadoCompetencia enunciadoCompetencia;
 
 	private String fonte;
 
@@ -46,8 +47,11 @@ public class Questao {
 	private String conteudo;
 
 	private List<Alternativa> alternativas;
+	
+	@TextScore 
+	private Float score;
 
-	private Set<CompetenciaType> competencias;
+
 
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
@@ -65,12 +69,11 @@ public class Questao {
 
 		this.tipo = tipo;
 		this.conteudo = tipo;
-		this.enunciado = enunciado;
+		this.enunciadoCompetencia = new EnunciadoCompetencia(enunciado);
 		this.fonte = fonte;
 		this.autor = autor;
 		this.espelho = espelho;
 		this.alternativas = alternativas;
-		this.competencias = new HashSet<CompetenciaType>();
 	}
 
 	public Questao() {
@@ -114,24 +117,7 @@ public class Questao {
 		this.conteudo = conteudo;
 	}
 
-	/**
-	 * Recupera o enunciado da questão.
-	 *
-	 * @return O enunciado da questão.
-	 */
-	public String getEnunciado() {
-		return enunciado;
-	}
 
-	/**
-	 * @param enunciado O enunciado da questão.
-	 *
-	 *                  Atualiza o enunciado da questão.
-	 *
-	 */
-	public void setEnunciado(String enunciado) {
-		this.enunciado = enunciado;
-	}
 
 	/**
 	 * Recupera a fonte da questão.
@@ -187,12 +173,26 @@ public class Questao {
 		this.alternativas = alternativas;
 	}
 
-	public Set<CompetenciaType> getCompetencias() {
-		return competencias;
+	public EnunciadoCompetencia getEnunciadoCompetencia() {
+		return enunciadoCompetencia;
 	}
 
-	public void setCompetencias(Set<CompetenciaType> competencias) {
-		this.competencias = competencias;
+	public void setEnunciadoCompetencia(EnunciadoCompetencia enunciadoCompetencia) {
+		this.enunciadoCompetencia = enunciadoCompetencia;
 	}
+
+	public Float getScore() {
+		return score;
+	}
+
+	public void setScore(Float score) {
+		this.score = score;
+	}
+	
+	
+	
+	
+	
+
 
 }

@@ -8,7 +8,13 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
+import com.google.common.collect.Lists;
 
 import springboot.enums.CompetenciaType;
 import springboot.exception.RegisterNotFoundException;
@@ -32,7 +38,7 @@ public class QuestaoService {
 
 	public Questao save(Questao questao) {
 		// Aqui chama o classificador e atualiza o objeto questao
-		questao.setCompetencias(getSetCompetencias());
+		questao.getEnunciadoCompetencia().setCompetencias(getSetCompetencias());
 
 		questaoRepository.save(questao);
 
@@ -64,8 +70,7 @@ public class QuestaoService {
 		novaQuestao.setFonte(questao.getFonte());
 		novaQuestao.setAutor(questao.getAutor());
 		novaQuestao.setTipo(questao.getTipo());
-		novaQuestao.setEnunciado(questao.getEnunciado());
-		novaQuestao.setCompetencias(questao.getCompetencias());
+		novaQuestao.setEnunciadoCompetencia(questao.getEnunciadoCompetencia());
 		novaQuestao.setEspelho(questao.getEspelho());
 		novaQuestao.setAlternativas(questao.getAlternativas());
 
@@ -74,9 +79,12 @@ public class QuestaoService {
 		return novaQuestao;
 	}
 
-	public List<Questao> getAll() {
+	public Page<Questao> getAll(int page, int size) {
 
-		return questaoRepository.findAll();
+	    Pageable pageable = PageRequest.of(page, size);
+	    Page<Questao> pagina = questaoRepository.findAll(pageable);
+	    
+		return pagina;
 	}
 
 	public Questao getById(String id) {
@@ -90,7 +98,7 @@ public class QuestaoService {
 	}
 
 	private void iniciaColecoes() {
-		arrayParametros.add("{$text: {$search:");
+		arrayParametros.add("{$text:{$search:");
 		arrayParametros.add("{competencias:  {$all:");
 		arrayParametros.add("{autor:");
 		arrayParametros.add("{fonte:");
@@ -103,8 +111,8 @@ public class QuestaoService {
 		arrayOperadores.add("{score: {$meta: \\\"textScore\\\"}}.sort({score:{$meta:\\\"textScore\\\"}})");
 	}
 
-	public List<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-			String autor, String fonte, String tipo, String conteudo) {
+	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
+			String autor, String fonte, String tipo, String conteudo,int page, int size) {
 
 		iniciaColecoes();
 
@@ -120,19 +128,47 @@ public class QuestaoService {
 
 		boolean textIndex = false;
 
-		if (!isNull(enunciado))textIndex = true;
+		System.out.println(parametros.size());
+		System.out.println(parametros.toString());
+		
+		
+		// inicio da query com o operador lógico AND 
 
-		// inicio da query com o operador lógico AND
 		String query = arrayOperadores.get(1);
+
 
 		for (int i = 0; i < parametros.size(); i++) {
 			if (!isNull(parametros.get(i))) {
 				if (i == ENUNCIADO) {
-					// Precisa de duas chaves de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
+					// Caso tenha enunciado e NÃO competência
+					if (isNull(parametros.get(i + 1))) {
+						// Precisa de duas chaves de fechamento e aspas
+						arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
+					} 
+					textIndex = true;
 				} else if (i == COMPETENCIA) {
-					// Precisa de duas chaves de fechamento e sem aspas
-					arrayQuery.add(arrayParametros.get(i) + parametros.get(i) + "}}");
+					String subQuery = "";
+					// Caso tenha competência E enunciado
+					if (!isNull(parametros.get(i - 1))) {
+												
+						subQuery = arrayParametros.get(i - 1) + " '" + parametros.get(i - 1);
+						
+						for (String competencia : competencias) {
+							subQuery += " " + competencia;
+						}
+					// Caso tenha competência e NÃO enunciado
+					} else {
+						subQuery = arrayParametros.get(i - 1) + " '";
+						
+						for (String competencia : competencias) {
+							subQuery += " " + competencia;
+						}	
+					}
+					
+					subQuery += "'}}";	
+					textIndex = true;
+
+					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
 					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}");
@@ -143,16 +179,26 @@ public class QuestaoService {
 		query += String.join(",", arrayQuery);
 
 		// fechamento do operador lógico AND
+
 		query += "]}";
+	
 
 		// adição do rankeamento baseado no score
-		if (textIndex) query += "," + arrayOperadores.get(2);
+		//if (textIndex) query += "," + arrayOperadores.get(2);
 
 		System.out.println(query);
 		parametros.clear();
 		arrayQuery.clear();
+		
+	    Sort sort = Sort.by(
+	    	    Sort.Order.desc("score"));
+	    
+	    Pageable pageable = PageRequest.of(page, size, sort);
+	    
+	    Page<Questao> pagina = questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query,pageable);
 
-		return questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query);
+	    
+		return pagina;
 
 	}
 

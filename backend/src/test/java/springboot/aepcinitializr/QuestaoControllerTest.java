@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import springboot.controller.QuestaoController;
 import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
+import springboot.model.EnunciadoCompetencia;
 import springboot.model.Questao;
 
 public class QuestaoControllerTest extends AepcApplicationTests{
@@ -46,14 +47,15 @@ public class QuestaoControllerTest extends AepcApplicationTests{
 		
 		this.alternativas.add(new Alternativa("2", true));
 		this.alternativas.add(new Alternativa("3", false));
-		this.competencias.add(CompetenciaType.COLETA);
-		this.competencias.add(CompetenciaType.PARALELIZAÇÃO);
+		this.competencias.add(CompetenciaType.COMP_COLETA);
+		this.competencias.add(CompetenciaType.COMP_PARALELIZAÇÃO);
+		
 
 		this.questao =  new Questao("Subjetiva", "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 * 2", alternativas);
-		this.updatedQuestao = new Questao("Subjetiva",  "Álgebra", "quanto é 2 * 2?", "PISA", null, "a resposta é 2 + 2", alternativas);
+		this.updatedQuestao = new Questao("Subjetiva",  "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 + 2", alternativas);
 		
-		this.questao.setCompetencias(competencias);
-		this.updatedQuestao.setCompetencias(competencias);
+		this.questao.getEnunciadoCompetencia().setCompetencias(competencias);
+		this.updatedQuestao.getEnunciadoCompetencia().setCompetencias(competencias);
 	}
 	
 	@Test

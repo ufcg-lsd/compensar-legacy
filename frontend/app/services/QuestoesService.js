@@ -3,10 +3,14 @@ angular.module('app')
    const service = {};
    deferred = $q.defer();
 
-   service.getQuestoes = function () {
-      $http.get('http://localhost:5458/api/questao').
+   service.getQuestoes = function (pageNumber, usersPerPage) {
+      $http.get('http://localhost:5458/api/questao/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
-        $rootScope.Questoes = response.data;
+        $rootScope.Questoes = response.data.content;
+        $rootScope.totalQuestoes = response.data.totalElements;
+        $rootScope.pageNumber = response.data.number;
+        $rootScope.totalPags = response.data.totalPages;
+        
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
@@ -16,11 +20,14 @@ angular.module('app')
    },
 
 
-   service.sendQuery = function (query) {
+   service.sendQuery = function (query, pageNumber, usersPerPage) {
     $http.get('http://localhost:5458/api/questao/search/'+ query.enunciado + '/' + query.competencias 
-    + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo).
+    + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
-        $rootScope.Questoes = response.data;
+        $rootScope.Questoes = response.data.content;
+        $rootScope.totalQuestoes = response.data.totalElements;
+        $rootScope.pageNumber = response.data.number;
+        $rootScope.totalPags = response.data.totalPages;
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
