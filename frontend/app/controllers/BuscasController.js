@@ -43,12 +43,10 @@ angular.module('app')
             $scope.pagination.current = 0;
         }
  
-
         $scope.minhasQuestoes = false;
         $scope.checkAll = false;
 
         $scope.toggleCheck = function() {
-            console.log($scope.questao.competencias);
             if (!$scope.checkAll) {
                 $scope.checkAll = true;
                 $scope.questao.competencias = angular.copy($scope.competencias);
@@ -56,7 +54,6 @@ angular.module('app')
                 $scope.checkAll = false;
                 $scope.questao.competencias = [];
             }
-            console.log($scope.questao.competencias);
         };
 
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
@@ -90,23 +87,19 @@ angular.module('app')
                     tipo: tipoSearch,
                     conteudo: conteudoSearch
                 }
+                console.log($scope.questao.competencias);
+
 
                 QuestoesService.sendQuery(query, $scope.pagination.current , 5);
             }
            
             $location.path("/questoes");
-
         };
 
         $scope.allEmpty = function () {
             return !$scope.enunciadoSearch && $scope.questao.competencias.length === 0 && !$scope.autorSearch
             && !$scope.fonteSearch && !$scope.tipoSearch && (!$scope.conteudoSearch || ($scope.conteudoSearch === "Qualquer Um"));
         }
-
-
-        $(document).ready(function() {
-            $('.selectpicker').selectpicker();
-        });
 
         $scope.enunciado = "";
         $scope.espelho = "";
@@ -122,6 +115,7 @@ angular.module('app')
         $scope.setMinhasQuestoes = function () {
             $scope.minhasQuestoes = true;
             $scope.autorSearch = $rootScope.nome_usuario;
+            $scope.setPageStart();
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,$scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
         }
 
@@ -150,6 +144,37 @@ angular.module('app')
         $scope.removeQuestao = function (questao,tipo) {   
            QuestoesService.removeQuestao(questao,tipo);
         }
+
+        $scope.competenciasRepaginadas = [];
+        $scope.repaginaCompetencias = function (competencias) {
+            $scope.competenciasRepaginadas = [];
+            for (i = 0; i < (competencias.length); i++) {
+                var compSplitted = competencias[i].split("_");
+                var compLowerCase = compSplitted[1].toLowerCase();
+                $scope.competenciasRepaginadas[i] = compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+            }   
+        }
+
+        $scope.alternativasLetras = ["a","b","c","d","e"];
+
+        $scope.getLetter = function(index) {
+            return $scope.alternativasLetras[index];
+        };
+
+        $(document).ready(function() {
+            $('.selectpicker').selectpicker();
+        });
+
+        $(function () {
+            $('[data-toggle="popover"]').popover()
+        })
+
+        $(function () {
+            $('.modal-bt').tooltip()
+        })
+
+
+
 
         /**
         QuestoesService.getQuestoes().then(function (value) {

@@ -124,13 +124,7 @@ public class QuestaoService {
 		parametros.add(autor);
 		parametros.add(fonte);
 		parametros.add(tipo);
-		parametros.add(conteudo);
-
-		boolean textIndex = false;
-
-		System.out.println(parametros.size());
-		System.out.println(parametros.toString());
-		
+		parametros.add(conteudo);		
 		
 		// inicio da query com o operador lógico AND 
 
@@ -145,7 +139,6 @@ public class QuestaoService {
 						// Precisa de duas chaves de fechamento e aspas
 						arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
 					} 
-					textIndex = true;
 				} else if (i == COMPETENCIA) {
 					String subQuery = "";
 					// Caso tenha competência E enunciado
@@ -166,8 +159,6 @@ public class QuestaoService {
 					}
 					
 					subQuery += "'}}";	
-					textIndex = true;
-
 					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
@@ -179,12 +170,7 @@ public class QuestaoService {
 		query += String.join(",", arrayQuery);
 
 		// fechamento do operador lógico AND
-
 		query += "]}";
-	
-
-		// adição do rankeamento baseado no score
-		//if (textIndex) query += "," + arrayOperadores.get(2);
 
 		System.out.println(query);
 		parametros.clear();

@@ -34,12 +34,15 @@ button {
 }
 
 
-
+.modal-bt{
+  float: right;  
+  width: 70px;
+}
 
 .questoes{
   text-align: justify;
   margin: 5px 0 5px 0;
-  padding:15px 15px 100px ;
+  padding:15px 15px 20px ;
 }
 button:hover {
   opacity:5;
@@ -58,10 +61,49 @@ button:hover {
   color: gray;
 }
 
-.fonte, .tipo, .enunciado, .espelho{
-  margin-inline-end: 20%;
-  color: #088;
+.section ion-icon {
+  font-size: 22px;
 }
+
+.section  i{
+  font-size:22px;color:red
+}
+
+.section  .correta{
+  font-size:22px;color:green
+}
+
+.section > div.wrap{
+  clear:both;
+
+}
+
+
+
+.section .competencias{
+  position: relative;
+  float: left;
+
+  padding:0px 1px;
+  padding-top:10px;
+}
+
+.section div{
+  position: relative;
+  float: left;
+}
+#camposEspecificos{
+  margin-block-end: 3%;
+}
+
+#alterarQuestao i{
+  font-size:22px;
+  color:rgb(10, 70, 233);
+}
+#alterarQuestao{
+  float: right;
+}
+
 
 
 #addEspelho {
@@ -86,35 +128,10 @@ button:hover {
 }
 
 
-
-/* Style buttons */
-.buttonload {
-  width: 10%;
-  background-color: rgb(10, 124, 255); /* Green background */
-  border: none; /* Remove borders */
-  border-radius: 8px;
-  color: white; /* White text */
-  padding: 12px 16px; /* Some padding */
-  font-size: 16px; /* Set a font size */
-  margin-inline-start: 10%;
-  margin-block-end: 90%;
-}
-
-#notFoundMessage{
+#notFoundMessage {
   text-align: justify;
-  margin-inline-start: 12%;
+  margin-inline-start: 2%;
   margin-block-start: 2%;
-}
-
-#todas {
-  margin-inline-start: 7%;
-}
-#todas button{
-  width:350px;
-}
-
-#todas button:active {
-  background: rgb(65, 96, 126);
 }
 
 .addTipo {
@@ -123,8 +140,15 @@ button:hover {
 }
 
 
-
-
+#questoes .enunciadoCompactado{
+  height: 3.8em;
+  line-height: 1.2em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; 
+}
 
 @media screen and (max-width: 580px) {
   .conteudoAdd{
@@ -139,10 +163,6 @@ button:hover {
     margin-block-start: 35%;
   }
 
-  #todas button{
-    width:100px;
-  }
-  
 
 }
 
