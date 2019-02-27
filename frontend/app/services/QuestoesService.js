@@ -45,13 +45,35 @@ angular.module('app')
             if (response.status == 200) {
               $location.path("/questoes");
               $window.alert("Questão Removida com Sucesso!");        
+            } else {
+              $window.alert("Falha ao remover Questão!");        
             }
 
-          }, function () {
-            
-            $window.alert("Falha ao Remover Questão!");
           }).catch(function (response) { deferred.resolve([]); });
   }
+
+
+  service.atualizaQuestao = function (questao,novaQuestao) {
+    console.log(novaQuestao.conteudo);
+
+    $http.put('http://localhost:5458/api/questao/' + questao.id, novaQuestao).
+      then(function (response) {
+        if (response.status == 200) {
+            var  index = $rootScope.Questoes.indexOf(questao);
+            $rootScope.Questoes[index] = response.data;
+            console.log(response.data);
+
+            window.alert("Questão atualizada com Sucesso!");
+            $location.path("/questoes");
+        }
+        else {
+            window.alert("Falha ao atualizar Questão");
+            $location.path("/questoes");
+        }
+    },function(){
+        $location.path("/questoes");
+    });
+}
 
 
 

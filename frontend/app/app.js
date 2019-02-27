@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','nya.bootstrap.select']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -53,6 +53,11 @@ app.config(function($routeProvider, $locationProvider) {
       .otherwise({
         redirectTo: '/login'
       });
+
+
+      $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+    });
 
     });
 

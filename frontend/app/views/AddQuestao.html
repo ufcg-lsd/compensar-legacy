@@ -1,4 +1,4 @@
-<div class="page-header">
+<div class="page-header" ng-controller="AddQuestaoController">
     <div class="container"  id=headbox >
         <h3>CRIAR QUESTÃO</h3>
         <hr width="60%">
@@ -6,14 +6,8 @@
 
      <!-- ========================  Formulário de Criar Questão  ============================================== -->
 
-    <div class="container" ng-controller="AddQuestaoController">
-        <form class = "col-lg-6 offset-sm-3" name="myDataForm" >
-
-            <div class="form-group row">
-                <label ><h6>Autor:</h6></label>
-                <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
-            </div>
-
+    <div class="container" >
+        <form class = "col-lg-6 offset-sm-3" name="myDataForm">
             <div class="form-group row">
                     <label ><h6>Tipo de Questão:</h6></label>
     
@@ -28,7 +22,7 @@
                             </div>
                     </div>
        
-                    </div> 
+            </div> 
    
 
             <div class="form-group row"  >
@@ -99,7 +93,7 @@
                 </select>
             </div>
     
-             <!-- ========================  Campos específicos de questão Subj  ============================================== -->
+            <!-- ========================  Campos específicos de questão Subj  ============================================== -->
 
             <div ng-switch = "isObjective()">
                 <div ng-switch-when="false"> 
@@ -113,29 +107,24 @@
                         </div>
                     </div>
 
-                        <div id="espelho" class="form-group row collapse">   
-                            <label><h6>Espelho da Questão:</h6></label>  
-                            <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
-                            ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
-                                on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
-                        </div>
+                    <div id="espelho" class="form-group row collapse">   
+                        <label><h6>Espelho da Questão:</h6></label>  
+                        <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
+                        ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
+                        on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
+                    </div>
 
-                        <div class="form-group row">
-                                <div class="container">
-                                    <button id = "bt-subjetiva"  class="btn btn-primary" ng-click="sendQuestionSubjective()">Registrar</button>
-                                </div>
+                    <div class="form-group row">
+                        <div class="container">
+                            <button id = "bt-subjetiva"  class="btn btn-primary" ng-click="sendQuestionSubjective()">Registrar</button>
                         </div>
-                    
+                    </div>
                 </div>
 
+
              <!-- ========================  Campos específicos de questão Obj  ============================================== -->
-            </form>
-
-                <div ng-switch-when = "true">
-                    
-                    
+                <div ng-switch-when = "true">                  
                     <div class = "container">
-
                     <div class="form-group row">
                         <div class="form-group row col-sm-5" >
                             <label><h6>Alternativa 1:</h6></label>
@@ -199,16 +188,18 @@
 
 
                     </div>
-
-                        <div class="form-group row">
-                                <div class="container">
-                                    <button  id="question-bt"  class="btn btn-primary" ng-click="sendQuestionObjective()">Registrar</button>
-                                </div>
-                        </div>
+                <div class="form-group row">
+                    <div class="container">
+                        <button  id="question-bt"  class="btn btn-primary" ng-click="sendQuestionObjective()">Registrar</button>
+                    </div>
                 </div>
 
+                </div>
+                                    
             </div>
-           
-    </div>
+        </form>
 
+        </div>
 </div>
+
+

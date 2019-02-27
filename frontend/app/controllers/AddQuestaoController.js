@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$scope,$http,UserService)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService,QuestoesService,$sce)
     {
 
         // Ativadores das opções de edição no Quill Editor
-        $scope.editorModules = {
+        $rootScope.editorModules = {
             formula: true, 
             toolbar: [
               ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -108,7 +108,6 @@ angular.module('app')
                 conteudo: $scope.conteudo,
                 enunciadoCompetencia: $scope.enunciado,
                 fonte: $scope.fonte,
-                imagem: $scope.imagem,
                 tipo: $scope.tipo
             };
 
@@ -141,8 +140,6 @@ angular.module('app')
             return espelho === "Sim";
         }
 
-
-        
         $(document).ready(function() {
             $('.selectpicker').selectpicker();
         });

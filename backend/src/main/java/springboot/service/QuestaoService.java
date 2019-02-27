@@ -70,9 +70,12 @@ public class QuestaoService {
 		novaQuestao.setFonte(questao.getFonte());
 		novaQuestao.setAutor(questao.getAutor());
 		novaQuestao.setTipo(questao.getTipo());
+		novaQuestao.setConteudo(questao.getConteudo());
 		novaQuestao.setEnunciadoCompetencia(questao.getEnunciadoCompetencia());
-		novaQuestao.setEspelho(questao.getEspelho());
-		novaQuestao.setAlternativas(questao.getAlternativas());
+		novaQuestao.getEnunciadoCompetencia().setCompetencias(getSetCompetencias());
+		
+		if (novaQuestao.getTipo().equals("Objetiva")) novaQuestao.setAlternativas(questao.getAlternativas());
+		else novaQuestao.setEspelho(questao.getEspelho());
 
 		questaoRepository.save(novaQuestao);
 

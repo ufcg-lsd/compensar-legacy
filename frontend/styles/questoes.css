@@ -119,6 +119,16 @@ button:hover {
     height: 250px;
 }
 
+#updateEnunciado {
+height: 250px;
+
+margin-block-end: 20%;
+
+}
+
+.fonteConteudo {
+margin-inline-end: 20%;}
+
 #bt-subjetiva {
   margin-top: 17%;
 }
