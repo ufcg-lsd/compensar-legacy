@@ -7,6 +7,7 @@ angular.module('app')
       $http.get('http://localhost:5458/api/questao/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
+        console.log(response.data);
         $rootScope.totalQuestoes = response.data.totalElements;
         $rootScope.pageNumber = response.data.number;
         $rootScope.totalPags = response.data.totalPages;
@@ -24,6 +25,7 @@ angular.module('app')
     $http.get('http://localhost:5458/api/questao/search/'+ query.enunciado + '/' + query.competencias 
     + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
+        console.log(response.data);
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
         $rootScope.pageNumber = response.data.number;

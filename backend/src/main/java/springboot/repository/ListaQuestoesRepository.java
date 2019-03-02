@@ -2,7 +2,8 @@ package springboot.repository;
 
 import java.util.Optional;
 
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,9 +13,10 @@ import springboot.model.ListaQuestoes;
 
 
 @Repository
-public interface ListaQuestoesRepository extends MongoRepository<ListaQuestoes, Long>{
+public interface ListaQuestoesRepository extends MongoRepository<ListaQuestoes, String>{
 
-	  @Query("{ 'email' : ?0 }")
-	public Optional<ListaQuestoes> pesquisarPorEmail(@Param("email") String email);
+	  
+	@Query(":#{#query}")
+	Page<ListaQuestoes> getByNomeEmail(@Param("query") String query, Pageable pageable);
 
 }

@@ -34,15 +34,21 @@ button {
 }
 
 
+
+
 .modal-bt{
   float: right;  
-  width: 70px;
+  width: 35px;
+  height: 30px;
+}
+
+.pagination {
+  margin-block-start: 2%;
 }
 
 .questoes{
   text-align: justify;
-  margin: 5px 0 5px 0;
-  padding:15px 15px 20px ;
+  padding:15px 15px 0px ;
 }
 button:hover {
   opacity:5;
@@ -137,7 +143,6 @@ margin-inline-end: 20%;}
   margin-block-start: 25%;
 }
 
-
 #notFoundMessage {
   text-align: justify;
   margin-inline-start: 2%;
@@ -149,16 +154,30 @@ margin-inline-end: 20%;}
   float: left;
 }
 
+ .exibeQuestoes {
+  margin-top: 4%;
+}
+
+
 
 #questoes .enunciadoCompactado{
-  height: 3.8em;
+  height: 2.65em;
   line-height: 1.2em; 
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3; 
+  -webkit-line-clamp: 2; 
 }
+
+.addLista {
+  width: 30px;
+  height: 30px;
+}
+
+
+
+
 
 @media screen and (max-width: 580px) {
   .conteudoAdd{

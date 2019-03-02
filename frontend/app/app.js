@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','nya.bootstrap.select']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -50,6 +50,13 @@ app.config(function($routeProvider, $locationProvider) {
         requireAuth: true,
         requireRegistered: true
     })	
+
+    .when('/addLista', {	
+      templateUrl: '/app/views/AddLista.html',	
+      controller: 'ListaQuestoesController',
+      requireAuth: true,
+      requireRegistered: true
+  })	
       .otherwise({
         redirectTo: '/login'
       });

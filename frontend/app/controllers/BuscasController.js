@@ -34,6 +34,10 @@ angular.module('app')
                 $scope.pagination.current = $scope.pagination.current - 1;
             } else if (newPage === 'proxima' && $rootScope.pageNumber < ($rootScope.totalPags - 1)) {
                 $scope.pagination.current = $scope.pagination.current + 1;
+            } else if (newPage === 'primeiraPag') {
+                $scope.pagination.current = 0;
+            } else if (newPage === 'ultimaPag') {
+                $scope.pagination.current = $rootScope.totalPags - 1;
             }
 
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,
@@ -59,47 +63,41 @@ angular.module('app')
 
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
 
-            if (tipo === "novaBusca") {
+            if (tipo === "novaBusca" ) {
                 $scope.enunciadoSearch = enunciadoSearch;
                 if (!$scope.minhasQuestoes) $scope.autorSearch = autorSearch;
                 $scope.fonteSearch = fonteSearch;
                 $scope.tipoSearch = tipoSearch;
                 $scope.questao.competencias = competenciasSearch;
                 $scope.conteudoSearch = conteudoSearch;
-            } else if (tipo === "updateQuestao") {
-                enunciadoSearch = $scope.enunciadoSearch;
-                fonteSearch = $scope.fonteSearch;
-                tipoSearch = $scope.tipoSearch;
-                competenciasSearch = $scope.questao.competencias;
-                conteudoSearch = $scope.conteudoSearch;
-            }
+            } 
 
-            if ($scope.allEmpty()) {
-                QuestoesService.getQuestoes($scope.pagination.current , 5);
-            } else {
+            setTimeout(function(){  
+                if ($scope.allEmpty()) {
+                    QuestoesService.getQuestoes($scope.pagination.current , 5);
+                } else {
 
-                if (!enunciadoSearch) enunciadoSearch = "null";
-                if (competenciasSearch.length === 0) competenciasSearch = ["null"]; 
-                if (!autorSearch) autorSearch = "null";
-                if (!fonteSearch) fonteSearch = "null";
-                if (!tipoSearch)  tipoSearch = "null";
-                if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
+                    if (!enunciadoSearch) enunciadoSearch = "null";
+                    if (competenciasSearch.length === 0) competenciasSearch = ["null"]; 
+                    if (!autorSearch) autorSearch = "null";
+                    if (!fonteSearch) fonteSearch = "null";
+                    if (!tipoSearch)  tipoSearch = "null";
+                    if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
 
 
-                query = {
-                    enunciado:  enunciadoSearch,
-                    competencias: competenciasSearch,
-                    autor: autorSearch,
-                    fonte: fonteSearch,
-                    tipo: tipoSearch,
-                    conteudo: conteudoSearch
+                    query = {
+                        enunciado:  enunciadoSearch,
+                        competencias: competenciasSearch,
+                        autor: autorSearch,
+                        fonte: fonteSearch,
+                        tipo: tipoSearch,
+                        conteudo: conteudoSearch
+                    }
+
+                    QuestoesService.sendQuery(query, $scope.pagination.current , 5);
                 }
-
-                QuestoesService.sendQuery(query, $scope.pagination.current , 5);
-            }
-
-            $rootScope.isAtualizacao = false;
-            $location.path("/questoes");
+            }, 10);
+     
         };
 
         $scope.allEmpty = function () {
@@ -274,17 +272,17 @@ angular.module('app')
         $(function () {
             $('.modal-bt').tooltip()
         })
-     
 
 
 
+        $scope.setLocation = function() {
+            $location.path("\questoes");
+        }
 
-        /**
-        QuestoesService.getQuestoes().then(function (value) {
-            $rootScope.Questoes = value;
-        });
-         */
 
+
+        QuestoesService.getQuestoes($scope.pagination.current , 5);
+        
 
         $scope.options = [
             {name: 'Adição', group: 'Group1'},
@@ -296,11 +294,6 @@ angular.module('app')
             {name: 'Equação do Segundo Grau', group: 'Group1'},
             {name: 'Estatística', group: 'Group2'}
           ];
-
-
-
-
-
 
                  // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {

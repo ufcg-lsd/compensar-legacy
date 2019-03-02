@@ -51,8 +51,6 @@ public class Questao {
 	@TextScore 
 	private Float score;
 
-
-
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
 	 *

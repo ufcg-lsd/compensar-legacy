@@ -16,6 +16,12 @@
   margin-inline-start: 2%;
 }
 
+.bt-maisOp{
+  margin-block-start: 3%;
+}
+
+
+
 #searchCompetencias {
   float: left; 
   margin-inline-end: 100%;

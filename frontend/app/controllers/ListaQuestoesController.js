@@ -2,47 +2,65 @@ angular.module('app')
     .controller('ListaQuestoesController', function($rootScope,$scope, $location,AuthService,$window,$http)
     {
  
-   $rootScope.activetab = $location.path();
+      $rootScope.activetab = $location.path();
 
-    let usuarios = [];
-    let listaQuestoes = [];
-    let result = [];
+      $scope.nomeLista = "";
+      $scope.emailLista = "";
+      $scope.questoes = [];
 
+      $scope.openQuestoes = function () {
+        $rootScope.painelLista = true;
+        $location.path("/questoes");
+      }
 
-    $scope.alert = function(){
-        $window.alert("O Resultado está no console!");
+      $scope.cancela = function() {
+        $rootScope.painelLista = false;
+        $location.path("/addLista");
+      }
+
+      $scope.addQuestao = function(questao) {
+        $scope.questoes.push(questao);
+      }
+
+      $scope.removeQuestao = function(questao) {
+        var  index = $scope.questoes.indexOf(questao);
+
+        $scope.questoes.splice(index, 1);
+        $location.path("/questoes");
+
+      }
+
+      $scope.isAdded = function (questao) {
+        console.log($scope.questoes.includes(questao));
+        return $scope.questoes.includes(questao);
+      }
+
+      $scope.painelListaQuestoes = function() {
+        console.log($rootScope.painelLista);
+        return $rootScope.painelLista;
     }
 
-
-        $http.get('/api/usuario').
-        then(function (response) {
-          usuarios = response.data;
-          
-         
-        }, function (response) {
-          usuarios = [];
-        }).then(function(){
-        $http.get('/api/listaquestoes').
-        then(function (response) {
-          listaQuestoes = response.data;
-        
-          for (i = 0; i < listaQuestoes.length; i++) {
-            const lista = listaQuestoes[i];
-            const usuario = usuarios.filter( k => k.email === lista.email)[0];
-            resultLista = {
-              nome: usuario.nome,
-              email: usuario.email,
-              nomeInstituicao: usuario.nomeInstituicao,
-              questoesEscolhidas: lista.questoes
-          }
-          result.push(resultLista);
-           }
-
-          console.log(result);
   
-        }, function (response) {
-          listaQuestoes = [];
-        });
-        })
-    });
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  });
 

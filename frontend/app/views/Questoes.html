@@ -1,9 +1,9 @@
 
-<div  class="page-header row" ng-controller="BuscasController">
+<div  class="row" ng-controller="BuscasController">
 
     <!-- ========================  Buscas  ============================================== -->
 
-    <div id= "buscas" class="col-5">
+    <div id= "buscas" class="page-header col-sm-4">
         <div  class="form-inline">
             <div  class="form-group row col-sm-7">
                     <label><h6>Conteúdo:</h6></label>
@@ -117,17 +117,15 @@
                             </div>
                         </div>          
                 </div>
-
-
-        <div  class="form-group">
-            <div  class="col-sm-7">
-            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#opcoesAvancadas">Mais filtros</button>
-        </div>
-
+                <div  class="form-group">
+                    <div  class="col-sm-7">
+                    <button class="btn btn-outline-primary bt-maisOp" type="button" data-toggle="collapse" data-target="#opcoesAvancadas">Mais filtros</button>
+                </div>
+            
         <div id="opcoesAvancadas" class="collapse col-sm-7">
-            <div class="form-group row" >
+            <div class="form-group row " >
                 <label><h6>Enunciado:</h6></label>
-                <input name="enunciadoSearch" type="text" class="form-control"  placeholder="Pesquise por algum(s) termo(s) do enunciado" ng-model="enunciadoSearch">
+                <input name="enunciadoSearch" type="text" class="form-control"  placeholder="Pesquise por termo(s) do enunciado" ng-model="enunciadoSearch">
             </div>
 
             <div class="form-group row">
@@ -165,18 +163,21 @@
             </div>
         </div>
     </div>
-
-    </div>
+</div>
 
     
      <!-- ========================  Questões  ============================================== -->
 
-     <div class="col-6" >
-
+     <div id = "questoes" class="exibeQuestoes col-sm-7" >
+            <div  ng-controller="ListaQuestoesController" ng-switch="painelListaQuestoes()">
+                    <div ng-switch-when="true">
+                            <div class="progress form-group row " style="height: 5px;">
+                                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:90%"></div>
+                                </div>
+                    </div>
+            </div>
 
          <div ng-switch = "temQuestao()">
-                <div class="col-sm-12">
-
                     <ul class="nav nav-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" ng-click="setTodasQuestoes()" href="/questoes">Todas</a>
@@ -189,26 +190,35 @@
                         </li>
                     </ul>
 
-
-                    
-
-                </div>
             <div ng-switch-when="true">
-                <div id = "questoes" class="tab-content">
+                <div class="tab-content">
                     <div class= "questoes container tab-pane active" ng-repeat="questao in Questoes" >
 
-                        
-
                         <div>{{updateViewQuill(questao.enunciadoCompetencia.enunciado,"enunciado")}}</div>
-
-                        <h6 class="modal-title">{{questao.conteudo}}</h6>
-                        <div class="enunciadoCompactado" ng-bind-html="enunciadoShow"></div>
-                        <button data-placement="right" title="Ver detalhes" type="button" class="btn btn-outline-secondary btn-sm modal-bt" data-toggle="modal" data-target="#myModal{{$index}}">                
-                            Detalhes
+                    <div class="row">
+                        <div class="col"><h6 class="modal-title">{{questao.conteudo}}</h6></div>
+                        <div class="col-8" ng-controller="ListaQuestoesController" ng-switch="painelListaQuestoes()">
+                                <div ng-switch-when="true">
+                                    <div ng-switch="isAdded(questao)">
+                                        <button ng-switch-when="false" type="button" class="btn btn-primary btn-sm addLista"> 
+                                                <i class="fas fa-plus"></i>                                 
+                                        </button>
+                                        <button ng-switch-when="true" type="button" class="btn btn-danger btn-sm addLista"> 
+                                                <i class="fas fa-minus"></i>                               
+                                        </button>
+                                    </div>
+                                </div>
+                        </div>
+                        <button data-placement="right" title="Ver detalhes"  class="btn btn-outline-secondary btn-sm modal-bt" data-toggle="modal" data-target="#myModal{{$index}}">                
+                                <i class="fas fa-info-circle fa-lg"></i>                        
                         </button>
+                    </div>
+
+                        <div class="enunciadoCompactado" ng-bind-html="enunciadoShow"></div>
                         {{repaginaCompetencias(questao.enunciadoCompetencia.competencias)}}
 
-                        <em>{{amostraCompetencias}}</em>
+                        <em class="text-secondary">{{amostraCompetencias}}</em>
+ 
 
                         <!-- The Modal -->
                         <div class="modal" id="myModal{{$index}}">
@@ -260,8 +270,8 @@
                                     <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
                                     <div id = "camposEspecificos" ng-switch = "isObjective(questao.tipo)">
                                             <hr>
-                                            <div ng-switch-when="false">
-                                                <div class="espelho container"> <b>Espelho:</b> 
+                                            <div ng-switch-when="false" class = "container">
+                                                <div class="espelho "> <b>Espelho:</b> 
                                                     {{updateViewQuill(questao.espelho,"espelho")}}</div>
     
                                                     <p ng-bind-html="espelhoShow"></p>
@@ -306,8 +316,8 @@
                         </div>
 
 
-                        <!-- ========================   Editar Questão  ============================================== -->
-                                <div class="modal fade" id="editar{{$index}}">
+                        <!-- ========================   Editar Questão Modal ============================================== -->
+                        <div class="modal fade" id="editar{{$index}}">
                                 <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                 
@@ -515,13 +525,19 @@
                                 
                               
                 </div>
-                        <div class="container">
-                                <ul class="pagination">
-                                    <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')">Anterior</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">{{pagination.current}} de {{totalPags - 1}}</a></li>
-                                    <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')">Próxima</a></li>
-                                </ul>
-                        </div>
+                <div class="container">
+                    <ul class="pagination  justify-content-left">
+                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')">Anterior</a></li>
+                        <li class="page-item "><a class="page-link" href="#" ng-click= "pageChangeHandler('primeiraPag')">1</a></li>
+                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
+                        <li class="page-item active"><a class="page-link" href="#"> {{pageNumber + 1}}</a></li>
+                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
+
+                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('ultimaPag')">{{totalPags}}</a></li>
+
+                        <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')">Próxima</a></li>
+                    </ul>
+                </div>
 
             </div>
 
@@ -539,10 +555,15 @@
                 </div>
             </div>
 
-        </div>
+            <div ng-controller="ListaQuestoesController" ng-switch="painelListaQuestoes()">
+                <div ng-switch-when="true">
+                    <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Criar Lista</button>
+                </div>
+            </div>
+
 
         </div>
 
-    </div>
-
+        </div>
 </div>

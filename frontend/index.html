@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
-    <link href="app/bower_components/nya-bootstrap-select/dist/css/nya-bs-select.min.css" rel="stylesheet">
 
     <!--  Quill Editor  -->
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.snow.css">
@@ -87,6 +86,7 @@
                         <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Questões</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Lista</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
                     </ul>
@@ -97,6 +97,7 @@
         
                             <h6 class="dropdown-header">{{nome_usuario}}</h6>
                             <a class="dropdown-item" href ="/meusdados">Meus Dados</a>
+                            <a class="dropdown-item" href ="/questoes">Minhas Questões</a>
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
                             <div id="myctrl2" ng-controller="LoginController"></div>
@@ -148,10 +149,6 @@
 
 <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
 
-
-
-
-
 <!--Scripts Aplicação -->
 <script src="app/app.js"></script>
 
@@ -176,7 +173,6 @@
 <!--Plugins-->
 <script src='node_modules/checklist-model/checklist-model.js'></script>
 <script src="app/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
-<script src="app/bower_components/nya-bootstrap-select/dist/js/nya-bs-select.min.js"></script>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
