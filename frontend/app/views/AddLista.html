@@ -1,42 +1,23 @@
-<div  class="page-header container" ng-controller="BuscasController">
+<div class="page-header container" ng-controller="ListaQuestoesController">
 
-        <div class="container col-lg-6 offset-sm-3" id=headbox >
-            <h3> NOVA LISTA </h3>
-            <hr>
-        </div>
+    <div class="container col-lg-6 offset-sm-3" id=headbox >
+        <h3> NOVA LISTA </h3>
+        <hr>
+    </div>
 
     <form class = "col-lg-4 offset-sm-4">
-
         <div class="progress form-group row " style="height: 5px;">
             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:50%"></div>
         </div>
 
         <div class="form-group row">
             <label><h6>Nome da Lista:</h6></label>
-            <input class="form-control" type="text" placeholder="Digite o nome da Lista" ng-model = "nomeLista" >
+            <input class="form-control" type="text" placeholder="Digite o nome da Lista" ng-model = "nomeLista">
         </div>
 
         <button type="button" class="btn btn-primary addLista-bt" ng-click= "openQuestoes()">Continuar
             <i class="fas fa-arrow-circle-right"></i>       
         </button>
-
-
-
     </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>

@@ -48,9 +48,7 @@ angular.module('app')
             $scope.pagination.current = 0;
         }
  
-        $scope.minhasQuestoes = false;
         $scope.checkAll = false;
-
         $scope.toggleCheck = function() {
             if (!$scope.checkAll) {
                 $scope.checkAll = true;
@@ -61,6 +59,7 @@ angular.module('app')
             }
         };
 
+        $scope.minhasQuestoes = false;
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
 
             if (tipo === "novaBusca" ) {
@@ -86,7 +85,7 @@ angular.module('app')
 
 
                     query = {
-                        enunciado:  enunciadoSearch,
+                       enunciado:  enunciadoSearch,
                         competencias: competenciasSearch,
                         autor: autorSearch,
                         fonte: fonteSearch,
@@ -97,6 +96,9 @@ angular.module('app')
                     QuestoesService.sendQuery(query, $scope.pagination.current , 5);
                 }
             }, 10);
+
+            $rootScope.painelListas = false;
+
      
         };
 
@@ -116,34 +118,47 @@ angular.module('app')
             }
         };
 
+        $rootScope.nomeListaEscolhida = "";
         $scope.setMinhasQuestoes = function () {
+            $rootScope.nomeListaEscolhida = "";
             $scope.minhasQuestoes = true;
             $scope.autorSearch = $rootScope.nome_usuario;
             $scope.setPageStart();
-            $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,$scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
-        }
+            $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
+                $scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
+        };
 
         $scope.setTodasQuestoes = function () {
+            $rootScope.nomeListaEscolhida = "";
             $scope.minhasQuestoes = false;
             $scope.autorSearch = "";
-            $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,$scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
-        }
+            $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
+                $scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
+        };
+
+        $rootScope.minhasListas = false;
+        $rootScope.painelListas = false;
+
+
+        $scope.getListas = function () {
+            return $rootScope.painelListas;
+        };
 
         $scope.isObjective = function (tipo) {
             return tipo === "Objetiva";
-        }
+        };
 
         $scope.temQuestao = function () {
             return $rootScope.Questoes.length !== 0;
-        }
+        };
 
         $scope.isAutor = function (autor) {
             return autor === $rootScope.nome_usuario;
-        }
+        };
 
         $scope.isNull = function(atributo) {
             return atributo === null;
-        }
+        };
 
         $scope.removeQuestao = function (questao) {   
            QuestoesService.removeQuestao(questao);
@@ -165,7 +180,7 @@ angular.module('app')
 
         $scope.atualizaQuestao = function (questao) {
             $scope.update.fonte = questao.fonte;
-            $scope.update.enunciado = questao.enunciadoCompetencia.enunciado;
+            $scope.update.enunciado = questao.enunciado;
             $scope.update.tipo = questao.tipo;
 
             if (questao.tipo  === "Objetiva") {
@@ -187,7 +202,7 @@ angular.module('app')
             novaQuestao = {
                 autor:  UserService.getName(),
                 conteudo: $scope.update.conteudo,
-                enunciadoCompetencia: $scope.update.enunciado,
+                enunciado: $scope.update.enunciado,
                 fonte: $scope.update.fonte,
                 tipo: $scope.update.tipo
             };
@@ -278,8 +293,6 @@ angular.module('app')
         $scope.setLocation = function() {
             $location.path("\questoes");
         }
-
-
 
         QuestoesService.getQuestoes($scope.pagination.current , 5);
         

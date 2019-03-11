@@ -44,14 +44,14 @@ angular.module('app')
         $scope.resposta = {}
 
         $scope.sendQuestionSubjective = function () {
+            console.log("oi");
 
             questaoSubj = {
                 autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
-                enunciadoCompetencia: $scope.enunciado,
+                enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
-                imagem: $scope.imagem,
                 tipo: $scope.tipo
             };
 
@@ -106,7 +106,7 @@ angular.module('app')
                 ],
                 autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
-                enunciadoCompetencia: $scope.enunciado,
+                enunciado: $scope.enunciado,
                 fonte: $scope.fonte,
                 tipo: $scope.tipo
             };
