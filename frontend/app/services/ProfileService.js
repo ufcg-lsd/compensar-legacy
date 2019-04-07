@@ -3,8 +3,8 @@ angular.module('app')
    const service = {};
 
    service.update_user_profile = function(){
-        $rootScope.profile_image = AuthService.getUserDetails().imageUrl;
-        $rootScope.nome_usuario = AuthService.getUserDetails().name;
+        $rootScope.profile_image = AuthService.getUserDetails().ImageUrl;
+        $rootScope.nome_usuario = AuthService.getUserDetails().Name;
     
    },
 

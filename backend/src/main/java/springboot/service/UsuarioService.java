@@ -48,6 +48,10 @@ public class UsuarioService {
 		Usuario novoUsuario = optUsuario.get();
 		novoUsuario.setEmail(usuario.getEmail());
 		novoUsuario.setNome(usuario.getNome());
+		novoUsuario.setIdade(usuario.getIdade());
+		novoUsuario.setCargo(usuario.getCargo());
+		novoUsuario.setCidade(usuario.getCidade());
+		novoUsuario.setAtivo(usuario.isAtivo());
 		novoUsuario.setNomeInstituicao(usuario.getNomeInstituicao());
 
 		usuarioRepository.save(novoUsuario);

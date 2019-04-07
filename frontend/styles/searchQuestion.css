@@ -1,0 +1,94 @@
+#search-menu {
+    float:left;
+    margin-inline-start: 3%;
+    padding:15px 15px 30px ;
+  }
+
+#outros-tipos button {
+  margin-block-start: 4%;
+}
+
+#search-menu h3 {
+  margin-inline-start: 2%;
+}
+
+#buscas{
+  margin-inline-start: 2%;
+}
+
+.bt-maisOp{
+  margin-block-start: 3%;
+}
+
+
+
+#searchCompetencias {
+  float: left; 
+  margin-inline-end: 100%;
+}
+
+.column {
+  flex: 5%;
+  max-width: 6%;
+  padding: 0 4px;
+  margin-inline-start: 9%;
+}
+
+#competenciasSearch{
+  margin-inline-start: 18%;
+  margin-block-start: 1%;
+}
+
+#competenciasSearchLabel {
+  margin-inline-end: 32%;
+  margin-block-start: 2%;
+}
+
+#buscas #competenciasSearchLabel{
+  margin-inline-end: 90%;
+  margin-block-end: 2%;
+}
+
+.todasOpcoes {
+  padding:15px 15px 5px ;
+}
+
+#circle-icon{
+  font-size: 25px;
+  color: rgb(0, 110, 255);
+}
+
+  #lupa-icon{
+    font-size: 20px;
+  }
+
+  .conteudoSearch{
+    margin-inline-start: 24%;
+
+  }
+
+  #enunciado {
+    width: 70%;
+    margin-inline-start: 30%;
+  }
+
+  .search button {
+    margin-block-start: 55%;
+    margin-inline-start: 10%;
+  }
+
+  #sendBusca button{
+    width: 48%; 
+    margin-block-start: 2%;
+    margin-inline-end: 2%
+  }
+
+
+
+
+
+/* ======================================= Botão competências/autor/fonte/tipo ====================== */
+
+
+
+

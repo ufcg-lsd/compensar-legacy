@@ -1,31 +1,34 @@
 angular.module('app')
     .controller('ContatoController',  function($scope, $location,$http)
     {
-        $scope.nome = "";
+        $scope.username = "";
         $scope.email = "";
-        $scope.mensagem = "";
-        $scope.assunto = "";
+        $scope.message = "";
       
             $scope.sendEmail = function() {
-
+ 
                 email = {
                     email: $scope.email,
-                    mensagem: $scope.mensagem,
-                    assunto: $scope.assunto,
-                    nome: $scope.nome
+                    message: $scope.message,
+                    subject: "Dúvida",
+                    username: $scope.username
                 };
     
-                $http.post('https://localhost:8001/api/email', email).
-                    then(function (response) {
-                        
-                            window.alert("Email enviado com Sucesso!");
-                            $location.path("/login");
-                        },
-                        function(){ window.alert("Falha no Envio de email");
-                        $location.path("/login");}
-   
-                    )
-            }
+                $http.post('http://localhost:5458/api/email', email).
+                then(function (response) {
+                    if (response.status == 200) {
+                        window.alert("Email enviado com Sucesso!");
+                        $location.path("/login");
+                    }
+                    else {
+                        window.alert("Falha no envio do email!");
+                        $location.path("/login");
+                    }
+                },function(){
+                    $location.path("/login");
+                }
+                );
+            };
 
 
         $scope.validaEmail = function(){

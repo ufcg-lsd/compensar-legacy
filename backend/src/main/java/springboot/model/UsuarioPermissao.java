@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import springboot.enums.PermissaoType;
@@ -17,12 +18,12 @@ public class UsuarioPermissao {
 	
 	@NotNull
 	@Id
-	@Indexed
+	@TextIndexed
 	private String email;
 	
     @Enumerated(EnumType.STRING)
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private PermissaoType permissao;
 	
 	

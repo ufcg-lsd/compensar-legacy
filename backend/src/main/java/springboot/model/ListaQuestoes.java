@@ -1,30 +1,41 @@
 package springboot.model;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
 import javax.validation.constraints.NotNull;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.TextScore;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection = "listaquestoes")
-public class ListaQuestoes {
-
-	@NotNull
+public class ListaQuestoes{
+	
 	@Id
-	private Long id;
-
+	@JsonProperty
+	private String id;
+	
 	@NotNull
-	@Indexed
+	@TextIndexed
+	private String nomeLista;
+
 	private String email;
 
-	@NotNull
-	@Indexed
-	private Set<Questao> questoes;
+	private List<Questao> questoes;
+	
+	@TextScore 
+	private Float score;
 
-	public ListaQuestoes(String email, Set<Questao> questoes) {
+	public ListaQuestoes(String nomeLista, String email, List<Questao> questoes) {
+		this.nomeLista = nomeLista;
 		this.email = email;
 		this.questoes = questoes;
 	}
@@ -32,13 +43,14 @@ public class ListaQuestoes {
 	public ListaQuestoes() {
 
 	}
-
-	public Long getId() {
-		return id;
+	
+	
+	public String getNomeLista() {
+		return nomeLista;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setNomeLista(String nomeLista) {
+		this.nomeLista = nomeLista;
 	}
 
 	public String getEmail() {
@@ -49,42 +61,16 @@ public class ListaQuestoes {
 		this.email = email;
 	}
 
-	public Set<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 
-	public void setQuestoes(Set<Questao> questoes) {
+	public void setQuestoes(List<Questao> questoes) {
 		this.questoes = questoes;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ListaQuestoes other = (ListaQuestoes) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
 
-	@Override
-	public String toString() {
-		return "ListaQuestoes [id=" + id + ", email=" + email + ", questoes=" + questoes + "]";
-	}
+
 
 }

@@ -1,5 +1,6 @@
 
-var app = angular.module('app',['ngRoute','socialLogin']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model']);
+var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
     
@@ -8,77 +9,77 @@ app.config(function($routeProvider, $locationProvider) {
 
     $routeProvider
 
-      .when('/login', {
-          templateUrl: 'index.html',
-          controller: 'LoginController'
-      })
-
-      .when('/contato', {
-        templateUrl: 'app/views/Contato.html',
-        controller: 'ContatoController'
-      })
-
+    .when('/login', {
+        templateUrl: '/app/views/Login.html',
+        controller: 'LoginController'
+    })	
       .when('/signup', {	
-        templateUrl: 'app/views/SignUp.html',	
+        templateUrl: '/app/views/SignUp.html',	
         controller: 'SignUpController',
         requireAuth: true,
         requireNotRegistered: true
     })	
 
-    .when('/userdata', {
-        templateUrl: 'app/views/UserData.html',
-        controller: 'UserDataController',
+    .when('/meusdados', {
+        templateUrl: '/app/views/MeusDados.html',
+        controller: 'MeusDadosController',
         requireAuth: true,
         requireRegistered:true
       
     })
 
-    .when('/questoes', {	
-        templateUrl: 'app/views/Questoes.html',	
-        controller: 'QuestoesController',
+    .when('/questoes', {	 
+        templateUrl: '/app/views/Questoes.html',	
+        controller: 'BuscasController',
         requireAuth: true,
-        requireNotRegistered: true
+        requireRegistered: true
+    })	
+
+    .when('/buscas', {	
+        templateUrl: '/app/views/Buscas.html',	
+        controller: 'BuscasController',
+        requireAuth: true,
+        requireRegistered: true
     })	
 
     .when('/addQuestao', {	
-        templateUrl: 'app/views/CriaQuestao.html',	
-        controller: 'CriaQuestaoController',
+        templateUrl: '/app/views/AddQuestao.html',	
+        controller: 'AddQuestaoController',
         requireAuth: true,
-        requireNotRegistered: true
+        requireRegistered: true
     })	
+
+    .when('/addLista', {	
+      templateUrl: '/app/views/AddLista.html',	
+      controller: 'ListaQuestoesController',
+      requireAuth: true,
+      requireRegistered: true
+  })	
       .otherwise({
         redirectTo: '/login'
       });
 
+
+      $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+    });
+
     });
 
 
-    app.config(function(socialProvider){
-      socialProvider.setGoogleKey("363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com");
+
+  app.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}]);
+
+app.config(function (localStorageServiceProvider) {
+    localStorageServiceProvider
+      .setStorageType('sessionStorage')
+      .setNotify(true, true)
   });
 
+  app.config(['ngQuillConfigProvider', function (ngQuillConfigProvider) {
+    ngQuillConfigProvider.set();
+}]);
 
 
-
-//Desliza icones das competencias automaticamente sem desordenar
-
-$('#carouselExample').on('slide.bs.carousel', function (e) {
-
-  var $e = $(e.relatedTarget);
-  var idx = $e.index();
-  var itemsPerSlide = 4;
-  var totalItems = $('.carousel-item').length;
-  
-  if (idx >= totalItems-(itemsPerSlide-1)) {
-      var it = itemsPerSlide - (totalItems - idx);
-      for (var i=0; i<it; i++) {
-          // append slides to end
-          if (e.direction=="left") {
-              $('.carousel-item').eq(i).appendTo('.carousel-inner');
-          }
-          else {
-              $('.carousel-item').eq(0).appendTo('.carousel-inner');
-          }
-      }
-  }
-});

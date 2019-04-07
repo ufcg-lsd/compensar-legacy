@@ -26,26 +26,23 @@
 	</properties>
 
 	<dependencies>
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
 		</dependency>
 		<!-- Security oauth dependency -->
 		<dependency>
-			<groupId>org.springframework.security.oauth.boot</groupId>
-			<artifactId>spring-security-oauth2-autoconfigure</artifactId>
-			<version>2.0.1.RELEASE</version>
-		</dependency>
-		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.3.4.Final</version>
 		</dependency>
 		<!-- Springboot Starter security dependency -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
+
 		<!-- Hibernate OGM MongoDB dependency -->		
 		<dependency>
 			<groupId>org.hibernate.ogm</groupId>
@@ -58,10 +55,7 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<!-- Spring Security dependency -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-web</artifactId>
-		</dependency>
+
 		<!-- MongoDB dependency -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,10 +63,7 @@
 			<version>1.5.2.RELEASE</version>
 		</dependency>
 		<!-- Spring Security confing dependency -->
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-config</artifactId>
-		</dependency>
+
 		<!-- Springfox-swagger dependency -->
 		<dependency>
 			<groupId>io.springfox</groupId>

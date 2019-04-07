@@ -5,37 +5,48 @@ import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "usuario")
 public class Usuario {
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String nome;
+    
+    @NotNull
+    @TextIndexed
+	private int idade;
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private String nomeInstituicao;
+    
+    @NotNull
+    @TextIndexed
+	private String cargo;
+    
+    @NotNull
+    @TextIndexed
+	private String cidade;
 
     @NotNull
-	@Indexed
-	private String senha;
-	
-    @NotNull
-	@Indexed
+    @TextIndexed
 	@Id	
 	private String email;
 
     @NotNull
-	@Indexed
+    @TextIndexed
 	private boolean ativo;
 
-	public Usuario(String nome, String nomeInstituicao, String email, String senha, boolean ativo) {
+	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {
 		this.nome = nome;
+		this.idade = idade;
 		this.nomeInstituicao = nomeInstituicao;
+		this.cargo = cargo;
+		this.cidade = cidade;
 		this.email = email;
-		this.senha = senha;
 		this.ativo = ativo;
 	}
 
@@ -50,13 +61,29 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getSenha() {
-		return senha;
+	
+	public int getIdade() {
+		return idade;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public String getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
 	}
 
 	public String getNomeInstituicao() {

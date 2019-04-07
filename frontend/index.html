@@ -1,322 +1,188 @@
 <!DOCTYPE html>
-<html ng-app="app" >
+<html ng-app="app">
 
 <head>
     <base href="/index.html">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com">
 
     <meta charset="UTF-8">
-    <title> AEPC </title>
+    <title> ComPensar </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
-    <link href="styles/home.css" rel="stylesheet" type="text/css">
     <link href="styles/contato.css" rel="stylesheet" type="text/css">
     <link href="styles/login.css" rel="stylesheet" type="text/css">
+    <link href="styles/meusdados.css" rel="stylesheet" type="text/css">
+    <link href="styles/questoes.css" rel="stylesheet" type="text/css">
+    <link href="styles/searchQuestion.css" rel="stylesheet" type="text/css">
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link href="https://unpkg.com/ionicons@4.4.6/dist/css/ionicons.min.css" rel="stylesheet">
+    <!--  Quill Editor  -->
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.snow.css">
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.bubble.css">
 
+    <!-- Katex-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css" integrity="sha256-BZ71u1P7NUocEN9mKkcAovn3q5JPm/r9xVyjWh/Kqrc=" crossorigin="anonymous" />
+    
+    
 </head>
+
 
 
 <body  class = "text-center">
 
-
 <!-- Aplicação -->
 
  <!-- ========================  NavBar  ============================================== -->
-
  <div ng-switch = "isLogged">
     <div ng-switch-when="false">
-                
-        <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        
+      
+        <nav   class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
         </button>
             
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="HeadController">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent"  ng-controller="LoginController">
             <ul class="navbar-nav mr-auto">
-            <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="#home">Inicio</a></li>
-            <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
-            <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>         
             </ul>
-        <div class="nav-item dropdown"> 
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <div ng-switch = "isLogged">
-                <div ng-switch-when="true">
-                    <h6 class="dropdown-header">{{nome_usuario}}</h6>
-                    <a class="dropdown-item" href ="/userdata">Meus Dados</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" ng-click="logout()" href="#">Logout</a>
-                </div>
-                <div ng-switch-when="false">
-                    <a class="dropdown-item" href="#" g-login>Login</a>
-                </div>
-            </div>               
-        </div>
+        <div class="nav-item dropdown  barra"> 
+                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
+                <img  ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image">
+
+                <div class="dropdown-menu dropdown-menu-right notLogged" aria-labelledby="navbarDropdown">
+                    <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
+                    <div id="myctrl"  ng-controller="LoginController"></div>
+                <script>  
+                function onSignIn(googleUser) {
+                    var profile = googleUser.getBasicProfile();             
+                    angular.element(document.getElementById('myctrl')).scope().login('$rootScope',profile);
+                }
+                </script>
+            </div>
         </div>
             
         </div>
         </nav>
-
     </div>
     <div ng-switch-when = "true">
-        <nav class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
  
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-        <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="HeadController">
-          <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="#home">Inicio</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="#criaQuestao" >Cria Questao</a></li>
-        </ul>
-        <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="40px" height="40px"></a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                  <div ng-switch = "isLogged">
-                 <div ng-switch-when="true">
-                 <h6 class="dropdown-header">{{nome_usuario}}</h6>
-                 <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" ng-click="logout()" href="#">Logout</a>
-                 </div>
-                 <div ng-switch-when="false">
-                 <a class="dropdown-item" href="#" g-login>Login</a>
-                 </div>
-                </div>               
-                           </div>
-                          </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                  
+                <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Questões</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Lista</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
+                    </ul>
+                <div class="nav-item dropdown barra">
+                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
+                        <img  ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image">
+                        <div class="dropdown-menu justify-content-center logged dropdown-menu-right" aria-labelledby="navbarDropdown">
         
-            </div>
-    </div>
-</div> 
-
-
- <!-- ========================  Home  ============================================== -->
-
-<div class = "parallax" >
-        <div class="centered">
-            <hgroup>
-                <a id = "home"><img class="col-sm-4"  src = "images/iconeAepcblue.png"></a>
-                <h1><b>Ambiente de Estudo ao Pensamento Computacional</b></h1>       
-            </hgroup>
-            <a id = "top" href="#top"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
-        </div>
-</div>
-
-<!-- ======================== Presentation Questions  ============================================== -->
-<div id = "apresentacao" >
-    <h2>Experimente um pouco</h2>
-    <p > Questões serão aqui exibidas.</p>
-
-    <div class = "float-right">
-    <h4>Saiba mais!</h4>
-    <a href="#sobre"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
-    </div>
-</div>
-
- <!-- ======================== Competences  ============================================== -->
-
-    <div id = "sobre" class = "presentation">
-         <h2>Explore as 9 core competências</h2>
-        <p >Manipule questões de matemática que estimulam as principais competências do Pensamento Computacional.</p>
-   
-        <div class = "container-fluid">
-                <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="3000">
-                        <div class="carousel-inner row w-100 mx-auto" role="listbox">
-                        
-                            <div class="carousel-item col-md-3 active">
-                                <img class="img-fluid mx-auto d-block" src = "images/abstração.png" alt="slide 1">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/algoritmos.png" alt="slide 2">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/analise.png" alt="slide 3">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/automacao.png" alt="slide 4">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/coleta.png" alt="slide 5">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/decomposicao.png" alt="slide 6">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/paralelizacao.png" alt="slide 7">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                <img class="img-fluid mx-auto d-block" src = "images/representacao.png" alt="slide 8">
-                            </div>
-                            <div class="carousel-item col-md-3">
-                                    <img class="img-fluid mx-auto d-block" src = "images/simulacao.png" alt="slide 9">
-                            </div>
-                        </div>
-                        <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
-                                <span class="carousel-control-prev-icon"></span>
-                        </a>
-                        <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
-                                <span class="carousel-control-next-icon"></span>
-                        </a>
-                </div>
-        
-            </div>
-
-    </div>
-    
-
-
- <!-- ======================== Create Questions  ============================================== -->
-
-    <div  id = "create-questions" ><img class="float-right" src = "images/hands-using-computer.png">
-            <h2>Crie Questões </h2>
-            <p>  Crie, gratuitamente, questões de matemática que exploram o pensamento computacional.
-                Estas podem ser do tipo subjetiva (Ex.: PISA) ou subjetiva (Ex.: ENEM).
-            </p>
-    </div>
-
-
-<!-- ======================== Export Questions  ============================================== -->
-    
-    <div id = "export-questions"> <img class="float-left" src = "images/computer-form.jpg">
-        <h2 >Crie Listas de Exercícios </h2>
-        <p>Selecione, gratuitamente, questões para listas de exercícios e compartilhe-as.
-        </p>
-    </div>
-
-
-
-
-<!-- ======================== Sing-up  ============================================== -->
-
-    <div id="cadastro">
-        
-        <h2>Cadastre-se</h2>        
-        <h6>Se cadastre de forma rápida e gratuita para usar todas as funcionalidades do sistema</h6>
-        
-        <div class="page-header">
+                            <h6 class="dropdown-header">{{nome_usuario}}</h6>
+                            <a class="dropdown-item" href ="/meusdados">Meus Dados</a>
+                            <a class="dropdown-item" href ="/questoes">Minhas Questões</a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
+                            <div id="myctrl2" ng-controller="LoginController"></div>
             
-            <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
-            <button g-login type="button" class="btn" id = "botao"> Entrar </button>
-        </div> 
+                            <script>
+                                function signOut() {
+                                    var auth2 = gapi.auth2.getAuthInstance();
+                                    auth2.signOut().then(function () {
+                                        console.log('User signed out.');
+                                    });
+                                    angular.element(document.getElementById('myctrl2')).scope().sair("$rootScope");
+                                }
+            
+                            function onLoad() {
+                                gapi.load('auth2', function() {
+                                    gapi.auth2.init().then(() => {})
+                                });
+                                }
+                            </script>
+                    </div> 
+                </div> 
+ 
+            </nav>
     </div>
 
-
-<!-- ======================== Contact  ============================================== -->
-
-<div id = "contato" >
-    <h3 >Contato</h3>
-    <h6>Se você precisar de alguma informação específica, fale conosco!</h6>
-    <div class="container" >
-            <div ng-controller="ContatoController">
+</div>
                 
-                <form name="userForm" class="form-horizontal well form-search" ng-submit="sendEmail()">
-                    <div class="form-group">
-                        <label id = "name" for="name" class="col-sm-2 control-label">Seu Nome</label>
-                        <div class="col-sm-10">
-                            <input type="name" ng-model="name" class="form-control" id="name" placeholder="Seu Nome" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="col-sm-2 control-label">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" ng-model="email" class="form-control" id="email" placeholder="Seu Email" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="assunto" class="col-sm-2 control-label">Assunto</label>
-                        <div class="col-sm-10">
-                            <input type="assunto" ng-model="assunto" class="form-control" id="assunto" placeholder="Assunto" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="Message" class="col-sm-2 control-label">Mensagem</label>
-                        <div class="col-sm-10">
-                            <textarea ng-model="message" id="Message" class="form-control" rows="3" placeholder="Sua Mensagem" required></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </div>
-                    </div>
-                </form>
-
             </div>
         </div>
 
-
-    
-
-
-
-    
-    <a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
-
-</div>
-
-
-<!-- ======================== Footer  ============================================== -->
-
-<div id = "parallax" >
-    <div id = "footer">
-        <a href="https://www.facebook.com.br"><ion-icon name="logo-facebook"></ion-icon></a>
-        <a href="https://www.instagram.com.br"><ion-icon name="logo-instagram"></ion-icon></a>
-        <a href="https://www.twitter.com.br"><ion-icon name="logo-twitter"></ion-icon></a>
-        <a href="https://www.youtube.com.br"><ion-icon name="logo-youtube"></ion-icon></a>
-        <p>© 2018 UFCG. All Rights Reserved</p>
-    </div>
-</div>
 
 <div ng-controller="MainController"></div> 
+<div ng-view></div>
 
- 
 
 <!-- Angular JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+
 
 <!-- Dependências do BootStrap -->   
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script> 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>      
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+
+
 <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
-
-
 
 <!--Scripts Aplicação -->
 <script src="app/app.js"></script>
-
 
 <!--Services-->
 <script src="app/services/AuthService.js"></script>
 <script src="app/services/ProfileService.js"></script>
 <script src ="app/services/UserService.js"></script>
+<script src ="app/services/QuestoesService.js"></script>
+
 
 <!--Controllers-->
 <script src="app/controllers/MainController.js"></script>
-<script src="app/controllers/HeadController.js"></script>
+<script src="app/controllers/ListaQuestoesController.js"></script>
 <script src="app/controllers/LoginController.js"></script>
-<script src="app/controllers/UserDataController.js"> </script>
+<script src="app/controllers/MeusDadosController.js"> </script>
 <script src="app/controllers/SignUpController.js"> </script>
 <script src="app/controllers/ContatoController.js"></script>
-
-
-
+<script src="app/controllers/AddQuestaoController.js"></script>
+<script src="app/controllers/BuscasController.js"></script>
 
 <!--Plugins-->
-<script src="app/bower_components/angularjs-social-login/angularjs-social-login.js"></script>
+<script src='node_modules/checklist-model/checklist-model.js'></script>
+<script src="app/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+
+<!--  Quill Editor  -->
+<script type="text/javascript" src="https://cdn.quilljs.com/1.2.0/quill.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/ng-quill/2.2.1/ng-quill.min.js"></script>
+
+<!-- Katex-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.js" integrity="sha256-q01RVaHUJiYq9aq0FwkI6GAmMtOmRgToK8aEHHm4Xl8=" crossorigin="anonymous"></script>
+
 </body>
 </html>

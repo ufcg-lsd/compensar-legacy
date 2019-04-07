@@ -1,49 +1,75 @@
 angular.module('app')
-    .controller('SignUpController', function ($scope, $location, UserService, $http,$q) {
+    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q) {
         deferred = $q.defer();
 
         $scope.nomeInstituicao = "";
+        $scope.cargo = "";
+        $scope.cidade = "";
 
-        $location.path('/questoes');
         UserService.isRegistered().then(function (value) {
             this.isRegistered = value;
+            console.log(value);
+        }).then( function(){   
+            if(this.isRegistered) {
+                $location.path('/buscas')
+            } else {
+                $location.path('/signup')
+            }
+            });
+
+  
+
+                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+                  then(function (response) {
+                    $rootScope.registered = response.status == 200;
+                  }, function () { 
+                    $rootScope.registered = false; 
+                  })
             
-        }).then( function(){   if(this.isRegistered)
-        $location.path('/questoes')});
+                  .then(
+                    function () {
+                      if ($rootScope.registered) {
+                        $location.path("/buscas");
+                        $window.location.href = '/buscas';
+            
+                      } 
+                      else {
+                        $location.path("/signup");
+                        $window.location.href = '/signup';
+            
+                      }
+                    }
+                  );
+            
+        
+
 
         $scope.sendSignUp = function () {
-
             usuario = {
-                nome:  UserService.getName(),
-                nomeInstituicao: $scope.nomeInstituicao,
+                ativo: true,
+                cargo: $scope.cargo,
+                cidade: $scope.cidade,
                 email: UserService.getEmail(),
-                ativo: true
+                idade: $scope.idade,
+                nome:  UserService.getName(),
+                nomeInstituicao: $scope.nomeInstituicao
             };
 
-            $http.post('https://localhost:8001/api/aluno', usuario).
+            $http.post('http://localhost:5458/api/usuario', usuario).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");
-                        $location.path("/questoes");
+                        $location.path("/buscas");
                     }
                     else {
                         window.alert("Falha no Cadastro");
-                        $location.path("/login");
+                        $location.path("/signup");
                     }
                 },function(){
-                    window.alert("Falha no Cadastro");
-                    $location.path("/login");
+                    $location.path("/signup");
                 }
             )
         }
-
-
-
-
-
-
-
-
 
 
         $scope.validaCadastro = function () {

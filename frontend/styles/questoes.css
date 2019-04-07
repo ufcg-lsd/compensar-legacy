@@ -1,0 +1,206 @@
+  
+  input[type=text], input[type=password] {
+  padding: 7px;
+  background: #ffffff;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #cad5da;
+  outline: none;
+}
+
+input[type=number], input[type=password] {
+  padding: 7px;
+  background: #ffffff;
+}
+
+input[type=number]:focus, input[type=password]:focus {
+  background-color: #f3f6f7;
+  outline: none;
+}
+
+button {
+  background-color: #17a2b8;
+  color: white;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.btn-remove, .btn-danger, .btn-sm{
+  width: 4%;
+  float: right;
+}
+
+
+.btn-sm {
+  width: 35px;
+  height: 30px;
+}
+
+
+
+.modal-bt{
+  float: right;  
+  width: 35px;
+  height: 30px;
+}
+
+.pagination {
+  margin-block-start: 2%;
+}
+
+.questoes{
+  text-align: justify;
+  padding:15px 15px 0px ;
+}
+button:hover {
+  opacity:5;
+}
+
+#lixeira{
+  font-size: 20px;
+}
+
+#question-bt {
+  margin-block-start: 2%;
+}
+
+
+.autor{
+  color: gray;
+}
+
+.section ion-icon {
+  font-size: 22px;
+}
+
+.section  i{
+  font-size:22px;color:red
+}
+
+.section  .correta{
+  font-size:22px;color:green
+}
+
+.section > div.wrap{
+  clear:both;
+
+}
+
+
+
+.section .competencias{
+  position: relative;
+  float: left;
+
+  padding:0px 1px;
+  padding-top:10px;
+}
+
+.section div{
+  position: relative;
+  float: left;
+}
+#camposEspecificos{
+  margin-block-end: 3%;
+}
+
+#alterarQuestao i{
+  font-size:22px;
+  color:rgb(10, 70, 233);
+}
+#alterarQuestao{
+  float: right;
+}
+
+
+
+#addEspelho {
+  margin-block-start: 1%;
+  margin-inline-start: 2%;
+}
+
+[ng-quill-editor] {
+  display: block; 
+}
+
+#quill{
+    height: 250px;
+}
+
+#updateEnunciado {
+height: 250px;
+
+margin-block-end: 20%;
+
+}
+
+.fonteConteudo {
+margin-inline-end: 20%;}
+
+#bt-subjetiva {
+  margin-top: 17%;
+}
+
+.conteudoAdd{
+  margin-block-start: 25%;
+}
+
+#notFoundMessage {
+  text-align: justify;
+  margin-inline-start: 2%;
+  margin-block-start: 2%;
+}
+
+.addTipo {
+  margin-inline-end: 100%;
+  float: left;
+}
+
+ .exibeQuestoes {
+  margin-top: 4%;
+}
+
+
+
+#questoes .enunciadoCompactado{
+  height: 2.65em;
+  line-height: 1.2em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2; 
+}
+
+.addLista {
+  width: 30px;
+  height: 30px;
+}
+
+
+
+
+
+@media screen and (max-width: 580px) {
+  .conteudoAdd{
+    margin-block-start: 45%;
+  }
+
+  #question-bt {
+    margin-block-start: 6%;
+  }
+
+  #bt-subjetiva {
+    margin-block-start: 35%;
+  }
+
+
+}
+
+
+
+
+

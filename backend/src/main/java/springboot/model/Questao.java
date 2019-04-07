@@ -1,6 +1,10 @@
 package springboot.model;
 
-import javax.persistence.Lob;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
@@ -13,141 +17,125 @@ import org.springframework.data.annotation.Id;
  * @author Marcelo Gabriel dos Santos Queiroz Vitorino 
  */
 
-
-
-import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.TextScore;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import springboot.enums.CompetenciaType;
 
 @Document(collection = "questao")
 public class Questao {
 
-	@NotNull
 	@Id
-	private Long id;
+	@JsonProperty
+	private String id;
 
 	@NotNull
-	@Indexed
 	private String tipo;
 
 	@NotNull
-	@Indexed
+	@TextIndexed
 	private String enunciado;
 
-	@Indexed
+	@TextIndexed
+	private Set<CompetenciaType> competencias;
+
 	private String fonte;
 
-	@Indexed
 	private String autor;
 
-	@Indexed
-	@Lob
-	private byte[] imagem;
+	private String espelho;
 	
+	private String conteudo;
+
+	private List<Alternativa> alternativas;
+	
+	@TextScore 
+	private Float score;
 
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
 	 *
-	 * @param tipo
-	 *            O tipo da questão.
-	 * @param enunciado
-	 *            O enunciado da questão.
-	 * @param fonte 
-	 * 			  A fonte da questão.
-	 * @param autor 
-	 * 			  O autor da questão.
-	 * @param imagem 
-	 * 			  A imagem da questão.          
-	 *         
+	 * @param tipo      O tipo da questão.
+	 * @param enunciado O enunciado da questão.
+	 * @param fonte     A fonte da questão.
+	 * @param autor     O autor da questão.
+	 * @param imagem    A imagem da questão.
+	 * 
 	 * 
 	 */
-	public Questao(Long id,String tipo, String enunciado, String fonte, String autor, byte[] imagem) {
-		this.id = id;
+	public Questao(String tipo, String conteudo, String enunciado, String fonte, String autor, String espelho,
+			List<Alternativa> alternativas) {
+
 		this.tipo = tipo;
+		this.conteudo = tipo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
-		this.imagem = imagem;
+		this.espelho = espelho;
+		this.alternativas = alternativas;
+		this.competencias = new HashSet<CompetenciaType>();
+
 	}
 
 	public Questao() {
 
 	}
 
-
-	/**
-	 * Recupera o id da questão.     
-	 *
-	 * @return O id da questão.     
-	 */
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
-	/**
-	 * @param id
-	 *            O id da questão.     
-	 *
-	 *            Atualiza o id da questão.     
-	 *
-	 */
-	public void setId(Long id) {
+
+	public void setId(String id) {
 		this.id = id;
 	}
 
 	/**
-	 * Recupera o tipo da questão.     
+	 * Recupera o tipo da questão.
 	 *
-	 * @return O tipo da questão.     
+	 * @return O tipo da questão.
 	 */
 	public String getTipo() {
 		return tipo;
 	}
 
 	/**
-	 * @param tipo
-	 *            O tipo da questão.        
+	 * @param tipo O tipo da questão.
 	 *
-	 *            Atualiza o tipo da questão.        
+	 *             Atualiza o tipo da questão.
 	 *
 	 */
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
+	
+	
 
-	/**
-	 * Recupera o enunciado da questão.     
-	 *
-	 * @return O enunciado da questão.     
-	 */
-	public String getEnunciado() {
-		return enunciado;
+	public String getConteudo() {
+		return conteudo;
 	}
 
-	/**
-	 * @param enunciado
-	 *            O enunciado da questão.        
-	 *
-	 *            Atualiza o enunciado da questão.        
-	 *
-	 */
-	public void setEnunciado(String enunciado) {
-		this.enunciado = enunciado;
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
 	}
 
+
+
 	/**
-	 * Recupera a fonte da questão.     
+	 * Recupera a fonte da questão.
 	 *
-	 * @return A fonte da questão.     
+	 * @return A fonte da questão.
 	 */
 	public String getFonte() {
 		return fonte;
 	}
 
 	/**
-	 * @param fonte
-	 *            A fonte da questão.        
+	 * @param fonte A fonte da questão.
 	 *
-	 *            Atualiza a fonte da questão.        
+	 *              Atualiza a fonte da questão.
 	 *
 	 */
 	public void setFonte(String fonte) {
@@ -155,72 +143,72 @@ public class Questao {
 	}
 
 	/**
-	 * Recupera o autor da questão.     
+	 * Recupera o autor da questão.
 	 *
-	 * @return O autor da questão.     
+	 * @return O autor da questão.
 	 */
 	public String getAutor() {
 		return autor;
 	}
 
 	/**
-	 * @param autor
-	 *            O autor da questão.        
+	 * @param autor O autor da questão.
 	 *
-	 *            Atualiza o autor da questão.        
+	 *              Atualiza o autor da questão.
 	 *
 	 */
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
+
+	public String getEspelho() {
+		return espelho;
+	}
+
+	public void setEspelho(String espelho) {
+		this.espelho = espelho;
+	}
+
+	public List<Alternativa> getAlternativas() {
+		return alternativas;
+	}
+
+	public void setAlternativas(List<Alternativa> alternativas) {
+		this.alternativas = alternativas;
+	}
+
+	public String getEnunciado() {
+		return enunciado;
+	}
+
+
+	public void setEnunciado(String enunciado) {
+		this.enunciado = enunciado;
+	}
+
+
+	public Set<CompetenciaType> getCompetencias() {
+		return competencias;
+	}
+
+
+	public void setCompetencias(Set<CompetenciaType> competencias) {
+		this.competencias = competencias;
+	}
 	
-	/**
-	 * Recupera a imagem da questão.     
-	 *
-	 * @return A imagem da questão.     
-	 */
-	public byte[] getImagem() {
-		return imagem;
+
+	public Float getScore() {
+		return score;
 	}
 
-	/**
-	 * @param imagem
-	 *            A imagem da questão.        
-	 *
-	 *            Atualiza a imagem da questão.        
-	 *
-	 */
-	public void setImage(byte[] imagem) {
-		this.imagem = imagem;
+	public void setScore(Float score) {
+		this.score = score;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Questao other = (Questao) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
-	}
-
-
-
+	
+	
+	
+	
+	
 
 
 }

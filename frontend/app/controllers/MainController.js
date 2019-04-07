@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, AuthService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService,UserService, ProfileService, $window) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -17,7 +17,7 @@ angular.module('app')
 
             else {
 
-                $http.get('https://localhost:8001/api/aluno/' + AuthService.getUserDetails().email).
+                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;
@@ -31,29 +31,18 @@ angular.module('app')
                             if (newUrl.requireAuth && !AuthService.isLogged()) {
                                 $location.path("/login");
                             }
-                            else if (newUrl.requireRegistered && !$rootScope.status) {
+                            else if (newUrl.requireRegistered && !UserService.isRegistered()) {
                                 $location.path("/signup");
-                            }
-                            else if (!AuthService.isLogged() && $rootScope.status) {
-                                $location.path("/login");
-                            }
-                            else {
-                                $location.path("/questoes");
                             }
 
                         }
                     );
-
-
-
             }
         });
 
 
-        $rootScope.$on('event:social-sign-out-success', function (event, logoutStatus) {
-            ProfileService.update_visitant_profile();
-            $rootScope.isLogged = false;
-            $location.path("/login");
-            $window.location.href = '/login';
-        });
+
+
+
+
     });
