@@ -61,6 +61,13 @@ public class ListaQuestoesController {
 		return listaQuestoesService.getAll();
 	}
 	
+	@ApiOperation("Fornece a lista de questões com o id especificado.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.GET)
+	public ListaQuestoes getById(@PathVariable("id") String id) {
+		return listaQuestoesService.getById(id);
+	}
+	
 	
 	@ApiOperation("Fornece os dados de lista de questões registradas por determinado email. \r\n"
 			+ "")

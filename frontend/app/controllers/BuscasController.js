@@ -58,6 +58,7 @@ angular.module('app')
                 $scope.questao.competencias = [];
             }
         };
+        
 
         $scope.minhasQuestoes = false;
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
@@ -85,7 +86,7 @@ angular.module('app')
 
 
                     query = {
-                       enunciado:  enunciadoSearch,
+                        enunciado:  enunciadoSearch,
                         competencias: competenciasSearch,
                         autor: autorSearch,
                         fonte: fonteSearch,

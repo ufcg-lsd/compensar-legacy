@@ -23,7 +23,7 @@
                 </div>
         </div>
 
-          <!-- The Modal -->
+          <!-- O modal para editar nome da lista em construcao -->
         <div class="modal fade" id="editar">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -53,9 +53,9 @@
                 </div>
         </div>
         
-        <!-- "Lista Atual em construção" com mudança no array de questões -->
         <div  ng-switch = "getMinhasListas()">
             <div ng-switch-when="false">
+                <!-- "Lista Atual em construção" utilizando array de questoes em construcao -->
                 <div class= "questoes container tab-pane active" ng-repeat="questao in questoes">
                         <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                         <div class="row">
@@ -152,9 +152,8 @@
                 </div>
             </div>
             
-            <!-- "Minha Lista" com mudança no array de questões -->
-
             <div ng-switch-when="true">   
+                <!-- "Minha Lista" com mudança utilizando array de questões ja criado -->
                 <div class= "questoes container tab-pane active" ng-repeat="questao in Questoes">
                         <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                         <div class="row">

@@ -4,7 +4,6 @@ angular.module('app')
  
       $rootScope.activetab = $location.path();
 
-
       $scope.nomeLista = "";
 
       $rootScope.listas = [];
@@ -79,7 +78,7 @@ angular.module('app')
       $location.path("/addLista");
     };
 
-    $scope.setListas = function () {
+    $scope.setListaEmConstrucao = function () {
       $rootScope.minhasListas = false;
       $rootScope.painelListas = true;
     };

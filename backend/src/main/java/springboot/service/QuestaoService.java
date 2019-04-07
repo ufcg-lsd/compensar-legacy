@@ -38,7 +38,7 @@ public class QuestaoService {
 
 	public Questao save(Questao questao) {
 		// Aqui chama o classificador e atualiza o objeto questao
-		questao.getEnunciadoCompetencia().setCompetencias(getSetCompetencias());
+		questao.setCompetencias(getSetCompetencias());
 
 		questaoRepository.save(questao);
 
@@ -71,8 +71,8 @@ public class QuestaoService {
 		novaQuestao.setAutor(questao.getAutor());
 		novaQuestao.setTipo(questao.getTipo());
 		novaQuestao.setConteudo(questao.getConteudo());
-		novaQuestao.setEnunciadoCompetencia(questao.getEnunciadoCompetencia());
-		novaQuestao.getEnunciadoCompetencia().setCompetencias(getSetCompetencias());
+		novaQuestao.setEnunciado(questao.getEnunciado());
+		novaQuestao.setCompetencias(questao.getCompetencias());
 		
 		if (novaQuestao.getTipo().equals("Objetiva")) novaQuestao.setAlternativas(questao.getAlternativas());
 		else novaQuestao.setEspelho(questao.getEspelho());

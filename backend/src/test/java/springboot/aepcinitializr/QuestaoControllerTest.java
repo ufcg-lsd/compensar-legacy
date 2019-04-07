@@ -54,8 +54,8 @@ public class QuestaoControllerTest extends AepcApplicationTests{
 		this.questao =  new Questao("Subjetiva", "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 * 2", alternativas);
 		this.updatedQuestao = new Questao("Subjetiva",  "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 + 2", alternativas);
 		
-		this.questao.getEnunciadoCompetencia().setCompetencias(competencias);
-		this.updatedQuestao.getEnunciadoCompetencia().setCompetencias(competencias);
+		this.questao.setCompetencias(competencias);
+		this.updatedQuestao.setCompetencias(competencias);
 	}
 	
 	@Test

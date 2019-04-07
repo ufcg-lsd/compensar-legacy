@@ -1,5 +1,6 @@
 package springboot.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,7 +37,10 @@ public class Questao {
 
 	@NotNull
 	@TextIndexed
-	private EnunciadoCompetencia enunciadoCompetencia;
+	private String enunciado;
+
+	@TextIndexed
+	private Set<CompetenciaType> competencias;
 
 	private String fonte;
 
@@ -67,11 +71,13 @@ public class Questao {
 
 		this.tipo = tipo;
 		this.conteudo = tipo;
-		this.enunciadoCompetencia = new EnunciadoCompetencia(enunciado);
+		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
 		this.espelho = espelho;
 		this.alternativas = alternativas;
+		this.competencias = new HashSet<CompetenciaType>();
+
 	}
 
 	public Questao() {
@@ -171,13 +177,25 @@ public class Questao {
 		this.alternativas = alternativas;
 	}
 
-	public EnunciadoCompetencia getEnunciadoCompetencia() {
-		return enunciadoCompetencia;
+	public String getEnunciado() {
+		return enunciado;
 	}
 
-	public void setEnunciadoCompetencia(EnunciadoCompetencia enunciadoCompetencia) {
-		this.enunciadoCompetencia = enunciadoCompetencia;
+
+	public void setEnunciado(String enunciado) {
+		this.enunciado = enunciado;
 	}
+
+
+	public Set<CompetenciaType> getCompetencias() {
+		return competencias;
+	}
+
+
+	public void setCompetencias(Set<CompetenciaType> competencias) {
+		this.competencias = competencias;
+	}
+	
 
 	public Float getScore() {
 		return score;

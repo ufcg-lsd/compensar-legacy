@@ -80,6 +80,17 @@ public class ListaQuestoesService {
 	public List<ListaQuestoes> getAll() {
 		return listaQuestoesRepository.findAll();
 	}
+	
+	
+	public ListaQuestoes getById(String id) {
+		Optional<ListaQuestoes> optListaQuestoes = listaQuestoesRepository.findById(id);
+
+		if (!optListaQuestoes.isPresent()) {
+			throw new RegisterNotFoundException(errorMessage);
+		}
+
+		return optListaQuestoes.get();
+	}
 
 	public Page<ListaQuestoes> getByNomeEmail(String nomeLista, String email, int page, int size) {
 		

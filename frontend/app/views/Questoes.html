@@ -177,32 +177,36 @@
                     </div>
             </div>
 
-                    <ul class="nav nav-tabs" role="tablist">
-                        <li class="nav-item" id="first_tab">
-                            <a class="nav-link active" data-toggle="tab" ng-click="setTodasQuestoes()" href="/questoes">Todas</a>
-                        </li>
-                        <li class="nav-item" id="second_tab">
-                            <a class="nav-link " data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
+                    <ul class="nav nav-tabs nav-justified" role="tablist">
+                        <li class="nav-item">
+                            <a role=tab class="nav-link active" data-toggle="tab" ng-click="setTodasQuestoes()" href="/questoes">Todas</a>
                         </li>
 
-                            <li class = "nav-item dropdown" id="third_tab">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Minhas Listas</a>
-                                <div ng-controller="ListaQuestoesController" class="dropdown-menu">
-                                    <option class="dropdown-item"  ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
-                                </div>
+                        <li class="nav-item" >
+                            <a role=tab class="nav-link " data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
+                        </li>
+
+                            <li class = "nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
+
+                                <ul ng-controller="ListaQuestoesController" class="dropdown-menu">
+                                    <option class="dropdown-item" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
+                                </ul>
                             </li>
                             
-                            <li class="nav-item" id="fourth_tab">
+                            <li class="nav-item">
                                 <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
                                     <div ng-switch-when="true">
-                                        <a  class="nav-link" data-toggle="tab"  href="/questoes"  ng-click="setListas()">                                                    
+                                        <a  role=tab class="nav-link active" data-toggle="tab"  href="/questoes"  ng-click="setListaEmConstrucao()">                                                    
                                             Lista Atual  <span  class="badge badge-light">{{questoes.length}}</span>
                                         </a>
                                     </div>
                                 </div>
                             </li>
-
                     </ul>
+
+                    
+
             <div ng-switch = "getListas()">
                 <div ng-switch-when="true">
                     <div  ng-include="'app/views/Listas.html'"></div>                             

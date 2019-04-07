@@ -24,13 +24,12 @@
     <div class= "questoes" ng-repeat="questao in Questoes | orderBy:'-' | limitTo:5" >
 
             <ul>      
+                <div class="enunciado" > <b>Enunciado:</b>  
+                    {{updateViewQuill(questao.enunciado,"enunciado")}}</div>
 
-                    <div class="enunciado" > <b>Enunciado:</b>  
-                        {{updateViewQuill(questao.enunciado,"enunciado")}}</div>
+                <div ng-bind-html="enunciado"></div>
 
-                    <div ng-bind-html="enunciado"></div>
-
-                    <div class="fonte"><b>Fonte:</b > {{questao.fonte}}</div>
+                <div class="fonte"><b>Fonte:</b > {{questao.fonte}}</div>
             </ul>
 
     </div>

@@ -1,5 +1,7 @@
 package springboot.model;
 
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 
@@ -15,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Document(collection = "listaquestoes")
-public class ListaQuestoes {
+public class ListaQuestoes{
 	
 	@Id
 	@JsonProperty
@@ -27,12 +29,12 @@ public class ListaQuestoes {
 
 	private String email;
 
-	private Set<Questao> questoes;
+	private List<Questao> questoes;
 	
 	@TextScore 
 	private Float score;
 
-	public ListaQuestoes(String nomeLista, String email, Set<Questao> questoes) {
+	public ListaQuestoes(String nomeLista, String email, List<Questao> questoes) {
 		this.nomeLista = nomeLista;
 		this.email = email;
 		this.questoes = questoes;
@@ -59,11 +61,11 @@ public class ListaQuestoes {
 		this.email = email;
 	}
 
-	public Set<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 
-	public void setQuestoes(Set<Questao> questoes) {
+	public void setQuestoes(List<Questao> questoes) {
 		this.questoes = questoes;
 	}
 

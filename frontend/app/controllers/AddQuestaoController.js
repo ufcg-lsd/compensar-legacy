@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService,QuestoesService,$sce)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService)
     {
 
         // Ativadores das opções de edição no Quill Editor
@@ -44,8 +44,6 @@ angular.module('app')
         $scope.resposta = {}
 
         $scope.sendQuestionSubjective = function () {
-            console.log("oi");
-
             questaoSubj = {
                 autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
