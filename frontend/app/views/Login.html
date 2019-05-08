@@ -12,35 +12,6 @@
   </div>
 </div>
 
-<!-- ======================== Presentation Questions  ============================================== -->
-<div id = "apresentacao" ng-controller="BuscasController" >
-
-    <div class="container"  id=headbox >
-            <h2>Experimente um pouco</h2>
-            <hr>
-    </div>
-
-    <div id = "questoes-apresentacao">
-    <div class= "questoes" ng-repeat="questao in Questoes | orderBy:'-' | limitTo:5" >
-
-            <ul>      
-                <div class="enunciado" > <b>Enunciado:</b>  
-                    {{updateViewQuill(questao.enunciado,"enunciado")}}</div>
-
-                <div ng-bind-html="enunciado"></div>
-
-                <div class="fonte"><b>Fonte:</b > {{questao.fonte}}</div>
-            </ul>
-
-    </div>
-    </div>
-
-    <div id = "mais-questoes">
-        <hr>
-        <h4>Saiba mais!</h4>
-        <a href="#mais-questoes"> <ion-icon name="arrow-dropdown-circle"></ion-icon></a>
-    </div>
-</div>
 
 <!-- ======================== Competences  ============================================== -->
 
@@ -117,70 +88,61 @@
 
 <!-- ======================== Sing-up  ============================================== -->
 
-<div id="cadastro">
+<div id="cadastro" class="container">
+        <div id = "cabecario">
+                <h3 >Contato</h3>
+                <h6>Se você precisar de alguma informação específica, fale conosco!</h6>
+            </div>
 
-  <h2>Cadastre-se</h2>        
-  <h6>Se cadastre de forma rápida e gratuita para usar todas as funcionalidades do sistema</h6>
-  
-  <div>
-      
-      <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
-      <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
-
-
-  </div> 
+    <div>
+        <img id = 'profile' ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image" width="200px" height="10%">  
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
+    </div> 
 </div>
 
 
 <!-- ======================== Contact  ============================================== -->
 
-<div id = "contato" >
-<h3 >Contato</h3>
-<h6>Se você precisar de alguma informação específica, fale conosco!</h6>
-<div class="container"  align="center"  >
-      <div ng-controller="ContatoController">
-          
-          <form name="userForm" class="form-horizontal well form-search" ng-submit="sendEmail()">
-              <div class="form-group">
-                  <label id = "name" for="name" class="col-sm-2 control-label">Seu Nome</label>
-                  <div class="col-sm-10">
-                      <input type="name" ng-model="username" class="form-control" id="name" placeholder="Seu Nome" required>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="email" class="col-sm-2 control-label">Email</label>
-                  <div class="col-sm-10">
-                      <input type="email" ng-model="email" class="form-control" id="email" placeholder="Seu Email" required>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <label for="Message" class="col-sm-2 control-label">Mensagem</label>
-                  <div class="col-sm-10">
-                      <textarea ng-model="message" id="Message" class="form-control" rows="3" placeholder="Sua Mensagem" required></textarea>
-                  </div>
-              </div>
-              <div class="form-group">
-                  <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-primary">Enviar</button>
-                  </div>
-              </div>
-          </form>
+<div id = "contato" ng-controller="ContatoController">
+    <div id = "cabecario">
+        <h3 >Contato</h3>
+        <h6>Se você precisar de alguma informação específica, fale conosco!</h6>
+    </div>
+    <div class="col-md-8 ">
+    <form id = "contatoForm" class="container">
+        <div class="row" >
+                <div class="col-md-6">
+                        <div class="form-group row col-sm-12">
+                                <label><h6>Nome</h6></label>
+                                <input ng-model = "username" class="form-control"  placeholder="Digite o nome">
+                        </div>
 
-      </div>
-  </div>
-
-
-
-
-
-
-
-<a id = "down" href="#home"> <ion-icon name="arrow-dropup-circle"></ion-icon></a>
-
+                        <div class = "form-group row col-sm-12">
+                            <label><h6>Email</h6></label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                                </div>
+                                <input ng-model = "email" type="text" class="form-control"  placeholder="Digite o email">
+                            </div>
+                        </div>
+                        <div class="form-group row col-sm-12">
+                                <label><h6>Assunto</h6></label>
+                                <input class="form-control" placeholder="Digite o assunto" ng-model = "assunto">
+                        </div>
+                </div>
+                <div class="col-md-6">
+                        <div class="form-group row ">
+                            <label><h6>Messagem</h6></label>
+                            <textarea ng-model="message"class="form-control" rows="9" cols="10" placeholder="Mensagem" required></textarea>
+                        </div>
+                </div>      
+            </div>
+        </form>
+    </div>
+    <button  type="submit" class="btn btn-primary" ng-click="sendEmail()">Enviar Mensagem</button>
 </div>
-
-
 
 
 
@@ -198,5 +160,4 @@
 
 
 
-</div>
 </div>

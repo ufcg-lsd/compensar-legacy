@@ -1,10 +1,12 @@
 angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService)
     {
+        $rootScope.activetab = $location.path();
+
 
         // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {
-            formula: true, 
+            formula: true,
             toolbar: [
               ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
               ['blockquote'],
@@ -30,7 +32,6 @@ angular.module('app')
 
         $scope.fonte = "";
         $scope.enunciado = "";
-        $scope.espelho = "";
         $scope.tipo = "";
         $scope.conteudo = "";
 
@@ -39,7 +40,8 @@ angular.module('app')
 
 
         $scope.isObjective = function(){ 
-            return $scope.tipo === "Objetiva"};
+            return $scope.tipo === "Objetiva"
+        };
 
         $scope.resposta = {}
 
@@ -130,17 +132,33 @@ angular.module('app')
 
         $scope.editorCreated = function (editor) {
         };
+
         $scope.contentChanged = function (editor, html, text) {
             $scope.changeDetected = true;
         };
-
-        $scope.getEspelho = function (espelho) {
-            return espelho === "Sim";
+    
+        $scope.espelho = "nao";
+        $scope.setEspelho = function () {
+            console.log($scope.espelho);
+            if ($scope.espelho === "sim") $scope.espelho = "nao";
+            else $scope.espelho = "sim";
+            console.log($scope.espelho);
         }
 
-        $(document).ready(function() {
+        $().ready(function() {
             $('.selectpicker').selectpicker();
         });
 
+
+        $scope.step = 1;
+ 
+        $scope.nextStep = function() {
+            $scope.step++;
+        }
+ 
+        $scope.prevStep = function() {
+            $scope.step--;
+        }
+       
 
     });

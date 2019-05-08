@@ -1,47 +1,29 @@
-<div class="page-header">
+<div class="row">
+    <div id = "buscas" class = "container">
 
-        <div class="container" id=headbox>
+        <div class = "col-lg-6 offset-sm-3" id=headbox>
             <h3>CADASTRO</h3>
             <hr>
         </div>
     
         <div class="container" ng-controller="SignUpController">
     
-            <form id="my_data" name="myDataForm" ng-submit="sendSignUp()">
-                <div class="form-group row">
-                    <label for="staticName" class="col-sm-2 col-form-label">Autor:</label>
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
-
-                    </div>
+            <form class = "col-lg-6 offset-sm-3" ng-submit="sendSignUp()">
+                <div class="form-group row"  >
+                    <label><h6>Idade:</h6></label>
+                    <input  type="number" class="form-control"  placeholder="Digite sua Idade" ng-model="idade">
                 </div>
-                <div class="form-group row">
-                    <label for="inputText" class="col-sm-2 col-form-label">Informe sua Idade:</label>
-                    <div class="col-sm-10">
-                        <input name="idade" type="number" class="form-control" placeholder="Digite a sua Idade" ng-model="idade">
-                    </div>
+                <div class="form-group row"  >
+                    <label><h6>Cargo:</h6></label>
+                    <input  type="text" class="form-control"  placeholder="Digite seu Cargo" ng-model="cargo">
                 </div>
-
-                <div class="form-group row">
-                    <label for="inputText" class="col-sm-2 col-form-label">Informe sua Instituição:</label>
-                    <div class="col-sm-10">
-                        <input name="instituicao" type="text" class="form-control" placeholder="Digite o nome da sua Instituição" ng-model="nomeInstituicao">
-                    </div>
+                <div class="form-group row"  >
+                    <label><h6>Cidade:</h6></label>
+                    <input  type="text" class="form-control"  placeholder="Digite sua Cidade" ng-model="cidade">
                 </div>
-
-                <div class="form-group row">
-                    <label for="inputText" class="col-sm-2 col-form-label">Informe seu Cargo:</label>
-                    <div class="col-sm-10">
-                        <input name="cargo" type="text" class="form-control" placeholder="Digite o nome do seu cargo" ng-model="cargo">
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="inputText" class="col-sm-2 col-form-label">Informe sua Cidade:</label>
-                    <div class="col-sm-10">
-                        <input name="cidade" type="text" class="form-control" placeholder="Digite o nome da sua Cidade" ng-model="cidade">
-                    </div>
-
+                <div class="form-group row"  >
+                    <label><h6>Instituição:</h6></label>
+                    <input  type="text" class="form-control"  placeholder="Digite sua Instituição" ng-model="nomeInstituicao">
                 </div>
                 <div class="container">
                     <button  type="submit" class="btn btn-primary" >Registrar</button>
@@ -50,7 +32,8 @@
             </form>
                
         </div>
-
+    </div>
+    </div>  
 </div>
     
     

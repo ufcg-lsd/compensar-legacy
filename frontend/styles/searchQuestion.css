@@ -13,11 +13,25 @@
 }
 
 #buscas{
-  margin-inline-start: 2%;
+  margin-block-start: 4%;
+}
+#buscass{
+  
 }
 
-.bt-maisOp{
-  margin-block-start: 3%;
+.bt-maisOp {
+  width: 90px;
+  margin-inline-end: 45%;
+}
+
+#opcoesAvancadas{
+  margin-block-start: 10%;
+  margin-inline-start: 4%;
+}
+
+#compSearch {
+  margin-top: 2%;
+  margin-inline-start: 4%;
 }
 
 
@@ -34,20 +48,23 @@
   margin-inline-start: 9%;
 }
 
+.columnTelaQuestoes {
+  flex: 5%;
+  max-width: 17%;
+  padding: 0 4px;
+  margin-inline-start: 9%;
+}
+
 #competenciasSearch{
   margin-inline-start: 18%;
-  margin-block-start: 1%;
 }
 
 #competenciasSearchLabel {
-  margin-inline-end: 32%;
+  margin-inline-start: 26%;
   margin-block-start: 2%;
 }
 
-#buscas #competenciasSearchLabel{
-  margin-inline-end: 90%;
-  margin-block-end: 2%;
-}
+
 
 .todasOpcoes {
   padding:15px 15px 5px ;
@@ -74,7 +91,6 @@
 
   .search button {
     margin-block-start: 55%;
-    margin-inline-start: 10%;
   }
 
   #sendBusca button{

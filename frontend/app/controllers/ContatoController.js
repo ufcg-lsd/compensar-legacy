@@ -4,13 +4,14 @@ angular.module('app')
         $scope.username = "";
         $scope.email = "";
         $scope.message = "";
+        $scope.assunto = "";
       
             $scope.sendEmail = function() {
  
                 email = {
                     email: $scope.email,
                     message: $scope.message,
-                    subject: "Dúvida",
+                    subject: $scope.assunto,
                     username: $scope.username
                 };
     

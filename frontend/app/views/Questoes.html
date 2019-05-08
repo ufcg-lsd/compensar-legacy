@@ -1,11 +1,10 @@
 
-<div  class="row" ng-controller="BuscasController">
-
+<div >
     <!-- ========================  Buscas  ============================================== -->
-
-    <div id= "buscas" class="page-header col-sm-4">
-        <div  class="form-inline">
-            <div  class="form-group row col-sm-7">
+<div class = "row">
+    <div id = "buscas" class = "col-sm-4" >
+        <div  class="form-inline ">
+            <div  class="form-group col-sm-10">
                     <label><h6>Conteúdo:</h6></label>
                         <select class="form-control selectpicker " data-none-selected-text= "Selecione um conteúdo" 
                         data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
@@ -61,7 +60,8 @@
             </div>
         </div>
 
-                <div id = "competenciasSearchLabel"><h6>Competências:</h6></div>
+            <div  id = "compSearch" class="form-group row">
+                <label ><h6>Competências:</h6></label>
                 <div  class="row">  
                         <div class="col-sm-2">
                             <div class="custom-control custom-checkbox custom-control-inline">
@@ -84,18 +84,19 @@
                                     <label class="custom-control-label" for="customCheck8">Simulação</label>
                             </div>
             
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_AUTOMAÇÃO" id="customCheck9"> 
-                                    <label class="custom-control-label" for="customCheck9">Automação</label>
-                            </div>
-            
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ALGORITMOS" id="customCheck10"> 
-                                    <label class="custom-control-label" for="customCheck10">Algoritmos</label>
-                            </div>
+
                         </div>
             
-                        <div  class="column">
+                        <div  class="columnTelaQuestoes">
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_AUTOMAÇÃO" id="customCheck9"> 
+                                        <label class="custom-control-label" for="customCheck9">Automação</label>
+                                </div>
+                
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ALGORITMOS" id="customCheck10"> 
+                                        <label class="custom-control-label" for="customCheck10">Algoritmos</label>
+                                </div>
                             <div class="custom-control custom-checkbox custom-control-inline">
                                     <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_REPRESENTAÇÃO" id="customCheck5"> 
                                     <label class="custom-control-label" for="customCheck5">Representação</label>
@@ -106,23 +107,30 @@
                                     <label class="custom-control-label" for="customCheck6">Decomposição</label>
                             </div>
             
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7"> 
-                                    <label class="custom-control-label" for="customCheck7">Abstração</label>
-                            </div>
 
-                            <div class="custom-control custom-checkbox custom-control-inline">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "toggleCheck()">
-                                    <label class="custom-control-label" for="customCheck1">Todas</label>
-                            </div>
-                        </div>          
+                        </div>
+                        <div  class="columnTelaQuestoes">
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7"> 
+                                        <label class="custom-control-label" for="customCheck7">Abstração</label>
+                                </div>
+    
+                                <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "toggleCheck()">
+                                        <label class="custom-control-label" for="customCheck1">Todas</label>
+                                </div>
+                        </div>
+          
                 </div>
-                <div  class="form-group">
-                    <div  class="col-sm-7">
-                    <button class="btn btn-outline-primary bt-maisOp" type="button" data-toggle="collapse" data-target="#opcoesAvancadas">Mais filtros</button>
-                </div>
-            
-        <div id="opcoesAvancadas" class="collapse col-sm-7">
+            </div>
+
+        <!-- ========================  Opçoes Avançadas  ============================================== -->
+
+            <div class="form-group">
+                <button class="btn btn-outline-primary bt-maisOp btn-sm" type="button" data-toggle="collapse" data-target="#opcoesAvancadas">Mais filtros</button>
+            </div>
+
+        <div id="opcoesAvancadas" class="collapse col-sm-10">
             <div class="form-group row " >
                 <label><h6>Enunciado:</h6></label>
                 <input name="enunciadoSearch" type="text" class="form-control"  placeholder="Pesquise por termo(s) do enunciado" ng-model="enunciadoSearch">
@@ -162,13 +170,11 @@
                 </div>
             </div>
         </div>
-        </div>
     </div>
 
-    
      <!-- ========================  Questões  ============================================== -->
 
-     <div id = "questoes" class="exibeQuestoes col-sm-7" >
+     <div  id = "questoes" class = "col-sm-8" >
             <div  ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
                     <div ng-switch-when="true">
                         <div class="progress form-group row " style="height: 5px;">
@@ -217,7 +223,7 @@
 
                     <div ng-switch-when="true">
                         <div class="tab-content">
-                            <div class= "questoes container tab-pane active" ng-repeat="questao in Questoes" >
+                            <div class= "questoes  tab-pane active" ng-repeat="questao in Questoes" >
 
                                 <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                             <div class="row">
@@ -233,9 +239,14 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <button data-placement="right" title="Ver detalhes"  class="btn btn-outline-secondary btn-sm modal-bt" data-toggle="modal" data-target="#myModal{{$index}}">                
-                                            <i class="fas fa-info-circle fa-lg"></i>                        
-                                        </button>
+                              
+
+                                        <md-button  data-placement="right"  class="md-icon-button test-tooltip modal-bt" >
+                                            <md-tooltip md-direction="left">Ver detalhes</md-tooltip>
+                                            <md-icon    data-toggle="modal" data-target="#myModal{{$index}}">
+                                                <i class="fas fa-info-circle fa-lg"></i> 
+                                            </md-icon>
+                                          </md-button>
                                 </div>
 
                             </div>
@@ -609,4 +620,5 @@
         </div>
         </div>
     </div>
+</div>
 </div>

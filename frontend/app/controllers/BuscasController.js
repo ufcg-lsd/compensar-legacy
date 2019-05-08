@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService) {
+    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$route) {
 
         $rootScope.activetab = $location.path();
         
@@ -20,14 +20,6 @@ angular.module('app')
         $scope.conteudoSearch = "";
 
 
-        $scope.competencias = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
-        "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"];
-
-        $scope.questao = {
-            competencias: []
-        };
-
         $scope.pageChangeHandler = function(newPage) {
 
             if (newPage === 'anterior' && $scope.pagination.current > 0) {
@@ -47,6 +39,14 @@ angular.module('app')
         $scope.setPageStart = function() {
             $scope.pagination.current = 0;
         }
+
+        $scope.competencias = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
+        "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
+        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"];
+
+        $scope.questao = {
+            competencias: []
+        };
  
         $scope.checkAll = false;
         $scope.toggleCheck = function() {
@@ -292,8 +292,9 @@ angular.module('app')
 
 
         $scope.setLocation = function() {
-            $location.path("\questoes");
-        }
+            $location.path("/questoes");   
+        };
+
 
         QuestoesService.getQuestoes($scope.pagination.current , 5);
         

@@ -1,4 +1,6 @@
-<div  class="page-header container" ng-controller="BuscasController">
+<div class = "row">
+
+<div  id = "buscas" class="container" >
     <div class="container col-lg-6 offset-sm-3" id=headbox >
         <h3> BUSCAR QUESTÕES</h3>
         <hr>
@@ -58,8 +60,8 @@
         </div>
     </div>
 
-
-    <div id = "competenciasSearchLabel"><h6>Selecione as competências:</h6></div>      
+    <div  class="form-group row">   
+    <label id = "competenciasSearchLabel"><h6>Selecione as competências:</h6></label>      
     <div id = "competenciasSearch" class="row">  
             <div class="column">
                 <div class="custom-control custom-checkbox custom-control-inline">
@@ -118,11 +120,11 @@
                 </div>
             </div>
     </div>
-
+    </div>
     <div id="sendBusca">
             <button class="btn btn-primary" type="submit" ng-click="setPageStart(); setLocation();  sendQuery('','','','', questao.competencias, conteudoSearch,'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
     </div>
-
+</div>
 </div>
 
 
@@ -130,12 +132,3 @@
 
 
 
-
-
-
-
-
-
-
-
-</div>

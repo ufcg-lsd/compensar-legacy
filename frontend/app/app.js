@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -24,8 +24,7 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl: '/app/views/MeusDados.html',
         controller: 'MeusDadosController',
         requireAuth: true,
-        requireRegistered:true
-      
+        requireRegistered:true   
     })
 
     .when('/questoes', {	 

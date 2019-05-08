@@ -1,57 +1,51 @@
-<div class="page-header">
-    
-        <div class="container" id=headbox>
+<div class="row">
+    <div id = "buscas" class = "container">
+        <div class = "container col-lg-6 offset-sm-3" id=headbox>
             <h3>MEUS DADOS</h3>
-            <hr width="60%">
+            <hr width="90%">
         </div>
 
-        <div class="container" ng-controller="MeusDadosController">
-    
-            <form class = "col-lg-6 offset-sm-3 " name="myDataForm">
-                <div class="form-group row">
-                    <label ><h6>Email:</h6></label>
-                    <input class="form-control " type="text" placeholder={{user_email}} readonly>
-                    
-                </div>
-                <div class="form-group row">
-                    <label><h6>Nome:</h6></label>
-                     <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <div class="form-group row" >
-                            <label><h6>Idade:</h6></label>
-                            <input name="idade" type="number" class="form-control"  ng-model="idade_usuario">
+            <div class="container col-lg-8 offset-sm-2" ng-controller="MeusDadosController">
+        
+                <form class= "col-sm-12 ml-2">
+                    <div class = "row">
+                        <div class="col-md-6">
+                                <div class="form-group row col-sm-12">
+                                    <label ><h6>Email:</h6></label>
+                                    <input class="form-control " type="text" placeholder={{user_email}} readonly>
+                                    
+                                </div>
+                                <div class="form-group row  col-sm-12" >
+                                        <label><h6>Cargo:</h6></label>
+                                        <input name="cargo" type="text" class="form-control"  ng-model="cargo_usuario">
+                                    </div>
+                                            <div class="form-group row  col-sm-12" >
+                                                <label><h6>Idade:</h6></label>
+                                                <input name="idade" type="number" class="form-control"  ng-model="idade_usuario">
+                                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="form-group row" >
-                            <label><h6>Cargo:</h6></label>
-                            <input name="cargo" type="text" class="form-control"  ng-model="cargo_usuario">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
-                        <div class="form-group row" >
-                            <label><h6>Cidade:</h6></label>
-                            <input name="cidade" type="text" class="form-control"  ng-model="cidade_usuario">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="form-group row" >
-                            <label><h6>Instituição: </h6></label>
-                            <input name="instituicao" type="text" class="form-control"  ng-model="instituicao_usuario">
-                        </div>
-                    </div>
-                </div> 
-                
-                <button type="submit" class="btn btn-primary" ng-click="updateUser()" >Atualizar</button>
-                  
-    
-            </form>
-    
-        </div>
+                        <div class="col-md-6">
+                                <div class="form-group row col-sm-12">
+                                        <label><h6>Nome:</h6></label>
+                                        <input class="form-control" type="text" placeholder={{nome_usuario}} readonly>
+                                    </div>
 
+                                    <div class="form-group row  col-sm-12" >
+                                        <label><h6>Cidade:</h6></label>
+                                        <input name="cidade"type="text" class="form-control"  ng-model="cidade_usuario">
+                                    </div>
+                                    <div class="form-group row  col-sm-12" >
+                                        <label><h6>Instituição: </h6></label>
+                                        <input name="instituicao" type="text" class="form-control"  ng-model="instituicao_usuario">
+                                    </div>
+                        </div> 
+                    </div>
+                    <div class="form-group mt-3 mr-4">
+
+                        <button type="submit" class="btn btn-primary" ng-click="updateUser()" >Atualizar Dados</button>
+                    </div>
+                </form>
+        </div>
+    </div>
     
     </div>

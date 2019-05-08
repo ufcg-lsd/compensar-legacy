@@ -49,6 +49,7 @@ button {
 
 .pagination {
   margin-block-start: 2%;
+  background-color: white;
 }
 
 .questoes{
@@ -88,6 +89,8 @@ button:hover {
   clear:both;
 
 }
+
+
 
 
 
@@ -159,9 +162,12 @@ margin-inline-end: 20%;}
   float: left;
 }
 
- .exibeQuestoes {
-  margin-top: 4%;
+#questoes {
+    margin-top: 4%;
+
 }
+
+
 
 
 
@@ -179,6 +185,8 @@ margin-inline-end: 20%;}
   width: 30px;
   height: 30px;
 }
+
+
 
 
 

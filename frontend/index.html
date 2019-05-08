@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 
+      <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
     <!--  Quill Editor  -->
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.snow.css">
     <link rel="stylesheet" href="https://cdn.quilljs.com/1.2.0/quill.bubble.css">
@@ -49,9 +51,9 @@
                 <span class="navbar-toggler-icon"></span>
         </button>
             
-        <div class="collapse navbar-collapse" id="navbarSupportedContent"  ng-controller="LoginController">
+        <div class="topnav collapse navbar-collapse" id="navbarSupportedContent"  ng-controller="LoginController">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/login'}"><a class="nav-link" href="/login">Inicio</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
                 <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>         
             </ul>
@@ -81,11 +83,11 @@
                       <span class="navbar-toggler-icon"></span>
                     </button>
                   
-                <div class="collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
+                <div class="topnav collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" ng-class="{active: activetab == '/inicio'}"><a class="nav-link" href="/login">Inicio</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/login'}"><a class="nav-link" href="/login">Inicio</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Questões</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/criaQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Lista</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
@@ -135,8 +137,17 @@
 
 <!-- Angular JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-sanitize.js"></script>
+
+
+
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
 
 
 
