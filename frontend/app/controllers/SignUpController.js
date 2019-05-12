@@ -19,7 +19,7 @@ angular.module('app')
 
   
 
-                $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+                $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
                   then(function (response) {
                     $rootScope.registered = response.status == 200;
                   }, function () { 
@@ -55,7 +55,7 @@ angular.module('app')
                 nomeInstituicao: $scope.nomeInstituicao
             };
 
-            $http.post('http://localhost:5458/api/usuario', usuario).
+            $http.post('https://compensar.herokuapp.com/api/usuario', usuario).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Cadastro efetuado com Sucesso!");

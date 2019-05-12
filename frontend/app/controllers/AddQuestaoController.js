@@ -55,7 +55,7 @@ angular.module('app')
                 tipo: $scope.tipo
             };
 
-            $http.post('http://localhost:5458/api/questao', questaoSubj).
+            $http.post('https://compensar.herokuapp.com/api/questao', questaoSubj).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
@@ -113,7 +113,7 @@ angular.module('app')
 
 
 
-            $http.post('http://localhost:5458/api/questao', questaoObj).
+            $http.post('https://compensar.herokuapp.com/api/questao', questaoObj).
                 then(function (response) {
                     if (response.status == 200) {
                         window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");

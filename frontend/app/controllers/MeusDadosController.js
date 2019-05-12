@@ -13,7 +13,7 @@ angular.module('app')
         $scope.idade_usuario = "";
 
 
-        $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+        $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
         then(function (response) { 
             $scope.instituicao_usuario = response.data.nomeInstituicao,
             $scope.cargo_usuario = response.data.cargo,
@@ -33,7 +33,7 @@ angular.module('app')
                 nomeInstituicao: $scope.instituicao_usuario 
             };
 
-            $http.put('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email, user).
+            $http.put('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email, user).
             then(function (response) {
 
                 if (response.status == 200) {

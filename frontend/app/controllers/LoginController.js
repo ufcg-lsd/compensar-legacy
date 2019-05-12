@@ -21,7 +21,7 @@ angular.module('app')
 
   update_view =  function () {
 
-    $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+    $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
       then(function (response) {
         $rootScope.registered = response.status == 200;
       }, function () { 

@@ -4,7 +4,7 @@ angular.module('app')
     deferred = $q.defer();
 
     service.isRegistered = function () {
-      $http.get('http://localhost:5458/api/usuario/' + AuthService.getUserDetails().Email).
+      $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
         then(function (response) {
           deferred.resolve(response.status == 200);
         },function(response){
