@@ -13,11 +13,9 @@
 }
 
 #buscas{
-  margin-block-start: 4%;
+  margin-block-start: 6%;
 }
-#buscass{
-  
-}
+
 
 .bt-maisOp {
   width: 90px;
@@ -100,7 +98,12 @@
   }
 
 
+  @media screen and (max-width: 580px) {
+    #buscas{
+      margin-block-start: 14%;
+    }
 
+  }
 
 
 /* ======================================= Botão competências/autor/fonte/tipo ====================== */

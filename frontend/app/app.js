@@ -35,11 +35,11 @@ app.config(function($routeProvider, $locationProvider) {
     })	
 
     .when('/buscas', {	
-        templateUrl: '/app/views/Buscas.html',	
-        controller: 'BuscasController',
-        requireAuth: true,
-        requireRegistered: true
-    })	
+      templateUrl: '/app/views/Buscas.html',	
+      controller: 'BuscasController',
+      requireAuth: true,
+      requireRegistered: true
+  })	
 
     .when('/addQuestao', {	
         templateUrl: '/app/views/AddQuestao.html',	
