@@ -1,3 +1,7 @@
+label{
+    margin-right: 5px;
+}
+
 #search-menu {
     float:left;
     margin-inline-start: 3%;
@@ -87,6 +91,10 @@
     margin-inline-start: 30%;
   }
 
+  .search{
+      margin-left:5px;
+  }
+
   .search button {
     margin-block-start: 55%;
   }
@@ -94,7 +102,7 @@
   #sendBusca button{
     width: 48%; 
     margin-block-start: 2%;
-    margin-inline-end: 2%
+    margin-inline-end: 2%;
   }
 
 

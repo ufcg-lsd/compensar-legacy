@@ -1,5 +1,8 @@
-  
-  input[type=text], input[type=password] {
+label {
+    margin-right: 5px;
+}  
+ 
+input[type=text], input[type=password] {
   padding: 7px;
   background: #ffffff;
 }

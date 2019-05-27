@@ -4,59 +4,57 @@
 <div class = "row">
     <div id = "buscas" class = "col-sm-4" >
         <div  class="form-inline ">
-            <div  class="form-group col-sm-10">
-                    <label><h6>Conteúdo:</h6></label>
-                        <select class="form-control selectpicker " data-none-selected-text= "Selecione um conteúdo" 
-                        data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
-                        data-live-search-normalize="true" data-size=6  ng-model="conteudoSearch">
-                        <option >Qualquer Um</option>
-                        <optgroup label="">
-                            <option data-tokens="somar">Adição</option>
-                            <option >Conjuntos</option>
-                            <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
-                            <option >Critérios de Divisibilidade</option>
-                            <option>Divisão</option>
-                            <option>Divisão de Frações</option>
-                            <option>Equação do Primeiro Grau</option>
-                            <option>Equação do Segundo Grau</option>
-                            <option>Estatística</option>
-                            <option>Expressões Numéricas</option>
-                            <option>Frações</option>
-                            <option data-tokens="Formas Geométricas">Geometria</option>
-                            <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
-                            <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
-                            <option>Inequação</option>
-                            <option>Juros Compostos</option>
-                            <option>Juros Simples</option>
-                            <option>Matrizes</option>
-                            <option>MDC: Máximo Divisor Comum</option>
-                            <option>MMC: Mínimo Múltiplo Comum</option>
-                            <option>Multiplicação</option>
-                            <option>Multiplicação de Frações</option>
-                            <option>Números Decimais</option>
-                            <option>Números Primos</option>
-                            <option>Potenciação</option>
-                            <option>PA: Progressão Aritmética</option>
-                            <option>PG: Progressão Geométrica</option>
-                            <option>Plano Cartesiano</option>
-                            <option>Porcentagem</option>
-                            <option>Produtos Notáveis</option>
-                            <option>Radiciação</option>
-                            <option>Razão e Proporção</option>
-                            <option>Sistemas Lineares</option>
-                            <option>Soma de Frações</option>
-                            <option>Subtração</option>
-                            <option>Subtração de Frações</option>
-                            <option>Tabuada</option>
-                            <option>Triângulo de Pascal</option>
-                            <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
-                            <option>Unidades de Medida</option>
-                        </optgroup>
-                            <option>Outros</option>
-                        </select>
-            </div>
-            <div class="search">
-                <button class="btn btn-primary" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch, 'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
+            <div class="form-group col-sm-10">
+                <label><h6>Conteúdo:</h6></label>
+                <select class="form-control selectpicker " data-none-selected-text="Selecione um conteúdo"
+                        data-none-results-text="Nenhum resultado encontrado" data-live-search="true"
+                        data-live-search-normalize="true" data-size=6 ng-model="conteudoSearch">
+                    <option>Qualquer Um</option>
+                    <optgroup label="">
+                        <option data-tokens="somar">Adição</option>
+                        <option>Conjuntos</option>
+                        <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
+                        <option>Critérios de Divisibilidade</option>
+                        <option>Divisão</option>
+                        <option>Divisão de Frações</option>
+                        <option>Equação do Primeiro Grau</option>
+                        <option>Equação do Segundo Grau</option>
+                        <option>Estatística</option>
+                        <option>Expressões Numéricas</option>
+                        <option>Frações</option>
+                        <option data-tokens="Formas Geométricas">Geometria</option>
+                        <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
+                        <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
+                        <option>Inequação</option>
+                        <option>Juros Compostos</option>
+                        <option>Juros Simples</option>
+                        <option>Matrizes</option>
+                        <option>MDC: Máximo Divisor Comum</option>
+                        <option>MMC: Mínimo Múltiplo Comum</option>
+                        <option>Multiplicação</option>
+                        <option>Multiplicação de Frações</option>
+                        <option>Números Decimais</option>
+                        <option>Números Primos</option>
+                        <option>Potenciação</option>
+                        <option>PA: Progressão Aritmética</option>
+                        <option>PG: Progressão Geométrica</option>
+                        <option>Plano Cartesiano</option>
+                        <option>Porcentagem</option>
+                        <option>Produtos Notáveis</option>
+                        <option>Radiciação</option>
+                        <option>Razão e Proporção</option>
+                        <option>Sistemas Lineares</option>
+                        <option>Soma de Frações</option>
+                        <option>Subtração</option>
+                        <option>Subtração de Frações</option>
+                        <option>Tabuada</option>
+                        <option>Triângulo de Pascal</option>
+                        <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
+                        <option>Unidades de Medida</option>
+                    </optgroup>
+                    <option>Outros</option>
+                </select>
+                <button class="btn btn-primary search" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch, 'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
             </div>
         </div>
 
