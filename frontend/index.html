@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="app">
 
 <head>
@@ -65,7 +65,8 @@
 
                 <div class="dropdown-menu dropdown-menu-right notLogged" aria-labelledby="navbarDropdown">
                     <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
-                    <div id="myctrl"  ng-controller="LoginController"></div>
+                    <div id="myctrl"  ng-controller="LoginController">
+                    </div>
                 <script>  
                 function onSignIn(googleUser) {
                     var profile = googleUser.getBasicProfile();             
@@ -88,9 +89,9 @@
                 <div class="topnav collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" ng-class="{active: activetab == '/login'}"><a class="nav-link" href="/login">Inicio</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Questões</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questao</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Lista</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Buscar Questões</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questões</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Listas</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
                     </ul>
@@ -128,10 +129,6 @@
     </div>
 
 </div>
-                
-            </div>
-        </div>
-
 
 <div ng-controller="MainController"></div> 
 <div ng-view></div>
