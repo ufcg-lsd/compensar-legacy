@@ -1,6 +1,8 @@
 package springboot.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -34,7 +36,7 @@ public class QuestaoController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao", method = RequestMethod.POST)
-	public Questao save(@RequestBody Questao questao) {
+	public Questao save(@RequestBody Questao questao) throws IOException {
 		return questaoService.save(questao);
 	}
 

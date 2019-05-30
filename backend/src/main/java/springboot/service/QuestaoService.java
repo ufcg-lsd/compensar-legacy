@@ -1,11 +1,19 @@
 package springboot.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import javax.net.ssl.HttpsURLConnection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import com.google.common.collect.Lists;
 
+import net.htmlparser.jericho.Source;
 import springboot.enums.CompetenciaType;
 import springboot.exception.RegisterNotFoundException;
 import springboot.model.Questao;
@@ -36,14 +45,26 @@ public class QuestaoService {
 	@Autowired
 	private QuestaoRepository questaoRepository;
 
-	public Questao save(Questao questao) {
+	public Questao save(Questao questao) throws IOException {
+		
+		String enunciadoText = extractAllText(questao.getEnunciado());
+		 
+		
 		// Aqui chama o classificador e atualiza o objeto questao
-		questao.setCompetencias(getSetCompetencias());
+		questao.setCompetencias(getSetCompetencias(enunciadoText));
 
 		questaoRepository.save(questao);
 
 		return questao;
 	}
+	
+	
+	
+	
+	private static String extractAllText(String htmlText) {
+	    Source source = new Source(htmlText);
+	    return source.getTextExtractor().toString();
+	}    
 
 	public Questao delete(String id) {
 		Optional<Questao> optQuestao = questaoRepository.findById(id);
@@ -191,34 +212,54 @@ public class QuestaoService {
 
 	}
 
-	private Set<CompetenciaType> getSetCompetencias() {
+	private Set<CompetenciaType> getSetCompetencias(String enunciado) throws IOException  {
 
 		Set<CompetenciaType> competencias = new HashSet<>();
-		Set<CompetenciaType> competenciasAleatorias = new HashSet<>();
 
-		ArrayList<Integer> nums = new ArrayList<Integer>();
-		for (int i = 1; i < 10; i++) {
-			nums.add(new Integer(i));
-		}
+	    URL obj = new URL("https://question-classifier.herokuapp.com/classifier/");
+	    HttpsURLConnection postConnection = (HttpsURLConnection) obj.openConnection();
+	    postConnection.setRequestMethod("POST");
+	    postConnection.setRequestProperty("Content-Type", "text/plain");
+	    postConnection.setDoOutput(true);
+	    OutputStream os = postConnection.getOutputStream();
+	    os.write(enunciado.getBytes());
+	    os.flush();
+	    os.close();
+	    int responseCode = postConnection.getResponseCode();
+	    System.out.println("POST Response Code :  " + responseCode);
+	    System.out.println("POST Response Message : " + postConnection.getResponseMessage());
+	        
+	    
+	    BufferedReader in = new BufferedReader(new InputStreamReader(
+	            postConnection.getInputStream()));
+	        String inputLine;
+	        StringBuffer response = new StringBuffer();
+	        while ((inputLine = in .readLine()) != null) {
+	            response.append(inputLine);
+	        } in .close();
+	        
+	        
+	        
+	        List<String> result = Arrays.asList(response.toString().split(","));
 
-		Collections.shuffle(nums);
-		for (int i = 0; i < 9; i++) {
-			competencias.add(getCompetencia(nums.get(i)));
-		}
 
-		competenciasAleatorias.clear();
+	        for (int i = 0; i < result.size(); i++) {
+	        	List<String> compChave = Arrays.asList(result.get(i).split(":"));
 
-		competenciasAleatorias.addAll(competencias);
+	        	if (compChave.get(1).charAt(2) == '1') {
+	        		competencias.add(getCompetencia(compChave.get(0)));
+	        	}
+	        }
+		
 
-		competencias.clear();
 
-		return competenciasAleatorias;
+		return competencias;
 	}
 
-	private CompetenciaType getCompetencia(int chave) {
+	private CompetenciaType getCompetencia(String chave) {
 		CompetenciaType valor = null;
 		for (CompetenciaType competencia : CompetenciaType.values()) {
-			if (competencia.value == chave) {
+			if (chave.contains(competencia.value)) {
 				valor = competencia;
 			}
 		}
