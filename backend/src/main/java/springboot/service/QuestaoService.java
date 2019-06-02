@@ -47,24 +47,14 @@ public class QuestaoService {
 
 	public Questao save(Questao questao) throws IOException {
 		
-		String enunciadoText = extractAllText(questao.getEnunciado());
-		 
-		
 		// Aqui chama o classificador e atualiza o objeto questao
-		questao.setCompetencias(getSetCompetencias(enunciadoText));
+		//questao.setCompetencias(getSetCompetencias(questao.getEnunciado()));
 
 		questaoRepository.save(questao);
 
 		return questao;
 	}
-	
-	
-	
-	
-	private static String extractAllText(String htmlText) {
-	    Source source = new Source(htmlText);
-	    return source.getTextExtractor().toString();
-	}    
+	 
 
 	public Questao delete(String id) {
 		Optional<Questao> optQuestao = questaoRepository.findById(id);
@@ -212,7 +202,9 @@ public class QuestaoService {
 
 	}
 
-	private Set<CompetenciaType> getSetCompetencias(String enunciado) throws IOException  {
+	public Set<CompetenciaType> getSetCompetencias(String enunciado) throws IOException  {
+		
+		String enunciadoText = extractAllText(enunciado);
 
 		Set<CompetenciaType> competencias = new HashSet<>();
 
@@ -222,12 +214,10 @@ public class QuestaoService {
 	    postConnection.setRequestProperty("Content-Type", "text/plain");
 	    postConnection.setDoOutput(true);
 	    OutputStream os = postConnection.getOutputStream();
-	    os.write(enunciado.getBytes());
+	    os.write(enunciadoText.getBytes());
 	    os.flush();
 	    os.close();
 	    int responseCode = postConnection.getResponseCode();
-	    System.out.println("POST Response Code :  " + responseCode);
-	    System.out.println("POST Response Message : " + postConnection.getResponseMessage());
 	        
 	    
 	    BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -255,6 +245,11 @@ public class QuestaoService {
 
 		return competencias;
 	}
+	
+	private static String extractAllText(String htmlText) {
+	    Source source = new Source(htmlText);
+	    return source.getTextExtractor().toString();
+	}   
 
 	private CompetenciaType getCompetencia(String chave) {
 		CompetenciaType valor = null;

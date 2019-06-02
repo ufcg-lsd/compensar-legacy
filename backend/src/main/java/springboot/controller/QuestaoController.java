@@ -2,6 +2,7 @@ package springboot.controller;
 
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springboot.enums.CompetenciaType;
 import springboot.model.Questao;
 import springboot.service.QuestaoService;
 
@@ -58,7 +60,14 @@ public class QuestaoController {
 	}
 
 
-
+	@ApiOperation("Retorna a(s) competência(s) para o enunciado.\r\n"
+			+ "")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK") })
+	@RequestMapping(value = "/competencias", method = RequestMethod.POST)
+	public Set<CompetenciaType> getSetCompetencias(@RequestBody String enunciado) throws IOException {
+		
+		return questaoService.getSetCompetencias(enunciado);
+	}
 	
 	
 

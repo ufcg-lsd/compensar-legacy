@@ -150,6 +150,22 @@ service.sendUpdateLista = function (lista,novaLista) {
   },function(){
       $location.path("/questoes");
   });
+},
+
+service.getCompetencias = function (enunciado) {
+  $http.post('https://compensar.herokuapp.com/api/competencias', enunciado).
+    then(function (response) {
+        if (response.status == 200) {
+          $rootScope.competencias = response.data;
+          $rootScope.loading = false;
+        }
+        else {
+            window.alert("Falha no feedback das competências");
+            $rootScope.loading = false;
+        }
+    },function() {
+    }
+  )
 }
 
 

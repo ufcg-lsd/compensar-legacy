@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, QuestoesService)
     {
         $rootScope.activetab = $location.path();
 
@@ -52,6 +52,7 @@ angular.module('app')
                 enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
+                competencias: $scope.competencias,
                 tipo: $scope.tipo
             };
 
@@ -108,6 +109,7 @@ angular.module('app')
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 fonte: $scope.fonte,
+                competencias: $scope.competencias,
                 tipo: $scope.tipo
             };
 
@@ -129,6 +131,20 @@ angular.module('app')
             )
 
         }
+
+
+        $rootScope.competencias = "";
+        $rootScope.loading = "";
+        $scope.getCompetencias = function () {
+            console.log($rootScope.loading);
+            $rootScope.loading = true;
+            QuestoesService.getCompetencias($scope.enunciado);
+        };
+
+        $scope.repaginaCompetencia = function (competencia) {
+            var compSplitted = competencia.split("_");
+            return compSplitted[1];
+        };
 
         $scope.editorCreated = function (editor) {
         };

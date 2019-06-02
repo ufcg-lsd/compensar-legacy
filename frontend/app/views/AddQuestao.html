@@ -39,6 +39,8 @@
                         <i class="fas fa-arrow-circle-right"></i>       
                 </button>
             </div>
+
+            <!-- ========================  Passo 2  ============================================== -->
             <div ng-show="step == 2">
                 <div class="progress form-group row " style="height: 5px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:45%"></div>
@@ -56,13 +58,53 @@
                             <i class="far fa-arrow-alt-circle-left"></i>                            
                             Voltar
                     </button>
-                    <button class="btn btn-primary" ng-click="nextStep()">Continuar
+                    <button class="btn btn-primary" ng-click="getCompetencias()" data-toggle="modal" data-target="#myModal">Continuar
                             <i class="fas fa-arrow-circle-right"></i>       
                     </button>                
                 </div>
+
             </div>
 
 
+
+            <!-- ======================== Modal  ============================ -->
+            <div class="modal fade" ng-show = "loading === false" id="myModal">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                                                                
+                        <!-- Modal Header -->
+                        <div class="modal-header">                  
+                            <h5 class="modal-title"> Competências para o seu enunciado: </h5>
+                            
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                                                                
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="competencias" ng-repeat="competencia in competencias"  ng-class="{wrap:!($index % 4)}">
+                                    <span  class="col-1">
+                                        <em>{{repaginaCompetencia(competencia)}} </em>
+                                    </span>
+                            </div> 
+                        </div>
+        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-secondary"  data-dismiss="modal">
+                                    <i class="far fa-arrow-alt-circle-left"></i>                            
+                                        Voltar    </button>
+                                <button ng-click="nextStep()" type="button" class="btn btn-primary"  data-dismiss="modal">Continuar
+                                        <i class="fas fa-arrow-circle-right"></i>       
+                                </button>
+                            </div>
+                            </div>
+                        </div>
+        
+                    </div>
+            </div>
+
+            <!-- ========================  Passo 3  ============================================== -->
             <div ng-show="step == 3">
                 <div class="progress form-group row " style="height: 5px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:85%"></div>
