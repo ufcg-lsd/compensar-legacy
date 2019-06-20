@@ -190,14 +190,13 @@
                             <a role=tab class="nav-link " data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
                         </li>
 
-                            <li class = "nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
+                            <li  class = "nav-item dropdown">
+                                <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true }" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
                                 <ul ng-controller="ListaQuestoesController" class="dropdown-menu">
                                     <option class="dropdown-item" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
                                 </ul>
                             </li>
-                            
                             <li class="nav-item">
                                 <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
                                     <div ng-switch-when="true">
@@ -598,22 +597,22 @@
                         </div>
                     </div>
 
-                    <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
-                        <div ng-switch-when="true">
-                            <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
 
-                            <div ng-switch="getListaEmEdicao()">
-                                <div ng-switch-when="false">
-                                    <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar Lista</button>
-                                </div>
-                                <div ng-switch-when="true">
-                                        <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()">oi Lista</button>
-                                </div>
+                        <div ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+                            <div ng-switch-when="true">
+                                <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
+                                <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()">Salvar</button>
                             </div>
-
+                            <div ng-switch-when="false">
+                                    <div ng-switch="getPainelListaEmContrucao()">
+                                        <div ng-switch-when="true">
+                                            <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
+                                            <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar</button>
+                                        </div>   
+                                    </div>
+                            </div>
                         </div>
                     </div>
-
             </div>       
         </div>
         </div>

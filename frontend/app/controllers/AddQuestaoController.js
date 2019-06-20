@@ -3,7 +3,6 @@ angular.module('app')
     {
         $rootScope.activetab = $location.path();
 
-
         // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {
             formula: true,
@@ -28,7 +27,7 @@ angular.module('app')
 
               ['formula','link','image']                         // link and image, video
             ]
-          }
+        }
 
         $scope.fonte = "";
         $scope.enunciado = "";
@@ -132,11 +131,9 @@ angular.module('app')
 
         }
 
-
         $rootScope.competencias = "";
         $rootScope.loading = "";
         $scope.getCompetencias = function () {
-            console.log($rootScope.loading);
             $rootScope.loading = true;
             QuestoesService.getCompetencias($scope.enunciado);
         };
@@ -165,16 +162,62 @@ angular.module('app')
             $('.selectpicker').selectpicker();
         });
 
-
         $scope.step = 1;
  
         $scope.nextStep = function() {
             $scope.step++;
+            $scope.inputError = false;
         }
  
         $scope.prevStep = function() {
             $scope.step--;
+            $scope.inputError = false;
         }
-       
+
+        $scope.inputError = false;
+        $scope.checkPasso1 = function(passo) {
+            if ($scope.fonte === "" || typeof $scope.fonte === 'undefined'  || $scope.tipo === "" || 
+                typeof $scope.tipo === 'undefined') {
+                console.log("oi");
+                $scope.inputError = true;
+            } else if (passo === "proximo") {
+                $scope.nextStep();
+            } else if (passo === "anterior") {
+                $scope.prevStep();
+            }
+        }
+
+        $scope.checkPasso2 = function(passo) {
+            console.log($scope.enunciado === null);
+
+            if ($scope.enunciado === "" || $scope.enunciado === null  ) {
+                $scope.inputError = true;
+            } else if (passo === "anterior") {
+                $scope.prevStep();
+            } else if (passo === "proximo") {
+                $scope.nextStep();
+            } else {
+                $scope.getCompetencias();
+                
+                $('#Modal').modal({backdrop: 'static', keyboard: false})  
+
+                $('a[href$="#Modal"]').on( "click", function() {
+                    $('#Modal').modal('show');
+                 });            
+            }
+        }
+
+
+        $scope.checkPasso3 = function(tipo) {
+            if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
+                $scope.inputError = true;
+            } else if (tipo === "objetiva") {
+                $scope.sendQuestionObjective();
+            } else if (tipo === "subjetiva") {
+                $scope.sendQuestionSubjective();
+            }
+        }
+
+
 
     });

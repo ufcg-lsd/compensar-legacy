@@ -19,6 +19,7 @@ angular.module('app')
 
       $scope.cancela = function() {
         $rootScope.painelListaEmContrucao = false;
+        $rootScope.listaEmEdicao = false;
 
         $scope.nomeLista = "";
         $rootScope.questoes = [];
@@ -55,9 +56,6 @@ angular.module('app')
         return $rootScope.painelListaEmContrucao;
     }
 
-  // Edição
- // minhasListas ->  (so remover) 
- // Outros --> edição (add/remover)
 
     $scope.getMinhasListas = function() {
 
@@ -83,6 +81,7 @@ angular.module('app')
       $rootScope.painelListas = true;
     };
 
+
     $scope.exibeLista = function (lista) {
       $rootScope.listaEmExibicao = lista;
       $rootScope.nomeLista = lista.nomeLista;
@@ -97,6 +96,8 @@ angular.module('app')
       var  index = $rootScope.listas.indexOf($rootScope.listaEmExibicao);
       QuestoesService.removeLista($rootScope.listaEmExibicao);
       $rootScope.listas.splice(index,1);
+      $location.path("/questoes");
+
     }
 
 
@@ -105,7 +106,6 @@ angular.module('app')
       $rootScope.painelListaEmContrucao = true;
       $rootScope.minhasListas = false; 
 
-      console.log($rootScope.listaEmEdicao);
 
       $scope.nomeLista =  $rootScope.listaEmExibicao.nomeLista;
       $rootScope.questoes = $rootScope.listaEmExibicao.questoes;

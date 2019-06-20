@@ -253,23 +253,19 @@
 
     </div>
 
-        <!-- Caso tenha uma "Lista Atual" em construção -->
-        <div ng-switch = "getMinhasListas()" class="row justify-content-md-center">
-            <div ng-switch-when="false" class="row">
-                <div class = "col col-lg-2"><button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button></div>
-                <div class ="col col-lg-3"> </div>
-                <div ng-switch="getListaEmEdicao()" class ="col-md-auto">
-                        <div ng-switch-when="false">
-                            <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar Lista</button>
-                        </div>
-                        <div ng-switch-when="true">
-                            <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()"> Salvar Lista </button>
-                        </div>
-                </div>
+    <div ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+            <div ng-switch-when="true">
+                <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
+                <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()">Salvar</button>
             </div>
-        </div>
-
-
-
+            <div ng-switch-when="false">
+                    <div ng-switch="getPainelListaEmContrucao()">
+                        <div ng-switch-when="true">
+                            <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
+                            <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar</button>
+                        </div>   
+                    </div>
+            </div>
+    </div>
 
 </div>

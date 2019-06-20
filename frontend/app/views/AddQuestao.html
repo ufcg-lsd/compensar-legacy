@@ -15,7 +15,7 @@
                 <div class="progress form-group row " style="height: 5px;">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:25%"></div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" required>
                         <label ><h6>Tipo de Questão:</h6></label>
                         <div  class="col-1 addTipo">
                                 <div class="custom-control custom-radio custom-control-inline">
@@ -32,10 +32,15 @@
 
                 <div class="form-group row"  >
                     <label><h6>Fonte:</h6></label>
-                    <input  type="text" class="form-control"  placeholder="Ex.: PISA, ENEM ou Autoral" ng-model="fonte">
+                    <input  type="text"  class="form-control"  placeholder="Ex.: PISA, ENEM ou Autoral" ng-model="fonte">
                 </div>
 
-                <button class="btn btn-primary" ng-click="nextStep()">Continuar
+                <div  ng-show="inputError" class="alert alert-warning">
+                    <strong>Atenção!</strong> Você deve preencher todos os campos.
+                </div>
+
+
+                <button class="btn btn-primary" ng-click="checkPasso1('proximo')">Continuar
                         <i class="fas fa-arrow-circle-right"></i>       
                 </button>
             </div>
@@ -53,14 +58,20 @@
                     </ng-quill-editor>               
                 </div>
 
+
                 <div class = "conteudoAdd">
-                    <button class="btn btn-outline-secondary" ng-click="prevStep()">
+
+                    
+                <div  ng-show="inputError" class="alert alert-warning">
+                        <strong>Atenção!</strong> Você deve preencher todos os campos.
+                    </div>
+                    <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
                             <i class="far fa-arrow-alt-circle-left"></i>                            
                             Voltar
                     </button>
-                    <button class="btn btn-primary" ng-click="getCompetencias()" data-toggle="modal" data-target="#myModal">Continuar
+                    <a class="btn btn-primary" ng-click="checkPasso2()">Continuar
                             <i class="fas fa-arrow-circle-right"></i>       
-                    </button>                
+                    </a>                
                 </div>
 
             </div>
@@ -68,15 +79,13 @@
 
 
             <!-- ======================== Modal  ============================ -->
-            <div class="modal fade" ng-show = "loading === false" id="myModal">
+            <div class="modal fade" ng-show = "loading === false" id="Modal">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                                                                 
                         <!-- Modal Header -->
                         <div class="modal-header">                  
                             <h5 class="modal-title"> Competências para o seu enunciado: </h5>
-                            
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                                                                 
                         <!-- Modal body -->
@@ -94,13 +103,12 @@
                                 <button type="button" class="btn btn-outline-secondary"  data-dismiss="modal">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                         Voltar    </button>
-                                <button ng-click="nextStep()" type="button" class="btn btn-primary"  data-dismiss="modal">Continuar
+                                <button ng-click="checkPasso2('proximo')" type="button" class="btn btn-primary"  data-dismiss="modal">Continuar
                                         <i class="fas fa-arrow-circle-right"></i>       
                                 </button>
                             </div>
                             </div>
-                        </div>
-        
+                        </div>   
                     </div>
             </div>
 
@@ -188,11 +196,15 @@
                     </div>
 
                     <div class="form-group row conteudoAdd">
-                            <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="prevStep()">
+
+                            <div  ng-show="inputError" class="alert alert-warning">
+                                    <strong>Atenção!</strong> Você deve preencher todos os campos.
+                            </div>
+                            <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="checkPasso2('anterior')">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                     Voltar
                             </button>
-                            <button  id="question-bt"  class="btn btn-primary btn-block " ng-click="sendQuestionSubjective()">Registrar</button>
+                            <button  id="question-bt"  class="btn btn-primary btn-block " ng-click="checkPasso3('subjetiva')">Registrar</button>
                     </div>
                 </div>
 
@@ -273,11 +285,16 @@
 
 
                 <div class="form-group row">
-                        <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="prevStep()">
+                        <div  ng-show="inputError" class="alert alert-warning">
+                                <strong>Atenção!</strong> Você deve preencher todos os campos.
+                        </div>
+
+
+                        <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="checkPasso2('anterior')">
                                 <i class="far fa-arrow-alt-circle-left"></i>                            
                                 Voltar
                         </button>
-                        <button  id="question-bt"  class="btn btn-primary btn-block" ng-click="sendQuestionObjective()">Registrar</button>
+                        <button  id="question-bt"  class="btn btn-primary btn-block" ng-click="checkPasso3('objetiva')">Registrar</button>
                 </div>
 
                 </div>
