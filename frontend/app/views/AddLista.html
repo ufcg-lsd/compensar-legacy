@@ -16,7 +16,11 @@
                 <input class="form-control" type="text" placeholder="Digite o nome da Lista" ng-model = "nomeLista">
             </div>
 
-            <button type="button" class="btn btn-primary addLista-bt" ng-click= "openQuestoes()">Continuar
+            <div  ng-show="inputError" class="alert alert-warning">
+                    <strong>Atenção!</strong> Você deve inserir um nome para lista.
+            </div>
+
+            <button type="button" class="btn btn-primary addLista-bt" ng-click= "checkAddLista()">Continuar
                 <i class="fas fa-arrow-circle-right"></i>       
             </button>
         </form>

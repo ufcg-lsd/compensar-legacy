@@ -11,6 +11,8 @@ angular.module('app')
       $scope.openQuestoes = function () {
         $rootScope.painelListaEmContrucao = true;
         $rootScope.minhasListas = false;
+        $rootScope.listaEmEdicao = false;
+
 
         $rootScope.questoes = [];
         $rootScope.nomeLista = $scope.nomeLista;
@@ -144,7 +146,15 @@ angular.module('app')
     
     QuestoesService.getListaQuestoes();
 
-
+    $scope.inputError = false;
+    $scope.checkAddLista = function() {
+        if ($scope.nomeLista === "" || typeof $scope.nomeLista === 'undefined') {
+            $scope.inputError = true;
+        } else {
+            $scope.openQuestoes();
+        }
+    }
+    
 
 
   });

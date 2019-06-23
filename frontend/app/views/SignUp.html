@@ -8,7 +8,7 @@
     
         <div class="container" ng-controller="SignUpController">
     
-            <form class = "col-lg-6 offset-sm-3" ng-submit="sendSignUp()">
+            <form class = "col-lg-6 offset-sm-3" ng-submit="validaCadastro()">
                 <div class="form-group row"  >
                     <label><h6>Idade:</h6></label>
                     <input  type="number" class="form-control"  placeholder="Digite sua Idade" ng-model="idade">
@@ -25,6 +25,11 @@
                     <label><h6>Instituição:</h6></label>
                     <input  type="text" class="form-control"  placeholder="Digite sua Instituição" ng-model="nomeInstituicao">
                 </div>
+                
+                <div  ng-show="inputError" class="alert alert-warning">
+                        <strong>Atenção!</strong> Você deve preencher todos os campos.
+                </div>
+
                 <div class="container">
                     <button  type="submit" class="btn btn-primary" >Registrar</button>
                 </div>

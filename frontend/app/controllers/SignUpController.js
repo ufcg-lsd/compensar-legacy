@@ -71,11 +71,20 @@ angular.module('app')
             )
         }
 
-
-        $scope.validaCadastro = function () {
-
-            return !isNaN($scope.nomeInstituicao);
+        $scope.inputError = false;
+        $scope.validaCadastro = function() {
+            if ($scope.cargo === "" || typeof $scope.cargo === 'undefined' ||
+                $scope.cidade === "" || typeof $scope.cidade === 'undefined' ||
+                $scope.idade === "" || typeof $scope.idade === 'undefined' ||
+                $scope.nomeInstituicao === "" || typeof $scope.nomeInstituicao === 'undefined') {
+                $scope.inputError = true;
+            } else {
+                $scope.sendSignUp();
+            }
         }
+        
+
+        
 
 
     });
