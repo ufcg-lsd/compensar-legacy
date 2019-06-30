@@ -5,14 +5,16 @@
     font-family: 'Oswald', sans-serif;
 }
 
+
 .loader {
     border: 10px solid #f3f3f3;
     border-radius: 70%;
     border-top: 10px solid #267bdd;
-    width: 50px;
-    height: 50px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
-    animation: spin 2s linear infinite;
+    width: 100px;
+    height: 100px;
+    margin-inline-start: 40%;
+    -webkit-animation: spin 0.5s linear infinite; /* Safari */
+    animation: spin 0.5s linear infinite;
   }
 
   /* Safari */

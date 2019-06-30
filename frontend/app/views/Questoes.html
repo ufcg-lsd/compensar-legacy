@@ -172,7 +172,7 @@
 
      <!-- ========================  Questões  ============================================== -->
 
-     <div  id = "questoes" class = "col-sm-8" >
+     <div ng-show="loading == false" id = "questoes" class = "col-sm-8" >
             <div  ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
                     <div ng-switch-when="true">
                         <div class="progress form-group row " style="height: 5px;">
@@ -181,6 +181,9 @@
                     </div>
             </div>
 
+            <div ng-show="loading">
+                    <div class="loader"> </div>
+                </div>
                     <ul class="nav nav-tabs nav-justified" role="tablist">
                         <li class="nav-item">
                             <a role=tab class="nav-link active" data-toggle="tab" ng-click="setTodasQuestoes()" href="/questoes">Todas</a>

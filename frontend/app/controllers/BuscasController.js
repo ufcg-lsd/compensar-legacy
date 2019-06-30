@@ -9,6 +9,7 @@ angular.module('app')
         $rootScope.totalPags = 0; 
         $rootScope.pageNumber = 0; 
 
+
         $scope.pagination = {
             current: 0
         };
@@ -62,6 +63,7 @@ angular.module('app')
 
         $scope.minhasQuestoes = false;
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
+            $rootScope.loading = true;
 
             if (tipo === "novaBusca" ) {
                 $scope.enunciadoSearch = enunciadoSearch;

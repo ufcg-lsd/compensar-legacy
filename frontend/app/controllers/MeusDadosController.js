@@ -11,12 +11,11 @@ angular.module('app')
         $scope.cargo_usuario = "";
         $scope.cidade_usuario = "";
         $scope.idade_usuario = "";
+
         $scope.loading = true;
 
 
-        setTimeout(function() {
-            $scope.loading = false;
-            setTimeout(function(){  
+
                 $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
                 then(function (response) { 
                     console.log($scope.loading);
@@ -25,9 +24,10 @@ angular.module('app')
                     $scope.cargo_usuario = response.data.cargo,
                     $scope.idade_usuario = response.data.idade,
                     $scope.cidade_usuario = response.data.cidade
+                    $scope.loading = false;
+
                 });
-            }, 3000);
-        }, 50);
+   
 
 
 
@@ -63,8 +63,6 @@ angular.module('app')
 
             return !isNaN($scope.nomeInstituicao);
         }
-
-
 
     });
 

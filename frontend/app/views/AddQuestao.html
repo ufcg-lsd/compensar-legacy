@@ -59,19 +59,21 @@
                 </div>
 
 
-                <div class = "conteudoAdd">
+                <div class = "conteudoAdd">         
+                    <div  ng-show="inputError" class="alert alert-warning">
+                            <strong>Atenção!</strong> Você deve preencher todos os campos.
+                        </div>
+                        <div ng-show="loading">
+                                <div class="loader"> </div>
+                            </div>
+                        <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
+                                <i class="far fa-arrow-alt-circle-left"></i>                            
+                                Voltar
+                        </button>
 
-                    
-                <div  ng-show="inputError" class="alert alert-warning">
-                        <strong>Atenção!</strong> Você deve preencher todos os campos.
-                    </div>
-                    <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
-                            <i class="far fa-arrow-alt-circle-left"></i>                            
-                            Voltar
-                    </button>
-                    <a class="btn btn-primary" ng-click="checkPasso2()">Continuar
-                            <i class="fas fa-arrow-circle-right"></i>       
-                    </a>                
+                        <button class="btn btn-primary" ng-click="checkPasso2()">Continuar
+                                <i class="fas fa-arrow-circle-right"></i>       
+                        </button>                
                 </div>
 
             </div>

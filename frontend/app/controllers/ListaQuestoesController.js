@@ -7,6 +7,8 @@ angular.module('app')
       $scope.nomeLista = "";
 
       $rootScope.listas = [];
+      $rootScope.loading = false;
+
 
       $scope.openQuestoes = function () {
         $rootScope.painelListaEmContrucao = true;

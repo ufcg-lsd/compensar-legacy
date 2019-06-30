@@ -132,7 +132,6 @@ angular.module('app')
         }
 
         $rootScope.competencias = "";
-        $rootScope.loading = "";
         $scope.getCompetencias = function () {
             $rootScope.loading = true;
             QuestoesService.getCompetencias($scope.enunciado);
@@ -188,8 +187,6 @@ angular.module('app')
         }
 
         $scope.checkPasso2 = function(passo) {
-            console.log($scope.enunciado === null);
-
             if ($scope.enunciado === "" || $scope.enunciado === null  ) {
                 $scope.inputError = true;
             } else if (passo === "anterior") {
@@ -198,12 +195,12 @@ angular.module('app')
                 $scope.nextStep();
             } else {
                 $scope.getCompetencias();
-                
-                $('#Modal').modal({backdrop: 'static', keyboard: false})  
+                    $('#Modal').modal({backdrop: 'static', keyboard: false})  
 
-                $('a[href$="#Modal"]').on( "click", function() {
-                    $('#Modal').modal('show');
-                 });            
+                    $('a[href$="#Modal"]').on( "click", function() {
+                        $('#Modal').modal('show');
+                    });  
+                        
             }
         }
 

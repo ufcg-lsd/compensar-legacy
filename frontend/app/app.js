@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar']);
 var host = "";
 
 app.config(function($routeProvider, $locationProvider) {
@@ -81,4 +81,10 @@ app.config(function (localStorageServiceProvider) {
     ngQuillConfigProvider.set();
 }]);
 
+
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+  cfpLoadingBarProvider.parentSelector = '#loading-bar-container';
+  cfpLoadingBarProvider.includeSpinner = false;
+
+}])
 

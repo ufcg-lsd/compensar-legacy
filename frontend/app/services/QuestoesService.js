@@ -10,6 +10,8 @@ angular.module('app')
         $rootScope.totalQuestoes = response.data.totalElements;
         $rootScope.pageNumber = response.data.number;
         $rootScope.totalPags = response.data.totalPages;
+        $rootScope.loading = false;
+
         
         deferred.resolve(response.data);
       }, function (response) {
@@ -28,6 +30,7 @@ angular.module('app')
         $rootScope.totalQuestoes = response.data.totalElements;
         $rootScope.pageNumber = response.data.number;
         $rootScope.totalPags = response.data.totalPages;
+        $rootScope.loading = false;
         deferred.resolve(response.data);
       }, function (response) {
         deferred.resolve([]);
@@ -107,7 +110,6 @@ angular.module('app')
   $http.get('https://compensar.herokuapp.com/api/listaquestoes/' + lista.id).
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
-
     deferred.resolve(response.data);
   }, function (response) {
     deferred.resolve([]);
@@ -158,6 +160,8 @@ service.getCompetencias = function (enunciado) {
         if (response.status == 200) {
           $rootScope.competencias = response.data;
           $rootScope.loading = false;
+          console.log($rootScope.loading)
+
         }
         else {
             window.alert("Falha no feedback das competências");
