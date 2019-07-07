@@ -253,16 +253,17 @@
 
     </div>
 
-    <div ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+    <div class = "mt-3" ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+        <hr>
             <div ng-switch-when="true">
-                <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
-                <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()">Salvar</button>
+                <button type="button" class="btn btn-outline-danger left" ng-click="cancela()">Cancelar</button>
+                <button type="button" class="btn btn-primary right" ng-click="sendUpdateLista()">Salvar</button>
             </div>
             <div ng-switch-when="false">
                     <div ng-switch="getPainelListaEmContrucao()">
                         <div ng-switch-when="true">
-                            <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
-                            <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar</button>
+                            <button type="button" class="btn btn-outline-danger left" ng-click="cancela()">Cancelar</button>
+                            <button type="button" class="btn btn-primary right" ng-click="sendListaQuestao()">Salvar</button>
                         </div>   
                     </div>
             </div>

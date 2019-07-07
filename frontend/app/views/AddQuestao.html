@@ -60,20 +60,25 @@
 
 
                 <div class = "conteudoAdd">         
-                    <div  ng-show="inputError" class="alert alert-warning">
+                        <div ng-show="inputError" class="alert alert-warning">
                             <strong>Atenção!</strong> Você deve preencher todos os campos.
                         </div>
                         <div ng-show="loading">
-                                <div class="loader"> </div>
-                            </div>
-                        <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
-                                <i class="far fa-arrow-alt-circle-left"></i>                            
-                                Voltar
-                        </button>
+                                <div class="alert alert-warning">
+                                    <strong>Gerando competências...</strong>
+                                </div>
+                            <div class="loader"> </div>
+                        </div>
+                        <div ng-show="loading === false">
+                            <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
+                                    <i class="far fa-arrow-alt-circle-left"></i>                            
+                                    Voltar
+                            </button>
 
-                        <button class="btn btn-primary" ng-click="checkPasso2()">Continuar
-                                <i class="fas fa-arrow-circle-right"></i>       
-                        </button>                
+                            <button class="btn btn-primary" ng-click="checkPasso2()">Continuar
+                                    <i class="fas fa-arrow-circle-right"></i>       
+                            </button>         
+                        </div>       
                 </div>
 
             </div>
@@ -124,6 +129,7 @@
                 <select class="form-control selectpicker" data-none-selected-text= "Selecione um conteúdo" 
                 data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
                 data-live-search-normalize="true" data-size=6 ng-model="conteudo">
+                <option value="">Selecione um conteúdo</option>
                 <optgroup label="">
                     <option data-tokens="somar">Adição</option>
                     <option >Conjuntos</option>
@@ -217,69 +223,69 @@
                         <label><h6>Alternativas:</h6></label>
                     </div>
                     <div class="form-group row ">
-                        <div class = "col">
+                        <div class = "col-sm-6">
                             <div class="form-group row">
-                                <label for="inputAlternativa1" class="col-sm-2 col-form-label"><h6>a)</h6></label>
+                                <label for="inputAlternativa1"><h6>a)</h6></label>
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa a)" id="inputAlternativa1"  ng-model="alternativas.alternativa1">
                                 </div>
                                 
                             </div>
                             <div class="form-group row">
-                                <label for="inputAlternativa2" class="col-sm-2 col-form-label"><h6>b)</h6></label>
+                                <label for="inputAlternativa2"><h6>b)</h6></label>
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa b)" id="inputAlternativa2"  ng-model="alternativas.alternativa2">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputAlternativa3" class="col-sm-2 col-form-label"><h6>c)</h6></label>
+                                <label for="inputAlternativa3"><h6>c)</h6></label>
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa c)" id="inputAlternativa3"  ng-model="alternativas.alternativa3">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputAlternativa4" class="col-sm-2 col-form-label"><h6>d)</h6></label>
+                                <label for="inputAlternativa4"><h6>d)</h6></label>
                                     <div class="col-sm-10">
                                         <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa d)" id="inputAlternativa4"  ng-model="alternativas.alternativa4">
                                     </div>
                             </div>
                             <div class="form-group row">
-                                <label for="inputAlternativa5" class="col-sm-2 col-form-label"><h6>e)</h6></label>
+                                <label for="inputAlternativa5"><h6>e)</h6></label>
                                 <div class="col-sm-10">
                                     <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa e)" id="inputAlternativa5"  ng-model="alternativas.alternativa5">
                                 </div>
                             </div>                          
                         </div>
                         
-                        <div class = "col">
+                        <div class = "col-sm-6">
                             <div class="form-group row">
-                                <label for="inputCorreta1" class="col-sm-3 form-check-label"><h6>Correta:</h6></label>
-                                <div class="col-sm-4">
-                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value1" id = "inputCorreta1">
+                                <label class="form-check-label"><h6>Correta:</h6></label>
+                                <div class="ml-5">
+                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value1">
                                 </div>
                             </div>
-                            <div class="form-group row pt-3">
-                                <label for="inputCorreta2" class="col-sm-3 form-check-label"><h6>Correta:</h6></label>
-                                <div class="col-sm-4">
-                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value2" id = "inputCorreta2">
+                            <div class="form-group row">
+                                <label ><h6>Correta:</h6></label>
+                                <div class="ml-5">
+                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value2">
                                 </div>
                             </div>
-                            <div class="form-group row pt-3">
-                                <label for="inputCorreta3" class="col-sm-3 form-check-label"><h6>Correta:</h6></label>
-                                <div class="col-sm-4 ">
-                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value3" id = "inputCorreta3">
+                            <div class="form-group row">
+                                <label><h6>Correta:</h6></label>
+                                <div class="ml-5">
+                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value3">
                                 </div>
                             </div>
-                            <div class="form-group row pt-3">
-                                <label for="inputCorreta4" class="col-sm-3 form-check-label"><h6>Correta:</h6></label>
-                                <div class="col-sm-4 ">
-                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value4" id = "inputCorreta4">
+                            <div class="form-group row">
+                                <label ><h6>Correta:</h6></label>
+                                <div class="ml-5">
+                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value4">
                                 </div>
                             </div>
-                            <div class="form-group row pt-3">
-                                <label for="inputCorreta5" class="col-sm-3 form-check-label"><h6>Correta:</h6></label>
-                                <div class="col-sm-4 ">
-                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value5" id = "inputCorreta5">
+                            <div class="form-group row">
+                                <label><h6>Correta:</h6></label>
+                                <div class="ml-5">
+                                    <input type="checkbox" class="form-check-input" ng-model="corretas.Value5">
                                 </div>
                             </div>
                         </div>
@@ -299,7 +305,7 @@
                         <button  id="question-bt"  class="btn btn-primary btn-block" ng-click="checkPasso3('objetiva')">Registrar</button>
                 </div>
 
-                </div>
+            </div>
                                     
             </div>
         </div>

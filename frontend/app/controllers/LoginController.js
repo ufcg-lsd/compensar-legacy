@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', function (ProfileService,UserService,$window,$rootScope, $location, AuthService, $http) {
+  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http) {
   
     $rootScope.activetab = $location.path();
 
@@ -84,5 +84,22 @@ angular.module('app')
           }
       }
     });
+
+// Quando o usuário scrolls down mostra o botão
+window.onscroll = function() {$scope.scrollFunction()};
+
+$scope.scrollFunction = function () {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("backToTop").style.display = "block";
+  } else {
+    document.getElementById("backToTop").style.display = "none";
+  }
+}
+
+// Quando o usuário clicar sob o botão, volta para cima
+$scope.topFunction = function () {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
 
 });
