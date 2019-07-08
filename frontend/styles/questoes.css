@@ -42,7 +42,15 @@ button {
   height: 30px;
 }
 
+.left{
+  float: left;  
+  width: 50%;
+}
 
+.right{
+  float: right;  
+  width: 50%;
+}
 
 .modal-bt{
   float: right;  
@@ -167,10 +175,7 @@ margin-inline-end: 20%;}
 
 #questoes {
     margin-top: 4%;
-
 }
-
-
 
 
 

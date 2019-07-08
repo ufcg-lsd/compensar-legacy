@@ -4,7 +4,7 @@
 <div class = "row">
     <div id = "buscas" class = "col-sm-4" >
         <div  class="form-inline ">
-            <div class="form-group col-sm-10">
+            <div class="form-group col-sm-8">
                 <label><h6>Conteúdo:</h6></label>
                 <select class="form-control selectpicker " data-none-selected-text="Selecione um conteúdo"
                         data-none-results-text="Nenhum resultado encontrado" data-live-search="true"
@@ -54,11 +54,13 @@
                     </optgroup>
                     <option>Outros</option>
                 </select>
-                <button class="btn btn-primary search" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch, 'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
-            </div>
+                </div>
+                <div class= "mt-4">
+                    <button class="btn btn-primary search" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch, 'novaBusca')"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
+                </div>
         </div>
 
-            <div  id = "compSearch" class="form-group row">
+            <div  id = "compSearch" class="form-group row mt-3">
                 <label ><h6>Competências:</h6></label>
                 <div  class="row">  
                         <div class="col-sm-2">
@@ -172,18 +174,21 @@
 
      <!-- ========================  Questões  ============================================== -->
 
-     <div ng-show="loading == false" id = "questoes" class = "col-sm-8" >
-            <div  ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
-                    <div ng-switch-when="true">
-                        <div class="progress form-group row " style="height: 5px;">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:90%"></div>
-                        </div>
-                    </div>
-            </div>
 
-            <div ng-show="loading">
+     <div id = "questoes" class = "col-sm-8" >
+            <div ng-show="loading" class= "mt-2">
                     <div class="loader"> </div>
+            </div>
+            <div ng-show="loading == false" >
+                <div  ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
+                        <div ng-switch-when="true">
+                            <div class="progress form-group row " style="height: 5px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:90%"></div>
+                            </div>
+                        </div>
                 </div>
+
+
                     <ul class="nav nav-tabs nav-justified" role="tablist">
                         <li class="nav-item">
                             <a role=tab class="nav-link active" data-toggle="tab" ng-click="setTodasQuestoes()" href="/questoes">Todas</a>
@@ -194,7 +199,7 @@
                         </li>
 
                             <li  class = "nav-item dropdown">
-                                <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true }" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
+                                <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
                                 <ul ng-controller="ListaQuestoesController" class="dropdown-menu">
                                     <option class="dropdown-item" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
@@ -209,7 +214,22 @@
                                     </div>
                                 </div>
                             </li>
+                            <div class="nav-item">
+                                    <ul class="pagination  justify-content-right">
+                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')"> <i class="fas fa-arrow-circle-left"></i></a></li>
+                                        <li class="page-item "><a class="page-link" href="#" ng-click= "pageChangeHandler('primeiraPag')">1</a></li>
+                                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
+                                        <li class="page-item active"><a class="page-link" href="#"> {{pageNumber + 1}}</a></li>
+                                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
+        
+                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('ultimaPag')">{{totalPags}}</a></li>
+        
+                                        <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')"><i class="fas fa-arrow-circle-right"></i></a></li>
+                                    </ul>
+                            </div>
                     </ul>
+
+
 
                     
 
@@ -343,18 +363,13 @@
                                             <div ng-switch = "isAutor(questao.autor)">
                                                     <div id="alterarQuestao" ng-switch-when="true">
                                                         <button  type="button" class="btn btn-outline-light text-dark" ng-click="removeQuestao(questao)">
-                                                            <i class="fas fa-trash"></i>
+                                                            <i class="fas fa-trash text-danger"></i>
                                                         </button>
                                                         <button type="button" class="btn btn-outline-light text-dark" data-toggle="modal" ng-click="atualizaQuestao(questao)" data-target="#editar{{$index}}"> 
-                                                            <i class="fas fa-edit"></i>
+                                                            <i  class="fas fa-edit"></i>
                                                         </button>
                                                     </div>
                                             </div>
-
-
-
-
-
                                         </div>
                                             
                                     </div>
@@ -485,71 +500,76 @@
                                             
                                                         <!-- ========================  Campos específicos de questão Obj  ============================================== -->
                                                             <div ng-switch-when = "true">                  
-                                                                <div class = "container">
-                                                                <div class="form-group row">
-                                                                    <div class="form-group row col-sm-5" >
-                                                                        <label><h6>Alternativa 1:</h6></label>
-                                                                        <input type="text" class="form-control inputAlternativa" placeholder="Digite a alternativa 1" ng-model="update.alternativas[0]">
-                                                                    </div>
-                                                                    <div class="form-group row  col-lg-2" >
-                                                                            <label ><h6>Correta:</h6></label>
-                                                                            <input type="checkbox" class="form-control" ng-model="update.corretas[0]">
-                                                                    </div>
-                                            
-                                                                </div>
-                                            
-                                                                <div class="form-group  row ">
-                                                                        <div class="form-group row col-sm-5" >
-                                                                            <label><h6>Alternativa 2:</h6></label>
-                                                                            <input type="text" class="form-control" placeholder="Digite a alternativa 2" ng-model="update.alternativas[1]">
+                                                                    <div class="form-group row">
+                                                                            <label><h6>Alternativas:</h6></label>
                                                                         </div>
-                                                                        <div class="form-group row col-lg-2" >
-                                                                            <label ><h6>Correta:</h6></label>
-                                                                            <input type="checkbox" class="form-control" ng-model="update.corretas[1]">
-                                                                        </div>
-                                                
-                                                                </div>
-                                            
-                                            
-                                                                <div class="form-group  row">
-                                                                        <div class="form-group row col-sm-5" >
-                                                                            <label><h6>Alternativa 3:</h6></label>
-                                                                            <input type="text" class="form-control" placeholder="Digite a alternativa 3" ng-model="update.alternativas[2]">
-                                                                        </div>
-                                                                        <div class="form-group row col-lg-2" >
-                                                                            <label ><h6>Correta:</h6></label>
-                                                                            <input type="checkbox" class="form-control" ng-model="update.corretas[2]">
-                                                                        </div>
-                                                
-                                                                </div>
-                                            
-                                                                <div class="form-group  row">
-                                                                        <div class="form-group row col-sm-5" >
-                                                                            <label><h6>Alternativa 4:</h6></label>
-                                                                            <input type="text" class="form-control" placeholder="Digite a alternativa 4" ng-model="update.alternativas[3]">
-                                                                        </div>
-                                                                        <div class="form-group row col-lg-2" >
-                                                                            <label ><h6>Correta:</h6></label>
-                                                                            <input type="checkbox" class="form-control" ng-model="update.corretas[3]">
-                                                                        </div>
-                                                
-                                                                </div>
-                                            
-                                                                <div class="form-group  row">
-                                                                        <div class="form-group row col-sm-5" >
-                                                                            <label><h6>Alternativa 5:</h6></label>
-                                                                            <input type="text" class="form-control" placeholder="Digite a alternativa 5" ng-model="update.alternativas[4]">
-                                                                        </div>
-                                                                        <div class="form-group row col-lg-2" >
-                                                                            <label ><h6>Correta:</h6></label>
-                                                                            <input type="checkbox" class="form-control" ng-model="update.corretas[4]">
-                                                                        </div>
-                                                
-                                                                </div>
-                                            
-                                            
-                                                                </div>
-                                            
+                                                                        <div class="form-group row ">
+                                                                            <div class = "col-sm-6">
+                                                                                <div class="form-group row">
+                                                                                    <label for="inputAlternativa1"><h6>a)</h6></label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa a)" id="inputAlternativa1"  ng-model="update.alternativas[0]">
+                                                                                    </div>
+                                                                                    
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label for="inputAlternativa2"><h6>b)</h6></label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa b)" id="inputAlternativa2"  ng-model="update.alternativas[1]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label for="inputAlternativa3"><h6>c)</h6></label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa c)" id="inputAlternativa3"  ng-model="update.alternativas[2]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label for="inputAlternativa4"><h6>d)</h6></label>
+                                                                                        <div class="col-sm-10">
+                                                                                            <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa d)" id="inputAlternativa4"  ng-model="update.alternativas[3]">
+                                                                                        </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label for="inputAlternativa5"><h6>e)</h6></label>
+                                                                                    <div class="col-sm-10">
+                                                                                        <input type="email" class="form-control form-control-sm" placeholder="Digite a alternativa e)" id="inputAlternativa5"  ng-model="update.alternativas[4]">
+                                                                                    </div>
+                                                                                </div>                          
+                                                                            </div>
+                                                                            
+                                                                            <div class = "col-sm-6">
+                                                                                <div class="form-group row">
+                                                                                    <label class="form-check-label"><h6>Correta:</h6></label>
+                                                                                    <div class="ml-5">
+                                                                                        <input type="checkbox" class="form-check-input" ng-model="update.corretas[0]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label ><h6>Correta:</h6></label>
+                                                                                    <div class="ml-5">
+                                                                                        <input type="checkbox" class="form-check-input" ng-model="update.corretas[1]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label><h6>Correta:</h6></label>
+                                                                                    <div class="ml-5">
+                                                                                        <input type="checkbox" class="form-check-input" ng-model="update.corretas[2]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label ><h6>Correta:</h6></label>
+                                                                                    <div class="ml-5">
+                                                                                        <input type="checkbox" class="form-check-input" ng-model="update.corretas[3]">
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group row">
+                                                                                    <label><h6>Correta:</h6></label>
+                                                                                    <div class="ml-5">
+                                                                                        <input type="checkbox" class="form-check-input" ng-model="update.corretas[4]">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
                                                             </div>
                                                                                 
                                                         </div>
@@ -557,8 +577,8 @@
                                             </div>
                                             
                                             <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
+                                            <div class="modal-footer mt-5">
+                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
                                                 <button type="button" class="btn btn-primary" ng-click="sendUpdate(questao)" data-dismiss="modal">Salvar</button>
                                             </div>
                                             
@@ -569,19 +589,6 @@
                             </div>
                                         
                                     
-                        </div>
-                        <div class="container">
-                            <ul class="pagination  justify-content-left">
-                                <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')">Anterior</a></li>
-                                <li class="page-item "><a class="page-link" href="#" ng-click= "pageChangeHandler('primeiraPag')">1</a></li>
-                                <li class="page-item "><a class="page-link" href="#"> ...</a></li>
-                                <li class="page-item active"><a class="page-link" href="#"> {{pageNumber + 1}}</a></li>
-                                <li class="page-item "><a class="page-link" href="#"> ...</a></li>
-
-                                <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('ultimaPag')">{{totalPags}}</a></li>
-
-                                <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')">Próxima</a></li>
-                            </ul>
                         </div>
 
                     </div>
@@ -601,19 +608,22 @@
                     </div>
 
 
-                        <div ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+                        <div class = "mt-3" ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+                            <hr>
                             <div ng-switch-when="true">
-                                <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
-                                <button type="button" class="btn btn-primary" ng-click="sendUpdateLista()">Salvar</button>
+                                <button type="button" class="btn btn-outline-danger left" ng-click="cancela()">Cancelar</button>
+                                <button type="button" class="btn btn-primary right" ng-click="sendUpdateLista()">Salvar</button>
                             </div>
                             <div ng-switch-when="false">
                                     <div ng-switch="getPainelListaEmContrucao()">
                                         <div ng-switch-when="true">
-                                            <button type="button" class="btn btn-outline-danger" ng-click="cancela()">Cancelar</button>
-                                            <button type="button" class="btn btn-primary" ng-click="sendListaQuestao()">Salvar</button>
+                                            <button type="button" class="btn btn-outline-danger left" ng-click="cancela()">Cancelar</button>
+                                            <button type="button" class="btn btn-primary right" ng-click="sendListaQuestao()">Salvar</button>
                                         </div>   
                                     </div>
                             </div>
+                        </div>
+                        
                         </div>
                     </div>
             </div>       

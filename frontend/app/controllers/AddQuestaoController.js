@@ -130,7 +130,8 @@ angular.module('app')
             )
 
         }
-
+        
+        $rootScope.loading = false;
         $rootScope.competencias = "";
         $scope.getCompetencias = function () {
             $rootScope.loading = true;
