@@ -65,7 +65,7 @@
                         </div>
                         <div ng-show="loading">
                                 <div class="alert alert-warning">
-                                    <strong>Gerando competências...</strong>
+                                    <strong>Identificando competências...</strong>
                                 </div>
                             <div class="loader"> </div>
                         </div>
@@ -92,7 +92,7 @@
                                                                 
                         <!-- Modal Header -->
                         <div class="modal-header">                  
-                            <h5 class="modal-title"> Competências para o seu enunciado: </h5>
+                            <h5 class="modal-title"> Competências identificadas: </h5>
                         </div>
                                                                 
                         <!-- Modal body -->
@@ -129,8 +129,7 @@
                 <select class="form-control selectpicker" data-none-selected-text= "Selecione um conteúdo" 
                 data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
                 data-live-search-normalize="true" data-size=6 ng-model="conteudo">
-                <option value="">Selecione um conteúdo</option>
-                <optgroup label="">
+                    <option value="">Selecione um conteúdo</option>
                     <option data-tokens="somar">Adição</option>
                     <option >Conjuntos</option>
                     <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
@@ -171,7 +170,6 @@
                     <option>Triângulo de Pascal</option>
                     <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
                     <option>Unidades de Medida</option>
-                </optgroup>
                     <option>Outros</option>
                 </select>
             </div>

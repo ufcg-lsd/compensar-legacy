@@ -9,8 +9,7 @@
                 <select class="form-control selectpicker " data-none-selected-text="Selecione um conteúdo"
                         data-none-results-text="Nenhum resultado encontrado" data-live-search="true"
                         data-live-search-normalize="true" data-size=6 ng-model="conteudoSearch">
-                        <option value="">Qualquer Um</option>
-                        <optgroup label="">
+                        <option value="">Todos os conteúdos</option>
                         <option data-tokens="somar">Adição</option>
                         <option>Conjuntos</option>
                         <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
@@ -51,8 +50,7 @@
                         <option>Triângulo de Pascal</option>
                         <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
                         <option>Unidades de Medida</option>
-                    </optgroup>
-                    <option>Outros</option>
+                        <option>Outros</option>
                 </select>
                 </div>
                 <div class= "mt-4">
@@ -197,7 +195,7 @@
                         <li class="nav-item" >
                             <a role=tab class="nav-link " data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
                         </li>
-
+                        <!--
                             <li  class = "nav-item dropdown">
                                 <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
@@ -214,24 +212,10 @@
                                     </div>
                                 </div>
                             </li>
-                            <div class="nav-item">
-                                    <ul class="pagination  justify-content-right">
-                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')"> <i class="fas fa-arrow-circle-left"></i></a></li>
-                                        <li class="page-item "><a class="page-link" href="#" ng-click= "pageChangeHandler('primeiraPag')">1</a></li>
-                                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
-                                        <li class="page-item active"><a class="page-link" href="#"> {{pageNumber + 1}}</a></li>
-                                        <li class="page-item "><a class="page-link" href="#"> ...</a></li>
-        
-                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('ultimaPag')">{{totalPags}}</a></li>
-        
-                                        <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')"><i class="fas fa-arrow-circle-right"></i></a></li>
-                                    </ul>
-                            </div>
+                        -->
+                            
                     </ul>
-
-
-
-                    
+                            
 
             <div ng-switch = "getListas()">
                 <div ng-switch-when="true">
@@ -242,10 +226,25 @@
                     <div ng-switch = "temQuestao()">
 
                     <div ng-switch-when="true">
+
+                        <div style="margin-left: 40%">
+                                    <ul class="pagination  justify-content-right">
+                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('anterior')"> <i class="fas fa-arrow-circle-left"></i></a></li>
+                                        
+                                        <li class="page-item "><a class="page-link" href="#" ng-click= "pageChangeHandler('primeiraPag')">1</a></li>
+                                      
+                                        <li class="page-item active"><a class="page-link" href="#">{{pageNumber + 1}}</a></li>
+                                      
+                                        <li class="page-item"><a class="page-link" href="#" ng-click= "pageChangeHandler('ultimaPag')">{{totalPags}}</a></li>
+        
+                                        <li class="page-item"><a class="page-link"  href="#" ng-disable="pageNumber === (totalPags - 1)" ng-click= "pageChangeHandler('proxima')"><i class="fas fa-arrow-circle-right"></i></a></li>
+                                    </ul>
+                            </div>
+
                         <div class="tab-content">
                             <div class= "questoes  tab-pane active" ng-repeat="questao in Questoes" >
 
-                                <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
+                            <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                             <div class="row">
                                 <div class="col"><h6 class="modal-title">{{questao.conteudo}}</h6></div>
                                 <div class="col-8" ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
@@ -294,27 +293,26 @@
                                             <div class="enunciado" ng-bind-html="enunciadoShow"></div>
                                                                                                                                     
                                                 <div class="row container">
-                                                    <div><b>Autor:</b> <br> <em>{{questao.autor}} </em></div>
+                                                    <div><b>Autor:</b><em> {{questao.autor}} </em></div>
+                                                </div>
 
-                                                    <div class="col-2"><b>Fonte:</b> <br> <em> {{questao.fonte}} </em></div>
-                                    
-                                                    <div class="col-2"><b>Tipo:</b> <br> <em>{{questao.tipo}} </em></div>
-
-                                                </div> 
-                                            
-                
-                                                    
+                                                <div class="row container">
+                                                    <div><b>Fonte:</b><em> {{questao.fonte}} </em></div>
+                                                </div>
+                                                <div class="row container">
+                                                    <div><b>Tipo:</b><em> {{questao.tipo}} </em></div> 
+                                                </div>
                                         </div>
 
-                                            <div class = "container"> <hr>           
+                                        <div class = "container"> <hr>           
                                                 <b>Competências:</b> </div>
-                                            <div class =  "section">
+                                        <div class =  "section">
 
-                                            <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
-                                                <span  class="col-1">
+                                        <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
+                                            <span  class="col-1">
                                                     <em>{{competencia}} </em>
-                                                </span>
-                                            </div> 
+                                            </span>
+                                        </div> 
 
                                         </div> 
 
