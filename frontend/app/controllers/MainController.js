@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, AuthService,UserService, ProfileService, $window) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService,$scope, ProfileService,$mdDialog) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -13,8 +13,9 @@ angular.module('app')
 
         $rootScope.$on('$routeChangeStart', function (angularEvent, newUrl) {
 
-            if (!AuthService.isLogged()) $location.path("/login");
-
+            if (!AuthService.isLogged()) {
+                $location.path("/login");
+            }
             else {
 
                 $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
@@ -28,11 +29,9 @@ angular.module('app')
                     then(
                         function () {
 
-                            if (newUrl.requireAuth && !AuthService.isLogged()) {
-                                $location.path("/login");
-                            }
-                            else if (newUrl.requireRegistered && !UserService.isRegistered()) {
+                            if (newUrl.requireRegistered) {
                                 $location.path("/signup");
+                                $scope.showAlertaCadastro();
                             }
 
                         }
@@ -42,6 +41,17 @@ angular.module('app')
 
 
 
+        $scope.showAlertaCadastro = function() {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Você deve se cadastrar')
+                .textContent('Você deve se cadastrar para acessar essa página.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Entendi!')
+            );
+          };
 
 
 
