@@ -57,15 +57,19 @@ angular.module('app')
 
 
   service.atualizaQuestao = function (questao,novaQuestao) {
-    console.log(novaQuestao.conteudo);
+    $rootScope.loading = true;
 
     $http.put('https://compensar.herokuapp.com/api/questao/' + questao.id, novaQuestao).
       then(function (response) {
         if (response.status == 200) {
             var  index = $rootScope.Questoes.indexOf(questao);
             $rootScope.Questoes[index] = response.data;
+            console.log(questao.competencias);
 
-            window.alert("Questão atualizada com Sucesso!");
+            console.log(response.data.competencias);
+            $rootScope.loading = false;
+
+            $rootScope.showAlertaEdicao();
             $location.path("/questoes");
         }
         else {
@@ -160,7 +164,7 @@ service.getCompetencias = function (enunciado) {
         if (response.status == 200) {
           $rootScope.competencias = response.data;
           $rootScope.loading = false;
-          console.log($rootScope.loading)
+          console.log($rootScope.competencias)
 
         }
         else {

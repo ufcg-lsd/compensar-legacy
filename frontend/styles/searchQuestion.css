@@ -78,7 +78,16 @@ label{
 }
 
   #lupa-icon{
-    font-size: 20px;
+    font-size: 15px;
+  }
+
+  div.dropdown-menu.open{
+    max-height: 500px !important;
+    overflow: hidden;
+  }
+  ul.dropdown-menu.inner{
+    max-height: 500px !important;
+    overflow-y: auto;
   }
 
   .conteudoSearch{

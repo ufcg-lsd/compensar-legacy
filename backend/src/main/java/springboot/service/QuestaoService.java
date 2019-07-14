@@ -69,7 +69,7 @@ public class QuestaoService {
 		return questao;
 	}
 
-	public Questao update(Questao questao, String id) {
+	public Questao update(Questao questao, String id) throws IOException {
 
 		Optional<Questao> optQuestao = questaoRepository.findById(id);
 
@@ -83,7 +83,8 @@ public class QuestaoService {
 		novaQuestao.setTipo(questao.getTipo());
 		novaQuestao.setConteudo(questao.getConteudo());
 		novaQuestao.setEnunciado(questao.getEnunciado());
-		novaQuestao.setCompetencias(questao.getCompetencias());
+		
+		novaQuestao.setCompetencias(getSetCompetencias(questao.getEnunciado()));
 		
 		if (novaQuestao.getTipo().equals("Objetiva")) novaQuestao.setAlternativas(questao.getAlternativas());
 		else novaQuestao.setEspelho(questao.getEspelho());

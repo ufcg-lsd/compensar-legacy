@@ -54,7 +54,7 @@ public class QuestaoController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Questao> update(@PathVariable("id") String id, @RequestBody Questao questao) {
+	public ResponseEntity<Questao> update(@PathVariable("id") String id, @RequestBody Questao questao) throws IOException {
 		Questao updatedQuestao = questaoService.update(questao, id);
 		return new ResponseEntity<Questao>(updatedQuestao, HttpStatus.OK);
 	}

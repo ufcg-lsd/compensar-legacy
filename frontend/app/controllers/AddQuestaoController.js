@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, QuestoesService)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, QuestoesService, $mdDialog)
     {
         $rootScope.activetab = $location.path();
 
@@ -58,15 +58,15 @@ angular.module('app')
             $http.post('https://compensar.herokuapp.com/api/questao', questaoSubj).
                 then(function (response) {
                     if (response.status == 200) {
-                        window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
-                        $location.path("/addQuestao");
+                        $scope.showAlertaCriacao();
+                        $location.path("/buscas");
                     }
                     else {
                         window.alert("Falha no envio da Questão");
-                        $location.path("/addQuestao");
+                        $location.path("/buscas");
                     }
                 },function(){
-                    $location.path("/addQuestao");
+                    $location.path("/buscas");
                 }
             )
 
@@ -117,19 +117,31 @@ angular.module('app')
             $http.post('https://compensar.herokuapp.com/api/questao', questaoObj).
                 then(function (response) {
                     if (response.status == 200) {
-                        window.alert("Questão enviada com Sucesso! \n Você pode consultá-la na aba Questões.");
-                        $location.path("/addQuestao");
+                        $scope.showAlertaCriacao();
+                        $location.path("/buscas");
                     }
                     else {
                         window.alert("Falha no envio da Questão");
-                        $location.path("/addQuestao");
+                        $location.path("/buscas");
                     }
                 },function(){
-                    $location.path("/addQuestao");
+                    $location.path("/buscas");
                 }
             )
 
         }
+
+        $scope.showAlertaCriacao = function() {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Questão criada com sucesso!')
+                .textContent('Você pode consultá-la na aba "Buscar Questões".')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Entendi!')
+            );
+        };
         
         $rootScope.loading = false;
         $rootScope.competencias = "";

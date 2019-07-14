@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$route) {
+    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$mdDialog) {
 
         $rootScope.activetab = $location.path();
         
@@ -101,8 +101,6 @@ angular.module('app')
             }, 10);
 
             $rootScope.painelListas = false;
-
-     
         };
 
         $scope.allEmpty = function () {
@@ -169,6 +167,18 @@ angular.module('app')
            $rootScope.Questoes.splice(index,1);
            var id = "#myModal" + index;
            $(id).modal('toggle');
+           $scope.showAlertaRemocao();
+        };
+
+        $scope.showAlertaRemocao = function() {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Questão removida com sucesso!')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Fechar.')
+            );
         };
              
         $scope.update = {
@@ -177,19 +187,37 @@ angular.module('app')
             conteudo : "",
             espelho: "",
             fonte: "",
-            alternativas: [],
-            corretas: []
+            alternativas: [{
+                correta: "",
+                texto: "",
+            },{
+                correta: "",
+                texto: "",
+            },{
+                correta: "",
+                texto: "",
+            },{
+                correta: "",
+                texto: "",
+            },{
+                correta: "",
+                texto: "",
+            }]
         };
 
         $scope.atualizaQuestao = function (questao) {
+            $rootScope.loading = false;
+
             $scope.update.fonte = questao.fonte;
             $scope.update.enunciado = questao.enunciado;
             $scope.update.tipo = questao.tipo;
+            $scope.update.conteudo = questao.conteudo;
+            $rootScope.competencias = questao.competencias;
 
             if (questao.tipo  === "Objetiva") {
                 for (i = 0; i < (questao.alternativas.length); i++) {
-                    $scope.update.corretas[i] = questao.alternativas[i].correta;
-                    $scope.update.alternativas[i] = questao.alternativas[i].texto;
+                    $scope.update.alternativas[i].correta = questao.alternativas[i].correta;
+                    $scope.update.alternativas[i].texto = questao.alternativas[i].texto;
                 }
             } else {
                 $scope.update.espelho = questao.espelho;
@@ -199,9 +227,9 @@ angular.module('app')
         };
 
 
-
-
        $scope.sendUpdate = function(questao) {
+            $rootScope.loading = true;
+
             novaQuestao = {
                 autor:  UserService.getName(),
                 conteudo: $scope.update.conteudo,
@@ -210,30 +238,8 @@ angular.module('app')
                 tipo: $scope.update.tipo
             };
 
-        if ($scope.updateTipo === "Objetiva") {
-            novaQuestao.alternativas = [
-                {
-                    correta: $scope.update.corretas[0],
-                    texto: $scope.update.alternativas[0]
-                },
-                {
-                    correta: $scope.update.corretas[1],
-                    texto: $scope.update.alternativas[1]
-                },
-                {
-                    correta: $scope.update.corretas[2],
-                    texto: $scope.update.alternativas[2]
-                },
-                {
-                    correta: $scope.update.corretas[3],
-                    texto: $scope.update.alternativas[3]
-                },
-                {
-                    correta: $scope.update.corretas[4],
-                    texto: $scope.update.alternativas[4]
-                }
-            ];
-
+        if ($scope.update.tipo === "Objetiva") {
+            novaQuestao.alternativas = $scope.update.alternativas;
         } else {
             novaQuestao.espelho = $scope.update.espelho;
         }
@@ -243,8 +249,18 @@ angular.module('app')
         var  index = $rootScope.Questoes.indexOf(questao);
         var id = "#myModal" + index;
         $(id).modal('toggle');
+    };
 
-    }
+    $rootScope.showAlertaEdicao = function() {
+        $mdDialog.show(
+          $mdDialog.alert()
+            .parent(angular.element(document.querySelector('#popupContainer')))
+            .clickOutsideToClose(true)
+            .title('Questão atualizada com sucesso!')
+            .ariaLabel('Alert Dialog Demo')
+            .ok('Fechar')
+        );
+    };
 
 
 

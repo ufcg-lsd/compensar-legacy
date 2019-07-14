@@ -29,7 +29,7 @@ angular.module('app')
                     then(
                         function () {
 
-                            if (newUrl.requireRegistered) {
+                            if (newUrl.requireRegistered && $rootScope.status === false) {
                                 $location.path("/signup");
                                 $scope.showAlertaCadastro();
                             }
