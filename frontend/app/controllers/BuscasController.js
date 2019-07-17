@@ -187,7 +187,6 @@ angular.module('app')
             conteudo : "",
             espelho: "",
             fonte: "",
-            incluiEspelho: "",
             alternativas: [{
                 correta: "",
                 texto: "",
@@ -211,6 +210,8 @@ angular.module('app')
         $scope.atualizaQuestao = function (questao) {
             $rootScope.loading = false;
             $scope.inputError = false;
+            $scope.alertEspelho = false;
+
 
             $scope.update.fonte = questao.fonte;
             $scope.update.enunciado = questao.enunciado;
@@ -266,8 +267,15 @@ angular.module('app')
         );
     };
 
+    $scope.espelho = "nao";
+    $scope.setEspelho = function () {
+        if ($scope.espelho === "sim") $scope.espelho = "nao";
+        else $scope.espelho = "sim";
+    }
+
     $scope.inputError = false;
     $scope.checkEdicaoInput = function (questao) {
+        $scope.alertEspelho = false;
         if ($scope.update.conteudo === "" || typeof $scope.update.conteudo === 'undefined' ||
         $scope.update.enunciado === "" ||  $scope.update.enunciado === null ||
         $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
@@ -280,11 +288,15 @@ angular.module('app')
         $scope.update.alternativas[2].texto === "" || $scope.update.alternativas[3].texto === "" || 
         $scope.update.alternativas[4].texto === "")) {
             $scope.inputError = true;
-        } else if ($scope.update.tipo === "Subjetiva" && $scope.update.incluiEspelho === true && 
+        } else if ($scope.update.tipo === "Subjetiva" && $scope.espelho  === "sim" && 
             ($scope.update.espelho === "" || 
             $scope.update.espelho === null)) {
             $scope.inputError = true;
+        } else if ($scope.update.tipo === "Subjetiva" && $scope.espelho  === "nao" && 
+            ($scope.update.espelho !== null)) {
+            $scope.alertEspelho = true;
         } else {
+            $scope.inputError = false;
             console.log('aq');
             var  index = $rootScope.Questoes.indexOf(questao);
             var id = "#editar" + index;

@@ -164,10 +164,8 @@ angular.module('app')
     
         $scope.espelho = "nao";
         $scope.setEspelho = function () {
-            console.log($scope.espelho);
             if ($scope.espelho === "sim") $scope.espelho = "nao";
             else $scope.espelho = "sim";
-            console.log($scope.espelho);
         }
 
         $().ready(function() {
@@ -205,6 +203,7 @@ angular.module('app')
             } else if (passo === "anterior") {
                 $scope.prevStep();
             } else if (passo === "proximo") {
+                $scope.alertEspelho = false;
                 $scope.nextStep();
             } else {
                 $scope.getCompetencias();
@@ -218,15 +217,37 @@ angular.module('app')
 
 
         $scope.checkPasso3 = function(tipo) {
+            $scope.alertEspelho = false;
             if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
+                console.log("oi")
+            } else if (tipo === "objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &
+                typeof $scope.corretas.Value2 === 'undefined' & typeof $scope.corretas.Value3 === 'undefined' &
+                typeof $scope.corretas.Value4 === 'undefined' & typeof $scope.corretas.Value5 === 'undefined') ||
+                $scope.alternativas.alternativa1 === "" || $scope.alternativas.alternativa2 === "" ||
+                $scope.alternativas.alternativa3 === "" || $scope.alternativas.alternativa4 === "" || 
+                $scope.alternativas.alternativa5 === "")) {
+                    console.log("oi")
+
+                $scope.inputError = true;
+            } else if (tipo === "subjetiva" && $scope.espelho === "sim" && ($scope.resposta.espelho == "" ||
+                $scope.resposta.espelho == null)) {
+                $scope.inputError = true;
+
+            } else if (tipo === "subjetiva" && $scope.espelho === "nao" && ($scope.resposta.espelho !== null)) {
+                $scope.alertEspelho = true;
             } else if (tipo === "objetiva") {
                 $scope.sendQuestionObjective();
-            } else if (tipo === "subjetiva") {
+                console.log("oi")
+
+            } else {
+                console.log($scope.resposta.espelho === false)
+
                 $scope.sendQuestionSubjective();
+                console.log("oi")
+
             }
         }
-
 
 
     });
