@@ -76,7 +76,7 @@ angular.module('app')
 
             setTimeout(function(){  
                 if ($scope.allEmpty()) {
-                    QuestoesService.getQuestoes($scope.pagination.current , 5);
+                    QuestoesService.getQuestoes($scope.pagination.current , 4);
                 } else {
 
                     if (!enunciadoSearch) enunciadoSearch = "null";
@@ -96,7 +96,7 @@ angular.module('app')
                         conteudo: conteudoSearch
                     }
 
-                    QuestoesService.sendQuery(query, $scope.pagination.current , 5);
+                    QuestoesService.sendQuery(query, $scope.pagination.current , 4);
                 }
             }, 10);
 
@@ -357,7 +357,7 @@ angular.module('app')
         };
 
 
-        QuestoesService.getQuestoes($scope.pagination.current , 5);
+        QuestoesService.getQuestoes($scope.pagination.current , 4);
         
 
         $scope.options = [
