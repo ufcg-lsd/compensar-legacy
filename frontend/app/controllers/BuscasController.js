@@ -187,6 +187,7 @@ angular.module('app')
             conteudo : "",
             espelho: "",
             fonte: "",
+            incluiEspelho: "",
             alternativas: [{
                 correta: "",
                 texto: "",
@@ -205,8 +206,11 @@ angular.module('app')
             }]
         };
 
+
+
         $scope.atualizaQuestao = function (questao) {
             $rootScope.loading = false;
+            $scope.inputError = false;
 
             $scope.update.fonte = questao.fonte;
             $scope.update.enunciado = questao.enunciado;
@@ -261,6 +265,33 @@ angular.module('app')
             .ok('Fechar')
         );
     };
+
+    $scope.inputError = false;
+    $scope.checkEdicaoInput = function (questao) {
+        if ($scope.update.conteudo === "" || typeof $scope.update.conteudo === 'undefined' ||
+        $scope.update.enunciado === "" ||  $scope.update.enunciado === null ||
+        $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
+        $scope.update.tipo === "" || typeof $scope.update.tipo === 'undefined') {
+            $scope.inputError = true;
+        } else if ($scope.update.tipo === "Objetiva" && (($scope.update.alternativas[0].correta === false &
+        $scope.update.alternativas[1].correta === false & $scope.update.alternativas[2].correta === false &
+        $scope.update.alternativas[3].correta === false & $scope.update.alternativas[4].correta === false) ||
+        $scope.update.alternativas[0].texto === "" || $scope.update.alternativas[1].texto === "" ||
+        $scope.update.alternativas[2].texto === "" || $scope.update.alternativas[3].texto === "" || 
+        $scope.update.alternativas[4].texto === "")) {
+            $scope.inputError = true;
+        } else if ($scope.update.tipo === "Subjetiva" && $scope.update.incluiEspelho === true && 
+            ($scope.update.espelho === "" || 
+            $scope.update.espelho === null)) {
+            $scope.inputError = true;
+        } else {
+            console.log('aq');
+            var  index = $rootScope.Questoes.indexOf(questao);
+            var id = "#editar" + index;
+            $(id).modal('toggle');
+            $scope.sendUpdate(questao);
+        }
+    }
 
 
 

@@ -473,7 +473,7 @@
                                                                     <label class = "col"><h6>Você deseja incluir  espelho para questão? 
                                                                     </h6></label> 
                                                                     <div class="custom-control custom-checkbox col">
-                                                                        <input id = "customCheckEspelho{{$index}}" type="checkbox"  class="custom-control-input" data-toggle="collapse" data-target="#espelho{{$index}}"> 
+                                                                        <input id = "customCheckEspelho{{$index}}" type="checkbox"  ng-model= "update.incluiEspelho" class="custom-control-input" data-toggle="collapse" data-target="#espelho{{$index}}"> 
                                                                         <label class="custom-control-label " for="customCheckEspelho{{$index}}">Sim</label>
                                                                     </div>
                                                                 </div>
@@ -569,8 +569,11 @@
 
                                             <!-- Modal footer -->
                                             <div class="modal-footer mt-5" ng-show="loading === false">
+                                                <div ng-show="inputError" class="alert alert-warning">
+                                                    <strong>Atenção!</strong> Você deve preencher todos os campos.
+                                                </div>
                                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary" ng-click="sendUpdate(questao)" data-dismiss="modal">Salvar</button>
+                                                <button type="button" class="btn btn-primary" ng-click="checkEdicaoInput(questao)">Salvar</button>
                                             </div>
                                             
                                         </div>
