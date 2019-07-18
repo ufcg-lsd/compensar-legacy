@@ -42,7 +42,6 @@ angular.module('app')
             return $scope.tipo === "Objetiva"
         };
 
-        $scope.resposta = {}
 
         $scope.sendQuestionSubjective = function () {
             questaoSubj = {
@@ -215,6 +214,7 @@ angular.module('app')
             }
         }
 
+        $scope.resposta = { espelho: ""}
 
         $scope.checkPasso3 = function(tipo) {
             $scope.alertEspelho = false;
@@ -234,7 +234,9 @@ angular.module('app')
                 $scope.resposta.espelho == null)) {
                 $scope.inputError = true;
 
-            } else if (tipo === "subjetiva" && $scope.espelho === "nao" && ($scope.resposta.espelho !== null)) {
+            } else if (tipo === "subjetiva" && $scope.espelho  === "nao" && 
+            ($scope.resposta.espelho !== "")) {
+                console.log($scope.resposta.espelho);
                 $scope.alertEspelho = true;
             } else if (tipo === "objetiva") {
                 $scope.sendQuestionObjective();
