@@ -218,6 +218,7 @@ angular.module('app')
 
         $scope.checkPasso3 = function(tipo) {
             $scope.alertEspelho = false;
+            $scope.inputError = false;
             if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
                 console.log("oi")
@@ -230,20 +231,21 @@ angular.module('app')
                     console.log("oi")
 
                 $scope.inputError = true;
-            } else if (tipo === "subjetiva" && $scope.espelho === "sim" && ($scope.resposta.espelho == "" ||
-                $scope.resposta.espelho == null)) {
-                $scope.inputError = true;
-
-            } else if (tipo === "subjetiva" && $scope.espelho  === "nao" && 
-            ($scope.resposta.espelho !== "")) {
-                console.log($scope.resposta.espelho);
-                $scope.alertEspelho = true;
-            } else if (tipo === "objetiva") {
-                $scope.sendQuestionObjective();
+            } else if (tipo === "subjetiva" && $scope.espelho  === "sim" && 
+            ($scope.resposta.espelho === "" || $scope.resposta.espelho === null)) {
                 console.log("oi")
 
+                $scope.inputError = true;
+            } else if (tipo === "subjetiva" && $scope.espelho  === "nao" && 
+            ($scope.resposta.espelho !== null)) {
+                console.log("oi")
+
+                $scope.alertEspelho = true;
+            }  else if (tipo === "objetiva") {
+                $scope.sendQuestionObjective();
+                console.log("oi")
             } else {
-                console.log($scope.resposta.espelho === false)
+                console.log($scope.resposta.espelho === null)
 
                 $scope.sendQuestionSubjective();
                 console.log("oi")

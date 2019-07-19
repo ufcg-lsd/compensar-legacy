@@ -173,7 +173,7 @@
                     <option>Outros</option>
                 </select>
             </div>
-    
+
             <!-- ========================  Campos específicos de questão Subj  ============================================== -->
 
             <div ng-switch = "isObjective()">
@@ -201,21 +201,23 @@
                             on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
                     </div>
 
-                    <div class="form-group row conteudoAdd">
 
-                            <div  ng-show="inputError" class="alert alert-warning">
-                                    <strong>Atenção!</strong> Você deve preencher todos os campos.
-                            </div>
-                            <div  ng-show="alertEspelho" class="alert alert-warning">
-                                <strong>Atenção!</strong> Se você não deseja incluir o espelho da questão, você
-                                deve deixar esse campo em branco para poder registrar a questão.
+                <div class = "conteudoAdd"> 
+                        <div  ng-show="inputError" class="alert alert-warning">
+                            <strong>Atenção!</strong> Você deve preencher todos os campos.
                         </div>
+                        <div  ng-show="alertEspelho" class="alert alert-warning">
+                            <strong>Atenção!</strong> Se você não deseja incluir o espelho da questão, você
+                            deve deixar esse campo em branco para poder registrar a questão.
+                        </div>
+                    <div class="form-group row">
                             <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="checkPasso2('anterior')">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                     Voltar
                             </button>
                             <button  id="question-bt"  class="btn btn-primary btn-block " ng-click="checkPasso3('subjetiva')">Registrar</button>
                     </div>
+                </div>
                 </div>
 
 
@@ -292,29 +294,29 @@
                             </div>
                         </div>
                 </div>
-
-
-                <div class="form-group row">
-                        <div  ng-show="inputError" class="alert alert-warning">
-                                <strong>Atenção!</strong>Você deve preencher todos os campos.
-                        </div>
-
-
-                        <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="checkPasso2('anterior')">
-                                <i class="far fa-arrow-alt-circle-left"></i>                            
-                                Voltar
-                        </button>
-                        <button  id="question-bt"  class="btn btn-primary btn-block" ng-click="checkPasso3('objetiva')">Registrar</button>
+                <div  ng-show="inputError" class="alert alert-warning">
+                    <strong>Atenção!</strong> Você deve preencher todos os campos.
                 </div>
+                <div class="form-group row">
+
+                    <button class="btn btn-outline-secondary btn-block btn-sm" ng-click="checkPasso2('anterior')">
+                            <i class="far fa-arrow-alt-circle-left"></i>                            
+                            Voltar
+                    </button>
+                    <button  id="question-bt"  class="btn btn-primary btn-block" ng-click="checkPasso3('objetiva')">Registrar</button>
+                </div>
+            </div>
+
 
             </div>
                                     
             </div>
+        </form>
+
         </div>
 
         
 
-        </form>
 
         </div>
 
