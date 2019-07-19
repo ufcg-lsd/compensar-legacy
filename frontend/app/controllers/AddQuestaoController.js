@@ -171,7 +171,7 @@ angular.module('app')
             $('.selectpicker').selectpicker();
         });
 
-        $scope.step = 3;
+        $scope.step = 1;
  
         $scope.nextStep = function() {
             $scope.step++;
