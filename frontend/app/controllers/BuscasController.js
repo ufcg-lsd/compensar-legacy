@@ -275,7 +275,6 @@ angular.module('app')
 
     $scope.inputError = false;
     $scope.checkEdicaoInput = function (questao) {
-        $scope.alertEspelho = false;
         if ($scope.update.conteudo === "" || typeof $scope.update.conteudo === 'undefined' ||
         $scope.update.enunciado === "" ||  $scope.update.enunciado === null ||
         $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
@@ -288,16 +287,12 @@ angular.module('app')
         $scope.update.alternativas[2].texto === "" || $scope.update.alternativas[3].texto === "" || 
         $scope.update.alternativas[4].texto === "")) {
             $scope.inputError = true;
-        } else if ($scope.update.tipo === "Subjetiva" && $scope.espelho  === "sim" && 
+        } else if ($scope.update.tipo === "Subjetiva" && 
             ($scope.update.espelho === "" || 
-            $scope.update.espelho === null)) {
+            $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
-        } else if ($scope.update.tipo === "Subjetiva" && $scope.espelho  === "nao" && 
-            ($scope.update.espelho !== null)) {
-            $scope.alertEspelho = true;
         } else {
             $scope.inputError = false;
-            console.log('aq');
             var  index = $rootScope.Questoes.indexOf(questao);
             var id = "#editar" + index;
             $(id).modal('toggle');

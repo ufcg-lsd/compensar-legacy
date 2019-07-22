@@ -178,23 +178,7 @@
 
             <div ng-switch = "isObjective()">
                 <div ng-switch-when="false"> 
-                    <div class="form-group row">
-                        <label><h6>Você deseja incluir  espelho para questão? 
-                        </h6></label> 
-                        <div class="custom-control custom-checkbox col-lg-3">
-                            <input id = "customCheckEspelho" type="checkbox"  class="custom-control-input" ng-click = "setEspelho()"> 
-                            <label class="custom-control-label" for="customCheckEspelho"> Ativar editor</label>
-                        </div>
-                    </div>
-
-                    <div ng-show = "espelho == 'nao'" class="form-group row">   
-                        <label><h6>Espelho da Questão:</h6></label>  
-                        <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
-                        ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
-                        on-content-changed="contentChanged(editor, html, text)" read-only="true"> </ng-quill-editor>
-                    </div>
-
-                    <div ng-show = "espelho == 'sim'" class="form-group row">   
+                    <div class="form-group row">   
                             <label><h6>Espelho da Questão:</h6></label>  
                             <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
                             ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
@@ -206,10 +190,7 @@
                         <div  ng-show="inputError" class="alert alert-warning">
                             <strong>Atenção!</strong> Você deve preencher todos os campos.
                         </div>
-                        <div  ng-show="alertEspelho" class="alert alert-warning">
-                            <strong>Atenção!</strong> Se você não deseja incluir o espelho da questão, você
-                            deve deixar esse campo em branco para poder registrar a questão.
-                        </div>
+
                             <button class="btn btn-outline-secondary" ng-click="checkPasso2('anterior')">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                     Voltar
