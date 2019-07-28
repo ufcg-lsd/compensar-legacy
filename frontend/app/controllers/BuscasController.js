@@ -74,9 +74,7 @@ angular.module('app')
                 $scope.conteudoSearch = conteudoSearch;
             } 
 
-            console.log($scope.autorSearch)
-
-            setTimeout(function(){  
+            setTimeout(function() {  
                 if ($scope.allEmpty()) {
                     QuestoesService.getQuestoes($scope.pagination.current , 4);
                 } else {
@@ -99,8 +97,7 @@ angular.module('app')
                     }
 
                     QuestoesService.sendQuery(query, $scope.pagination.current , 4);
-                }
-            }, 10);
+            }}, 10);
 
             $rootScope.painelListas = false;
         };
@@ -120,6 +117,30 @@ angular.module('app')
                 $scope.espelhoShow = $sce.trustAsHtml(text);
             }
         };
+
+        $rootScope.adicionaMarcadores = function (enunciado,competencias) {
+
+            for (let i = 0; i < $rootScope.Questoes.length; i++) {
+                var arraySubStringsEnunciado = $rootScope.Questoes[i].enunciado.split(" ");
+                $scope.enunciadoAtualizado = "";
+      
+      
+                for (let j = 0; j < arraySubStringsEnunciado.length; j++) {
+      
+      
+                    if (enunciado == arraySubStringsEnunciado[j]) {
+                        arraySubStringsEnunciado[j] = "<mark>" + arraySubStringsEnunciado[j] + "</mark>";
+                    }
+                    $scope.enunciadoAtualizado += arraySubStringsEnunciado[j];
+      
+                    if (j < (arraySubStringsEnunciado.length - 1)) $scope.enunciadoAtualizado += " ";
+                }
+      
+                $rootScope.Questoes[i].enunciado = $scope.enunciadoAtualizado;
+            }
+            
+        };
+
 
         $rootScope.nomeListaEscolhida = "";
         $scope.setMinhasQuestoes = function () {

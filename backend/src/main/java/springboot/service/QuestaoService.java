@@ -177,7 +177,7 @@ public class QuestaoService {
 					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + "/" + parametros.get(i) + "/xi}}");
+					arrayQuery.add(arrayParametros.get(i) + "/" + parametros.get(i) + "/i}}");
 				}
 			}
 		}

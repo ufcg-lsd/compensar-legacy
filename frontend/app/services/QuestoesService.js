@@ -31,9 +31,18 @@ angular.module('app')
         $rootScope.pageNumber = response.data.number;
         $rootScope.totalPags = response.data.totalPages;
         $rootScope.loading = false;
+
+
+        if (query.enunciado !== "") $rootScope.adicionaMarcadores(query.enunciado,query.competencias);
+
+
         deferred.resolve(response.data);
+     
       }, function (response) {
         deferred.resolve([]);
+
+        
+
       });
 
     return deferred.promise;
