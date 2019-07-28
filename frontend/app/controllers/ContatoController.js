@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ContatoController',  function($scope, $location,$http)
+    .controller('ContatoController',  function($scope, $location,$http,$mdDialog)
     {
         $scope.username = "";
         $scope.email = "";
@@ -18,7 +18,7 @@ angular.module('app')
                 $http.post('https://compensar.herokuapp.com/api/email', email).
                 then(function (response) {
                     if (response.status == 200) {
-                        window.alert("Email enviado com Sucesso!");
+                        $scope.showAlertaEmail();                        
                         $location.path("/login");
                     }
                     else {
@@ -30,6 +30,19 @@ angular.module('app')
                 }
                 );
             };
+
+
+        $scope.showAlertaEmail = function() {
+            $mdDialog.show(
+              $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Mensagem enviado com sucesso!')
+                .textContent('Obrigado por entrar em contato.')
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Fechar')
+            );
+        };
 
 
         $scope.validaEmail = function(){

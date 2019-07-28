@@ -149,21 +149,19 @@
                 <input name="fonteSearch" type="text" class="form-control"  placeholder="Ex.: PISA, ENEM ou Autoral" ng-model="fonteSearch">
             </div>
 
-            <div ng-switch = "minhasQuestoes"> 
-                <div ng-switch-when="true">
+                <div ng-show = "getMinhasQuestoes() == true">
                     <div class="form-group row"  >
                         <label><h6>Autor:</h6></label>
-                            <input name="nome_usuario" type="text" class="form-control" ng-model="nome_usuario" readonly >
+                            <input name="autorSearch" type="text" class="form-control" ng-model="autorSearch" readonly >
                     </div>
                 </div>
-                <div ng-switch-when="false">
+                <div ng-show = "getMinhasQuestoes() == false">
                     <div class="form-group row"  >
                         <label><h6>Autor:</h6></label>
-                        <input name="autorSearch" type="text" class="form-control"  placeholder="Ex.: Edson Arantes do Nascimento" ng-model="autorSearch">
+                        <input  name = "autorSearch" type="text" class="form-control"  placeholder="Ex.: Edson Arantes do Nascimento" ng-model="autorSearch">
                     </div>
                 </div>
             </div>
-        </div>
     </div>
 
      <!-- ========================  Questões  ============================================== -->

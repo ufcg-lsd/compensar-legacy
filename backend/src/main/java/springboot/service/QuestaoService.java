@@ -115,10 +115,10 @@ public class QuestaoService {
 	private void iniciaColecoes() {
 		arrayParametros.add("{$text:{$search:");
 		arrayParametros.add("{competencias:  {$all:");
-		arrayParametros.add("{autor:");
-		arrayParametros.add("{fonte:");
-		arrayParametros.add("{tipo:");
-		arrayParametros.add("{conteudo:");
+		arrayParametros.add("{autor:{ $regex:");
+		arrayParametros.add("{fonte:{ $regex:");
+		arrayParametros.add("{tipo:{ $regex:");
+		arrayParametros.add("{conteudo:{ $regex:");
 
 
 		arrayOperadores.add("{'$or':[");
@@ -177,7 +177,7 @@ public class QuestaoService {
 					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}");
+					arrayQuery.add(arrayParametros.get(i) + "/" + parametros.get(i) + "/xi}}");
 				}
 			}
 		}

@@ -28,7 +28,7 @@ public class EmailController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Email.class) })
 	@RequestMapping(value = "/email", method = RequestMethod.POST)
-    public String sendSimpleEmail(@RequestBody Email email) {
+    public void sendSimpleEmail(@RequestBody Email email) {
  
         // Create a Simple MailMessage.
         SimpleMailMessage message = new SimpleMailMessage();
@@ -41,7 +41,5 @@ public class EmailController {
 
         // Send Message!
         this.emailSender.send(message);
- 
-        return "Email Sent!";
     }
 }

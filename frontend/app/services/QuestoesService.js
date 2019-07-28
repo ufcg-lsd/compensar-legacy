@@ -23,7 +23,7 @@ angular.module('app')
 
 
    service.sendQuery = function (query, pageNumber, usersPerPage) {
-    $http.get('https://compensar.herokuapp.com/api/questao/search/'+ query.enunciado + '/' + query.competencias 
+    $http.get('http://localhost:5458/api/questao/search/'+ query.enunciado + '/' + query.competencias 
     + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
         $rootScope.Questoes = response.data.content;

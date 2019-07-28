@@ -67,12 +67,14 @@ angular.module('app')
 
             if (tipo === "novaBusca" ) {
                 $scope.enunciadoSearch = enunciadoSearch;
-                if (!$scope.minhasQuestoes) $scope.autorSearch = autorSearch;
+                $scope.autorSearch = autorSearch;
                 $scope.fonteSearch = fonteSearch;
                 $scope.tipoSearch = tipoSearch;
                 $scope.questao.competencias = competenciasSearch;
                 $scope.conteudoSearch = conteudoSearch;
             } 
+
+            console.log($scope.autorSearch)
 
             setTimeout(function(){  
                 if ($scope.allEmpty()) {
@@ -350,6 +352,9 @@ angular.module('app')
         $scope.setLocation = function() {
             $location.path("/questoes");   
         };
+        $scope.getMinhasQuestoes = function () {
+            return $scope.minhasQuestoes;
+        }
 
 
         QuestoesService.getQuestoes($scope.pagination.current , 4);
