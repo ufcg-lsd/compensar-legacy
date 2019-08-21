@@ -18,7 +18,7 @@ angular.module('app')
             }
             else {
 
-                $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
+                $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
                     then(
                         function (response) {
                             $rootScope.status = response.status == 200;

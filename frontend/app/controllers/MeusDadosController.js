@@ -16,7 +16,7 @@ angular.module('app')
 
 
 
-                $http.get('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email).
+                $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
                 then(function (response) { 
                     console.log($scope.loading);
         
@@ -44,7 +44,7 @@ angular.module('app')
                 nomeInstituicao: $scope.instituicao_usuario 
             };
 
-            $http.put('https://compensar.herokuapp.com/api/usuario/' + AuthService.getUserDetails().Email, user).
+            $http.put(host + 'usuario/' + AuthService.getUserDetails().Email, user).
             then(function (response) {
 
                 if (response.status == 200) {

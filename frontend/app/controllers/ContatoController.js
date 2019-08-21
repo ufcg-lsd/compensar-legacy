@@ -15,7 +15,7 @@ angular.module('app')
                     username: $scope.username
                 };
     
-                $http.post('https://compensar.herokuapp.com/api/email', email).
+                $http.post(host + 'email', email).
                 then(function (response) {
                     if (response.status == 200) {
                         $scope.showAlertaEmail();                        

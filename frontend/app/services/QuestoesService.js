@@ -4,7 +4,7 @@ angular.module('app')
    deferred = $q.defer();
 
    service.getQuestoes = function (pageNumber, usersPerPage) {
-      $http.get('https://compensar.herokuapp.com/api/questao/' + pageNumber + '/' + usersPerPage).
+      $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
@@ -23,7 +23,7 @@ angular.module('app')
 
 
    service.sendQuery = function (query, pageNumber, usersPerPage) {
-    $http.get('https://compensar.herokuapp.com/api/questao/search/'+ query.enunciado + '/' + query.competencias 
+    $http.get(host + 'questao/search/'+ query.enunciado + '/' + query.competencias 
     + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
@@ -52,7 +52,7 @@ angular.module('app')
   
   service.removeQuestao = function (questao) {
 
-        $http.delete('https://compensar.herokuapp.com/api/questao/' + questao.id).
+        $http.delete(host + 'questao/' + questao.id).
           then(function (response) {
             if (response.status == 200) {
               $location.path("/questoes");
@@ -68,7 +68,7 @@ angular.module('app')
   service.atualizaQuestao = function (questao,novaQuestao) {
     $rootScope.loading = true;
 
-    $http.put('https://compensar.herokuapp.com/api/questao/' + questao.id, novaQuestao).
+    $http.put(host + 'questao/' + questao.id, novaQuestao).
       then(function (response) {
         if (response.status == 200) {
             var  index = $rootScope.Questoes.indexOf(questao);
@@ -91,7 +91,7 @@ angular.module('app')
 },
 
   service.sendListaQuestao = function (lista) {
-      $http.post('https://compensar.herokuapp.com/api/listaquestoes', lista).
+      $http.post(host + 'listaquestoes', lista).
         then(function (response) {
             if (response.status == 200) {
                 window.alert("Lista criada com Sucesso!");
@@ -108,7 +108,7 @@ angular.module('app')
   },
 
   service.getListaQuestoes = function () {
-    $http.get('https://compensar.herokuapp.com/api/listaquestoes').
+    $http.get(host + 'listaquestoes').
       then(function (response) {
         $rootScope.listas = response.data;
         deferred.resolve(response.data);
@@ -120,7 +120,7 @@ angular.module('app')
  },
 
  service.getListaQuestoesById = function (lista) {
-  $http.get('https://compensar.herokuapp.com/api/listaquestoes/' + lista.id).
+  $http.get(host + 'listaquestoes/' + lista.id).
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
     deferred.resolve(response.data);
@@ -134,7 +134,7 @@ angular.module('app')
    
  service.removeLista = function (lista) {
 
-  $http.delete('https://compensar.herokuapp.com/api/listaquestoes/delete/' + lista.id).
+  $http.delete(host + 'listaquestoes/delete/' + lista.id).
     then(function (response) {
       if (response.status == 200) {
         $location.path("/questoes");
@@ -149,7 +149,7 @@ angular.module('app')
 },
 
 service.sendUpdateLista = function (lista,novaLista) {
-  $http.put('https://compensar.herokuapp.com/api/listaquestoes/' + lista.id, novaLista).
+  $http.put(host + 'listaquestoes/' + lista.id, novaLista).
     then(function (response) {
       if (response.status == 200) {
           var  index = $rootScope.listas.indexOf(lista);
@@ -168,7 +168,7 @@ service.sendUpdateLista = function (lista,novaLista) {
 },
 
 service.getCompetencias = function (enunciado) {
-  $http.post('https://compensar.herokuapp.com/api/competencias', enunciado).
+  $http.post(host + 'competencias', enunciado).
     then(function (response) {
         if (response.status == 200) {
           $rootScope.competencias = response.data;

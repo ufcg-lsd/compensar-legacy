@@ -54,7 +54,7 @@ angular.module('app')
                 tipo: $scope.tipo
             };
 
-            $http.post('https://compensar.herokuapp.com/api/questao', questaoSubj).
+            $http.post(host + 'questao', questaoSubj).
                 then(function (response) {
                     if (response.status == 200) {
                         $scope.showAlertaCriacao();
@@ -113,7 +113,7 @@ angular.module('app')
 
 
 
-            $http.post('https://compensar.herokuapp.com/api/questao', questaoObj).
+            $http.post(host + 'questao', questaoObj).
                 then(function (response) {
                     if (response.status == 200) {
                         $scope.showAlertaCriacao();

@@ -1,6 +1,7 @@
 
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar']);
-var host = "";
+//var host = "https://compensar.herokuapp.com/api/";
+var host = "http://localhost:5458/api/";
 
 app.config(function($routeProvider, $locationProvider) {
     
