@@ -6,12 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,15 +27,6 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	@ApiOperation("Permite registrar um novo usuário no sistema. Requer que o corpo do request contenha um objeto com os campos: nomeCompleto, nomeInstituicao e email.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario", method = RequestMethod.POST)
-	public Usuario save(@RequestBody Usuario usuario) {
-		return usuarioService.save(usuario);
-	}
-	
-
 	@ApiOperation("Permite apagar um usuário do sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.DELETE)
@@ -52,9 +38,9 @@ public class UsuarioController {
 	@ApiOperation("Permite atualizar um usuário do sistema. Requer que o corpo do request contenha um objeto com os atributos de um usuário.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.PUT)
-	public ResponseEntity<Usuario> update(@PathVariable("email") String email, @RequestBody Usuario usuario) {
-		Usuario updatedUsuario = usuarioService.update(usuario, email);
+	@RequestMapping(value = "/usuario/", method = RequestMethod.PUT)
+	public ResponseEntity<Usuario> update(@RequestAttribute(name="usuario") Usuario oldUsuario, @RequestBody Usuario novoUsuario) {
+		Usuario updatedUsuario = usuarioService.update(new Usuario(oldUsuario.getNome(), novoUsuario.getIdade(), novoUsuario.getNomeInstituicao(), novoUsuario.getCargo(), novoUsuario.getCidade(), oldUsuario.getEmail(),true), oldUsuario.getEmail());
 		return new ResponseEntity<Usuario>(updatedUsuario, HttpStatus.OK);
 	}
 
@@ -72,6 +58,12 @@ public class UsuarioController {
 		return usuarioService.getById(email);
 	}
 
+	@ApiOperation("Recupera informaçoes do usuario atual.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
+	@RequestMapping(value = "/usuario/", method = RequestMethod.GET)
+	public Usuario getActualUser(@RequestAttribute(name="usuario") Usuario usuario) {
+		return usuarioService.save(new Usuario(usuario.getNome(), usuario.getIdade(), usuario.getNomeInstituicao(), usuario.getCargo(), usuario.getCidade(), usuario.getEmail(), true));
+	}
 	/*
 	 * @RequestMapping(value = "/usuario/search/{nome}", method = RequestMethod.GET)
 	 * public Usuario searchByNome(@PathVariable("nome") String nome) { return

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MeusDadosController', function ($scope, $rootScope, $location, AuthService, UserService,$http) {
+    .controller('MeusDadosController', function ($scope, $rootScope, $location, AuthService, UserService,$http,Notification) {
 
 
         $rootScope.activetab = $location.path();
@@ -16,7 +16,7 @@ angular.module('app')
 
 
 
-                $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
+                $http.get(host + 'usuario/', AuthService.getAuthorization()).
                 then(function (response) { 
                     console.log($scope.loading);
         
@@ -44,16 +44,16 @@ angular.module('app')
                 nomeInstituicao: $scope.instituicao_usuario 
             };
 
-            $http.put(host + 'usuario/' + AuthService.getUserDetails().Email, user).
+            $http.put(host + 'usuario/', user, AuthService.getAuthorization()).
             then(function (response) {
 
                 if (response.status == 200) {
-                    window.alert("Usuario atualizado com Sucesso!");
+                    Notification.success("Usuario atualizado com Sucesso!");
                     $location.path("/meusdados");
                 }
 
                 else {
-                    window.alert("Falha ao Atualizar dados!");
+                    Notification.error("Falha ao Atualizar dados!");
                     $location.path("/meusdados");
                 }
             })

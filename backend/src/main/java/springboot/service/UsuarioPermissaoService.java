@@ -6,15 +6,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springboot.exception.RegisterNotFoundException;
+import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.UsuarioPermissao;
 import springboot.repository.UsuarioPermissaoRepository;
 
 @Service
 public class UsuarioPermissaoService {
 
-	private final String errorMessage = "O Usuário não está cadastrado.";
-	
+	private final String errorMessage = "Usuário ainda não registrado no sistema!";
+
 	@Autowired
 	private UsuarioPermissaoRepository usuarioPermissaoRepository;
 

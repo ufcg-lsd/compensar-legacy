@@ -11,9 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import springboot.exception.RegisterNotFoundException;
+import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.ListaQuestoes;
-import springboot.model.Questao;
 import springboot.repository.ListaQuestoesRepository;
 
 @Service

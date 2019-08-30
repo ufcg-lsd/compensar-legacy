@@ -1,72 +1,34 @@
 angular.module('app')
-    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q) {
+    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q, Notification, localStorageService) {
         deferred = $q.defer();
 
         $scope.nomeInstituicao = "";
         $scope.cargo = "";
         $scope.cidade = "";
 
-        UserService.isRegistered().then(function (value) {
-            this.isRegistered = value;
-            console.log(value);
-        }).then( function(){   
-            if(this.isRegistered) {
-                $location.path('/buscas')
-            } else {
-                $location.path('/signup')
-            }
-            });
-
-  
-
-                $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
-                  then(function (response) {
-                    $rootScope.registered = response.status == 200;
-                  }, function () { 
-                    $rootScope.registered = false; 
-                  })
-            
-                  .then(
-                    function () {
-                      if ($rootScope.registered) {
-                        $location.path("/buscas");
-                        $window.location.href = '/buscas';
-            
-                      } 
-                      else {
-                        $location.path("/signup");
-                        $window.location.href = '/signup';
-            
-                      }
-                    }
-                  );
-            
-        
-
-
         $scope.sendSignUp = function () {
             usuario = {
-                ativo: true,
                 cargo: $scope.cargo,
                 cidade: $scope.cidade,
-                email: UserService.getEmail(),
                 idade: $scope.idade,
-                nome:  UserService.getName(),
                 nomeInstituicao: $scope.nomeInstituicao
             };
 
-            $http.post(host + 'usuario', usuario).
+            $http.post(host + 'auth/signup/', usuario, AuthService.getAuthorization()).
                 then(function (response) {
-                    if (response.status == 200) {
-                        window.alert("Cadastro efetuado com Sucesso!");
-                        $location.path("/buscas");
-                    }
-                    else {
-                        window.alert("Falha no Cadastro");
+                    Notification.success("Cadastro efetuado com Sucesso!");
+                    $location.path("/buscas");
+                },function(err){
+                    if (err.status == 400) {
+                        Notification.error("Ocorreu um erro com o seu login, faça login novamente!");
+                        $location.path("/login");
+                    } else if (err.status == 409) {
+                        Notification.error("Já existe um usuário cadastrado com esse email!");
+                        $location.path("/login");
+                    } else {
+                        Notification.error("Falha inesperada no cadastro!");
                         $location.path("/signup");
                     }
-                },function(){
-                    $location.path("/signup");
                 }
             )
         }

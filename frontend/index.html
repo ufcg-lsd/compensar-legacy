@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.css">
     <link rel="stylesheet" href="node_modules/angular-loading-bar/build/loading-bar.min.css">
+    <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.min.css">
 
 
 
@@ -67,15 +68,9 @@
                 <img  ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image">
 
                 <div class="dropdown-menu dropdown-menu-right notLogged" aria-labelledby="navbarDropdown">
-                    <a> <div  class="g-signin2" data-onsuccess="onSignIn"></div></a>
+                    <a> <div  id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div></a>
                     <div id="myctrl"  ng-controller="LoginController">
                     </div>
-                <script>  
-                function onSignIn(googleUser) {
-                    var profile = googleUser.getBasicProfile();             
-                    angular.element(document.getElementById('myctrl')).scope().login('$rootScope',profile);
-                }
-                </script>
             </div>
         </div>
             
@@ -111,22 +106,6 @@
                             <div class="dropdown-divider"></div>
                             <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
                             <div id="myctrl2" ng-controller="LoginController"></div>
-            
-                            <script>
-                                function signOut() {
-                                    var auth2 = gapi.auth2.getAuthInstance();
-                                    auth2.signOut().then(function () {
-                                        console.log('User signed out.');
-                                    });
-                                    angular.element(document.getElementById('myctrl2')).scope().sair("$rootScope");
-                                }
-            
-                            function onLoad() {
-                                gapi.load('auth2', function() {
-                                    gapi.auth2.init().then(() => {})
-                                });
-                                }
-                            </script>
                     </div> 
                 </div> 
  
@@ -190,11 +169,31 @@
 <script type="text/javascript" src="node_modules/ng-quill/src/ng-quill.js"></script>
 <script type="text/javascript" src="node_modules/quill/dist/quill.js"></script>
 <script type="text/javascript" src="node_modules/katex/dist/katex.js"></script>
+<script type="text/javascript" src="node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
 
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 
+<script>  
+function onSignIn(googleUser) {
+    angular.element(document.getElementById('myctrl')).scope().login(googleUser.getBasicProfile(), googleUser.getAuthResponse(true));
+}
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    angular.element(document.getElementById('myctrl2')).scope().sair();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+    }).then(() => {
+        gapi.signin2.render('signInButton', {onsuccess: onSignIn});
+    });
+}
+
+function onLoad() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init().then(() => {})
+    });
+}
+</script>
 
 </body>
 </html>

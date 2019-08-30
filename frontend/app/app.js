@@ -1,5 +1,5 @@
 
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar', 'ui-notification']);
 //var host = "https://compensar.herokuapp.com/api/";
 var host = "http://localhost:5458/api/";
 

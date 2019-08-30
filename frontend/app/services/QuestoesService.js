@@ -1,10 +1,10 @@
 angular.module('app')
-  .factory('QuestoesService', function($rootScope,$http,$q,$window) {
+  .factory('QuestoesService', function($rootScope,$http,$q,$window,Notification,$location, AuthService) {
    const service = {};
    deferred = $q.defer();
 
    service.getQuestoes = function (pageNumber, usersPerPage) {
-      $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage).
+      $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
@@ -24,7 +24,7 @@ angular.module('app')
 
    service.sendQuery = function (query, pageNumber, usersPerPage) {
     $http.get(host + 'questao/search/'+ query.enunciado + '/' + query.competencias 
-    + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage).
+    + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
@@ -52,7 +52,7 @@ angular.module('app')
   
   service.removeQuestao = function (questao) {
 
-        $http.delete(host + 'questao/' + questao.id).
+        $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
             if (response.status == 200) {
               $location.path("/questoes");
@@ -68,7 +68,7 @@ angular.module('app')
   service.atualizaQuestao = function (questao,novaQuestao) {
     $rootScope.loading = true;
 
-    $http.put(host + 'questao/' + questao.id, novaQuestao).
+    $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
       then(function (response) {
         if (response.status == 200) {
             var  index = $rootScope.Questoes.indexOf(questao);
@@ -91,7 +91,7 @@ angular.module('app')
 },
 
   service.sendListaQuestao = function (lista) {
-      $http.post(host + 'listaquestoes', lista).
+      $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
         then(function (response) {
             if (response.status == 200) {
                 window.alert("Lista criada com Sucesso!");
@@ -108,7 +108,7 @@ angular.module('app')
   },
 
   service.getListaQuestoes = function () {
-    $http.get(host + 'listaquestoes').
+    $http.get(host + 'listaquestoes', AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.listas = response.data;
         deferred.resolve(response.data);
@@ -120,7 +120,7 @@ angular.module('app')
  },
 
  service.getListaQuestoesById = function (lista) {
-  $http.get(host + 'listaquestoes/' + lista.id).
+  $http.get(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
     deferred.resolve(response.data);
@@ -134,7 +134,7 @@ angular.module('app')
    
  service.removeLista = function (lista) {
 
-  $http.delete(host + 'listaquestoes/delete/' + lista.id).
+  $http.delete(host + 'listaquestoes/delete/' + lista.id, AuthService.getAuthorization()).
     then(function (response) {
       if (response.status == 200) {
         $location.path("/questoes");
@@ -149,7 +149,7 @@ angular.module('app')
 },
 
 service.sendUpdateLista = function (lista,novaLista) {
-  $http.put(host + 'listaquestoes/' + lista.id, novaLista).
+  $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
     then(function (response) {
       if (response.status == 200) {
           var  index = $rootScope.listas.indexOf(lista);
@@ -168,7 +168,7 @@ service.sendUpdateLista = function (lista,novaLista) {
 },
 
 service.getCompetencias = function (enunciado) {
-  $http.post(host + 'competencias', enunciado).
+  $http.post(host + 'competencias', enunciado, AuthService.getAuthorization()).
     then(function (response) {
         if (response.status == 200) {
           $rootScope.competencias = response.data;

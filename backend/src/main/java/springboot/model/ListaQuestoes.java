@@ -1,15 +1,11 @@
 package springboot.model;
 
-import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 
 import javax.validation.constraints.NotNull;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.TextScore;

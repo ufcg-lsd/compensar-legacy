@@ -7,7 +7,6 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -22,11 +21,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.google.common.collect.Lists;
-
 import net.htmlparser.jericho.Source;
 import springboot.enums.CompetenciaType;
-import springboot.exception.RegisterNotFoundException;
+import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Questao;
 import springboot.repository.QuestaoRepository;
 

@@ -1,10 +1,10 @@
 angular.module('app')
-  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http) {
+  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http, Notification) {
   
     $rootScope.activetab = $location.path();
 
 
-    $rootScope.login = function ($rootScope,profile) {
+    $rootScope.login = (profile, auth) => {
           $rootScope.isLogged = true;
 
           var perfil = {
@@ -12,54 +12,24 @@ angular.module('app')
             Email: profile.getEmail(),
             ImageUrl: profile.getImageUrl()
           };
-        
+
           AuthService.setUserDetails(perfil);
+          AuthService.setAuthorization("Bearer " + auth.id_token);
           ProfileService.update_user_profile();
-          update_view();
-
-  };
-
-  update_view =  function () {
-
-    $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
-      then(function (response) {
-        $rootScope.registered = response.status == 200;
-      }, function () { 
-        $rootScope.registered = false; 
-      })
-
-      .then(
-        function () {
-          if ($rootScope.registered) {
-            $location.path("/buscas");
-            $window.location.href = '/buscas';
-
-          } 
-          else {
-            $location.path("/signup");
-            $window.location.href = '/signup';
-
-          }
-        }
-      );
-
+          AuthService.update_view();
+          $rootScope.$apply();
   };
 
 
-
-  $rootScope.sair = function ($rootScope) {
-
+  
+  $rootScope.sair = () => {
     $rootScope.isLogged = false;
 
+    AuthService.logout();
     ProfileService.update_visitant_profile();
     $location.path("/login");
-    $window.location.href = '/login';
-
-    AuthService.logout();
 
     $rootScope.$apply();
-
-
   }
 
     //Desliza icones das competencias automaticamente sem desordenar

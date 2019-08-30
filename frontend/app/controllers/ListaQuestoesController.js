@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService)
+    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, Notification)
     {
  
       $rootScope.activetab = $location.path();

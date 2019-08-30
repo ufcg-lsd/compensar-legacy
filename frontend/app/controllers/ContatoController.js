@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ContatoController',  function($scope, $location,$http,$mdDialog)
+    .controller('ContatoController',  function($scope, $location,$http,$mdDialog,Notification)
     {
         $scope.username = "";
         $scope.email = "";
@@ -18,11 +18,11 @@ angular.module('app')
                 $http.post(host + 'email', email).
                 then(function (response) {
                     if (response.status == 200) {
-                        $scope.showAlertaEmail();                        
+                        Notification.success("Mensagem enviada com sucesso!");        
                         $location.path("/login");
                     }
                     else {
-                        window.alert("Falha no envio do email!");
+                        Notification.error("Falha no envio do email!");
                         $location.path("/login");
                     }
                 },function(){
@@ -30,19 +30,6 @@ angular.module('app')
                 }
                 );
             };
-
-
-        $scope.showAlertaEmail = function() {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Mensagem enviado com sucesso!')
-                .textContent('Obrigado por entrar em contato.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Fechar')
-            );
-        };
 
 
         $scope.validaEmail = function(){

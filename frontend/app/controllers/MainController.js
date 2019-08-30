@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, AuthService,$scope, ProfileService,$mdDialog) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService,$scope, ProfileService,$mdDialog, Notification) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -13,46 +13,14 @@ angular.module('app')
 
         $rootScope.$on('$routeChangeStart', function (angularEvent, newUrl) {
 
+            /*
             if (!AuthService.isLogged()) {
                 $location.path("/login");
             }
             else {
-
-                $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).
-                    then(
-                        function (response) {
-                            $rootScope.status = response.status == 200;
-                        },
-                        function () {
-                            $rootScope.status = false;
-                        }).
-                    then(
-                        function () {
-
-                            if (newUrl.requireRegistered && $rootScope.status === false) {
-                                $location.path("/signup");
-                                $scope.showAlertaCadastro();
-                            }
-
-                        }
-                    );
+                AuthService.update_view();
             }
+            */
         });
-
-
-
-        $scope.showAlertaCadastro = function() {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Você deve se cadastrar')
-                .textContent('Você deve se cadastrar para acessar essa página.')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Entendi!')
-            );
-          };
-
-
 
     });

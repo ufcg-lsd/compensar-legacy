@@ -6,18 +6,20 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import springboot.exception.RegisterNotFoundException;
+import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Usuario;
 import springboot.repository.UsuarioRepository;
 
 @Service
 public class UsuarioService {
 
-	private final String errorMessage = "O Usuário não está cadastrado.";
+	private final String errorMessage = "Usuário ainda não registrado no sistema!";
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+
+	public UsuarioService() {
+	}
 
 	public Usuario save(Usuario usuario) {
 		usuarioRepository.save(usuario);

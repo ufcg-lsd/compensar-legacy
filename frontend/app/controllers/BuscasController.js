@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$mdDialog) {
+    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$mdDialog, Notification) {
 
         $rootScope.activetab = $location.path();
         
@@ -190,18 +190,7 @@ angular.module('app')
            $rootScope.Questoes.splice(index,1);
            var id = "#myModal" + index;
            $(id).modal('toggle');
-           $scope.showAlertaRemocao();
-        };
-
-        $scope.showAlertaRemocao = function() {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Questão removida com sucesso!')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Fechar.')
-            );
+           Notification.success('Questão removida com sucesso!');
         };
              
         $scope.update = {
@@ -277,17 +266,6 @@ angular.module('app')
         var  index = $rootScope.Questoes.indexOf(questao);
         var id = "#myModal" + index;
         $(id).modal('toggle');
-    };
-
-    $rootScope.showAlertaEdicao = function() {
-        $mdDialog.show(
-          $mdDialog.alert()
-            .parent(angular.element(document.querySelector('#popupContainer')))
-            .clickOutsideToClose(true)
-            .title('Questão atualizada com sucesso!')
-            .ariaLabel('Alert Dialog Demo')
-            .ok('Fechar')
-        );
     };
 
     $scope.espelho = "nao";

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, QuestoesService, $mdDialog)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, AuthService, QuestoesService, $mdDialog, Notification)
     {
         $rootScope.activetab = $location.path();
 
@@ -54,14 +54,14 @@ angular.module('app')
                 tipo: $scope.tipo
             };
 
-            $http.post(host + 'questao', questaoSubj).
+            $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
                 then(function (response) {
                     if (response.status == 200) {
-                        $scope.showAlertaCriacao();
+                        Notification.success('Questão criada com sucesso!');
                         $location.path("/buscas");
                     }
                     else {
-                        window.alert("Falha no envio da Questão");
+                        Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
                     }
                 },function(){
@@ -113,14 +113,14 @@ angular.module('app')
 
 
 
-            $http.post(host + 'questao', questaoObj).
+            $http.post(host + 'questao', questaoObj, AuthService.getAuthorization()).
                 then(function (response) {
                     if (response.status == 200) {
-                        $scope.showAlertaCriacao();
+                        Notification.success('Questão criada com sucesso!');
                         $location.path("/buscas");
                     }
                     else {
-                        window.alert("Falha no envio da Questão");
+                        Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
                     }
                 },function(){
@@ -129,18 +129,6 @@ angular.module('app')
             )
 
         }
-
-        $scope.showAlertaCriacao = function() {
-            $mdDialog.show(
-              $mdDialog.alert()
-                .parent(angular.element(document.querySelector('#popupContainer')))
-                .clickOutsideToClose(true)
-                .title('Questão criada com sucesso!')
-                .textContent('Você pode consultá-la na aba "Buscar Questões".')
-                .ariaLabel('Alert Dialog Demo')
-                .ok('Entendi!')
-            );
-        };
         
         $rootScope.loading = false;
         $rootScope.competencias = "";
