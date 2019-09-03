@@ -56,9 +56,9 @@ angular.module('app')
           then(function (response) {
             if (response.status == 200) {
               $location.path("/questoes");
-              $window.alert("Questão Removida com Sucesso!");        
+              Notification.success('Questão removida com sucesso!');
             } else {
-              $window.alert("Falha ao remover Questão!");        
+              Notification.error('Falha ao remover questão!');
             }
 
           }).catch(function (response) { deferred.resolve([]); });
@@ -78,11 +78,11 @@ angular.module('app')
             console.log(response.data.competencias);
             $rootScope.loading = false;
 
-            $rootScope.showAlertaEdicao();
+            Notification.success('Questão atualizada com sucesso!');
             $location.path("/questoes");
         }
         else {
-            window.alert("Falha ao atualizar Questão");
+            Notification.error('Falha ao atualizar questão!');
             $location.path("/questoes");
         }
     },function(){
@@ -94,11 +94,11 @@ angular.module('app')
       $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
         then(function (response) {
             if (response.status == 200) {
-                window.alert("Lista criada com Sucesso!");
+                Notification.success('Lista criada com sucesso!');
                 $location.path("/addLista");
               }
             else {
-                window.alert("Falha no envio da Lista");
+                Notification.error('Falha no envio da lista!');
                 $location.path("/addLista");
               }
         },function(){
@@ -138,9 +138,9 @@ angular.module('app')
     then(function (response) {
       if (response.status == 200) {
         $location.path("/questoes");
-        $window.alert("Lista Removida com Sucesso!");        
+        Notification.success('Lista removida com sucesso!');
       } else {
-        $window.alert("Falha ao remover Lista!"); 
+        Notification.error('Falha ao remover lista!');
         $location.path("/questoes");      
       }
 
@@ -155,11 +155,11 @@ service.sendUpdateLista = function (lista,novaLista) {
           var  index = $rootScope.listas.indexOf(lista);
           $rootScope.listas[index] = response.data;
 
-          window.alert("Lista atualizada com Sucesso!");
+          Notification.success('Lista atualizada com sucesso!');
           $location.path("/questoes");
       }
       else {
-          window.alert("Falha ao atualizar Lista");
+        Notification.error('Falha ao atualizar lista!');
           $location.path("/questoes");
       }
   },function(){
@@ -177,7 +177,7 @@ service.getCompetencias = function (enunciado) {
 
         }
         else {
-            window.alert("Falha no feedback das competências");
+            Notification.error('Falha no feedback das competências!');
             $rootScope.loading = false;
         }
     },function() {
