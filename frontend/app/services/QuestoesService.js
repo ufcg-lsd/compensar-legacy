@@ -168,7 +168,7 @@ service.sendUpdateLista = function (lista,novaLista) {
 },
 
 service.getCompetencias = function (enunciado) {
-  $http.post(host + 'competencias', enunciado, AuthService.getAuthorization()).
+  return $http.post(host + 'competencias', enunciado, AuthService.getAuthorization()).
     then(function (response) {
         if (response.status == 200) {
           $rootScope.competencias = response.data;

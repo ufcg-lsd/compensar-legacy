@@ -134,7 +134,7 @@ angular.module('app')
         $rootScope.competencias = "";
         $scope.getCompetencias = function () {
             $rootScope.loading = true;
-            QuestoesService.getCompetencias($scope.enunciado);
+            return QuestoesService.getCompetencias($scope.enunciado);
         };
 
         $scope.repaginaCompetencia = function (competencia) {
@@ -188,12 +188,13 @@ angular.module('app')
                 $scope.alertEspelho = false;
                 $scope.nextStep();
             } else {
-                $scope.getCompetencias();
+                $scope.getCompetencias().then(() => {
                     $('#Modal').modal({backdrop: 'static', keyboard: false})  
 
                     $('a[href$="#Modal"]').on( "click", function() {
                         $('#Modal').modal('show');
-                    });                       
+                    });
+                });
             }
         }
 
@@ -204,9 +205,9 @@ angular.module('app')
             $scope.inputError = false;
             if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
-            } else if (tipo === "objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &
-                typeof $scope.corretas.Value2 === 'undefined' & typeof $scope.corretas.Value3 === 'undefined' &
-                typeof $scope.corretas.Value4 === 'undefined' & typeof $scope.corretas.Value5 === 'undefined') ||
+            } else if (tipo === "objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &&
+                typeof $scope.corretas.Value2 === 'undefined' && typeof $scope.corretas.Value3 === 'undefined' &&
+                typeof $scope.corretas.Value4 === 'undefined' && typeof $scope.corretas.Value5 === 'undefined') ||
                 $scope.alternativas.alternativa1 === "" || $scope.alternativas.alternativa2 === "" ||
                 $scope.alternativas.alternativa3 === "" || $scope.alternativas.alternativa4 === "" || 
                 $scope.alternativas.alternativa5 === "")) {
