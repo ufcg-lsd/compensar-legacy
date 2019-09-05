@@ -15,6 +15,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 public class TokenFilter extends GenericFilterBean {
 
@@ -45,6 +46,11 @@ public class TokenFilter extends GenericFilterBean {
 
         try {
             payload = GoogleIdVerifier.getPayload(token);
+            System.out.println(new Date(payload.getExpirationTimeSeconds()*1000));
+            System.out.println(payload.getExpirationTimeSeconds());
+            if (new Date().getTime()/1000 > payload.getExpirationTimeSeconds()*1000) {
+                throw new Exception();
+            }
         } catch (Exception e) {
             ((HttpServletResponse) response).sendError(HttpStatus.BAD_REQUEST.value(), "Token inválido ou expirado!");
             return;
