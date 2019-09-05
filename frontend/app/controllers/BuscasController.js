@@ -190,7 +190,6 @@ angular.module('app')
            $rootScope.Questoes.splice(index,1);
            var id = "#myModal" + index;
            $(id).modal('toggle');
-           Notification.success('Questão removida com sucesso!');
         };
              
         $scope.update = {

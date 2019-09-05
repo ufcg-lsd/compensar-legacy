@@ -55,8 +55,8 @@ angular.module('app')
         $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
             if (response.status == 200) {
-              $location.path("/questoes");
               Notification.success('Questão removida com sucesso!');
+              $location.path("/questoes");
             } else {
               Notification.error('Falha ao remover questão!');
             }
