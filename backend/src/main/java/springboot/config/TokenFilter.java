@@ -48,14 +48,14 @@ public class TokenFilter extends GenericFilterBean {
             payload = GoogleIdVerifier.getPayload(token);
             System.out.println(new Date(payload.getExpirationTimeSeconds()*1000));
             System.out.println(payload.getExpirationTimeSeconds());
-            if (new Date().getTime()/1000 > payload.getExpirationTimeSeconds()*1000) {
+            if (new Date().getTime() > payload.getExpirationTimeSeconds()*1000) {
                 throw new Exception();
             }
         } catch (Exception e) {
             ((HttpServletResponse) response).sendError(HttpStatus.BAD_REQUEST.value(), "Token inválido ou expirado!");
             return;
         }
-
+        
         String email = payload.getEmail();
         try {
             usuarioService.getById(email);

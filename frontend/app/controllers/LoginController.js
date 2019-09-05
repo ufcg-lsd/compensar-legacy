@@ -29,7 +29,6 @@ angular.module('app')
     ProfileService.update_visitant_profile();
     $location.path("/login");
 
-    $rootScope.$apply();
   }
 
     //Desliza icones das competencias automaticamente sem desordenar

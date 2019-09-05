@@ -15,7 +15,7 @@ angular.module('app')
       localStorageService.set("Authorization",token);
     },
    
-    service.logout = function () {
+    service.logout = () => {
       localStorageService.remove("user");
       localStorageService.remove("Authorization");
     },
@@ -39,10 +39,10 @@ angular.module('app')
             Notification.info("Complete seu cadastro");
             $location.path("/signup");
           } else if (err.status == 400) {
-            service.logout();
+            signOut();
             Notification.warning("Seu login expirou, por favor faça login novamente!");
           } else {
-            service.logout();
+            signOut();
             Notification.error("Algo inexperado aconteceu, você precisa fazer login novamente!");
           }
         });

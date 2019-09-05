@@ -8,7 +8,7 @@
      <!-- ========================  Formulário de Criar Questão  ============================================== -->
 
     <div class="container" >
-        <form class = "col-lg-6 offset-sm-3">
+        <form class = "col-lg-6 offset-sm-3" >
                 
             <!-- ========================  Passo 1  ============================================== -->
             <div ng-show="step == 1">
@@ -40,7 +40,7 @@
                 </div>
 
 
-                <button class="btn btn-primary" ng-click="checkPasso1('proximo')">Continuar
+                <button type="button" class="btn btn-primary" ng-click="checkPasso1('proximo')">Continuar
                         <i class="fas fa-arrow-circle-right"></i>       
                 </button>
             </div>
@@ -70,12 +70,12 @@
                             <div class="loader"> </div>
                         </div>
                         <div ng-show="loading === false">
-                            <button class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
+                            <button type="button" class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                     Voltar
                             </button>
 
-                            <button class="btn btn-primary" ng-click="checkPasso2()">Continuar
+                            <button type="button" class="btn btn-primary" ng-click="checkPasso2()">Continuar
                                     <i class="fas fa-arrow-circle-right"></i>       
                             </button>         
                         </div>       
@@ -191,11 +191,11 @@
                             <strong>Atenção!</strong> Você deve preencher todos os campos.
                         </div>
 
-                            <button class="btn btn-outline-secondary" ng-click="checkPasso2('anterior')">
+                            <button type="button" class="btn btn-outline-secondary" ng-click="checkPasso2('anterior')">
                                     <i class="far fa-arrow-alt-circle-left"></i>                            
                                     Voltar
                             </button>
-                            <button   class="btn btn-primary " ng-click="checkPasso3('subjetiva')">Registrar</button>
+                            <button type="button"   class="btn btn-primary " ng-click="checkPasso3('subjetiva')">Registrar</button>
                 </div>
                 </div>
 
@@ -277,11 +277,11 @@
                     <strong>Atenção!</strong> Você deve preencher todos os campos.
                 </div>
 
-                    <button class="btn btn-outline-secondary " ng-click="checkPasso2('anterior')">
+                    <button type="button" class="btn btn-outline-secondary " ng-click="checkPasso2('anterior')">
                             <i class="far fa-arrow-alt-circle-left"></i>                            
                             Voltar
                     </button>
-                    <button  class="btn btn-primary" ng-click="checkPasso3('objetiva')">Registrar</button>
+                    <button type="button" class="btn btn-primary" ng-click="checkPasso3('objetiva')">Registrar</button>
             </div>
 
 
