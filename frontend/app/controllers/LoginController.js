@@ -58,6 +58,14 @@ angular.module('app')
 window.onscroll = function() {$scope.scrollFunction()};
 
 $scope.scrollFunction = function () {
+  if (document.querySelector('#contato').getBoundingClientRect().bottom < window.screen.availHeight) {
+    $rootScope.activetab = '/contato';
+  } else if (document.querySelector('#sobre').getBoundingClientRect().top <= 25) {
+    $rootScope.activetab = '/sobre';
+  } else {
+    $rootScope.activetab = '/login';
+  }
+
   if (document.getElementById("backToTop") !== null) {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       document.getElementById("backToTop").style.display = "block";
@@ -65,6 +73,7 @@ $scope.scrollFunction = function () {
       document.getElementById("backToTop").style.display = "none";
     }
   }
+  $rootScope.$apply();
 }
 
 // Quando o usuário clicar sob o botão, volta para cima
