@@ -58,12 +58,14 @@ angular.module('app')
 window.onscroll = function() {$scope.scrollFunction()};
 
 $scope.scrollFunction = function () {
-  if (document.querySelector('#contato').getBoundingClientRect().bottom < window.screen.availHeight) {
-    $rootScope.activetab = '/contato';
-  } else if (document.querySelector('#sobre').getBoundingClientRect().top <= 25) {
-    $rootScope.activetab = '/sobre';
-  } else {
-    $rootScope.activetab = '/login';
+  if (document.querySelector('#contato') != null && document.querySelector('#sobre') != null) {
+    if (document.querySelector('#contato').getBoundingClientRect().bottom < window.screen.availHeight) {
+      $rootScope.activetab = '/contato';
+    } else if (document.querySelector('#sobre').getBoundingClientRect().top <= 25) {
+      $rootScope.activetab = '/sobre';
+    } else {
+      $rootScope.activetab = '/login';
+    }
   }
 
   if (document.getElementById("backToTop") !== null) {
