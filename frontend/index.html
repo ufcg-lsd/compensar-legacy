@@ -59,9 +59,9 @@
             
         <div class="topnav collapse navbar-collapse" id="navbarSupportedContent"  ng-controller="LoginController">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ng-class="{active: activetab == '/login'}"><a class="nav-link" href="/login">Inicio</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="#sobre" >Sobre</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="#contato" >Contato</a></li>         
+                <li class="nav-item" ng-class="{active: activetab == '/login'}" onclick="goTo('body')"><a class="nav-link" href="/login">Inicio</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/sobre'}" onclick="goTo('#sobre')"><a class="nav-link" href="#sobre" >Sobre</a></li>
+                <li class="nav-item" ng-class="{active: activetab == '/contato'}" onclick="goTo('#contato')"><a class="nav-link" href="#contato" >Contato</a></li>         
             </ul>
         <div class="nav-item dropdown  barra"> 
                 <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
@@ -86,14 +86,14 @@
                   
                 <div class="topnav collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" ng-class="{active: activetab == '/login'}"><a class="nav-link" href="/login">Inicio</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/login'}" onclick="goTo('body')"><a class="nav-link" href="/login">Inicio</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Buscar Questões</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questões</a></li>
                         <!--
                         <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Listas</a></li>
                         -->
-                        <li class="nav-item" ng-class="{active: activetab == '/sobre'}"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/contato'}"><a class="nav-link" href="/login #contato" >Contato</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/sobre'}" onclick="goTo('#sobre')"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
+                        <li class="nav-item" ng-class="{active: activetab == '/contato'}" onclick="goTo('#contato')"><a class="nav-link" href="/login #contato" >Contato</a></li>
                     </ul>
                 <div class="nav-item dropdown barra">
                         <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
@@ -193,6 +193,13 @@ function onLoad() {
         gapi.auth2.init().then(() => {})
     });
 }
+
+function goTo(selector) {
+    if (document.querySelector(selector)) {
+        document.querySelector(selector).scrollIntoView();
+    }
+}
+
 </script>
 
 </body>
