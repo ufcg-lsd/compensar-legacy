@@ -50,13 +50,28 @@ angular.module('app')
         };
  
         $scope.checkAll = false;
-        $scope.toggleCheck = function() {
-            if (!$scope.checkAll) {
-                $scope.checkAll = true;
-                $scope.questao.competencias = angular.copy($scope.competencias);
-              } else {
-                $scope.checkAll = false;
-                $scope.questao.competencias = [];
+
+        $scope.toggleCheck = function($event) {
+            if($event.currentTarget.id === "customCheck1") {
+                if (!$scope.checkAll) {
+                    $scope.checkAll = true;
+                    $scope.questao.competencias = angular.copy($scope.competencias);
+                  } else {
+                    $scope.checkAll = false;
+                    $scope.questao.competencias = [];
+                }
+            } else {
+                if(!$scope.questao.competencias.includes($event.currentTarget.value)) {
+                    $scope.checkAll = false;
+                    $scope.questao.competencias
+                    document.querySelector("#customCheck1").checked = false;
+                    //uncheck all
+                } else {
+                    if($scope.questao.competencias.length === 9) {
+                        $scope.checkAll = true;
+                        document.querySelector("#customCheck1").checked = true;
+                    }
+                }
             }
         };
         

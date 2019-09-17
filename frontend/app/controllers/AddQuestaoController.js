@@ -180,7 +180,7 @@ angular.module('app')
         }
 
         $scope.checkPasso2 = function(passo) {
-            if ($scope.enunciado === "" || $scope.enunciado === null  ) {
+            if ($scope.enunciado === null || $scope.enunciado.trim() === "") {
                 $scope.inputError = true;
             } else if (passo === "anterior") {
                 $scope.prevStep();
