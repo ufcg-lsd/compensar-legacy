@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.ListaQuestoes;
+import springboot.model.Usuario;
 import springboot.repository.ListaQuestoesRepository;
 
 @Service
@@ -46,7 +47,7 @@ public class ListaQuestoesService {
 
 		ListaQuestoes novaListaQuestoes = optListaQuestoes.get();
 		novaListaQuestoes.setNomeLista(listaQuestoes.getNomeLista());
-		novaListaQuestoes.setEmail(listaQuestoes.getEmail());
+		novaListaQuestoes.setAutor(listaQuestoes.getAutor());
 		novaListaQuestoes.setQuestoes(listaQuestoes.getQuestoes());
 
 		listaQuestoesRepository.save(novaListaQuestoes);
@@ -91,43 +92,15 @@ public class ListaQuestoesService {
 		return optListaQuestoes.get();
 	}
 
-	public Page<ListaQuestoes> getByNomeEmail(String nomeLista, String email, int page, int size) {
-		
-		iniciaColecoes();
-		
-		parametros.add(nomeLista);
-		parametros.add(email);
+	public Page<ListaQuestoes> getByUser(Usuario user, int page, int size) {
 
-		// inicio da query com o operador lógico AND 
-		String query = arrayOperadores.get(1);
 
-		for (int i = 0; i < parametros.size(); i++) {
-			if (!isNull(parametros.get(i))) {
-				if (i == NOME_LISTA) {
-					// Precisa de duas chaves de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
-				} else {
-					// Precisa de uma chave de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}");
-				}
-			}	
-		}
-		
-		query += String.join(",", arrayQuery);
-
-		// fechamento do operador lógico AND
-		query += "]}";
-
-		System.out.println(query);
-		parametros.clear();
-		arrayQuery.clear();
-		
 	    Sort sort = Sort.by(
 	    	    Sort.Order.desc("score"));
 	    
 	    Pageable pageable = PageRequest.of(page, size, sort);
 	    
-	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByNomeEmail(query,pageable);
+	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByAutor(user,pageable);
 
 	    
 		return pagina;

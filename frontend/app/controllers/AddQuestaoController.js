@@ -45,7 +45,6 @@ angular.module('app')
 
         $scope.sendQuestionSubjective = function () {
             questaoSubj = {
-                autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
@@ -103,7 +102,6 @@ angular.module('app')
                         texto: $scope.alternativas.alternativa5
                       }
                 ],
-                autor:  UserService.getName(),
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 fonte: $scope.fonte,

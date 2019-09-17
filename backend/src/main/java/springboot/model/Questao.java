@@ -1,6 +1,7 @@
 package springboot.model;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -67,7 +68,7 @@ public class Questao {
 	 * 
 	 */
 	public Questao(String tipo, String conteudo, String enunciado, String fonte, String autor, String espelho,
-			List<Alternativa> alternativas) {
+			List<Alternativa> alternativas, Collection<CompetenciaType> competencias) {
 
 		this.tipo = tipo;
 		this.conteudo = tipo;
@@ -76,7 +77,7 @@ public class Questao {
 		this.autor = autor;
 		this.espelho = espelho;
 		this.alternativas = alternativas;
-		this.competencias = new HashSet<CompetenciaType>();
+		this.competencias = new HashSet<CompetenciaType>(competencias);
 
 	}
 

@@ -3,6 +3,8 @@ package springboot.model;
 import java.util.List;
 
 
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
@@ -18,21 +20,22 @@ public class ListaQuestoes{
 	@Id
 	@JsonProperty
 	private String id;
-	
+
 	@NotNull
 	@TextIndexed
 	private String nomeLista;
 
-	private String email;
+	@ManyToOne
+	private Usuario autor;
 
 	private List<Questao> questoes;
 	
 	@TextScore 
 	private Float score;
 
-	public ListaQuestoes(String nomeLista, String email, List<Questao> questoes) {
+	public ListaQuestoes(String nomeLista, Usuario autor, List<Questao> questoes) {
 		this.nomeLista = nomeLista;
-		this.email = email;
+		this.autor = autor;
 		this.questoes = questoes;
 	}
 
@@ -49,12 +52,12 @@ public class ListaQuestoes{
 		this.nomeLista = nomeLista;
 	}
 
-	public String getEmail() {
-		return email;
+	public Usuario getAutor() {
+		return autor;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAutor(Usuario autor) {
+		this.autor = autor;
 	}
 
 	public List<Questao> getQuestoes() {

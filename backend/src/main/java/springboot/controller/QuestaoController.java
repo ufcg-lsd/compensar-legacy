@@ -9,19 +9,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springboot.dto.input.QuestaoInput;
 import springboot.enums.CompetenciaType;
 import springboot.model.Questao;
+import springboot.model.Usuario;
 import springboot.service.QuestaoService;
 
 @Controller
@@ -38,8 +35,19 @@ public class QuestaoController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao", method = RequestMethod.POST)
-	public Questao save(@RequestBody Questao questao) throws IOException {
-		return questaoService.save(questao);
+	public Questao save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
+		return questaoService.save(
+				new Questao(
+						questao.getTipo(),
+						questao.getConteudo(),
+						questao.getEnunciado(),
+						questao.getFonte(),
+						usuario.getNome(),
+						questao.getEspelho(),
+						questao.getAlternativas(),
+						questao.getCompetencias()
+				)
+		);
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")
@@ -54,8 +62,20 @@ public class QuestaoController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Questao> update(@PathVariable("id") String id, @RequestBody Questao questao) throws IOException {
-		Questao updatedQuestao = questaoService.update(questao, id);
+	public ResponseEntity<Questao> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
+		Questao updatedQuestao = questaoService.update(
+				new Questao(
+						questao.getTipo(),
+						questao.getConteudo(),
+						questao.getEnunciado(),
+						questao.getFonte(),
+						usuario.getNome(),
+						questao.getEspelho(),
+						questao.getAlternativas(),
+						questao.getCompetencias()
+				),
+				id
+		);
 		return new ResponseEntity<Questao>(updatedQuestao, HttpStatus.OK);
 	}
 

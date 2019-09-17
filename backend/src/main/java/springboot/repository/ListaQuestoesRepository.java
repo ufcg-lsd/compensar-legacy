@@ -10,13 +10,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import springboot.model.ListaQuestoes;
+import springboot.model.Usuario;
 
 
 @Repository
 public interface ListaQuestoesRepository extends MongoRepository<ListaQuestoes, String>{
 
-	  
-	@Query(":#{#query}")
-	Page<ListaQuestoes> getByNomeEmail(@Param("query") String query, Pageable pageable);
+	Page<ListaQuestoes> getByAutor(Usuario autor, Pageable pageable);
 
 }

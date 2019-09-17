@@ -16,20 +16,17 @@ public class QuestaoInput {
 
     private String fonte;
 
-    private String tokenString;
-
     private String espelho;
 
     private String conteudo;
 
     private List<Alternativa> alternativas;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String tokenString, String espelho, String conteudo, List<Alternativa> alternativas) {
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
         this.fonte = fonte;
-        this.tokenString = tokenString;
         this.espelho = espelho;
         this.conteudo = conteudo;
         this.alternativas = alternativas;
@@ -65,14 +62,6 @@ public class QuestaoInput {
 
     public void setFonte(String fonte) {
         this.fonte = fonte;
-    }
-
-    public String getTokenString() {
-        return tokenString;
-    }
-
-    public void setTokenString(String tokenString) {
-        this.tokenString = tokenString;
     }
 
     public String getEspelho() {

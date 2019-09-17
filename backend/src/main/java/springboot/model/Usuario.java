@@ -1,12 +1,16 @@
 package springboot.model;
 
 
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Document(collection = "usuario")
 public class Usuario {
@@ -36,6 +40,10 @@ public class Usuario {
 	@Id	
 	private String email;
 
+	@NotNull
+	@OneToMany
+	private List<ListaQuestoes> listasQuestoes;
+
     @NotNull
     @TextIndexed
 	private boolean ativo;
@@ -48,10 +56,19 @@ public class Usuario {
 		this.cidade = cidade;
 		this.email = email;
 		this.ativo = ativo;
+		this.listasQuestoes = new ArrayList<>();
 	}
 
 	public Usuario() {
 
+	}
+
+	public List<ListaQuestoes> getListasQuestoes() {
+		return listasQuestoes;
+	}
+
+	public void setListasQuestoes(List<ListaQuestoes> listasQuestoes) {
+		this.listasQuestoes = listasQuestoes;
 	}
 
 	public String getNome() {

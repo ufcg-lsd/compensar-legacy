@@ -1,24 +1,26 @@
 package springboot.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springboot.dto.IO.ListaQuestoesIO;
+import springboot.dto.input.ListaQuestoesInput;
+import springboot.dto.input.QuestaoInput;
+import springboot.dto.output.ListaQuestoesOutput;
 import springboot.model.ListaQuestoes;
 import springboot.model.Questao;
+import springboot.model.Usuario;
 import springboot.service.ListaQuestoesService;
 
 @Controller
@@ -34,8 +36,8 @@ public class ListaQuestoesController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes", method = RequestMethod.POST)
-	public ListaQuestoes save(@RequestBody ListaQuestoes listaQuestoes) {
-		return listaQuestoesService.save(listaQuestoes);
+	public ListaQuestoes save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
+		return listaQuestoesService.save(ListaQuestoesIO.convert(listaQuestoes, usuario));
 	}
 	
 	@ApiOperation("Permite apagar uma lista de questões no sistema.")
@@ -50,9 +52,8 @@ public class ListaQuestoesController {
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<ListaQuestoes> update(@PathVariable("id") String id,
-			@RequestBody ListaQuestoes listaQuestoes) {
-		ListaQuestoes updatedlistaQuestoes = listaQuestoesService.update(listaQuestoes, id);
+	public ResponseEntity<ListaQuestoes> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
+		ListaQuestoes updatedlistaQuestoes = listaQuestoesService.update(ListaQuestoesIO.convert(listaQuestoes, usuario), id);
 		return new ResponseEntity<ListaQuestoes>(updatedlistaQuestoes, HttpStatus.OK);
 	}
 
@@ -69,15 +70,18 @@ public class ListaQuestoesController {
 	public ListaQuestoes getById(@PathVariable("id") String id) {
 		return listaQuestoesService.getById(id);
 	}
-	
-	
+
+
+/*
 	@ApiOperation("Fornece os dados de lista de questões registradas por determinado email. \r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/listaquestoes/{nomeLista}/{email}/{page}/{size}", method = RequestMethod.GET)
-	public Page<ListaQuestoes> getByNomeEmail(@PathVariable("nomeLista") String nomeLista, @PathVariable("email") String email,
-			@PathVariable("page") int page,@PathVariable("size") int size) {
-		return listaQuestoesService.getByNomeEmail(nomeLista, email,page,size);
-	} 
+	@RequestMapping(value = "/listaquestoes/{page}/{size}", method = RequestMethod.GET)
+	public Page<ListaQuestoesOutput> getByNomeEmail(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("email") String email,
+													@PathVariable("page") int page, @PathVariable("size") int size) {
+		Page<ListaQuestoes> listas = listaQuestoesService.getByUser(usuario,page,size);
+		return listas.map(ListaQuestoesIO::convert);
 
+	}
+*/
 }

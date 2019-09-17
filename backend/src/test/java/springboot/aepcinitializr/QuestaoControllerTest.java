@@ -51,11 +51,9 @@ public class QuestaoControllerTest extends AepcApplicationTests{
 		this.competencias.add(CompetenciaType.COMP_PARALELIZAÇÃO);
 		
 
-		this.questao =  new Questao("Subjetiva", "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 * 2", alternativas);
-		this.updatedQuestao = new Questao("Subjetiva",  "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 + 2", alternativas);
-		
-		this.questao.setCompetencias(competencias);
-		this.updatedQuestao.setCompetencias(competencias);
+		this.questao =  new Questao("Subjetiva", "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 * 2", alternativas, competencias);
+		this.updatedQuestao = new Questao("Subjetiva",  "Álgebra", "quanto é 2 + 2?", "PISA", null, "a resposta é 2 + 2", alternativas, competencias);
+
 	}
 	
 	@Test
