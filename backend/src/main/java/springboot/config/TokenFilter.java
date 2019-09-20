@@ -63,7 +63,6 @@ public class TokenFilter extends GenericFilterBean {
             ((HttpServletResponse) response).sendError(HttpStatus.NOT_FOUND.value(), "Usuário ainda não registrado no sistema!");
             return;
         }
-
         request.setAttribute("usuario", usuarioService.getById(email));
 
         chain.doFilter(request, response);

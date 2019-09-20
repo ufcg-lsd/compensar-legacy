@@ -22,6 +22,8 @@ import springboot.model.ListaQuestoes;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.ListaQuestoesService;
+import springboot.service.QuestaoService;
+import springboot.service.UsuarioService;
 
 @Controller
 @RestController
@@ -31,13 +33,16 @@ public class ListaQuestoesController {
 	
 	@Autowired
 	ListaQuestoesService listaQuestoesService;
+
+	@Autowired
+	QuestaoService questaoService;
 	
 	@ApiOperation("Permite registrar uma nova lista de questões no sistema. Requer que o corpo do request contenha um objeto com os campos: email e questoes.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes", method = RequestMethod.POST)
 	public ListaQuestoes save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
-		return listaQuestoesService.save(ListaQuestoesIO.convert(listaQuestoes, usuario));
+		return listaQuestoesService.save(ListaQuestoesIO.convert(listaQuestoes, usuario, questaoService));
 	}
 	
 	@ApiOperation("Permite apagar uma lista de questões no sistema.")
@@ -53,7 +58,7 @@ public class ListaQuestoesController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<ListaQuestoes> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
-		ListaQuestoes updatedlistaQuestoes = listaQuestoesService.update(ListaQuestoesIO.convert(listaQuestoes, usuario), id);
+		ListaQuestoes updatedlistaQuestoes = listaQuestoesService.update(ListaQuestoesIO.convert(listaQuestoes, usuario, questaoService), id);
 		return new ResponseEntity<ListaQuestoes>(updatedlistaQuestoes, HttpStatus.OK);
 	}
 

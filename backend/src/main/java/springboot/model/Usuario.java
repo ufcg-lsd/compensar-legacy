@@ -40,10 +40,6 @@ public class Usuario {
 	@Id	
 	private String email;
 
-	@NotNull
-	@OneToMany
-	private List<ListaQuestoes> listasQuestoes;
-
     @NotNull
     @TextIndexed
 	private boolean ativo;
@@ -56,19 +52,10 @@ public class Usuario {
 		this.cidade = cidade;
 		this.email = email;
 		this.ativo = ativo;
-		this.listasQuestoes = new ArrayList<>();
 	}
 
 	public Usuario() {
 
-	}
-
-	public List<ListaQuestoes> getListasQuestoes() {
-		return listasQuestoes;
-	}
-
-	public void setListasQuestoes(List<ListaQuestoes> listasQuestoes) {
-		this.listasQuestoes = listasQuestoes;
 	}
 
 	public String getNome() {

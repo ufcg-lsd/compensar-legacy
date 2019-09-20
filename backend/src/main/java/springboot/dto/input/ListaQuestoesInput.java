@@ -5,9 +5,9 @@ import java.util.List;
 public class ListaQuestoesInput {
 
     private String nomeLista;
-    private List<QuestaoInput> questoes;
+    private List<String> questoes;
 
-    public ListaQuestoesInput(String nomeLista, List<QuestaoInput> questoes) {
+    public ListaQuestoesInput(String nomeLista, List<String> questoes) {
         this.nomeLista = nomeLista;
         this.questoes = questoes;
     }
@@ -20,11 +20,11 @@ public class ListaQuestoesInput {
         this.nomeLista = nomeLista;
     }
 
-    public List<QuestaoInput> getQuestoes() {
+    public List<String> getQuestoes() {
         return questoes;
     }
 
-    public void setQuestoes(List<QuestaoInput> questoes) {
+    public void setQuestoes(List<String> questoes) {
         this.questoes = questoes;
     }
 }
