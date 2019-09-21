@@ -193,8 +193,9 @@
                             <li  class = "nav-item dropdown">
                                 <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
-                                <ul ng-controller="ListaQuestoesController" class="dropdown-menu">
+                                <ul ng-controller="ListaQuestoesController" class="dropdown-menu" id="dropdown-listas">
                                     <option class="dropdown-item" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
+                                    <option class="dropdown-item" ng-click="criarLista()"><i class="fas fa-plus"></i>Criar lista</option>
                                 </ul>
                             </li>
                             <li class="nav-item">

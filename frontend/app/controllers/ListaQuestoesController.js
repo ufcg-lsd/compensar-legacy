@@ -21,13 +21,17 @@ angular.module('app')
         $location.path("/questoes");
       }
 
+      $scope.criarLista = function () {
+        $location.path("/addLista");
+      }
+
       $scope.cancela = function() {
         $rootScope.painelListaEmContrucao = false;
         $rootScope.listaEmEdicao = false;
 
         $scope.nomeLista = "";
         $rootScope.questoes = [];
-        $location.path("/addLista");
+        $location.path("/buscas");
       }
 
       $scope.addQuestao = function(questao) {
@@ -77,7 +81,7 @@ angular.module('app')
 
       $rootScope.painelListaEmContrucao = false;
       $rootScope.questoes = [];
-      $location.path("/addLista");
+      $location.path("/questoes");
     };
 
     $scope.setListaEmConstrucao = function () {
