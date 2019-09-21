@@ -30,7 +30,7 @@ import springboot.repository.QuestaoRepository;
 @Service
 public class QuestaoService {
 
-	private final String errorMessage = "A questão subjetiva não está cadastrada.";
+	private final String errorMessage = "A questão não está cadastrada.";
 	public static final int ENUNCIADO = 0;
 	public static final int COMPETENCIA = 1;
 

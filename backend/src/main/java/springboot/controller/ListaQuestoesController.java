@@ -47,7 +47,7 @@ public class ListaQuestoesController {
 	
 	@ApiOperation("Permite apagar uma lista de questões no sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/listaquestoes/delete/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<ListaQuestoes> delete(@PathVariable("id") String id) {
 		ListaQuestoes listaQuestoes = listaQuestoesService.delete(id);
 		return new ResponseEntity<ListaQuestoes>(listaQuestoes, HttpStatus.OK);
@@ -64,9 +64,9 @@ public class ListaQuestoesController {
 
 	@ApiOperation("Fornece um array de objetos do tipo lista de questões registrados.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/listaquestoes", method = RequestMethod.GET)
-	public List<ListaQuestoes> getAll() {
-		return listaQuestoesService.getAll();
+	@RequestMapping(value = "/listaquestoes/{page}/{size}", method = RequestMethod.GET)
+	public Page<ListaQuestoes> getAll(@RequestAttribute(name="usuario") Usuario usuario,@PathVariable("page") int page,@PathVariable("size") int size) {
+		return listaQuestoesService.getAll(usuario, page, size);
 	}
 	
 	@ApiOperation("Fornece a lista de questões com o id especificado.")

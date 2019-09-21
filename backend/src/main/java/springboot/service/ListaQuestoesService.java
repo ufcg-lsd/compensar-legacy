@@ -77,8 +77,9 @@ public class ListaQuestoesService {
 		arrayOperadores.add("{'$and':[");
 	}
 	
-	public List<ListaQuestoes> getAll() {
-		return listaQuestoesRepository.findAll();
+	public Page<ListaQuestoes> getAll(Usuario usuario, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size);
+		return listaQuestoesRepository.getByAutor(usuario, pageable);
 	}
 	
 	
