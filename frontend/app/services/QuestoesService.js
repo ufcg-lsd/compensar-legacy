@@ -108,10 +108,10 @@ angular.module('app')
   },
 
   service.getListaQuestoes = function () {
-    $http.get(host + 'listaquestoes', AuthService.getAuthorization()).
+    $http.get(host + 'listaquestoes/0/100', AuthService.getAuthorization()).
       then(function (response) {
-        $rootScope.listas = response.data;
-        deferred.resolve(response.data);
+        $rootScope.listas = response.data.content;
+        deferred.resolve(response.data.content);
       }, function (response) {
         deferred.resolve([]);
       });
@@ -149,6 +149,11 @@ angular.module('app')
 },
 
 service.sendUpdateLista = function (lista,novaLista) {
+  let questoes = [];
+  for(let questao of novaLista.questoes) {
+    questoes.push(questao.id);
+  }
+  novaLista.questoes = questoes;
   $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
     then(function (response) {
       if (response.status == 200) {

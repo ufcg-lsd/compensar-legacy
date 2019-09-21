@@ -1,23 +1,31 @@
 <div  ng-controller= "ListaQuestoesController">
-        <div class="container col-lg-5 offset-sm-3" id=headbox >
+    <div ng-repeat="lista in listas"></div>
+        <div class="container col" id=headbox >
                 <br>
                 <!-- Caso seja "Minha Lista" ou a "Lista Atual em construção" -->
-                <div  ng-switch = "getMinhasListas()" class = "row">
-                        <div class = "col">
-                            <h3> {{getName()}} </h3> 
-                        </div> 
-                    <div ng-switch-when="false" >
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editar"> 
+                <div  ng-switch = "getMinhasListas(lista)">
+                    <div ng-switch-when="false" class="row col" >
+                        <div class="col row">
+                                <input class="form-control col-10" type="text" placeholder="{{getName()}}" ng-model = "nomeLista">
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary btn-sm col-auto mx-1" data-toggle="modal" data-target="#editar"> 
                             <i class="fas fa-edit"></i>
-                        </button>                   
+                        </button>          
                     </div>
-                    <div ng-switch-when="true" >
-                        <button  type="button" class="btn btn-danger btn-sm" ng-click="removeLista()">
+                    <div ng-switch-when="true" class="row col">
+                        <div class="col row">
+                            <h3 class="col-10"> {{getName()}} </h3>
+                        </div>
+                        
+                        <button  type="button" class="btn btn-danger btn-sm col-auto mx-1" ng-click="removeLista()">
                             <i class="fas fa-trash"></i>
-                        </button>   
-                        <button type="button" class="btn btn-primary btn-sm" ng-click="atualizaLista()" data-toggle="modal" data-target="#editar"> 
+                        </button>
+                        <button type="button" class="btn btn-primary btn-sm col-auto mx-1" ng-click="atualizaLista()" data-toggle="modal" data-target="#editar"> 
                             <i class="fas fa-edit"></i>
                         </button>
+                        
+                        
                     </div>
                     <hr>
                 </div>
