@@ -91,18 +91,23 @@ angular.module('app')
 },
 
   service.sendListaQuestao = function (lista) {
+      let questoes = [];
+      for(let questao of lista.questoes) {
+        questoes.push(questao.id);
+      }
+      lista.questoes = questoes;
       $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
         then(function (response) {
             if (response.status == 200) {
                 Notification.success('Lista criada com sucesso!');
-                $location.path("/addLista");
+                $location.path("/questoes");
               }
             else {
                 Notification.error('Falha no envio da lista!');
-                $location.path("/addLista");
+                $location.path("/questoes");
               }
         },function(){
-          $location.path("/addLista");
+          $location.path("/questoes");
         }
     )
   },
@@ -134,7 +139,7 @@ angular.module('app')
    
  service.removeLista = function (lista) {
 
-  $http.delete(host + 'listaquestoes/delete/' + lista.id, AuthService.getAuthorization()).
+  $http.delete(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
     then(function (response) {
       if (response.status == 200) {
         $location.path("/questoes");
