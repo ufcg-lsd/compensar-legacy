@@ -26,12 +26,16 @@ angular.module('app')
       }
 
       $scope.cancela = function() {
-        $rootScope.painelListaEmContrucao = false;
-        $rootScope.listaEmEdicao = false;
-
         $scope.nomeLista = "";
         $rootScope.questoes = [];
-        $location.path("/buscas");
+
+        if($rootScope.painelListaEmContrucao) {
+          $rootScope.painelListaEmContrucao = false;
+          $location.path("/buscas");
+        } else {
+          $rootScope.listaEmEdicao = false;
+          $scope.exibeLista($rootScope.listaEmExibicao);
+        }
       }
 
       $scope.addQuestao = function(questao) {
@@ -97,6 +101,7 @@ angular.module('app')
       $rootScope.listaEmEdicao = false;
       $rootScope.painelListas = true;
       $rootScope.minhasListas = true; 
+      $rootScope.lista = lista;
       QuestoesService.getListaQuestoesById(lista);
     }
 
@@ -111,12 +116,12 @@ angular.module('app')
 
     $scope.atualizaLista = function() {
       $rootScope.listaEmEdicao = true;
-      $rootScope.painelListaEmContrucao = true;
+      $rootScope.painelListaEmContrucao = false;
       $rootScope.minhasListas = false; 
 
 
       $scope.nomeLista =  $rootScope.listaEmExibicao.nomeLista;
-      $rootScope.questoes = $rootScope.listaEmExibicao.questoes;
+      $rootScope.questoes = [...$rootScope.listaEmExibicao.questoes];
     }
 
     $scope.sendUpdateLista = function() {
@@ -160,8 +165,12 @@ angular.module('app')
             $scope.openQuestoes();
         }
     }
+
+    $scope.imprimirLista = function() {
+      $('#imprimir').modal('show');
+      angular.element(document.getElementById('imprimir')).scope().gelListaImpressa();
+    }
+
     
-
-
   });
 

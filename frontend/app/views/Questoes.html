@@ -199,7 +199,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
+                                <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao() || getListaEmEdicao()">
                                     <div ng-switch-when="true">
                                         <a  role=tab class="nav-link active" data-toggle="tab"  href="/questoes"  ng-click="setListaEmConstrucao()">                                                    
                                             Lista Atual  <span  class="badge badge-light">{{questoes.length}}</span>
@@ -240,7 +240,7 @@
 
                             <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                             <div class="row">
-                                <div class="col-8" ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao()">
+                                <div class="col-8" ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao() || getListaEmEdicao()">
                                     <div ng-switch-when="true">
                                         <div ng-switch="isAdded(questao)">
                                             <button ng-switch-when="false" type="button" class="btn btn-primary btn-sm addLista" ng-click="addQuestao(questao)"> 

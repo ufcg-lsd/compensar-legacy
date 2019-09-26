@@ -101,6 +101,7 @@ angular.module('app')
             if (response.status == 200) {
                 Notification.success('Lista criada com sucesso!');
                 $location.path("/questoes");
+                service.getListaQuestoes();
               }
             else {
                 Notification.error('Falha no envio da lista!');
