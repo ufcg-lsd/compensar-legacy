@@ -1,121 +1,64 @@
 angular.module('app')
-    .controller('ImprimirListaController',  function($rootScope,$scope,localStorageService, $http,AuthService, QuestoesService, $mdDialog, Notification)
+    .controller('ListaController',  function($rootScope,localStorageService,$scope,$http,AuthService, QuestoesService, $mdDialog, Notification,$routeParams)
     {
-
-        const exampleLista = {
-            "id": "5d8a5faa80dbd13f195e5381",
-            "nomeLista": "Lista 2",
-            "autor": {
-                "nome": "Joao Marcos Lima Medeiros",
-                "idade": 19,
-                "nomeInstituicao": "in",
-                "cargo": "cargo",
-                "cidade": "ci",
-                "email": "joao.medeiros@ccc.ufcg.edu.br",
-                "ativo": true
-            },
-            "questoes": [
-                {
-                    "id": "5d83d92e80dbd15fb1cca67b",
-                    "tipo": "Objetiva",
-                    "enunciado": "<p>Qual a letra A?</p>",
-                    "competencias": [
-                        "COMP_DECOMPOSIÇÃO"
-                    ],
-                    "fonte": "ENEM",
-                    "autor": "Joao Marcos Lima Medeiros",
-                    "espelho": null,
-                    "conteudo": "Objetiva",
-                    "alternativas": [
-                        {
-                            "texto": "A",
-                            "correta": true
-                        },
-                        {
-                            "texto": "B",
-                            "correta": false
-                        },
-                        {
-                            "texto": "C",
-                            "correta": false
-                        },
-                        {
-                            "texto": "D",
-                            "correta": false
-                        },
-                        {
-                            "texto": "E",
-                            "correta": false
-                        }
-                    ],
-                    "score": null
-                },
-                {
-                    "id": "5d8a0a9d80dbd12cebe7e013",
-                    "tipo": "Objetiva",
-                    "enunciado": "<p>Quanto é 1 + 1?</p>",
-                    "competencias": [
-                        "COMP_DECOMPOSIÇÃO"
-                    ],
-                    "fonte": "ENEM",
-                    "autor": "Joao Marcos Lima Medeiros",
-                    "espelho": null,
-                    "conteudo": "Objetiva",
-                    "alternativas": [
-                        {
-                            "texto": "1",
-                            "correta": false
-                        },
-                        {
-                            "texto": "2",
-                            "correta": true
-                        },
-                        {
-                            "texto": "3",
-                            "correta": false
-                        },
-                        {
-                            "texto": "4",
-                            "correta": false
-                        },
-                        {
-                            "texto": "5",
-                            "correta": false
-                        }
-                    ],
-                    "score": null
-                }
-            ]
+        $rootScope.printLista = true;
+        let listaAtiva = localStorageService.get("listaAtiva");
+        console.log(listaAtiva);
+        let addHTML = (html, div) => {document.querySelector(`#${div}`).innerHTML += html;}
+        let addLista = (html) => {addHTML(html, "impressaoLista")}
+        let addRespostas = (html) => {addHTML(html, "impressaoRespostas")}
+        addLista(
+        `
+            <h1 class="ql-align-center">${listaAtiva.nomeLista}</h1>
+            <h3 class="ql-align-center">Autor: ${listaAtiva.autor.nome}</h3>
+            <h3 class="ql-align-center">Aluno: ______________________________________________________________</h3><br>
+        `);
+        let i = 1;
+        for(questao of listaAtiva.questoes) {
+            addLista(`<h3>Questão ${i++}:</h3><br>${questao.enunciado}<br>`);
+            if (questao.tipo === "Objetiva") {
+                addLista(`<p>a) ${questao.alternativas[0].texto}<p>`);
+                addLista(`<p>b) ${questao.alternativas[1].texto}<p>`);
+                addLista(`<p>c) ${questao.alternativas[2].texto}<p>`);
+                addLista(`<p>d) ${questao.alternativas[3].texto}<p>`);
+                addLista(`<p>e) ${questao.alternativas[4].texto}<p><br>`);
+            }
+        }
+        addRespostas(
+        `
+            <h1 class="ql-align-center">${listaAtiva.nomeLista}</h1>
+            <h3 class="ql-align-center">Autor: ${listaAtiva.autor.nome}</h3>
+            <h3 class="ql-align-center">Folha de Respostas</h3><br>
+        `);
+        i = 1;
+        for(questao of listaAtiva.questoes) {
+            addRespostas(`<h3>Questão ${i++}:</h3><br>`);
+            if (questao.tipo === "Objetiva") {
+                let alts = questao.alternativas;
+                addRespostas(alts[0].correta ? `<strong><p>a) ${alts[0].texto}<p></strong>` : `<p>a) ${alts[0].texto}<p>`);
+                addRespostas(alts[1].correta ? `<strong><p>b) ${alts[1].texto}<p></strong>` : `<p>b) ${alts[1].texto}<p>`);
+                addRespostas(alts[2].correta ? `<strong><p>c) ${alts[2].texto}<p></strong>` : `<p>c) ${alts[2].texto}<p>`);
+                addRespostas(alts[3].correta ? `<strong><p>d) ${alts[3].texto}<p></strong>` : `<p>d) ${alts[3].texto}<p>`);
+                addRespostas(alts[4].correta ? `<strong><p>e) ${alts[4].texto}<p></strong>` : `<p>e) ${alts[4].texto}<p><br>`);
+            } else {
+                addRespostas(`<p>Espelho de correção: ${questao.espelho}<p><br>`);
+            }
+        }
+        
+        $scope.imprimeLista = function() {
+            document.querySelector("#impressaoRespostas").style.display = "none";
+            document.querySelector("#controle").style.display = "none";
+            window.print();
+            document.querySelector("#impressaoRespostas").style.display = "block";
+            document.querySelector("#controle").style.display = "block";
         }
 
-        const pageWidth = 210, pageHeight = 297, margin = 10;
-
-
-
-        const insereHeader = (doc, lista) => {
-            doc.setFontType("bold");
-            doc.setFontSize(22);
-            doc.text(pageWidth/2, 15, lista.nomeLista, 'center');
-            doc.setFontType("normal");
-            doc.setFontSize(11);
-            doc.text(margin, 25, "Autor: " + lista.autor.nome);
-            doc.text(margin, 30, "Aluno:");
-            doc.line(margin+11, 31, pageWidth-margin, 31);
+        $scope.imprimeRespostas = function() {
+            document.querySelector("#impressaoLista").style.display = "none";
+            document.querySelector("#controle").style.display = "none";
+            window.print();
+            document.querySelector("#impressaoLista").style.display = "block";
+            document.querySelector("#controle").style.display = "block";
         }
 
-        const ajustaY = (doc, y) => {
-            return y+10;
-        }
-
-        const insereQuestao = (doc, questao, y) => {
-            y = ajustaY(doc, y);
-            doc.addHTML(questao);
-        }
-
-        $scope.gelListaImpressa = () => {
-            console.log("bbbbbbbbb");
-            let lista = Object.assign({}, $rootScope.lista);
-            localStorageService.set("listaAtiva", lista);
-            window.open('/lista/', '_blank');
-        }
     });

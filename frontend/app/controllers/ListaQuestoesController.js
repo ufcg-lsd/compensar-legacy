@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, Notification)
+    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, localStorageService, Notification)
     {
  
       $rootScope.activetab = $location.path();
@@ -167,8 +167,8 @@ angular.module('app')
     }
 
     $scope.imprimirLista = function() {
-      $('#imprimir').modal('show');
-      angular.element(document.getElementById('imprimir')).scope().gelListaImpressa();
+      localStorageService.set("listaAtiva", $rootScope.lista);
+      window.open('/lista/', '_blank');
     }
 
     

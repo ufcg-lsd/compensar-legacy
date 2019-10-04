@@ -56,7 +56,7 @@ app.config(function($routeProvider, $locationProvider) {
       requireRegistered: true
     })
     .when('/lista/', {	
-      templateUrl: '/app/views/lista.html',	
+      templateUrl: '/app/views/ImprimirLista.html',	
       controller: 'ListaController',
       requireAuth: true,
       requireRegistered: true
