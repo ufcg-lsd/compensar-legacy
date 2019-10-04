@@ -1,5 +1,5 @@
 angular.module('app')
-  .factory('QuestoesService', function($rootScope,$http,$q,$window,Notification,$location, AuthService) {
+  .factory('QuestoesService', function($rootScope,$http,$q,Notification,$location, AuthService) {
    const service = {};
    deferred = $q.defer();
 

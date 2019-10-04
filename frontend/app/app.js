@@ -54,7 +54,13 @@ app.config(function($routeProvider, $locationProvider) {
       controller: 'ListaQuestoesController',
       requireAuth: true,
       requireRegistered: true
-  })	
+    })
+    .when('/lista/', {	
+      templateUrl: '/app/views/lista.html',	
+      controller: 'ListaController',
+      requireAuth: true,
+      requireRegistered: true
+    })
       .otherwise({
         redirectTo: '/login'
       });

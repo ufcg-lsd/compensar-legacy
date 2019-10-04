@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', function (ProfileService,$scope,$window,$rootScope, $location, AuthService, $http, Notification) {
+  .controller('LoginController', function (ProfileService,$scope,$rootScope, $location, AuthService, $http, Notification) {
   
     $rootScope.activetab = $location.path();
 

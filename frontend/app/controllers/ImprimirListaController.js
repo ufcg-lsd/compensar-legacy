@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ImprimirListaController',  function($rootScope,$scope,$http,AuthService, QuestoesService, $mdDialog, Notification)
+    .controller('ImprimirListaController',  function($rootScope,$scope,localStorageService, $http,AuthService, QuestoesService, $mdDialog, Notification)
     {
 
         const exampleLista = {
@@ -115,18 +115,7 @@ angular.module('app')
         $scope.gelListaImpressa = () => {
             console.log("bbbbbbbbb");
             let lista = Object.assign({}, $rootScope.lista);
-            var doc = new jsPDF();
-            doc.setProperties({
-                title: lista.nomeLista,
-                author: lista.autor.nome,
-            })
-            doc.setFont("helvetica");
-            insereHeader(doc, lista);
-            let y = 35
-            for (let questao of lista.questoes) {
-                y = insereQuestao(doc, questao, y);
-            }
-            console.log(doc.output('datauri'));
-            $('#pdfViewer').attr("src", doc.output('datauri'));
+            localStorageService.set("listaAtiva", lista);
+            window.open('/lista/', '_blank');
         }
     });
