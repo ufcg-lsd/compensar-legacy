@@ -63,7 +63,7 @@ public class Questao {
 	 * @param enunciado O enunciado da questão.
 	 * @param fonte     A fonte da questão.
 	 * @param autor     O autor da questão.
-	 * @param imagem    A imagem da questão.
+	 * @param espelho    A imagem da questão.
 	 * 
 	 * 
 	 */
@@ -71,7 +71,7 @@ public class Questao {
 			List<Alternativa> alternativas, Collection<CompetenciaType> competencias) {
 
 		this.tipo = tipo;
-		this.conteudo = tipo;
+		this.conteudo = conteudo;
 		this.enunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
