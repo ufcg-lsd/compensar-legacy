@@ -1,7 +1,7 @@
 
 <div >
     <!-- ========================  Buscas  ============================================== -->
-<div class = "row">
+<div class = "row" id="containerQuestoes">
     <div id = "buscas" class = "col-sm-4" >
         <div class="form-inline">
             <div class="form-group col-sm-9">
@@ -194,7 +194,7 @@
                                 <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
                                 <ul ng-controller="ListaQuestoesController" class="dropdown-menu" id="dropdown-listas">
-                                    <option class="dropdown-item" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
+                                    <option class="dropdown-item truncated" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
                                     <option class="dropdown-item" ng-click="criarLista()"><i class="fas fa-plus"></i>Criar lista</option>
                                 </ul>
                             </li>
@@ -252,13 +252,16 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                <md-button  data-placement="right"  class="md-icon-button test-tooltip modal-bt" >
-                                    <md-tooltip md-direction="left">Ver detalhes</md-tooltip>
-                                    <md-icon    data-toggle="modal" data-target="#myModal{{$index}}">
-                                        <i class="fas fa-info-circle fa-lg"></i> 
-                                    </md-icon>
+                                <div  class="col-4">
+                                    <md-button  data-placement="right"  class="md-icon-button test-tooltip modal-bt" >
+                                        <md-tooltip md-direction="left">Ver detalhes</md-tooltip>
+                                        <md-icon    data-toggle="modal" data-target="#myModal{{$index}}">
+                                            <i class="fas fa-info-circle fa-lg"></i> 
+                                        </md-icon>
                                     </md-button>
+                                </div>
+                            </div>
+                                
                             <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{questao.conteudo}}</div>
 
                         <div class="enunciadoCompactado" ng-bind-html="enunciadoShow"></div>
@@ -569,7 +572,7 @@
                                                     <strong>Atenção!</strong> Você deve preencher todos os campos.
                                                 </div>
                                                 <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary" ng-click="checkEdicaoInput(questao)">Salvar</button>
+                                                <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)">Salvar</button>
                                             </div>
                                             
                                         </div>
@@ -623,4 +626,26 @@
         </div>
     </div>
 </div>
+</div>
+<div class="modal fade" id="ModalEdicao">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+                                                
+        <!-- Modal Header -->
+        <div class="modal-header">                  
+            <h5 class="modal-title"> Competências identificadas: </h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+                                                
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
+                    <span  class="col-1">
+                        <em>{{competencia}} </em>
+                    </span>
+            </div> 
+        </div>
+
+        
+    </div>
 </div>

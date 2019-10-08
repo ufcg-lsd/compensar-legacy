@@ -187,7 +187,8 @@ angular.module('app')
                 $scope.nextStep();
             } else {
                 $scope.getCompetencias().then(() => {
-                    $('#Modal').modal({backdrop: 'static', keyboard: false})  
+                    $('#Modal').modal('toggle');
+                    $('#Modal').modal({backdrop: 'static', keyboard: false})
 
                     $('a[href$="#Modal"]').on( "click", function() {
                         $('#Modal').modal('show');

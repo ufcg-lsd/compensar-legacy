@@ -44,12 +44,16 @@ button {
 
 .left{
   float: left;  
-  width: 50%;
+  width: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
 }
 
 .right{
   float: right;  
-  width: 50%;
+  width: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
 }
 
 .modal-bt{
@@ -67,9 +71,7 @@ button {
   text-align: justify;
   padding:15px 15px 0px ;
 }
-button:hover {
-  opacity:5;
-}
+
 
 #lixeira{
   font-size: 20px;
@@ -219,4 +221,13 @@ margin-inline-end: 20%;}
 
 .enunciadoCompactado {
   position: relative;
+}
+
+#containerQuestoes {
+  margin: 0;
+}
+.truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

@@ -265,6 +265,7 @@ angular.module('app')
                 autor:  UserService.getName(),
                 conteudo: $scope.update.conteudo,
                 enunciado: $scope.update.enunciado,
+                competencias: $rootScope.competencias,
                 fonte: $scope.update.fonte,
                 tipo: $scope.update.tipo
             };
@@ -306,6 +307,20 @@ angular.module('app')
             ($scope.update.espelho === "" || 
             $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
+        } else if ($scope.update.enunciado !== $scope.questao.enunciado) {
+            QuestoesService.getCompetencias($scope.update.enunciado).then(() => {
+                $scope.repaginaCompetencias($rootScope.competencias);
+                $('#ModalEdicao').modal('toggle');
+                $('#ModalEdicao').modal({backdrop: 'static', keyboard: false});
+                
+                $('a[href$="#ModalEdicao"]').on( "click", function() {
+                    $('#ModalEdicao').modal('show');
+                });
+                
+                console.log("aaaa");
+                $scope.questao.enunciado = $scope.update.enunciado;
+            });
+            
         } else {
             $scope.inputError = false;
             var  index = $rootScope.Questoes.indexOf(questao);
