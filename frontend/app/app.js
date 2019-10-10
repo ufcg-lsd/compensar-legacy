@@ -1,7 +1,8 @@
-
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar', 'ui-notification']);
+/* eslint-disable no-unused-vars */
 //var host = "https://compensar.herokuapp.com/api/";
 var host = "http://localhost:5458/api/";
+/* eslint-enable no-unused-vars */
 
 app.config(function($routeProvider, $locationProvider) {
     

@@ -467,8 +467,7 @@
                                                     <div id = "updateEnunciado">
                                                             <label><h6>Enunciado:</h6></label>
                                                             <ng-quill-editor id = "updateEnunciado" modules="editorModules" placeholder="{{update.enunciado}}" 
-                                                            ng-model="update.enunciado" on-editor-created="editorCreated(editor)" 
-                                                            on-content-changed="contentChanged(editor, html, text)">                          
+                                                            ng-model="update.enunciado" on-content-changed="contentChanged()">                          
                                                             </ng-quill-editor> 
                                                     </div>              
 
@@ -480,8 +479,7 @@
                                                                 <div id="espelho{{$index}}" class="form-group row">   
                                                                     <label><h6>Espelho da Questão:</h6></label>  
                                                                     <ng-quill-editor modules="editorModules" placeholder="{{update.espelho}}"
-                                                                    ng-model="update.espelho" on-editor-created="editorCreated(editor)" 
-                                                                    on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
+                                                                    ng-model="update.espelho" on-content-changed="contentChanged()"> </ng-quill-editor>
                                                                 </div>
                                             
                                                             </div>

@@ -1,7 +1,8 @@
+/* global host */
 angular.module('app')
   .factory('UserService', function (AuthService,$rootScope,$http,$q) {
     const service = {};
-    deferred = $q.defer();
+    let deferred = $q.defer();
 
     service.isRegistered = function () {
       $http.get(host + 'usuario/' + AuthService.getUserDetails().Email).

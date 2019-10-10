@@ -1,3 +1,4 @@
+/* global host */
 angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, AuthService, QuestoesService, $mdDialog, Notification)
     {
@@ -44,7 +45,7 @@ angular.module('app')
 
 
         $scope.sendQuestionSubjective = function () {
-            questaoSubj = {
+            let questaoSubj = {
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
@@ -79,7 +80,7 @@ angular.module('app')
 
         $scope.sendQuestionObjective = function () {
 
-            questaoObj = {
+            let questaoObj = {
                 alternativas: [
                     {
                         correta: $scope.corretas.Value1,
@@ -140,10 +141,7 @@ angular.module('app')
             return compSplitted[1];
         };
 
-        $scope.editorCreated = function (editor) {
-        };
-
-        $scope.contentChanged = function (editor, html, text) {
+        $scope.contentChanged = function () {
             $scope.changeDetected = true;
         };
     

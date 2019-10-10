@@ -53,8 +53,7 @@
                 <div class="form-group row">
                     <label><h6>Enunciado:</h6></label>
                     <ng-quill-editor id = "quill" modules="editorModules" placeholder="Digite o enunciado da questão." 
-                        ng-model="enunciado" on-editor-created="editorCreated(editor)" 
-                        on-content-changed="contentChanged(editor, html, text)">                          
+                        ng-model="enunciado" on-content-changed="contentChanged()">                          
                     </ng-quill-editor>               
                 </div>
 
@@ -181,8 +180,7 @@
                     <div class="form-group row">   
                             <label><h6>Espelho da Questão:</h6></label>  
                             <ng-quill-editor modules="editorModules" placeholder="Digite a resposta da questão"
-                            ng-model="resposta.espelho" on-editor-created="editorCreated(editor)" 
-                            on-content-changed="contentChanged(editor, html, text)"> </ng-quill-editor>
+                            ng-model="resposta.espelho" on-content-changed="contentChanged()"> </ng-quill-editor>
                     </div>
 
 

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService,$mdDialog, Notification) {
+    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService) {
 
         $rootScope.activetab = $location.path();
         
@@ -63,7 +63,6 @@ angular.module('app')
             } else {
                 if(!$scope.questao.competencias.includes($event.currentTarget.value)) {
                     $scope.checkAll = false;
-                    $scope.questao.competencias
                     document.querySelector("#customCheck1").checked = false;
                     //uncheck all
                 } else {
@@ -102,7 +101,7 @@ angular.module('app')
                     if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
 
 
-                    query = {
+                    let query = {
                         enunciado:  enunciadoSearch,
                         competencias: competenciasSearch,
                         autor: autorSearch,
@@ -133,7 +132,7 @@ angular.module('app')
             }
         };
 
-        $rootScope.adicionaMarcadores = function (enunciado,competencias) {
+        $rootScope.adicionaMarcadores = function (enunciado) {
 
             for (let i = 0; i < $rootScope.Questoes.length; i++) {
                 var arraySubStringsEnunciado = $rootScope.Questoes[i].enunciado.split(" ");
@@ -246,7 +245,7 @@ angular.module('app')
             $rootScope.competencias = questao.competencias;
 
             if (questao.tipo  === "Objetiva") {
-                for (i = 0; i < (questao.alternativas.length); i++) {
+                for (let i = 0; i < (questao.alternativas.length); i++) {
                     $scope.update.alternativas[i].correta = questao.alternativas[i].correta;
                     $scope.update.alternativas[i].texto = questao.alternativas[i].texto;
                 }
@@ -261,7 +260,7 @@ angular.module('app')
        $scope.sendUpdate = function(questao) {
             $rootScope.loading = true;
 
-            novaQuestao = {
+            let novaQuestao = {
                 autor:  UserService.getName(),
                 conteudo: $scope.update.conteudo,
                 enunciado: $scope.update.enunciado,
@@ -296,9 +295,9 @@ angular.module('app')
         $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
         $scope.update.tipo === "" || typeof $scope.update.tipo === 'undefined') {
             $scope.inputError = true;
-        } else if ($scope.update.tipo === "Objetiva" && (($scope.update.alternativas[0].correta === false &
-        $scope.update.alternativas[1].correta === false & $scope.update.alternativas[2].correta === false &
-        $scope.update.alternativas[3].correta === false & $scope.update.alternativas[4].correta === false) ||
+        } else if ($scope.update.tipo === "Objetiva" && (($scope.update.alternativas[0].correta === false &&
+        $scope.update.alternativas[1].correta === false && $scope.update.alternativas[2].correta === false &&
+        $scope.update.alternativas[3].correta === false && $scope.update.alternativas[4].correta === false) ||
         $scope.update.alternativas[0].texto === "" || $scope.update.alternativas[1].texto === "" ||
         $scope.update.alternativas[2].texto === "" || $scope.update.alternativas[3].texto === "" || 
         $scope.update.alternativas[4].texto === "")) {
@@ -337,7 +336,7 @@ angular.module('app')
         $scope.repaginaCompetencias = function (competencias) {
             $scope.competenciasRepaginadas = [];
             $scope.amostraCompetencias = "";
-            for (i = 0; i < (competencias.length); i++) {
+            for (let i = 0; i < (competencias.length); i++) {
                 var compSplitted = competencias[i].split("_");
                 var compLowerCase = compSplitted[1].toLowerCase();
                 $scope.competenciasRepaginadas[i] = compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);

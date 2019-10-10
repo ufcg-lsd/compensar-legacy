@@ -1,3 +1,4 @@
+/* global host */
 angular.module('app')
     .controller('MeusDadosController', function ($scope, $rootScope, $location, AuthService, UserService,$http,Notification) {
 
@@ -34,7 +35,7 @@ angular.module('app')
     
         $scope.updateUser = function updateUser() {
 
-            user = {
+            let user = {
                 ativo: true,
                 cargo: $scope.cargo_usuario,
                 cidade: $scope.cidade_usuario,

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('MainController', function ($rootScope, $http, $location, AuthService,$scope, ProfileService,$mdDialog, Notification) {
+    .controller('MainController', function ($rootScope, $http, $location, AuthService,$scope, ProfileService) {
         $rootScope.activetab = $location.path();
 
         $rootScope.isLogged = AuthService.isLogged();
@@ -10,17 +10,5 @@ angular.module('app')
         else {
             ProfileService.update_visitant_profile();
         }
-
-        $rootScope.$on('$routeChangeStart', function (angularEvent, newUrl) {
-
-            /*
-            if (!AuthService.isLogged()) {
-                $location.path("/login");
-            }
-            else {
-                AuthService.update_view();
-            }
-            */
-        });
 
     });

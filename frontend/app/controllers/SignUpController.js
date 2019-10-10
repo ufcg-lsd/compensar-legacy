@@ -1,13 +1,13 @@
+/* global host */
 angular.module('app')
-    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q, Notification, localStorageService) {
-        deferred = $q.defer();
+    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q, Notification) {
 
         $scope.nomeInstituicao = "";
         $scope.cargo = "";
         $scope.cidade = "";
 
         $scope.sendSignUp = function () {
-            usuario = {
+            let usuario = {
                 cargo: $scope.cargo,
                 cidade: $scope.cidade,
                 idade: $scope.idade,
@@ -15,7 +15,7 @@ angular.module('app')
             };
 
             $http.post(host + 'auth/signup/', usuario, AuthService.getAuthorization()).
-                then(function (response) {
+                then(function () {
                     Notification.success("Cadastro efetuado com Sucesso!");
                     $location.path("/buscas");
                 },function(err){

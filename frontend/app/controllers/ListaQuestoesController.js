@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, localStorageService, Notification)
+    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, localStorageService)
     {
  
       $rootScope.activetab = $location.path();
@@ -54,8 +54,8 @@ angular.module('app')
 
       $scope.checkSameQuestao = function (questao) {
         var equals = false;
-        for (i = 0; i < $rootScope.questoes.length; i++) {
-          questaoAdded = $rootScope.questoes[i];
+        for (let i = 0; i < $rootScope.questoes.length; i++) {
+          let questaoAdded = $rootScope.questoes[i];
   
           if (questaoAdded.id == questao.id) equals = true;
         }
@@ -76,7 +76,7 @@ angular.module('app')
 
     $scope.sendListaQuestao = function() {
 
-      lista = {
+      let lista = {
         nomeLista: $rootScope.nomeLista,
         email: UserService.getEmail(),
         questoes: $rootScope.questoes
@@ -126,7 +126,7 @@ angular.module('app')
 
     $scope.sendUpdateLista = function() {
 
-      novaLista = {
+      let novaLista = {
         nomeLista: $rootScope.nomeLista,
         email: UserService.getEmail(),
         questoes: $rootScope.questoes

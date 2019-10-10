@@ -1,3 +1,4 @@
+/* global host */
 angular.module('app')
     .controller('ContatoController',  function($scope, $location,$http,$mdDialog,Notification)
     {
@@ -8,7 +9,7 @@ angular.module('app')
       
             $scope.sendEmail = function() {
  
-                email = {
+                let email = {
                     email: $scope.email,
                     message: $scope.message,
                     subject: $scope.assunto,

@@ -1,3 +1,4 @@
+/* global host, signOut*/
 angular.module('app')
   .factory('AuthService', function(localStorageService, $http, $rootScope, Notification, $location) {
    const service = {};
@@ -31,7 +32,7 @@ angular.module('app')
         return;
       }
       $http.get(host + 'auth/authenticate/', service.getAuthorization())
-        .then(function (response) {
+        .then(function () {
           $rootScope.registered = true;
         }, function (err) {
           $rootScope.registered = false;

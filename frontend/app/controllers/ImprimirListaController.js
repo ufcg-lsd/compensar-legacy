@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('ListaController',  function($rootScope,localStorageService,$scope,$http,AuthService, QuestoesService, $mdDialog, Notification,$routeParams)
+    .controller('ListaController',  function($rootScope,localStorageService,$scope)
     {
         $rootScope.printLista = true;
         let listaAtiva = localStorageService.get("listaAtiva");
@@ -14,7 +14,7 @@ angular.module('app')
             <h3 class="ql-align-center">Aluno: ______________________________________________________________</h3><br>
         `);
         let i = 1;
-        for(questao of listaAtiva.questoes) {
+        for(let questao of listaAtiva.questoes) {
             addLista(`<h3>Questão ${i++}:</h3><br>${questao.enunciado}<br>`);
             if (questao.tipo === "Objetiva") {
                 addLista(`<p>a) ${questao.alternativas[0].texto}<p>`);
@@ -31,7 +31,7 @@ angular.module('app')
             <h3 class="ql-align-center">Folha de Respostas</h3><br>
         `);
         i = 1;
-        for(questao of listaAtiva.questoes) {
+        for(let questao of listaAtiva.questoes) {
             addRespostas(`<h3>Questão ${i++}:</h3><br>`);
             if (questao.tipo === "Objetiva") {
                 let alts = questao.alternativas;

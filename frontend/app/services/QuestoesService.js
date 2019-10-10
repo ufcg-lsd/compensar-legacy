@@ -1,7 +1,8 @@
+/* global host */
 angular.module('app')
   .factory('QuestoesService', function($rootScope,$http,$q,Notification,$location, AuthService) {
    const service = {};
-   deferred = $q.defer();
+   let deferred = $q.defer();
 
    service.getQuestoes = function (pageNumber, usersPerPage) {
       $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
@@ -14,7 +15,7 @@ angular.module('app')
 
         
         deferred.resolve(response.data);
-      }, function (response) {
+      }, function () {
         deferred.resolve([]);
       });
 
@@ -33,12 +34,12 @@ angular.module('app')
         $rootScope.loading = false;
 
 
-        if (query.enunciado !== "") $rootScope.adicionaMarcadores(query.enunciado,query.competencias);
+        if (query.enunciado !== "") $rootScope.adicionaMarcadores(query.enunciado);
 
 
         deferred.resolve(response.data);
      
-      }, function (response) {
+      }, function () {
         deferred.resolve([]);
 
         
@@ -61,7 +62,7 @@ angular.module('app')
               Notification.error('Falha ao remover questão!');
             }
 
-          }).catch(function (response) { deferred.resolve([]); });
+          }).catch(function () { deferred.resolve([]); });
   },
 
 
@@ -118,7 +119,7 @@ angular.module('app')
       then(function (response) {
         $rootScope.listas = response.data.content;
         deferred.resolve(response.data.content);
-      }, function (response) {
+      }, function () {
         deferred.resolve([]);
       });
 
@@ -130,7 +131,7 @@ angular.module('app')
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
     deferred.resolve(response.data);
-  }, function (response) {
+  }, function () {
     deferred.resolve([]);
   });
 
@@ -150,7 +151,7 @@ angular.module('app')
         $location.path("/questoes");      
       }
 
-    }).catch(function (response) { deferred.resolve([]);         $location.path("/questoes");
+    }).catch(function () { deferred.resolve([]);         $location.path("/questoes");
   });
 },
 

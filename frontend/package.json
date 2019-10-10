@@ -35,6 +35,11 @@
     "quill": "1.2.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "5.5.0"
+    "@fortawesome/fontawesome-free": "5.5.0",
+    "@typescript-eslint/eslint-plugin": "^2.3.3",
+    "@typescript-eslint/parser": "^2.3.3",
+    "eslint": "^6.5.1",
+    "eslint-config-jquery": "^2.0.0",
+    "eslint-plugin-angular": "^4.0.1"
   }
 }
