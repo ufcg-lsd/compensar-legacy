@@ -1,7 +1,6 @@
 package springboot.service;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.ListaQuestoes;
 import springboot.model.Usuario;
@@ -46,6 +46,11 @@ public class ListaQuestoesService {
 		}
 
 		ListaQuestoes novaListaQuestoes = optListaQuestoes.get();
+
+		if (!listaQuestoes.getAutor().equals(novaListaQuestoes.getAutor())) {
+			throw new PermissionDeniedException("A lista é de propriedade de outro usuário");
+		}
+
 		novaListaQuestoes.setNomeLista(listaQuestoes.getNomeLista());
 		novaListaQuestoes.setAutor(listaQuestoes.getAutor());
 		novaListaQuestoes.setQuestoes(listaQuestoes.getQuestoes());

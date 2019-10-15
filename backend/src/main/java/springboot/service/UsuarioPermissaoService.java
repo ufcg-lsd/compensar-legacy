@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.UsuarioPermissao;
 import springboot.repository.UsuarioPermissaoRepository;
@@ -31,6 +32,11 @@ public class UsuarioPermissaoService {
 		}
 
 		UsuarioPermissao novoUsuarioPermissao = optUsuario.get();
+
+		if (!novoUsuarioPermissao.getEmail().equals(email)) {
+			throw new PermissionDeniedException("A permissão de um usuário só pode ser alterada por ele mesmo.");
+		}
+
 		novoUsuarioPermissao.setEmail(usuarioPermissao.getEmail());
 		novoUsuarioPermissao.setPermissao(usuarioPermissao.getPermissao());
 

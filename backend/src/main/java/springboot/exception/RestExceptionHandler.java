@@ -9,6 +9,7 @@ import org.springframework.web.context.request.WebRequest;
 import springboot.dto.output.CustomRestOutput;
 import springboot.exception.auth.InvalidTokenException;
 import springboot.exception.auth.UserAlreadyExistException;
+import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 
 import java.util.Date;
@@ -34,6 +35,11 @@ public class RestExceptionHandler {
     @ExceptionHandler(UserAlreadyExistException.class)
     public ResponseEntity<CustomRestOutput> handleUserAlreadyExistException(Exception ex) {
         return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(PermissionDeniedException.class)
+    public ResponseEntity<CustomRestOutput> handlePermissionDeniedException(Exception ex) {
+        return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
     }
 
     /*

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import net.htmlparser.jericho.Source;
 import springboot.enums.CompetenciaType;
+import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Questao;
 import springboot.repository.QuestaoRepository;
@@ -75,6 +76,12 @@ public class QuestaoService {
 		}
 
 		Questao novaQuestao = optQuestao.get();
+
+		if (!questao.getAutor().equals(novaQuestao.getAutor())) {
+			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
+		}
+
+
 		novaQuestao.setFonte(questao.getFonte());
 		novaQuestao.setAutor(questao.getAutor());
 		novaQuestao.setTipo(questao.getTipo());
