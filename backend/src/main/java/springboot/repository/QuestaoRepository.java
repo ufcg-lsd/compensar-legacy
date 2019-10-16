@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import springboot.model.Questao;
+import springboot.model.Usuario;
 
 @Repository
 public abstract interface QuestaoRepository extends MongoRepository<Questao, String> {
@@ -19,10 +20,13 @@ public abstract interface QuestaoRepository extends MongoRepository<Questao, Str
 	Page<Questao> findAll(Pageable pageable);
 
 	Optional<Questao> findById(String id);
-	
+
+
 	@Query(":#{#query}")
 	Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(@Param("query") String query, Pageable pageable);
-	
-	
-	
+
+	//@Query("SELECT q FROM Question q WHERE q.qtdAvaliacoes <= 3 AND NOT EXISTS (SELECT a FROM Avaliacao a WHERE a.questao = q AND a.autor = ?1)")
+	//@org.springframework.data.jpa.repository.Query(value = "SELECT q FROM questao q", nativeQuery = false)
+	//Page<Questao> getPendentes(Usuario usuario, Pageable pageable);
+
 }

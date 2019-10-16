@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
@@ -52,6 +54,8 @@ public class Questao {
 	private String conteudo;
 
 	private List<Alternativa> alternativas;
+
+	private Integer qtdAvaliacoes;
 	
 	@TextScore 
 	private Float score;
@@ -78,6 +82,7 @@ public class Questao {
 		this.espelho = espelho;
 		this.alternativas = alternativas;
 		this.competencias = new HashSet<CompetenciaType>(competencias);
+		this.qtdAvaliacoes = 0;
 
 	}
 
@@ -205,11 +210,13 @@ public class Questao {
 	public void setScore(Float score) {
 		this.score = score;
 	}
-	
-	
-	
-	
-	
 
 
+	public Integer getQtdAvaliacoes() {
+		return qtdAvaliacoes;
+	}
+
+	public void setQtdAvaliacoes(Integer qtdAvaliacoes) {
+		this.qtdAvaliacoes = qtdAvaliacoes;
+	}
 }

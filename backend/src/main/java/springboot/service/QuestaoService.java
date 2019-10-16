@@ -26,6 +26,7 @@ import springboot.enums.CompetenciaType;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Questao;
+import springboot.model.Usuario;
 import springboot.repository.QuestaoRepository;
 
 @Service
@@ -201,7 +202,6 @@ public class QuestaoService {
 	    Pageable pageable = PageRequest.of(page, size, sort);
 	    
 	    Page<Questao> pagina = questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query,pageable);
-
 	    
 		return pagina;
 
@@ -268,6 +268,14 @@ public class QuestaoService {
 
 	private boolean isNull(Object parametro) {
 		return parametro.equals("null");
+	}
+
+	public Page<Questao> getAllPendentes(Usuario usuario, int page, int size) {
+
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Questao> pagina = questaoRepository.getPendentes(usuario, pageable);
+
+		return pagina;
 	}
 
 }

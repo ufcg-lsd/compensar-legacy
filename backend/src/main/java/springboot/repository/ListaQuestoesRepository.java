@@ -16,6 +16,6 @@ import springboot.model.Usuario;
 @Repository
 public interface ListaQuestoesRepository extends MongoRepository<ListaQuestoes, String>{
 
-	Page<ListaQuestoes> getByAutor(Usuario autor, Pageable pageable);
+	Page<ListaQuestoes> getByAutor(String autor, Pageable pageable);
 
 }

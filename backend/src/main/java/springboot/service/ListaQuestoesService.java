@@ -84,7 +84,7 @@ public class ListaQuestoesService {
 	
 	public Page<ListaQuestoes> getAll(Usuario usuario, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
-		return listaQuestoesRepository.getByAutor(usuario, pageable);
+		return listaQuestoesRepository.getByAutor(usuario.getEmail(), pageable);
 	}
 	
 	
@@ -106,7 +106,7 @@ public class ListaQuestoesService {
 	    
 	    Pageable pageable = PageRequest.of(page, size, sort);
 	    
-	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByAutor(user,pageable);
+	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByAutor(user.getEmail(),pageable);
 
 	    
 		return pagina;

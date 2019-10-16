@@ -3,8 +3,6 @@ package springboot.model;
 import java.util.List;
 
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
@@ -25,15 +23,15 @@ public class ListaQuestoes{
 	@TextIndexed
 	private String nomeLista;
 
-	@ManyToOne
-	private Usuario autor;
+	private String autor;
 
-	private List<Questao> questoes;
+
+	private List<String> questoes;
 	
 	@TextScore 
 	private Float score;
 
-	public ListaQuestoes(String nomeLista, Usuario autor, List<Questao> questoes) {
+	public ListaQuestoes(String nomeLista, String autor, List<String> questoes) {
 		this.nomeLista = nomeLista;
 		this.autor = autor;
 		this.questoes = questoes;
@@ -42,8 +40,15 @@ public class ListaQuestoes{
 	public ListaQuestoes() {
 
 	}
-	
-	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getNomeLista() {
 		return nomeLista;
 	}
@@ -52,24 +57,27 @@ public class ListaQuestoes{
 		this.nomeLista = nomeLista;
 	}
 
-	public Usuario getAutor() {
+	public String getAutor() {
 		return autor;
 	}
 
-	public void setAutor(Usuario autor) {
+	public void setAutor(String autor) {
 		this.autor = autor;
 	}
 
-	public List<Questao> getQuestoes() {
+	public List<String> getQuestoes() {
 		return questoes;
 	}
 
-	public void setQuestoes(List<Questao> questoes) {
+	public void setQuestoes(List<String> questoes) {
 		this.questoes = questoes;
 	}
 
+	public Float getScore() {
+		return score;
+	}
 
-
-
-
+	public void setScore(Float score) {
+		this.score = score;
+	}
 }

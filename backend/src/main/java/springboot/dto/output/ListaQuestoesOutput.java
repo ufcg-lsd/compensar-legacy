@@ -7,21 +7,27 @@ import springboot.model.Usuario;
 import java.util.List;
 
 public class ListaQuestoesOutput {
+    private String id;
+
     private String nomeLista;
 
     private String autor;
 
     private List<Questao> questoes;
 
-    public ListaQuestoesOutput(String nomeLista, Usuario autor, List<Questao> questoes) {
+    public ListaQuestoesOutput(String id, String nomeLista, String autor, List<Questao> questoes) {
+        this.id = id;
         this.nomeLista = nomeLista;
-        this.autor = autor.getNome();
+        this.autor = autor;
         this.questoes = questoes;
     }
-    public ListaQuestoesOutput(ListaQuestoes listaOriginal) {
-        this.nomeLista = listaOriginal.getNomeLista();
-        this.autor = listaOriginal.getAutor().getNome();
-        this.questoes = listaOriginal.getQuestoes();
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNomeLista() {

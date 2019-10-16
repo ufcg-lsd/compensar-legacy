@@ -36,44 +36,51 @@ public class ListaQuestoesController {
 
 	@Autowired
 	QuestaoService questaoService;
+
+	@Autowired
+	UsuarioService usuarioService;
+
+	public ListaQuestoesOutput convert(ListaQuestoes lista) {
+		return ListaQuestoesIO.convert(lista, usuarioService.getById(lista.getAutor()).getNome(), questaoService);
+	}
 	
 	@ApiOperation("Permite registrar uma nova lista de questões no sistema. Requer que o corpo do request contenha um objeto com os campos: email e questoes.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes", method = RequestMethod.POST)
-	public ListaQuestoes save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
-		return listaQuestoesService.save(ListaQuestoesIO.convert(listaQuestoes, usuario, questaoService));
+	public ListaQuestoesOutput save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
+		return convert(listaQuestoesService.save(ListaQuestoesIO.convert(listaQuestoes, usuario, questaoService)));
 	}
 	
 	@ApiOperation("Permite apagar uma lista de questões no sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<ListaQuestoes> delete(@PathVariable("id") String id) {
+	public ResponseEntity<ListaQuestoesOutput> delete(@PathVariable("id") String id) {
 		ListaQuestoes listaQuestoes = listaQuestoesService.delete(id);
-		return new ResponseEntity<ListaQuestoes>(listaQuestoes, HttpStatus.OK);
+		return new ResponseEntity<ListaQuestoesOutput>(convert(listaQuestoes), HttpStatus.OK);
 	}
 	
 	@ApiOperation("Permite atualizar uma lista de questões do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma lista de questões.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<ListaQuestoes> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
+	public ResponseEntity<ListaQuestoesOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody ListaQuestoesInput listaQuestoes) {
 		ListaQuestoes updatedlistaQuestoes = listaQuestoesService.update(ListaQuestoesIO.convert(listaQuestoes, usuario, questaoService), id);
-		return new ResponseEntity<ListaQuestoes>(updatedlistaQuestoes, HttpStatus.OK);
+		return new ResponseEntity<ListaQuestoesOutput>(convert(updatedlistaQuestoes), HttpStatus.OK);
 	}
 
 	@ApiOperation("Fornece um array de objetos do tipo lista de questões registrados.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{page}/{size}", method = RequestMethod.GET)
-	public Page<ListaQuestoes> getAll(@RequestAttribute(name="usuario") Usuario usuario,@PathVariable("page") int page,@PathVariable("size") int size) {
-		return listaQuestoesService.getAll(usuario, page, size);
+	public Page<ListaQuestoesOutput> getAll(@RequestAttribute(name="usuario") Usuario usuario,@PathVariable("page") int page,@PathVariable("size") int size) {
+		return listaQuestoesService.getAll(usuario, page, size).map(this::convert);
 	}
 	
 	@ApiOperation("Fornece a lista de questões com o id especificado.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/listaquestoes/{id}", method = RequestMethod.GET)
-	public ListaQuestoes getById(@PathVariable("id") String id) {
-		return listaQuestoesService.getById(id);
+	public ListaQuestoesOutput getById(@PathVariable("id") String id) {
+		return convert(listaQuestoesService.getById(id));
 	}
 
 

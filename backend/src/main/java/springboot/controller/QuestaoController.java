@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -87,6 +88,13 @@ public class QuestaoController {
 	public Set<CompetenciaType> getSetCompetencias(@RequestBody String enunciado) throws IOException {
 		
 		return questaoService.getSetCompetencias(enunciado);
+	}
+
+	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de resposta para o usuário.\r\n" + "")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/pendentes/{page}/{size}", method = RequestMethod.GET)
+	public Page<Questao> getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("page") int page, @PathVariable("size") int size) {
+		return questaoService.getAllPendentes(usuario, page, size);
 	}
 	
 	

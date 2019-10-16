@@ -5,7 +5,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import springboot.enums.CompetenciaType;
 
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
 
@@ -21,13 +20,11 @@ public class Avaliacao {
     @TextIndexed
     private Set<CompetenciaType> competencias;
 
-    @ManyToOne
-    private Usuario autor;
+    private String autor;
 
-    @ManyToOne
-    private Questao questao;
+    private String questao;
 
-    public Avaliacao(@NotNull String observacoes, Set<CompetenciaType> competencias, Usuario autor, Questao questao) {
+    public Avaliacao(@NotNull String observacoes, Set<CompetenciaType> competencias, String autor, String questao) {
         this.observacoes = observacoes;
         this.competencias = competencias;
         this.autor = autor;
@@ -58,19 +55,19 @@ public class Avaliacao {
         this.competencias = competencias;
     }
 
-    public Usuario getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Usuario autor) {
-        this.autor = autor;
-    }
-
-    public Questao getQuestao() {
+    public String getQuestao() {
         return questao;
     }
 
-    public void setQuestao(Questao questao) {
+    public void setQuestao(String questao) {
         this.questao = questao;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
     }
 }

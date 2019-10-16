@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springboot.dto.input.AvaliacaoInput;
 import springboot.model.Avaliacao;
+import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
 import springboot.service.QuestaoService;
@@ -36,14 +37,18 @@ public class AvaliacaoController {
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Avaliacao.class) })
     @RequestMapping(value = "/avaliacao", method = RequestMethod.POST)
     public Avaliacao save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody AvaliacaoInput avaliacao) throws IOException {
-        return avaliacaoService.save(
+        Questao questao = questaoService.getById(avaliacao.getQuestao());
+        Avaliacao novaAvaliacao = avaliacaoService.save(
                 new Avaliacao(
                         avaliacao.getObservacoes(),
                         avaliacao.getCompetencias(),
-                        usuario,
-                        questaoService.getById(avaliacao.getQuestao())
+                        usuario.getEmail(),
+                        questao.getId()
                 )
         );
+        questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
+        questaoService.update(questao, questao.getId());
+        return novaAvaliacao;
     }
 
     @ApiOperation("Permite atualizar uma avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n"
@@ -56,8 +61,8 @@ public class AvaliacaoController {
                 new Avaliacao(
                         avaliacao.getObservacoes(),
                         avaliacao.getCompetencias(),
-                        usuario,
-                        questaoService.getById(avaliacao.getQuestao())
+                        usuario.getEmail(),
+                        avaliacao.getQuestao()
                 ),
                 id
         );

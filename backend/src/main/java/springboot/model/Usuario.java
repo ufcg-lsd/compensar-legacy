@@ -1,7 +1,6 @@
 package springboot.model;
 
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
