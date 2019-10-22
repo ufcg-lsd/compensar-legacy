@@ -1,13 +1,10 @@
 package springboot.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.annotation.Id;
@@ -56,6 +53,8 @@ public class Questao {
 	private List<Alternativa> alternativas;
 
 	private Integer qtdAvaliacoes;
+
+	private Long ultimoAcesso;
 	
 	@TextScore 
 	private Float score;
@@ -83,7 +82,7 @@ public class Questao {
 		this.alternativas = alternativas;
 		this.competencias = new HashSet<CompetenciaType>(competencias);
 		this.qtdAvaliacoes = 0;
-
+		this.ultimoAcesso = System.currentTimeMillis();
 	}
 
 	public Questao() {
@@ -218,5 +217,13 @@ public class Questao {
 
 	public void setQtdAvaliacoes(Integer qtdAvaliacoes) {
 		this.qtdAvaliacoes = qtdAvaliacoes;
+	}
+
+	public Long getUltimoAcesso() {
+		return ultimoAcesso;
+	}
+
+	public void setUltimoAcesso(Long ultimoAcesso) {
+		this.ultimoAcesso = ultimoAcesso;
 	}
 }

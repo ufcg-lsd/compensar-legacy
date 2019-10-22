@@ -92,9 +92,9 @@ public class QuestaoController {
 
 	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de resposta para o usuário.\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/pendentes/{page}/{size}", method = RequestMethod.GET)
-	public Page<Questao> getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("page") int page, @PathVariable("size") int size) {
-		return questaoService.getAllPendentes(usuario, page, size);
+	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
+	public Questao getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
+		return questaoService.getPendente(usuario);
 	}
 	
 	

@@ -5,14 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.context.request.WebRequest;
 import springboot.dto.output.CustomRestOutput;
 import springboot.exception.auth.InvalidTokenException;
 import springboot.exception.auth.UserAlreadyExistException;
+import springboot.exception.data.NoPendentQuestionException;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
-
-import java.util.Date;
 
 @ControllerAdvice
 public class RestExceptionHandler {
@@ -40,6 +38,11 @@ public class RestExceptionHandler {
     @ExceptionHandler(PermissionDeniedException.class)
     public ResponseEntity<CustomRestOutput> handlePermissionDeniedException(Exception ex) {
         return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(NoPendentQuestionException.class)
+    public ResponseEntity<CustomRestOutput> handleNoPendentQuestionException(Exception ex) {
+        return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 
     /*

@@ -14,20 +14,23 @@ import java.util.Set;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import com.mongodb.BasicDBObject;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.stereotype.Service;
 
 import net.htmlparser.jericho.Source;
 import springboot.enums.CompetenciaType;
+import springboot.exception.data.NoPendentQuestionException;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.repository.QuestaoRepository;
+import springboot.util.CustomAggregationOperation;
 
 @Service
 public class QuestaoService {
@@ -43,6 +46,9 @@ public class QuestaoService {
 
 	@Autowired
 	private QuestaoRepository questaoRepository;
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
 
 	public Questao save(Questao questao) throws IOException {
 		
@@ -88,6 +94,7 @@ public class QuestaoService {
 		novaQuestao.setTipo(questao.getTipo());
 		novaQuestao.setConteudo(questao.getConteudo());
 		novaQuestao.setEnunciado(questao.getEnunciado());
+		novaQuestao.setUltimoAcesso(questao.getUltimoAcesso());
 		
 		novaQuestao.setCompetencias(getSetCompetencias(questao.getEnunciado()));
 		
@@ -270,12 +277,113 @@ public class QuestaoService {
 		return parametro.equals("null");
 	}
 
-	public Page<Questao> getAllPendentes(Usuario usuario, int page, int size) {
+	public Questao getPendente(Usuario usuario) {
 
-		Pageable pageable = PageRequest.of(page, size);
-		Page<Questao> pagina = questaoRepository.getPendentes(usuario, pageable);
+        BasicDBObject agregationQuery = BasicDBObject.parse(
+                "   {\n" +
+                "        \"$project\": {\n" +
+                "            \"_id\": { \"$toString\": \"$_id\" },\n" +
+                "            \"qtdAvaliacoes\": \"$qtdAvaliacoes\"\n" +
+                "        }\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"$lookup\": {\n" +
+                "            \"from\": \"avaliacao\",\n" +
+                "            let: { id: \"$_id\" },\n" +
+                "            \"pipeline\": [{\n" +
+                "                \"$match\": {\n" +
+                "                    \"$expr\": {\n" +
+                "                        \"$and\": [\n" +
+                "                            { \"$eq\": [ \"$$id\", \"$questao\" ] },\n" +
+                "                            { \"$eq\": [ \"$autor\", \"" + usuario.getEmail() + "\" ] }\n" +
+                "                        ]\n" +
+                "                    }\n" +
+                "                }\n" +
+                "            }],\n" +
+                "            \"as\": \"avaliacao\"\n" +
+                "        }\n" +
+                "    }, {\n" +
+                "        \"$match\": {\n" +
+                "            \"qtdAvaliacoes\": { \"$lt\": 3 },\n" +
+                "            \"avaliacao._id\": { \"$exists\": false }\n" +
+                "        }\n" +
+                "    }, {\n" +
+                "        \"$project\": {\n" +
+                "            \"qtdAvaliacoes\": false,\n" +
+                "            \"avaliacao\": false\n" +
+                "        }\n" +
+                "    }");
 
-		return pagina;
+
+
+        Aggregation agg = Aggregation.newAggregation(
+                new CustomAggregationOperation(Document.parse(
+                        "{\n" +
+                        "    \"$project\": {\n" +
+                        "        \"_id\": { \"$toString\": \"$_id\" },\n" +
+                        "        \"qtdAvaliacoes\": \"$qtdAvaliacoes\"\n" +
+                        "    }\n" +
+                        "}"
+                )),
+				new CustomAggregationOperation(Document.parse(
+						"{\n" +
+						"    \"$lookup\": {\n" +
+						"        \"from\": \"avaliacao\",\n" +
+						"        let: { id: \"$_id\" },\n" +
+						"        \"pipeline\": [{\n" +
+						"            \"$match\": {\n" +
+						"                \"$expr\": {\n" +
+						"                    \"$and\": [\n" +
+						"                        { \"$eq\": [ \"$$id\", \"$questao\" ] },\n" +
+						"                        { \"$eq\": [ \"$autor\", \"" + usuario.getEmail() + "\" ] }\n" +
+						"                    ]\n" +
+						"                }\n" +
+						"            }\n" +
+						"        }],\n" +
+						"        \"as\": \"avaliacao\"\n" +
+						"    }\n" +
+						"}"
+				)),
+				new CustomAggregationOperation(Document.parse(
+						"{\n" +
+						"    \"$match\": {\n" +
+						"        \"avaliacao._id\": { \"$exists\": false }\n" +
+						"    }\n" +
+						"}"
+				)),
+				new CustomAggregationOperation(Document.parse(
+						"{\n" +
+						"    \"$project\": {\n" +
+						"        \"qtdAvaliacoes\": false,\n" +
+						"        \"avaliacao\": false\n" +
+						"    }\n" +
+						"}"
+				))
+        );
+        List<Document> results = mongoTemplate.aggregate(agg, "questao", Document.class).getMappedResults();
+		Questao melhorQuestao = new Questao();
+
+
+
+        for (Document obj: results) {
+        	Questao atual = getById(obj.getString("_id"));
+        	Long atualUltimoAcesso = atual.getUltimoAcesso() != null ? atual.getUltimoAcesso() : 0;
+        	Long melhorUltimoAcesso = melhorQuestao.getUltimoAcesso() != null ? melhorQuestao.getUltimoAcesso() : 0;
+        	if(melhorQuestao.getQtdAvaliacoes() == null ||
+			  (melhorQuestao.getQtdAvaliacoes() >= 3 && atual.getQtdAvaliacoes() < 3) ||
+			  (melhorUltimoAcesso > atualUltimoAcesso && !(melhorQuestao.getQtdAvaliacoes() < 3 && atual.getQtdAvaliacoes() >= 3))) {
+        		melhorQuestao = atual;
+			}
+		}
+
+        try {
+			melhorQuestao.setUltimoAcesso(System.currentTimeMillis());
+			update(melhorQuestao, melhorQuestao.getId());
+		} catch(Exception e) {
+			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de avaliação");
+		}
+
+		return melhorQuestao;
 	}
 
 }
