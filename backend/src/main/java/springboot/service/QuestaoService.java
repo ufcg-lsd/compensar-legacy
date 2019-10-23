@@ -279,108 +279,50 @@ public class QuestaoService {
 
 	public Questao getPendente(Usuario usuario) {
 
-        BasicDBObject agregationQuery = BasicDBObject.parse(
-                "   {\n" +
-                "        \"$project\": {\n" +
-                "            \"_id\": { \"$toString\": \"$_id\" },\n" +
-                "            \"qtdAvaliacoes\": \"$qtdAvaliacoes\"\n" +
-                "        }\n" +
-                "    },\n" +
-                "    {\n" +
-                "        \"$lookup\": {\n" +
-                "            \"from\": \"avaliacao\",\n" +
-                "            let: { id: \"$_id\" },\n" +
-                "            \"pipeline\": [{\n" +
-                "                \"$match\": {\n" +
-                "                    \"$expr\": {\n" +
-                "                        \"$and\": [\n" +
-                "                            { \"$eq\": [ \"$$id\", \"$questao\" ] },\n" +
-                "                            { \"$eq\": [ \"$autor\", \"" + usuario.getEmail() + "\" ] }\n" +
-                "                        ]\n" +
-                "                    }\n" +
-                "                }\n" +
-                "            }],\n" +
-                "            \"as\": \"avaliacao\"\n" +
-                "        }\n" +
-                "    }, {\n" +
-                "        \"$match\": {\n" +
-                "            \"qtdAvaliacoes\": { \"$lt\": 3 },\n" +
-                "            \"avaliacao._id\": { \"$exists\": false }\n" +
-                "        }\n" +
-                "    }, {\n" +
-                "        \"$project\": {\n" +
-                "            \"qtdAvaliacoes\": false,\n" +
-                "            \"avaliacao\": false\n" +
-                "        }\n" +
-                "    }");
-
-
-
-        Aggregation agg = Aggregation.newAggregation(
-                new CustomAggregationOperation(Document.parse(
-                        "{\n" +
-                        "    \"$project\": {\n" +
-                        "        \"_id\": { \"$toString\": \"$_id\" },\n" +
-                        "        \"qtdAvaliacoes\": \"$qtdAvaliacoes\"\n" +
-                        "    }\n" +
-                        "}"
-                )),
-				new CustomAggregationOperation(Document.parse(
-						"{\n" +
-						"    \"$lookup\": {\n" +
-						"        \"from\": \"avaliacao\",\n" +
-						"        let: { id: \"$_id\" },\n" +
-						"        \"pipeline\": [{\n" +
-						"            \"$match\": {\n" +
-						"                \"$expr\": {\n" +
-						"                    \"$and\": [\n" +
-						"                        { \"$eq\": [ \"$$id\", \"$questao\" ] },\n" +
-						"                        { \"$eq\": [ \"$autor\", \"" + usuario.getEmail() + "\" ] }\n" +
-						"                    ]\n" +
-						"                }\n" +
-						"            }\n" +
-						"        }],\n" +
-						"        \"as\": \"avaliacao\"\n" +
-						"    }\n" +
-						"}"
-				)),
-				new CustomAggregationOperation(Document.parse(
-						"{\n" +
-						"    \"$match\": {\n" +
-						"        \"avaliacao._id\": { \"$exists\": false }\n" +
-						"    }\n" +
-						"}"
-				)),
-				new CustomAggregationOperation(Document.parse(
-						"{\n" +
-						"    \"$project\": {\n" +
-						"        \"qtdAvaliacoes\": false,\n" +
-						"        \"avaliacao\": false\n" +
-						"    }\n" +
-						"}"
-				))
-        );
-        List<Document> results = mongoTemplate.aggregate(agg, "questao", Document.class).getMappedResults();
-		Questao melhorQuestao = new Questao();
-
-
-
-        for (Document obj: results) {
-        	Questao atual = getById(obj.getString("_id"));
-        	Long atualUltimoAcesso = atual.getUltimoAcesso() != null ? atual.getUltimoAcesso() : 0;
-        	Long melhorUltimoAcesso = melhorQuestao.getUltimoAcesso() != null ? melhorQuestao.getUltimoAcesso() : 0;
-        	if(melhorQuestao.getQtdAvaliacoes() == null ||
-			  (melhorQuestao.getQtdAvaliacoes() >= 3 && atual.getQtdAvaliacoes() < 3) ||
-			  (melhorUltimoAcesso > atualUltimoAcesso && !(melhorQuestao.getQtdAvaliacoes() < 3 && atual.getQtdAvaliacoes() >= 3))) {
-        		melhorQuestao = atual;
-			}
-		}
-
-        try {
+        List<CustomAggregationOperation>  aggList = new ArrayList<>();
+		aggList.add(new CustomAggregationOperation(Document.parse(
+			"{\n" +
+			"    \"$lookup\": {\n" +
+			"        \"from\": \"avaliacao\",\n" +
+			"        let: { id: { \"$toString\": \"$_id\" } },\n" +
+			"        \"pipeline\": [{\n" +
+			"            \"$match\": {\n" +
+			"                \"$expr\": {\n" +
+			"                    \"$and\": [\n" +
+			"                        { \"$eq\": [ \"$$id\", \"$questao\" ] },\n" +
+			"                        { \"$eq\": [ \"$autor\", \"" + usuario.getEmail() + "\" ] }\n" +
+			"                    ]\n" +
+			"                }\n" +
+			"            }\n" +
+			"        },\n" +
+			"        { $limit: 1 }],\n" +
+			"        \"as\": \"avaliacao\"\n" +
+			"    }\n" +
+			"}"
+		)));
+        aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"qtdAvaliacoes\": { \"$lt\": 3 } } }")));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"avaliacao._id\": { \"$exists\": false } } }")));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$sort\" : { \"ultimoAcesso\" : 1 } }")));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$limit\" : 1 }")));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"avaliacao\": false } }")));
+		Questao melhorQuestao;
+		try {
+			Aggregation agg = Aggregation.newAggregation(aggList);
+			List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
+			melhorQuestao = results.get(0);
 			melhorQuestao.setUltimoAcesso(System.currentTimeMillis());
 			update(melhorQuestao, melhorQuestao.getId());
 		} catch(Exception e) {
-			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de avaliação");
+			try {
+				aggList.remove(1);
+				Aggregation agg = Aggregation.newAggregation(aggList);
+				List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
+				melhorQuestao = results.get(0);
+				melhorQuestao.setUltimoAcesso(System.currentTimeMillis());
+				update(melhorQuestao, melhorQuestao.getId());
+			} catch (Exception e2) {
+				throw new NoPendentQuestionException("Não existe nenhuma questão pendente de avaliação");
+			}
 		}
 
 		return melhorQuestao;

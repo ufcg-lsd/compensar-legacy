@@ -171,6 +171,20 @@ angular.module('app')
       window.open('/lista/', '_blank');
     }
 
+    $scope.getQuestaoPendente = function() {
+      $rootScope.questaoSobAvaliacao = null;
+      QuestoesService.getQuestaoPendente().then(() => {
+        if ($rootScope.questaoSobAvaliacao !== null) {
+          $('#ModalAvaliacao').modal('toggle');
+          $('#ModalAvaliacao').modal({backdrop: 'static', keyboard: false})
+
+          $('a[href$="#ModalAvaliacao"]').on( "click", function() {
+              $('#ModalAvaliacao').modal('show');
+          });
+        }
+      });
+    }
+
     
   });
 

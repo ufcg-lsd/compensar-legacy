@@ -197,6 +197,19 @@ service.getCompetencias = function (enunciado) {
   )
 }
 
+service.getQuestaoPendente = function() {
+  return $http.get(host + 'questao/pendente/', AuthService.getAuthorization())
+  .then(function(response) {
+    if (response.status == 200) {
+      $rootScope.questaoSobAvaliacao = response.data;
+    } else {
+      Notification.warning('Nenhuma questão pendente de sua avaliação!');
+    }
+  }, function() {
+    Notification.warning('Nenhuma questão pendente de sua avaliação!');
+  })
+}
+
 
     return service;
   });

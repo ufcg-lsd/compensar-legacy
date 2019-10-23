@@ -90,7 +90,7 @@
                 <div class="topnav collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item" ng-class="{active: activetab == '/login'}" onclick="goTo('body')"><a class="nav-link" href="/login">Inicio</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/buscas'}"><a class="nav-link" href="/buscas" >Buscar Questões</a></li>
+                        <li class="nav-item" ng-class="{active: (activetab == '/buscas' || activetab == '/questoes')}"><a class="nav-link" href="/buscas" >Buscar Questões</a></li>
                         <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questões</a></li>
                         <!--
                         <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Listas</a></li>

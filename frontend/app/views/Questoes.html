@@ -190,24 +190,28 @@
                             <a role=tab class="nav-link " data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
                         </li>
                         
-                            <li  class = "nav-item dropdown">
-                                <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
+                        <li  class = "nav-item dropdown">
+                            <a ng-controller="ListaQuestoesController" ng-class="{ 'disabled': listaEmEdicao == true  || painelListaEmContrucao == true}" class="nav-link dropdown-toggle" data-toggle="dropdown" href="/questoes">Minhas Listas</a>
 
-                                <ul ng-controller="ListaQuestoesController" class="dropdown-menu" id="dropdown-listas">
-                                    <option class="dropdown-item truncated" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
-                                    <option class="dropdown-item" ng-click="criarLista()"><i class="fas fa-plus"></i>Criar lista</option>
-                                </ul>
-                            </li>
-                            <li class="nav-item">
-                                <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao() || getListaEmEdicao()">
-                                    <div ng-switch-when="true">
-                                        <a  role=tab class="nav-link active" data-toggle="tab"  href="/questoes"  ng-click="setListaEmConstrucao()">                                                    
-                                            Lista Atual  <span  class="badge badge-light">{{questoes.length}}</span>
-                                        </a>
-                                    </div>
+                            <ul ng-controller="ListaQuestoesController" class="dropdown-menu" id="dropdown-listas">
+                                <option class="dropdown-item truncated" data-toggle="tab" ng-repeat="lista in listas"  ng-click="exibeLista(lista)">{{lista.nomeLista}}</option>
+                                <option class="dropdown-item" ng-click="criarLista()"><i class="fas fa-plus"></i>Criar lista</option>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <div ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao() || getListaEmEdicao()">
+                                <div ng-switch-when="true">
+                                    <a  role=tab class="nav-link active" data-toggle="tab"  href="/questoes"  ng-click="setListaEmConstrucao()">                                                    
+                                        Lista Atual  <span  class="badge badge-light">{{questoes.length}}</span>
+                                    </a>
                                 </div>
-                            </li>
-                            
+                            </div>
+                        </li>
+                        <li class="nav-item" >
+                            <div ng-controller="ListaQuestoesController">
+                                    <a role=tab class="nav-link " data-toggle="tab"  ng-click="getQuestaoPendente()">Avaliar questão</a>
+                            </div>
+                        </li>
                     </ul>
                             
 
@@ -645,5 +649,72 @@
         </div>
 
         
+    </div>
+</div>
+
+<div class="modal" id="ModalAvaliacao">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">{{questaoSobAvaliacao.conteudo}}</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+            
+        <!-- Modal body -->
+        <div class="modal-body">
+
+            <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow"></div></div>
+                                                                                                    
+                <div class="row container">
+                    <div><b>Autor:</b><em> {{questaoSobAvaliacao.autor}} </em></div>
+                </div>
+
+                <div class="row container">
+                    <div><b>Fonte:</b><em> {{questaoSobAvaliacao.fonte}} </em></div>
+                </div>
+                <div class="row container">
+                    <div><b>Tipo:</b><em> {{questaoSobAvaliacao.tipo}} </em></div> 
+                </div>
+        </div>
+
+        <div><hr></div>
+        </div> 
+
+            <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
+            <div id = "camposEspecificos" ng-switch = "isObjective(questaoSobAvaliacao.tipo)">
+                    <hr>
+                    <div ng-switch-when="false" class = "container">
+                        <div class="espelho "> <b>Espelho:</b> 
+                            {{updateViewQuill(questaoSobAvaliacao.espelho,"espelho")}}</div>
+
+                            <p ng-bind-html="espelhoShow"></p>
+
+                    </div>
+                    <div ng-switch-when="true">
+                        <div class = "container"> <b>Alternativas:</b> </div>
+                        
+                        <div class =  "section">
+                        <div  ng-repeat="alternativa in questaoSobAvaliacao.alternativas" ng-class="{wrap:!($index % 5)}">
+                            <span class="col-1"><b>{{getLetter($index)}})</b> 
+                            {{alternativa.texto}}
+                                <span  ng-switch = "{{alternativa.correta}}">
+                                    <span ng-switch-when="false">
+                                        <i class="fas fa-times-circle" ></i>
+
+                                        </span>
+                                    <span ng-switch-when="true">
+                                        <i class='fas fa-check-circle correta' ></i>
+                                    </span>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    </div>
+            </div>
+
+        <div><hr></div>
     </div>
 </div>
