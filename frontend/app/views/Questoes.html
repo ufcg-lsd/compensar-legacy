@@ -654,7 +654,7 @@
 </div>
 
 <div class="modal" id="ModalAvaliacao">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             
         <!-- Modal Header -->
@@ -668,19 +668,16 @@
 
             <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="questaoSobAvaliacao.enunciado"></div></div>
                                                                                                     
-                <div class="row container">
-                    <div><b>Autor:</b><em> {{questaoSobAvaliacao.autor}} </em></div>
-                </div>
+            <div class="row container">
+                <div><b>Autor:</b><em> {{questaoSobAvaliacao.autor}} </em></div>
+            </div>
 
-                <div class="row container">
-                    <div><b>Fonte:</b><em> {{questaoSobAvaliacao.fonte}} </em></div>
-                </div>
-                <div class="row container">
-                    <div><b>Tipo:</b><em> {{questaoSobAvaliacao.tipo}} </em></div> 
-                </div>
-        </div>
-
-
+            <div class="row container">
+                <div><b>Fonte:</b><em> {{questaoSobAvaliacao.fonte}} </em></div>
+            </div>
+            <div class="row container">
+                <div><b>Tipo:</b><em> {{questaoSobAvaliacao.tipo}} </em></div> 
+            </div>
             <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
             <div id = "camposEspecificos" ng-switch = "isObjective(questaoSobAvaliacao.tipo)">
                     <hr>
@@ -714,6 +711,83 @@
                     </div>
             </div>
             <div><hr></div>
+            <div class="form-group row" required>
+                <label><h6>Competências que você identificou:</h6></label>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col" style="border-bottom: none">Competência</th>
+                        <th scope="col" colspan="2" style="border-bottom: none">Esta competência está presente na questão?</th>
+                        </tr>
+                    </thead>
+                    <thead>
+                        <tr>
+                        <th scope="col" style="border-top: none"></th>
+                        <th scope="col" style="border-top: none">Sim</th>
+                        <th scope="col" style="border-top: none">Não</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Abstração</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ABSTRAÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ABSTRAÇÃO']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Algoritmos</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ALGORITMOS']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ALGORITMOS']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Análise</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ANÁLISE']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ANÁLISE']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Automação</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_AUTOMAÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_AUTOMAÇÃO']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Coleta</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_COLETA']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_COLETA']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Decomposição</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_DECOMPOSIÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_DECOMPOSIÇÃO']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Paralelização</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_PARALELIZAÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_PARALELIZAÇÃO']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Representação</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_REPRESENTAÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_REPRESENTAÇÃO']"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Simulação</th>
+                            <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_SIMULAÇÃO']"></td>
+                            <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_SIMULAÇÃO']"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group row"  >
+                <label><h6>Seu nível de confiança nesta avaliação: {{confiancaAvaliacao}}%</h6></label>
+                <input type="range" class="custom-range" min="0" max="100" step="1" data-ng-model="confiancaAvaliacao">
+            </div>
+
+            <div class="form-group row"  >
+                <label><h6>Aqui você pode escrever alguma observação com relação a avaliação:</h6></label>
+                <textarea class="form-control" data-ng-model="obsAvaliacao" rows="3"></textarea>
+            </div>
+
+            <button type="button" class="btn btn-primary" ng-click="sendAvaliacao()">Enviar</button>
         </div>
     </div>
+</div>
 </div>

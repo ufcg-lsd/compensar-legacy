@@ -89,19 +89,9 @@ public class QuestaoService {
 		}
 
 
-		novaQuestao.setFonte(questao.getFonte());
-		novaQuestao.setAutor(questao.getAutor());
-		novaQuestao.setTipo(questao.getTipo());
-		novaQuestao.setConteudo(questao.getConteudo());
-		novaQuestao.setEnunciado(questao.getEnunciado());
-		novaQuestao.setUltimoAcesso(questao.getUltimoAcesso());
-		
-		novaQuestao.setCompetencias(getSetCompetencias(questao.getEnunciado()));
-		
-		if (novaQuestao.getTipo().equals("Objetiva")) novaQuestao.setAlternativas(questao.getAlternativas());
-		else novaQuestao.setEspelho(questao.getEspelho());
+        questao.setId(id);
 
-		questaoRepository.save(novaQuestao);
+		questaoRepository.save(questao);
 
 		return novaQuestao;
 	}

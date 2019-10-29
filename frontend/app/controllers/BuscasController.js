@@ -1,5 +1,6 @@
+/* global host */
 angular.module('app')
-    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService) {
+    .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService, $http, AuthService, Notification) {
 
         $rootScope.activetab = $location.path();
         
@@ -19,6 +20,21 @@ angular.module('app')
         $scope.fonteSearch = "";
         $scope.tipoSearch = "";
         $scope.conteudoSearch = "";
+
+        $scope.competenciasAvaliador = {
+            "COMP_ABSTRAÇÃO": "false",
+            "COMP_ALGORITMOS": "false",
+            "COMP_ANÁLISE": "false",
+            "COMP_AUTOMAÇÃO": "false",
+            "COMP_COLETA": "false",
+            "COMP_DECOMPOSIÇÃO": "false",
+            "COMP_PARALELIZAÇÃO": "false",
+            "COMP_REPRESENTAÇÃO": "false",
+            "COMP_SIMULAÇÃO": "false"
+        };
+
+        $scope.confiancaAvaliacao = 0;
+        $scope.obsAvaliacao = "";
 
 
         $scope.pageChangeHandler = function(newPage) {
@@ -438,6 +454,37 @@ angular.module('app')
             });
             }
         });
+    }
+
+    $scope.sendAvaliacao = function () {
+
+        let arr = [];
+        for(let key of Object.keys($scope.competenciasAvaliador)) {
+            if ($scope.competenciasAvaliador[key] === "true") {
+                arr.push(key);
+            }
+        }
+
+        let avaliacao = {
+            observacoes: $scope.obsAvaliacao,
+            questao: $rootScope.questaoSobAvaliacao.id,
+            competencias: arr,
+            confianca: $scope.confiancaAvaliacao
+        }
+
+        $http.post(host + 'avaliacao', avaliacao, AuthService.getAuthorization()).
+            then(function (response) {
+                if (response.status == 200) {
+                    $("#ModalAvaliacao").modal('hide');
+                    Notification.success('Avaliação criada com sucesso!');
+                }
+                else {
+                    Notification.error("Falha no envio da questão");
+                }
+            },function(){
+            }
+        )
+
     }
         
 });

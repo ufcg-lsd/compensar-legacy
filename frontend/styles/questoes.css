@@ -239,3 +239,8 @@ margin-inline-end: 20%;}
 .custom-radio .fake-input {
   display: none;
 }
+
+#ModalAvaliacao .modal-body {
+  padding-left: 10%;
+  padding-right: 10%;
+}
