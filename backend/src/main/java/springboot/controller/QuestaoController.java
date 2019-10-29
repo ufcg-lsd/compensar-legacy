@@ -16,8 +16,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springboot.dto.input.AvaliacaoInput;
 import springboot.dto.input.QuestaoInput;
 import springboot.enums.CompetenciaType;
+import springboot.model.Avaliacao;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.QuestaoService;
@@ -32,12 +34,15 @@ public class QuestaoController {
 	@Autowired
 	QuestaoService questaoService;
 
+    @Autowired
+    AvaliacaoController avaliacaoController;
+
 	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
 			+ "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao", method = RequestMethod.POST)
 	public Questao save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		return questaoService.save(
+		Questao questaoSalva =  questaoService.save(
 				new Questao(
 						questao.getTipo(),
 						questao.getConteudo(),
@@ -49,6 +54,15 @@ public class QuestaoController {
 						questao.getCompetencias()
 				)
 		);
+		avaliacaoController.save(usuario,
+                new AvaliacaoInput(
+                        questao.getObsAvaliacao(),
+                        questaoSalva.getId(),
+                        questao.getCompetenciasAvaliacao(),
+                        questao.getConfiancaAvaliacao()
+                )
+        );
+		return questaoSalva;
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")

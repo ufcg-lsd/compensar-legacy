@@ -12,10 +12,13 @@ public class AvaliacaoInput {
 
     private Set<CompetenciaType> competencias;
 
-    public AvaliacaoInput(String observacoes, String questao, Set<CompetenciaType> competencias) {
+    private Integer confianca;
+
+    public AvaliacaoInput(String observacoes, String questao, Set<CompetenciaType> competencias, Integer confianca) {
         this.observacoes = observacoes;
         this.questao = questao;
         this.competencias = competencias;
+        this.confianca = confianca;
     }
 
     public String getObservacoes() {
@@ -40,5 +43,13 @@ public class AvaliacaoInput {
 
     public void setCompetencias(Set<CompetenciaType> competencias) {
         this.competencias = competencias;
+    }
+
+    public Integer getConfianca() {
+        return confianca;
+    }
+
+    public void setConfianca(Integer confianca) {
+        this.confianca = confianca;
     }
 }

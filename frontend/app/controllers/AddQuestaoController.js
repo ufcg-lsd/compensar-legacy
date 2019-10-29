@@ -30,10 +30,24 @@ angular.module('app')
             ]
         }
 
+        $scope.competenciasAutor = {
+            "COMP_ABSTRAÇÃO": "false",
+            "COMP_ALGORITMOS": "false",
+            "COMP_ANÁLISE": "false",
+            "COMP_AUTOMAÇÃO": "false",
+            "COMP_COLETA": "false",
+            "COMP_DECOMPOSIÇÃO": "false",
+            "COMP_PARALELIZAÇÃO": "false",
+            "COMP_REPRESENTAÇÃO": "false",
+            "COMP_SIMULAÇÃO": "false"
+        };
+
         $scope.fonte = "";
         $scope.enunciado = "";
         $scope.tipo = "";
         $scope.conteudo = "";
+        $scope.confiancaAvaliacao = 0;
+        $scope.obsAvaliacao = "";
 
         $scope.title = '';
         $scope.changeDetected = false;
@@ -50,8 +64,11 @@ angular.module('app')
                 enunciado: $scope.enunciado,
                 espelho:  $scope.resposta.espelho,
                 fonte: $scope.fonte,
-                competencias: $scope.competencias,
-                tipo: $scope.tipo
+                competencias: $rootScope.competencias,
+                tipo: $scope.tipo,
+                competenciasAvaliacao: avaliacao.competencias,
+                confiancaAvaliacao: avaliacao.confianca,
+                obsAvaliacao: avaliacao.observacao
             };
 
             $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
@@ -77,8 +94,18 @@ angular.module('app')
         $scope.alternativas = {}
         $scope.corretas = {}
 
+        $scope.getAvaliacao = function() {
+            let arr = [];
+            for(let key of Object.keys($scope.competenciasAutor)) {
+                if ($scope.competenciasAutor[key] === "true") {
+                    arr.push(key);
+                }
+            }
+            return {competencias: arr, confianca: $scope.confiancaAvaliacao, observacao: $scope.obsAvaliacao};
+        }
 
-        $scope.sendQuestionObjective = function () {
+
+        $scope.sendQuestionObjective = function (avaliacao) {
 
             let questaoObj = {
                 alternativas: [
@@ -106,8 +133,11 @@ angular.module('app')
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,
                 fonte: $scope.fonte,
-                competencias: $scope.competencias,
-                tipo: $scope.tipo
+                competencias: $rootScope.competencias,
+                tipo: $scope.tipo,
+                competenciasAvaliacao: avaliacao.competencias,
+                confiancaAvaliacao: avaliacao.confianca,
+                obsAvaliacao: avaliacao.observacao
             };
 
 
@@ -180,29 +210,25 @@ angular.module('app')
                 $scope.inputError = true;
             } else if (passo === "anterior") {
                 $scope.prevStep();
-            } else if (passo === "proximo") {
-                $scope.alertEspelho = false;
-                $scope.nextStep();
             } else {
+                $scope.alertEspelho = false;
+                document.querySelector(".ql-editor").contentEditable = false;
                 $scope.getCompetencias().then(() => {
-                    $('#Modal').modal('toggle');
-                    $('#Modal').modal({backdrop: 'static', keyboard: false})
-
-                    $('a[href$="#Modal"]').on( "click", function() {
-                        $('#Modal').modal('show');
-                    });
+                    $scope.nextStep();
                 });
             }
         }
 
         $scope.resposta = { espelho: ""}
 
-        $scope.checkPasso3 = function(tipo) {
+        $scope.checkPasso3 = function(passo) {
             $scope.alertEspelho = false;
             $scope.inputError = false;
-            if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
+            if (passo === "anterior") {
+                $scope.prevStep();
+            } else if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
-            } else if (tipo === "objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &&
+            } else if ($scope.tipo === "Objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &&
                 typeof $scope.corretas.Value2 === 'undefined' && typeof $scope.corretas.Value3 === 'undefined' &&
                 typeof $scope.corretas.Value4 === 'undefined' && typeof $scope.corretas.Value5 === 'undefined') ||
                 $scope.alternativas.alternativa1 === "" || $scope.alternativas.alternativa2 === "" ||
@@ -210,17 +236,22 @@ angular.module('app')
                 $scope.alternativas.alternativa5 === "")) {
 
                 $scope.inputError = true;
-            } else if (tipo === "subjetiva" && ($scope.resposta.espelho === "" || 
+            } else if ($scope.tipo === "Subjetiva" && ($scope.resposta.espelho === "" || 
                 $scope.resposta.espelho === null || $scope.resposta.espelho === 'undefined')) {
                 $scope.inputError = true;
-            }  else if (tipo === "objetiva") {
-                $scope.sendQuestionObjective();
             } else {
-                $scope.sendQuestionSubjective();
+                $scope.nextStep();
+                //$scope.sendQuestionSubjective();
             }
             console.log($scope.inputError);
-
         }
 
-
+        $scope.checkPasso4 = function() {
+            $scope.inputError = false;
+            if ($scope.tipo === "Objetiva") {
+                $scope.sendQuestionObjective($scope.getAvaliacao());
+            } else {
+                $scope.sendQuestionSubjective($scope.getAvaliacao());
+            }
+        }
     });

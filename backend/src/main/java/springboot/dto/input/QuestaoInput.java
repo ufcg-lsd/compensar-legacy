@@ -22,7 +22,13 @@ public class QuestaoInput {
 
     private List<Alternativa> alternativas;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas) {
+    private Set<CompetenciaType> competenciasAvaliacao;
+
+    private Integer confiancaAvaliacao;
+
+    private String obsAvaliacao;
+
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
@@ -30,6 +36,9 @@ public class QuestaoInput {
         this.espelho = espelho;
         this.conteudo = conteudo;
         this.alternativas = alternativas;
+        this.competenciasAvaliacao = competenciasAvaliacao;
+        this.confiancaAvaliacao = confiancaAvaliacao;
+        this.obsAvaliacao = obsAvaliacao;
     }
 
     public String getTipo() {
@@ -86,5 +95,29 @@ public class QuestaoInput {
 
     public void setAlternativas(List<Alternativa> alternativas) {
         this.alternativas = alternativas;
+    }
+
+    public Set<CompetenciaType> getCompetenciasAvaliacao() {
+        return competenciasAvaliacao;
+    }
+
+    public void setCompetenciasAvaliacao(Set<CompetenciaType> competenciasAvaliacao) {
+        this.competenciasAvaliacao = competenciasAvaliacao;
+    }
+
+    public Integer getConfiancaAvaliacao() {
+        return confiancaAvaliacao;
+    }
+
+    public void setConfiancaAvaliacao(Integer conviancaAvaliacao) {
+        this.confiancaAvaliacao = conviancaAvaliacao;
+    }
+
+    public String getObsAvaliacao() {
+        return obsAvaliacao;
+    }
+
+    public void setObsAvaliacao(String obsAvaliacao) {
+        this.obsAvaliacao = obsAvaliacao;
     }
 }

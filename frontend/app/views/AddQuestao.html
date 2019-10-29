@@ -13,7 +13,7 @@
             <!-- ========================  Passo 1  ============================================== -->
             <div ng-show="step == 1">
                 <div class="progress form-group row " style="height: 5px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:25%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:20%"></div>
                 </div>
                 <div class="form-group row" required>
                         <label ><h6>Tipo de Questão:</h6></label>
@@ -48,7 +48,7 @@
             <!-- ========================  Passo 2  ============================================== -->
             <div ng-show="step == 2">
                 <div class="progress form-group row " style="height: 5px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:45%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:40%"></div>
                 </div>
                 <div class="form-group row">
                     <label><h6>Enunciado:</h6></label>
@@ -82,46 +82,10 @@
 
             </div>
 
-
-
-            <!-- ======================== Modal  ============================ -->
-            <div class="modal fade" ng-show = "loading === false" id="Modal">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                                                                
-                        <!-- Modal Header -->
-                        <div class="modal-header">                  
-                            <h5 class="modal-title"> Competências identificadas: </h5>
-                        </div>
-                                                                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <div class="competencias" ng-repeat="competencia in competencias"  ng-class="{wrap:!($index % 4)}">
-                                    <span  class="col-1">
-                                        <em>{{repaginaCompetencia(competencia)}} </em>
-                                    </span>
-                            </div> 
-                        </div>
-        
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-outline-secondary"  data-dismiss="modal">
-                                    <i class="far fa-arrow-alt-circle-left"></i>                            
-                                        Voltar    </button>
-                                <button ng-click="checkPasso2('proximo')" type="button" class="btn btn-primary"  data-dismiss="modal">Continuar
-                                        <i class="fas fa-arrow-circle-right"></i>       
-                                </button>
-                            </div>
-                            </div>
-                        </div>   
-                    </div>
-            </div>
-
             <!-- ========================  Passo 3  ============================================== -->
             <div ng-show="step == 3">
                 <div class="progress form-group row " style="height: 5px;">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:85%"></div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:60%"></div>
                 </div>
             <div class="form-group row">
                 <label><h6>Conteúdo:</h6></label>
@@ -279,13 +243,111 @@
                             <i class="far fa-arrow-alt-circle-left"></i>                            
                             Voltar
                     </button>
-                    <button type="button" class="btn btn-primary" ng-click="checkPasso3('objetiva')">Registrar</button>
+                    <button type="button" class="btn btn-primary" ng-click="checkPasso3('objetiva')">Continuar</button>
             </div>
 
 
             </div>
                                     
             </div>
+            <div ng-show="step == 4">
+                <div class="progress form-group row " style="height: 5px;">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:80%"></div>
+                </div>
+                <label><h6>Competências identificadas pelo classificador automático:</h6></label>
+                <div class="competencias" ng-repeat="competencia in competencias"  ng-class="{wrap:!($index % 4)}">
+                        <span  class="col-1">
+                            <em>{{repaginaCompetencia(competencia)}} </em>
+                        </span>
+                </div>
+                <br>
+
+                <div class="form-group row" required>
+                    <label><h6>Competências que você identificou:</h6></label>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                            <th scope="col" style="border-bottom: none">Competência</th>
+                            <th scope="col" colspan="2" style="border-bottom: none">Esta competência está presente na questão?</th>
+                            </tr>
+                        </thead>
+                        <thead>
+                            <tr>
+                            <th scope="col" style="border-top: none"></th>
+                            <th scope="col" style="border-top: none">Sim</th>
+                            <th scope="col" style="border-top: none">Não</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Abstração</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ABSTRAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ABSTRAÇÃO']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Algoritmos</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ALGORITMOS']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ALGORITMOS']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Análise</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ANÁLISE']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ANÁLISE']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Automação</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_AUTOMAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_AUTOMAÇÃO']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Coleta</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_COLETA']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_COLETA']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Decomposição</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_DECOMPOSIÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_DECOMPOSIÇÃO']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Paralelização</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_PARALELIZAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_PARALELIZAÇÃO']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Representação</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_REPRESENTAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_REPRESENTAÇÃO']"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Simulação</th>
+                                <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_SIMULAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_SIMULAÇÃO']"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-group row"  >
+                    <label><h6>Seu nível de confiança nesta avaliação: {{confiancaAvaliacao}}%</h6></label>
+                    <input type="range" class="custom-range" min="0" max="100" step="1" data-ng-model="confiancaAvaliacao">
+                </div>
+
+                <div class="form-group row"  >
+                    <label><h6>Aqui você pode escrever alguma observação com relação a avaliação:</h6></label>
+                    <textarea class="form-control" data-ng-model="obsAvaliacao" rows="3"></textarea>
+                </div>
+
+                
+                
+
+                <button type="button" class="btn btn-outline-secondary " ng-click="checkPasso3('anterior')">
+                        <i class="far fa-arrow-alt-circle-left"></i>                            
+                        Voltar
+                </button>
+                <button type="button" class="btn btn-primary" ng-click="checkPasso4()">Registrar</button>
+            </div>
+
         </form>
 
         </div>

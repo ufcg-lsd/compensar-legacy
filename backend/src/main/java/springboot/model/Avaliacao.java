@@ -24,11 +24,15 @@ public class Avaliacao {
 
     private String questao;
 
-    public Avaliacao(@NotNull String observacoes, Set<CompetenciaType> competencias, String autor, String questao) {
+    private Integer confianca;
+
+    public Avaliacao(@NotNull String observacoes, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca) {
+        this.id = id;
         this.observacoes = observacoes;
         this.competencias = competencias;
         this.autor = autor;
         this.questao = questao;
+        this.confianca = confianca;
     }
 
     public String getId() {
@@ -69,5 +73,13 @@ public class Avaliacao {
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public Integer getConfianca() {
+        return confianca;
+    }
+
+    public void setConfianca(Integer confianca) {
+        this.confianca = confianca;
     }
 }

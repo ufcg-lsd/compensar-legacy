@@ -43,7 +43,8 @@ public class AvaliacaoController {
                         avaliacao.getObservacoes(),
                         avaliacao.getCompetencias(),
                         usuario.getEmail(),
-                        questao.getId()
+                        questao.getId(),
+                        avaliacao.getConfianca()
                 )
         );
         questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
@@ -62,7 +63,8 @@ public class AvaliacaoController {
                         avaliacao.getObservacoes(),
                         avaliacao.getCompetencias(),
                         usuario.getEmail(),
-                        avaliacao.getQuestao()
+                        avaliacao.getQuestao(),
+                        avaliacao.getConfianca()
                 ),
                 id
         );

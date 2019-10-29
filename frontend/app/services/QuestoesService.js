@@ -186,14 +186,13 @@ service.getCompetencias = function (enunciado) {
           $rootScope.competencias = response.data;
           $rootScope.loading = false;
           console.log($rootScope.competencias)
-
+          Notification.success('Feedback das competências obtido com sucesso!');
         }
         else {
             Notification.error('Falha no feedback das competências!');
             $rootScope.loading = false;
         }
-    },function() {
-    }
+    },function() {}
   )
 }
 

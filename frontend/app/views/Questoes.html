@@ -695,25 +695,25 @@
                         <div class = "container"> <b>Alternativas:</b> </div>
                         
                         <div class =  "section">
-                        <div  ng-repeat="alternativa in questaoSobAvaliacao.alternativas" ng-class="{wrap:!($index % 5)}">
-                            <span class="col-1"><b>{{getLetter($index)}})</b> 
-                            {{alternativa.texto}}
-                                <span  ng-switch = "{{alternativa.correta}}">
-                                    <span ng-switch-when="false">
-                                        <i class="fas fa-times-circle" ></i>
+                            <div  ng-repeat="alternativa in questaoSobAvaliacao.alternativas" ng-class="{wrap:!($index % 5)}">
+                                <span class="col-1"><b>{{getLetter($index)}})</b> 
+                                {{alternativa.texto}}
+                                    <span  ng-switch = "{{alternativa.correta}}">
+                                        <span ng-switch-when="false">
+                                            <i class="fas fa-times-circle" ></i>
 
+                                            </span>
+                                        <span ng-switch-when="true">
+                                            <i class='fas fa-check-circle correta' ></i>
                                         </span>
-                                    <span ng-switch-when="true">
-                                        <i class='fas fa-check-circle correta' ></i>
                                     </span>
                                 </span>
-                            </span>
+                            </div>
                         </div>
-                    </div>
                     <br>
                     </div>
             </div>
-
-        <div><hr></div>
+            <div><hr></div>
+        </div>
     </div>
 </div>

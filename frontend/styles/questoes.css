@@ -231,3 +231,11 @@ margin-inline-end: 20%;}
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.custom-radio .fake-label {
+  left: 0 !important;
+}
+
+.custom-radio .fake-input {
+  display: none;
+}
