@@ -1,6 +1,6 @@
 /* global host */
 angular.module('app')
-    .controller('SignUpController', function ($scope, $location, UserService,AuthService, $http,$q, Notification) {
+    .controller('SignUpController', function ($scope, $rootScope, $location, UserService,AuthService, $http,$q, Notification) {
 
         $scope.nomeInstituicao = "";
         $scope.cargo = "";
@@ -17,6 +17,7 @@ angular.module('app')
             $http.post(host + 'auth/signup/', usuario, AuthService.getAuthorization()).
                 then(function () {
                     Notification.success("Cadastro efetuado com Sucesso!");
+                    $rootScope.registered = true;
                     $location.path("/buscas");
                 },function(err){
                     if (err.status == 400) {
@@ -45,7 +46,11 @@ angular.module('app')
             }
         }
         
-
+        $scope.$on('$routeChangeStart', function($event, next, current) { 
+            if (next != current && !$rootScope.registered) {
+                $location.path("/signup");
+            }
+          });
         
 
 
