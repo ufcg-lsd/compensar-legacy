@@ -1,0 +1,118 @@
+{
+  "id": "bc3d1147-6b1f-4b67-8b59-6d94c43e1399",
+  "version": "2.0",
+  "name": "Compensar",
+  "url": "http://localhost:8000",
+  "tests": [{
+    "id": "50fce01d-11b3-4c67-a418-c37838caf4fe",
+    "name": "Login",
+    "commands": [{
+      "id": "ef3d26bd-634d-4a23-bc7e-d3668897c3fc",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5fb92917-e054-46db-bc90-2e5d01907c34",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1853x1053",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "ce70258c-196c-4615-851f-0de9603aa8ea",
+      "comment": "",
+      "command": "click",
+      "target": "css=#navNotLogged #navbarDropdown",
+      "targets": [
+        ["id=navbarDropdown", "id"],
+        ["css=div:nth-child(1) > .navbar > #navbarSupportedContent #navbarDropdown", "css:finder"],
+        ["xpath=//a[@id='navbarDropdown']", "xpath:attributes"],
+        ["xpath=//div[@id='navbarSupportedContent']/div/a", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[3]", "xpath:href"],
+        ["xpath=//div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "89db635c-1f17-4e04-86a3-120f4a63bf5c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.abcRioButton",
+      "targets": [
+        ["id=not_signed_inb8crasf9c2", "id"],
+        ["css=#not_signed_inb8crasf9c2", "css:finder"],
+        ["xpath=//span[@id='not_signed_inb8crasf9c2']", "xpath:attributes"],
+        ["xpath=//div[@id='signInButton']/div/div/span/span", "xpath:idRelative"],
+        ["xpath=//span/span", "xpath:position"]
+      ],
+      "value": "",
+      "opensWindow": true,
+      "windowHandleName": "win3221",
+      "windowTimeout": 2000
+    }, {
+      "id": "2b130544-6892-425c-ab9f-8d25ab637489",
+      "comment": "",
+      "command": "storeWindowHandle",
+      "target": "root",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "6cd4673e-a8e1-4dd3-874e-5cfb7cfbe37d",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${win3221}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2b167cb6-2915-47d7-89fe-9eab7ce2f6a9",
+      "comment": "",
+      "command": "click",
+      "target": "css=[data-identifier~=\"aepc.lacina@gmail.com\"]",
+      "targets": [
+        ["css=.JDAKTe:nth-child(3) #profileIdentifier", "css:finder"],
+        ["xpath=(//div[@id='profileIdentifier'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='view_container']/div/div/div[2]/div/div/div/form/span/section/div/div/div/div/ul/li[3]/div/div/div/div[2]/div[2]", "xpath:idRelative"],
+        ["xpath=//li[3]/div/div/div/div[2]/div[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eb30f6c4-00a3-40d1-8af9-82283f8d929f",
+      "comment": "",
+      "command": "selectWindow",
+      "target": "handle=${root}",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "983d157b-00b7-43c8-ada5-29f2da88b7b2",
+      "comment": "",
+      "command": "click",
+      "target": "css=#navLogged #navbarDropdown",
+      "targets": [
+        ["css=div:nth-child(2) #navbarSupportedContent #navbarDropdown", "css:finder"],
+        ["xpath=(//a[@id='navbarDropdown'])[2]", "xpath:attributes"],
+        ["xpath=(//div[@id='navbarSupportedContent']/div/a)[2]", "xpath:idRelative"],
+        ["xpath=(//a[contains(@href, '#')])[6]", "xpath:href"],
+        ["xpath=//div[2]/nav/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0df71f0-33d6-4db9-85c2-4a3c930b9fe5",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=#navLogged h6",
+      "targets": [],
+      "value": "AEPC lacina"
+    }]
+  }],
+  "suites": [{
+    "id": "9ceeace2-8d0b-42c5-9315-5b170dce1646",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://localhost:8000/"],
+  "plugins": []
+}

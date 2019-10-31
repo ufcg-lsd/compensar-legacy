@@ -100,7 +100,6 @@ public class QuestaoController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK") })
 	@RequestMapping(value = "/competencias", method = RequestMethod.POST)
 	public Set<CompetenciaType> getSetCompetencias(@RequestBody String enunciado) throws IOException {
-		
 		return questaoService.getSetCompetencias(enunciado);
 	}
 
@@ -110,7 +109,4 @@ public class QuestaoController {
 	public Questao getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
 		return questaoService.getPendente(usuario);
 	}
-	
-	
-
 }

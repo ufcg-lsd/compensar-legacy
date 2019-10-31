@@ -106,10 +106,15 @@ angular.module('app')
     }
 
     $scope.removeLista = function() {
-      var  index = $rootScope.listas.indexOf($rootScope.listaEmExibicao);
+      let index = 0;
+      for(; index < $rootScope.listas.length; index++) {
+        if ($rootScope.listas[index].id === $rootScope.listaEmExibicao.id) {
+          break;
+        }
+      }
       QuestoesService.removeLista($rootScope.listaEmExibicao);
       $rootScope.listas.splice(index,1);
-      $location.path("/questoes");
+      location.reload();
 
     }
 
@@ -139,7 +144,7 @@ angular.module('app')
       $rootScope.questoes = [];
       $scope.nomeLista = "";
 
-      $location.path("/addLista");
+      $scope.exibeLista($rootScope.listaEmExibicao);
 
     }
 

@@ -28,7 +28,9 @@ public class QuestaoInput {
 
     private String obsAvaliacao;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
+    private String obsQuestao;
+
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao, String obsQuestao) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
@@ -39,6 +41,7 @@ public class QuestaoInput {
         this.competenciasAvaliacao = competenciasAvaliacao;
         this.confiancaAvaliacao = confiancaAvaliacao;
         this.obsAvaliacao = obsAvaliacao;
+        this.obsQuestao = obsQuestao;
     }
 
     public String getTipo() {
@@ -119,5 +122,13 @@ public class QuestaoInput {
 
     public void setObsAvaliacao(String obsAvaliacao) {
         this.obsAvaliacao = obsAvaliacao;
+    }
+
+    public String getObsQuestao() {
+        return obsQuestao;
+    }
+
+    public void setObsQuestao(String obsQuestao) {
+        this.obsQuestao = obsQuestao;
     }
 }

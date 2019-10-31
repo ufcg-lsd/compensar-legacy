@@ -164,11 +164,17 @@ service.sendUpdateLista = function (lista,novaLista) {
   $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
     then(function (response) {
       if (response.status == 200) {
-          var  index = $rootScope.listas.indexOf(lista);
+          let index = 0;
+          for(; index < $rootScope.listas.length; index++) {
+            if ($rootScope.listas[index].id === lista.id) {
+              break;
+            }
+          }
           $rootScope.listas[index] = response.data;
+          $rootScope.listaEmExibicao = response.data;
 
           Notification.success('Lista atualizada com sucesso!');
-          $location.path("/questoes");
+          return response.data;
       }
       else {
         Notification.error('Falha ao atualizar lista!');

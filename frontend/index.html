@@ -51,7 +51,7 @@
  <!-- ========================  NavBar  ============================================== -->
  <div>
     <div ng-show="!printLista">
-    <div ng-show="!isLogged">
+    <div ng-show="!isLogged" id="navNotLogged">
         
       
         <nav   class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -80,7 +80,7 @@
         </div>
         </nav>
     </div>
-    <div ng-show="isLogged">
+    <div ng-show="isLogged" id="navLogged">
             <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
  
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
