@@ -58,7 +58,7 @@ angular.module('app')
         };
 
 
-        $scope.sendQuestionSubjective = function () {
+        $scope.sendQuestionSubjective = function (avaliacao) {
             let questaoSubj = {
                 conteudo: $scope.conteudo,
                 enunciado: $scope.enunciado,

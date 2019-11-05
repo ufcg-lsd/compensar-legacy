@@ -15,7 +15,10 @@ public class Avaliacao {
 
     @NotNull
     @TextIndexed
-    private String observacoes;
+    private String observacaoAvaliacao;
+
+    @TextIndexed
+    private String observacaoQuestao;
 
     @TextIndexed
     private Set<CompetenciaType> competencias;
@@ -26,9 +29,9 @@ public class Avaliacao {
 
     private Integer confianca;
 
-    public Avaliacao(@NotNull String observacoes, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca) {
-        this.id = id;
-        this.observacoes = observacoes;
+    public Avaliacao(@NotNull String observacaoAvaliacao, String observacaoQuestao, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca) {
+        this.observacaoAvaliacao = observacaoAvaliacao;
+        this.observacaoQuestao = observacaoQuestao;
         this.competencias = competencias;
         this.autor = autor;
         this.questao = questao;
@@ -43,12 +46,20 @@ public class Avaliacao {
         this.id = id;
     }
 
-    public String getObservacoes() {
-        return observacoes;
+    public String getObservacaoAvaliacao() {
+        return observacaoAvaliacao;
     }
 
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+    public void setObservacaoAvaliacao(String observacaoAvaliacao) {
+        this.observacaoAvaliacao = observacaoAvaliacao;
+    }
+
+    public String getObservacaoQuestao() {
+        return observacaoQuestao;
+    }
+
+    public void setObservacaoQuestao(String observacaoQuestao) {
+        this.observacaoQuestao = observacaoQuestao;
     }
 
     public Set<CompetenciaType> getCompetencias() {
@@ -59,20 +70,20 @@ public class Avaliacao {
         this.competencias = competencias;
     }
 
-    public String getQuestao() {
-        return questao;
-    }
-
-    public void setQuestao(String questao) {
-        this.questao = questao;
-    }
-
     public String getAutor() {
         return autor;
     }
 
     public void setAutor(String autor) {
         this.autor = autor;
+    }
+
+    public String getQuestao() {
+        return questao;
+    }
+
+    public void setQuestao(String questao) {
+        this.questao = questao;
     }
 
     public Integer getConfianca() {

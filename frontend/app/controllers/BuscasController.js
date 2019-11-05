@@ -35,6 +35,7 @@ angular.module('app')
 
         $scope.confiancaAvaliacao = 0;
         $scope.obsAvaliacao = "";
+        $scope.obsQuestao = "";
 
 
         $scope.pageChangeHandler = function(newPage) {
@@ -466,7 +467,8 @@ angular.module('app')
         }
 
         let avaliacao = {
-            observacoes: $scope.obsAvaliacao,
+            observacaoAvaliacao: $scope.obsAvaliacao,
+            observacaoQuestao: $scope.obsQuestao,
             questao: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
             confianca: $scope.confiancaAvaliacao

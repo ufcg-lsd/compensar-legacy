@@ -1,4 +1,4 @@
-package springboot.dto.input;
+package springboot.dto.output;
 
 import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
@@ -6,11 +6,17 @@ import springboot.model.Alternativa;
 import java.util.List;
 import java.util.Set;
 
-public class QuestaoInput {
+public class QuestaoOutput {
+
+    private String id;
 
     private String tipo;
 
     private String enunciado;
+
+    public String autor;
+
+    public String emailAutor;
 
     private Set<CompetenciaType> competencias;
 
@@ -22,23 +28,28 @@ public class QuestaoInput {
 
     private List<Alternativa> alternativas;
 
-    private Set<CompetenciaType> competenciasAvaliacao;
+    private List<String> sugestoes;
 
-    private Integer confiancaAvaliacao;
-
-    private String obsAvaliacao;
-
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
+    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes) {
+        this.id = id;
         this.tipo = tipo;
         this.enunciado = enunciado;
+        this.autor = autor;
+        this.emailAutor = emailAutor;
         this.competencias = competencias;
         this.fonte = fonte;
         this.espelho = espelho;
         this.conteudo = conteudo;
         this.alternativas = alternativas;
-        this.competenciasAvaliacao = competenciasAvaliacao;
-        this.confiancaAvaliacao = confiancaAvaliacao;
-        this.obsAvaliacao = obsAvaliacao;
+        this.sugestoes = sugestoes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTipo() {
@@ -55,6 +66,22 @@ public class QuestaoInput {
 
     public void setEnunciado(String enunciado) {
         this.enunciado = enunciado;
+    }
+
+    public String getAutor() {
+        return autor;
+    }
+
+    public void setAutor(String autor) {
+        this.autor = autor;
+    }
+
+    public String getEmailAutor() {
+        return emailAutor;
+    }
+
+    public void setEmailAutor(String emailAutor) {
+        this.emailAutor = emailAutor;
     }
 
     public Set<CompetenciaType> getCompetencias() {
@@ -97,27 +124,11 @@ public class QuestaoInput {
         this.alternativas = alternativas;
     }
 
-    public Set<CompetenciaType> getCompetenciasAvaliacao() {
-        return competenciasAvaliacao;
+    public List<String> getSugestoes() {
+        return sugestoes;
     }
 
-    public void setCompetenciasAvaliacao(Set<CompetenciaType> competenciasAvaliacao) {
-        this.competenciasAvaliacao = competenciasAvaliacao;
-    }
-
-    public Integer getConfiancaAvaliacao() {
-        return confiancaAvaliacao;
-    }
-
-    public void setConfiancaAvaliacao(Integer conviancaAvaliacao) {
-        this.confiancaAvaliacao = conviancaAvaliacao;
-    }
-
-    public String getObsAvaliacao() {
-        return obsAvaliacao;
-    }
-
-    public void setObsAvaliacao(String obsAvaliacao) {
-        this.obsAvaliacao = obsAvaliacao;
+    public void setSugestoes(List<String> sugestoes) {
+        this.sugestoes = sugestoes;
     }
 }

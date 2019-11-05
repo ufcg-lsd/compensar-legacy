@@ -40,7 +40,8 @@ public class AvaliacaoController {
         Questao questao = questaoService.getById(avaliacao.getQuestao());
         Avaliacao novaAvaliacao = avaliacaoService.save(
                 new Avaliacao(
-                        avaliacao.getObservacoes(),
+                        avaliacao.getObservacaoAvaliacao(),
+                        avaliacao.getObservacaoQuestao(),
                         avaliacao.getCompetencias(),
                         usuario.getEmail(),
                         questao.getId(),
@@ -52,6 +53,8 @@ public class AvaliacaoController {
         return novaAvaliacao;
     }
 
+    /*
+
     @ApiOperation("Permite atualizar uma avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n"
             + "")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Avaliacao.class) })
@@ -60,7 +63,8 @@ public class AvaliacaoController {
 
         Avaliacao updatedAvaliacao = avaliacaoService.update(
                 new Avaliacao(
-                        avaliacao.getObservacoes(),
+                        avaliacao.getObservacaoAvaliacao(),
+                        avaliacao.getObservacaoQuestao(),
                         avaliacao.getCompetencias(),
                         usuario.getEmail(),
                         avaliacao.getQuestao(),
@@ -70,4 +74,5 @@ public class AvaliacaoController {
         );
         return new ResponseEntity<Avaliacao>(updatedAvaliacao, HttpStatus.OK);
     }
+     */
 }

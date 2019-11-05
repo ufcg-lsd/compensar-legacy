@@ -10,6 +10,7 @@ import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Avaliacao;
 import springboot.repository.AvaliacaoRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -69,6 +70,10 @@ public class AvaliacaoService {
         }
 
         return optAvaliacao.get();
+    }
+
+    public List<Avaliacao> getAllByQuestao(String questao) {
+        return avaliacaoRepository.getAllByQuestao(questao);
     }
 
 

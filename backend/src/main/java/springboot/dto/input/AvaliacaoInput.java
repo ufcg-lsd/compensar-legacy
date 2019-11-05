@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Set;
 
 public class AvaliacaoInput {
-    private String observacoes;
+    private String observacaoAvaliacao;
+
+    private String observacaoQuestao;
 
     private String questao;
 
@@ -14,19 +16,28 @@ public class AvaliacaoInput {
 
     private Integer confianca;
 
-    public AvaliacaoInput(String observacoes, String questao, Set<CompetenciaType> competencias, Integer confianca) {
-        this.observacoes = observacoes;
+    public AvaliacaoInput(String observacaoAvaliacao, String observacaoQuestao, String questao, Set<CompetenciaType> competencias, Integer confianca) {
+        this.observacaoAvaliacao = observacaoAvaliacao;
+        this.observacaoQuestao = observacaoQuestao;
         this.questao = questao;
         this.competencias = competencias;
         this.confianca = confianca;
     }
 
-    public String getObservacoes() {
-        return observacoes;
+    public String getObservacaoAvaliacao() {
+        return observacaoAvaliacao;
     }
 
-    public void setObservacoes(String observacoes) {
-        this.observacoes = observacoes;
+    public void setObservacaoAvaliacao(String observacaoAvaliacao) {
+        this.observacaoAvaliacao = observacaoAvaliacao;
+    }
+
+    public String getObservacaoQuestao() {
+        return observacaoQuestao;
+    }
+
+    public void setObservacaoQuestao(String observacaoQuestao) {
+        this.observacaoQuestao = observacaoQuestao;
     }
 
     public String getQuestao() {
