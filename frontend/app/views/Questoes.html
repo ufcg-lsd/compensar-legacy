@@ -54,7 +54,7 @@
                 </select>
             </div>
                 
-            <button class="btn btn-primary mt-4 mr-2" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch, 'novaBusca')"><ion-icon id="lupa-icon" name="search"></button>
+            <button class="btn btn-primary mt-4 mr-2" type="submit" ng-click="setPageStart(); sendQuery(enunciadoSearch,autorSearch,fonteSearch,tipoSearch,questao.competencias,conteudoSearch)"><ion-icon id="lupa-icon" name="search"></button>
         </div>
 
             <div id = "compSearch" class="form-group row mt-3">
@@ -362,7 +362,7 @@
                                         <div><hr></div>
      
                                         <!-- ========================  Campos de Editar/Remover questão  ============================================== -->
-                                            <div ng-switch = "isAutor(questao.autor)">
+                                            <div ng-switch = "isAutor(questao.emailAutor)">
                                                     <div id="alterarQuestao" ng-switch-when="true">
                                                         <button  type="button" class="btn btn-outline-light text-dark" ng-click="removeQuestao(questao)">
                                                             <i class="fas fa-trash text-danger"></i>

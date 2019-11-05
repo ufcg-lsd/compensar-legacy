@@ -23,8 +23,8 @@ angular.module('app')
    },
 
 
-   service.sendQuery = function (query, pageNumber, usersPerPage) {
-    $http.get(host + 'questao/search/'+ query.enunciado + '/' + query.competencias 
+   service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
+    $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + query.competencias 
     + '/' + query.autor + '/' + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;

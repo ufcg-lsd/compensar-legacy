@@ -17,7 +17,10 @@ import springboot.dto.IO.QuestaoIO;
 import springboot.dto.output.QuestaoOutput;
 import springboot.model.Questao;
 import springboot.model.Usuario;
+<<<<<<< Updated upstream
 import springboot.service.AvaliacaoService;
+=======
+>>>>>>> Stashed changes
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
@@ -70,6 +73,19 @@ public class QuestionSearchController {
 		System.out.println(competencias);
 		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias,autor, fonte, tipo,conteudo,
 				page,size).map(q -> this.convert(q, usuario));
+	}
+
+	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado, competências (cada uma entre aspas), "
+			+ "autor, fonte e tipo\r\n" + "")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/searchMy/{enunciado}/{competencias}/{fonte}/{tipo}/{conteudo}/{page}/{size}", method = RequestMethod.GET)
+	public Page<Questao> getMyQuestionsByEnunciadoCompetenciasAutorFonteTipo(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("enunciado") String enunciado,
+																			 @PathVariable("competencias") HashSet<String> competencias, @PathVariable("autor") String autor,
+																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
+																			 @PathVariable("page") int page, @PathVariable("size") int size) {
+		System.out.println(competencias);
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, usuario.getEmail(), fonte, tipo,conteudo,
+				page,size);
 	}
 	
 

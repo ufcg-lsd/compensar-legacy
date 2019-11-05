@@ -20,6 +20,7 @@ angular.module('app')
         $scope.fonteSearch = "";
         $scope.tipoSearch = "";
         $scope.conteudoSearch = "";
+        $scope.apenasAutor = false;
 
         $scope.competenciasAvaliador = {
             "COMP_ABSTRAÇÃO": "false",
@@ -51,7 +52,7 @@ angular.module('app')
             }
 
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,
-                $scope.tipoSearch, $scope.questao.competencias, $scope.conteudoSearch, "paginacao");
+                $scope.tipoSearch, $scope.questao.competencias, $scope.conteudoSearch);
         };
 
         $scope.setPageStart = function() {
@@ -93,17 +94,8 @@ angular.module('app')
         
 
         $scope.minhasQuestoes = false;
-        $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch, tipo) {
+        $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch) {
             $rootScope.loading = true;
-
-            if (tipo === "novaBusca" ) {
-                $scope.enunciadoSearch = enunciadoSearch;
-                $scope.autorSearch = autorSearch;
-                $scope.fonteSearch = fonteSearch;
-                $scope.tipoSearch = tipoSearch;
-                $scope.questao.competencias = competenciasSearch;
-                $scope.conteudoSearch = conteudoSearch;
-            } 
 
             setTimeout(function() {  
                 if ($scope.allEmpty()) {
@@ -127,11 +119,19 @@ angular.module('app')
                         conteudo: conteudoSearch
                     }
 
-                    QuestoesService.sendQuery(query, $scope.pagination.current , 4);
+                    QuestoesService.sendQuery(query, $scope.pagination.current , 4, $scope.apenasAutor);
             }}, 10);
 
             $rootScope.painelListas = false;
         };
+
+        $scope.sendNewQuery = function(competenciasSearch, conteudoSearch) {
+            $scope.questao.competencias = competenciasSearch;
+            $scope.conteudoSearch = conteudoSearch;
+
+            $scope.sendQuery('', '', '', '', competenciasSearch, conteudoSearch);
+
+        }
 
         $scope.allEmpty = function () {
             return !$scope.enunciadoSearch && $scope.questao.competencias.length === 0 && !$scope.autorSearch
@@ -178,17 +178,19 @@ angular.module('app')
             $rootScope.nomeListaEscolhida = "";
             $scope.minhasQuestoes = true;
             $scope.autorSearch = $rootScope.nome_usuario;
+            $scope.apenasAutor = true;
             $scope.setPageStart();
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
-                $scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
+                $scope.questao.competencias, $scope.conteudoSearch);
         };
 
         $scope.setTodasQuestoes = function () {
             $rootScope.nomeListaEscolhida = "";
             $scope.minhasQuestoes = false;
             $scope.autorSearch = "";
+            $scope.apenasAutor = false;
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
-                $scope.questao.competencias, $scope.conteudoSearch, 'buscaNormal');
+                $scope.questao.competencias, $scope.conteudoSearch);
         };
 
         $rootScope.minhasListas = false;
@@ -208,7 +210,7 @@ angular.module('app')
         };
 
         $scope.isAutor = function (autor) {
-            return autor === $rootScope.nome_usuario;
+            return autor === $rootScope.email_usuario;
         };
 
         $scope.isNull = function(atributo) {
