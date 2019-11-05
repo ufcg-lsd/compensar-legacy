@@ -1,14 +1,11 @@
 package springboot.dto.output;
 
-<<<<<<< Updated upstream
 import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
 
 import java.util.List;
 import java.util.Set;
 
-=======
->>>>>>> Stashed changes
 public class QuestaoOutput {
 
     private String id;
@@ -17,7 +14,6 @@ public class QuestaoOutput {
 
     private String enunciado;
 
-<<<<<<< Updated upstream
     public String autor;
 
     public String emailAutor;
@@ -135,8 +131,4 @@ public class QuestaoOutput {
     public void setSugestoes(List<String> sugestoes) {
         this.sugestoes = sugestoes;
     }
-=======
-
-
->>>>>>> Stashed changes
 }

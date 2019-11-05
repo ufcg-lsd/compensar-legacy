@@ -17,10 +17,7 @@ import springboot.dto.IO.QuestaoIO;
 import springboot.dto.output.QuestaoOutput;
 import springboot.model.Questao;
 import springboot.model.Usuario;
-<<<<<<< Updated upstream
 import springboot.service.AvaliacaoService;
-=======
->>>>>>> Stashed changes
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
