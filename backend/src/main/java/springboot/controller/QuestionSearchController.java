@@ -77,7 +77,7 @@ public class QuestionSearchController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/searchMy/{enunciado}/{competencias}/{fonte}/{tipo}/{conteudo}/{page}/{size}", method = RequestMethod.GET)
 	public Page<Questao> getMyQuestionsByEnunciadoCompetenciasAutorFonteTipo(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("enunciado") String enunciado,
-																			 @PathVariable("competencias") HashSet<String> competencias, @PathVariable("autor") String autor,
+																			 @PathVariable("competencias") HashSet<String> competencias,
 																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
 																			 @PathVariable("page") int page, @PathVariable("size") int size) {
 		System.out.println(competencias);
