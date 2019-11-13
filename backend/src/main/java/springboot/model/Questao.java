@@ -24,6 +24,7 @@ import org.springframework.data.mongodb.core.mapping.TextScore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import springboot.enums.CompetenciaType;
+import springboot.enums.EstadoQuestao;
 
 @Document(collection = "questao")
 public class Questao {
@@ -55,6 +56,8 @@ public class Questao {
 	private Integer qtdAvaliacoes;
 
 	private Long ultimoAcesso;
+
+	private EstadoQuestao estado;
 	
 	@TextScore 
 	private Float score;
@@ -83,6 +86,7 @@ public class Questao {
 		this.competencias = new HashSet<CompetenciaType>(competencias);
 		this.qtdAvaliacoes = 0;
 		this.ultimoAcesso = System.currentTimeMillis();
+		this.estado = EstadoQuestao.RASCUNHO;
 	}
 
 	public Questao() {
@@ -225,5 +229,13 @@ public class Questao {
 
 	public void setUltimoAcesso(Long ultimoAcesso) {
 		this.ultimoAcesso = ultimoAcesso;
+	}
+
+	public EstadoQuestao getEstado() {
+		return estado;
+	}
+
+	public void setEstado(EstadoQuestao estado) {
+		this.estado = estado;
 	}
 }

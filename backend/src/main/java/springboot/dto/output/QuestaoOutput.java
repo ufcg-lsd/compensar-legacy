@@ -1,6 +1,7 @@
 package springboot.dto.output;
 
 import springboot.enums.CompetenciaType;
+import springboot.enums.EstadoQuestao;
 import springboot.model.Alternativa;
 
 import java.util.List;
@@ -30,7 +31,9 @@ public class QuestaoOutput {
 
     private List<String> sugestoes;
 
-    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes) {
+    private EstadoQuestao estado;
+
+    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes, EstadoQuestao estado) {
         this.id = id;
         this.tipo = tipo;
         this.enunciado = enunciado;
@@ -42,6 +45,7 @@ public class QuestaoOutput {
         this.conteudo = conteudo;
         this.alternativas = alternativas;
         this.sugestoes = sugestoes;
+        this.estado = estado;
     }
 
     public String getId() {
@@ -130,5 +134,13 @@ public class QuestaoOutput {
 
     public void setSugestoes(List<String> sugestoes) {
         this.sugestoes = sugestoes;
+    }
+
+    public EstadoQuestao getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoQuestao estado) {
+        this.estado = estado;
     }
 }

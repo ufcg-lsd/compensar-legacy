@@ -2,6 +2,7 @@ package springboot.dto.IO;
 
 import springboot.dto.input.QuestaoInput;
 import springboot.dto.output.QuestaoOutput;
+import springboot.enums.EstadoQuestao;
 import springboot.model.Avaliacao;
 import springboot.model.Questao;
 import springboot.model.Usuario;
@@ -28,6 +29,6 @@ public class QuestaoIO {
             }
         }
 
-        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes);
+        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes, questao.getEstado());
     }
 }

@@ -1,6 +1,6 @@
 package springboot.enums;
 
-public enum QuestaoType {
+public enum EstadoQuestao {
     RASCUNHO,
     PEND_AVALIACAO,
     PEND_APROVACAO,
