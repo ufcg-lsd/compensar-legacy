@@ -92,7 +92,7 @@ angular.module('app')
 
   service.publicaQuestao = function (questao) {
 
-    $http.put(host + 'questao/publish/' + questao.id, AuthService.getAuthorization()).
+    $http.post(host + 'questao/publish/' + questao.id, {}, AuthService.getAuthorization()).
       then(function (response) {
         if (response.status == 200) {
           Notification.success('Questão publicada com sucesso!');
