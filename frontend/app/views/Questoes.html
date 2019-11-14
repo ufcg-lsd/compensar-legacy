@@ -362,13 +362,16 @@
                                         <div><hr></div>
      
                                         <!-- ========================  Campos de Editar/Remover questão  ============================================== -->
-                                            <div ng-switch = "isAutor(questao.emailAutor)">
+                                            <div ng-switch = "isAutor(questao.emailAutor) && questao.estado === 'RASCUNHO'">
                                                     <div id="alterarQuestao" ng-switch-when="true">
                                                         <button  type="button" class="btn btn-outline-light text-dark" ng-click="removeQuestao(questao)">
                                                             <i class="fas fa-trash text-danger"></i>
                                                         </button>
                                                         <button type="button" class="btn btn-outline-light text-dark" data-toggle="modal" ng-click="atualizaQuestao(questao)" data-target="#editar{{$index}}"> 
                                                             <i  class="fas fa-edit"></i>
+                                                        </button>
+                                                        <button  type="button" class="btn btn-outline-light text-dark" ng-click="publicaQuestao(questao)">
+                                                            <i class="fas fa-lock text-success"></i>
                                                         </button>
                                                     </div>
                                             </div>

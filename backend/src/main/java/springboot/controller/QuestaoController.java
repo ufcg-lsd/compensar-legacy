@@ -21,6 +21,7 @@ import springboot.dto.input.AvaliacaoInput;
 import springboot.dto.input.QuestaoInput;
 import springboot.dto.output.QuestaoOutput;
 import springboot.enums.CompetenciaType;
+import springboot.enums.EstadoQuestao;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.model.Avaliacao;
 import springboot.model.Questao;
@@ -78,6 +79,9 @@ public class QuestaoController {
 		if (!questao.getAutor().equals(usuario.getEmail())) {
 			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
 		}
+		if (!questao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
+			throw new PermissionDeniedException("Apenas questões rascunho podem ser removidas");
+		}
 		questao = questaoService.delete(id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
 	}
@@ -87,7 +91,12 @@ public class QuestaoController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<QuestaoOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		Questao updatedQuestao = questaoService.update(QuestaoIO.convert(questao, usuario), id);
+		Questao q = QuestaoIO.convert(questao, usuario);
+		if (!q.getEstado().equals(EstadoQuestao.RASCUNHO)) {
+			throw new PermissionDeniedException("Apenas questões rascunho podem ser editadas");
+		}
+		Questao updatedQuestao = questaoService.update(q, id);
+
 		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario), HttpStatus.OK);
 	}
 
@@ -105,5 +114,21 @@ public class QuestaoController {
 	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
 	public QuestaoOutput getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
 		return convert(questaoService.getPendente(usuario), usuario);
+	}
+
+	@ApiOperation("Permite enviar questão para avaliação.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/publish/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<QuestaoOutput> publish(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id) throws IOException {
+		Questao questao = questaoService.getById(id);
+		if (!questao.getAutor().equals(usuario.getEmail())) {
+			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
+		}
+		if (!questao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
+			throw new PermissionDeniedException("Apenas questões rascunho podem ser publicadas");
+		}
+		questao.setEstado(EstadoQuestao.PEND_AVALIACAO);
+		questao = questaoService.update(questao, id);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
 	}
 }

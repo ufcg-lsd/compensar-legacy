@@ -81,15 +81,28 @@ angular.module('app')
 
             Notification.success('Questão atualizada com sucesso!');
             $location.path("/questoes");
-        }
-        else {
+        } else {
             Notification.error('Falha ao atualizar questão!');
             $location.path("/questoes");
         }
-    },function(){
-        $location.path("/questoes");
-    });
-},
+      },function(){
+          $location.path("/questoes");
+      });
+  },
+
+  service.publicaQuestao = function (questao) {
+
+    $http.put(host + 'questao/publish/' + questao.id, AuthService.getAuthorization()).
+      then(function (response) {
+        if (response.status == 200) {
+          Notification.success('Questão publicada com sucesso!');
+          $location.path("/questoes");
+        } else {
+          Notification.error('Falha ao publicar questão!');
+        }
+
+      }).catch(function () { deferred.resolve([]); });
+  },
 
   service.sendListaQuestao = function (lista) {
       let questoes = [];

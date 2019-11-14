@@ -224,6 +224,14 @@ angular.module('app')
            var id = "#myModal" + index;
            $(id).modal('toggle');
         };
+
+        $scope.publicaQuestao = function (questao) {   
+            QuestoesService.publicaQuestao(questao);
+            var  index = $rootScope.Questoes.indexOf(questao);
+            $rootScope.Questoes.splice(index,1);
+            var id = "#myModal" + index;
+            $(id).modal('toggle');
+         };
              
         $scope.update = {
             enunciado : "",
