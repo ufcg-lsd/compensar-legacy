@@ -89,9 +89,7 @@ public class QuestaoService {
 			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
 		}
 
-		if (!novaQuestao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
-			throw new PermissionDeniedException("Uma questão definitiva não pode ser mais alterada");
-		}
+
 
 
         questao.setId(id);

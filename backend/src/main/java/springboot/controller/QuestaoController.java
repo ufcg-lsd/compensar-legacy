@@ -95,7 +95,12 @@ public class QuestaoController {
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<QuestaoOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
 		Questao q = QuestaoIO.convert(questao, usuario.getEmail());
+		Questao oldQuestion = questaoService.getById(id);
+		if (!oldQuestion.getEstado().equals(EstadoQuestao.RASCUNHO)) {
+			throw new PermissionDeniedException("Uma questão definitiva não pode ser mais alterada");
+		}
 		Questao updatedQuestao = questaoService.update(q, id);
+
 
 		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario), HttpStatus.OK);
 	}
