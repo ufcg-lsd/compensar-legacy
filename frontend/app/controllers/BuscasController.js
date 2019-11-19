@@ -21,6 +21,7 @@ angular.module('app')
         $scope.tipoSearch = "";
         $scope.conteudoSearch = "";
         $scope.apenasAutor = false;
+        $scope.avaliacaoPublicacao = "PRONTA";
 
         $scope.competenciasAvaliador = {
             "COMP_ABSTRAÇÃO": "false",
@@ -219,18 +220,10 @@ angular.module('app')
 
         $scope.removeQuestao = function (questao) {   
            QuestoesService.removeQuestao(questao);
-           var  index = $rootScope.Questoes.indexOf(questao);
-           $rootScope.Questoes.splice(index,1);
-           var id = "#myModal" + index;
-           $(id).modal('toggle');
         };
 
         $scope.publicaQuestao = function (questao) {   
             QuestoesService.publicaQuestao(questao);
-            var  index = $rootScope.Questoes.indexOf(questao);
-            $rootScope.Questoes.splice(index,1);
-            var id = "#myModal" + index;
-            $(id).modal('toggle');
          };
              
         $scope.update = {
@@ -479,6 +472,7 @@ angular.module('app')
         let avaliacao = {
             observacaoAvaliacao: $scope.obsAvaliacao,
             observacaoQuestao: $scope.obsQuestao,
+            avaliacaoPublicacao: $scope.avaliacaoPublicacao,
             questao: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
             confianca: $scope.confiancaAvaliacao

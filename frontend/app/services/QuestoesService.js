@@ -57,6 +57,11 @@ angular.module('app')
           then(function (response) {
             if (response.status == 200) {
               Notification.success('Questão removida com sucesso!');
+              
+              var  index = $rootScope.Questoes.indexOf(questao);
+              $rootScope.Questoes.splice(index,1);
+              var id = "#myModal" + index;
+              $(id).modal('toggle');
               $location.path("/questoes");
             } else {
               Notification.error('Falha ao remover questão!');
@@ -74,9 +79,6 @@ angular.module('app')
         if (response.status == 200) {
             var  index = $rootScope.Questoes.indexOf(questao);
             $rootScope.Questoes[index] = response.data;
-            console.log(questao.competencias);
-
-            console.log(response.data.competencias);
             $rootScope.loading = false;
 
             Notification.success('Questão atualizada com sucesso!');
@@ -89,6 +91,28 @@ angular.module('app')
     },function(){
         $location.path("/questoes");
     });
+},
+
+service.publicaQuestao = function (questao) {
+  $rootScope.loading = true;
+
+  $http.put(host + 'questao/publish/' + questao.id, {}, AuthService.getAuthorization()).
+    then(function (response) {
+      if (response.status == 200) {
+          var  index = $rootScope.Questoes.indexOf(questao);
+          $rootScope.Questoes[index] = response.data;
+          $rootScope.loading = false;
+
+          Notification.success('Questão publicada com sucesso!');
+          $location.path("/questoes");
+      }
+      else {
+          Notification.error('Falha ao publicar questão!');
+          $location.path("/questoes");
+      }
+  },function(){
+      $location.path("/questoes");
+  });
 },
 
   service.sendListaQuestao = function (lista) {

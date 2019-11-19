@@ -810,6 +810,29 @@
                 <textarea class="form-control" data-ng-model="obsQuestao" rows="3"></textarea>
             </div>
 
+            <div class="form-group row"  >
+                <label><h6>O quanto você acha que a questão está preparada para publicação:</h6></label>
+                <div class="custom-control custom-radio custom-control">
+                    <input type="radio" value="PRONTA"  id="radioPronta" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                    <label class="custom-control-label" for="radioPronta">Pronta para publicação</label><br>
+                </div>
+
+                <div class="custom-control custom-radio custom-control">
+                    <input type="radio" value="PEQUENAS_ALTERACOES"  id="radioPequenasAlteracoes" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                    <label class="custom-control-label" for="radioPequenasAlteracoes">Necessita de pequenas alterações</label><br>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" value="MUITAS_ALTERACOES"  id="radioMuitasAlteracoes" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                    <label class="custom-control-label" for="radioMuitasAlteracoes">Necessita de muitas alterações</label><br>
+                </div>
+
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" value="FORA_CONTEXTO"  id="radioForaContexto" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                    <label class="custom-control-label" for="radioForaContexto">Fora de contexto</label><br>
+                </div>
+            </div>
+
             <button type="button" class="btn btn-primary" ng-click="sendAvaliacao()">Enviar</button>
         </div>
     </div>
