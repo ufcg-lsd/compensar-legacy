@@ -24,6 +24,7 @@ import org.springframework.stereotype.Service;
 
 import net.htmlparser.jericho.Source;
 import springboot.enums.CompetenciaType;
+import springboot.enums.EstadoQuestao;
 import springboot.exception.data.NoPendentQuestionException;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
@@ -86,6 +87,10 @@ public class QuestaoService {
 
 		if (!questao.getAutor().equals(novaQuestao.getAutor())) {
 			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
+		}
+
+		if (!novaQuestao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
+			throw new PermissionDeniedException("Uma questão definitiva não pode ser mais alterada");
 		}
 
 
