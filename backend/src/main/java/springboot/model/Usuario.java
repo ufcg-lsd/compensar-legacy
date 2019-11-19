@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import springboot.enums.PermissaoType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,10 @@ public class Usuario {
     @TextIndexed
 	private boolean ativo;
 
+	@NotNull
+	@TextIndexed
+	private List<PermissaoType> permissoes;
+
 	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {
 		this.nome = nome;
 		this.idade = idade;
@@ -51,6 +56,11 @@ public class Usuario {
 		this.cidade = cidade;
 		this.email = email;
 		this.ativo = ativo;
+		this.permissoes = new ArrayList<>();
+		if (email.equals("joao.medeiros@ccc.ufcg.edu.br")) {
+			permissoes.add(PermissaoType.ADMIN);
+			permissoes.add(PermissaoType.JUDGE);
+		}
 	}
 
 	public Usuario() {
@@ -113,6 +123,13 @@ public class Usuario {
 		this.ativo = ativo;
 	}
 
+	public List<PermissaoType> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<PermissaoType> permissoes) {
+		this.permissoes = permissoes;
+	}
 
 	@Override
 	public int hashCode() {

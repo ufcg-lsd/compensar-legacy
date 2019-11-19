@@ -296,7 +296,7 @@ public class QuestaoService {
 			"}"
 		)));
         aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"qtdAvaliacoes\": { \"$lt\": 3 } } }")));
-		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"avaliacao._id\": { \"$exists\": false } } }")));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"avaliacao._id\": { \"$exists\": false }, \"estado\": \"PEND_AVALIACAO\" } }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$sort\" : { \"ultimoAcesso\" : 1 } }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$limit\" : 1 }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"avaliacao\": false } }")));

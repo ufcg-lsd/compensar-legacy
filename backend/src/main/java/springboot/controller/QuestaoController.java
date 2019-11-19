@@ -20,8 +20,10 @@ import springboot.dto.IO.QuestaoIO;
 import springboot.dto.input.AvaliacaoInput;
 import springboot.dto.input.QuestaoInput;
 import springboot.dto.output.QuestaoOutput;
+import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
+import springboot.enums.PermissaoType;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.model.Avaliacao;
 import springboot.model.Questao;
@@ -58,14 +60,15 @@ public class QuestaoController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao", method = RequestMethod.POST)
 	public QuestaoOutput save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		Questao questaoSalva =  questaoService.save(QuestaoIO.convert(questao, usuario));
+		Questao questaoSalva =  questaoService.save(QuestaoIO.convert(questao, usuario.getEmail()));
 		avaliacaoController.save(usuario,
                 new AvaliacaoInput(
                         questao.getObsAvaliacao(),
                         "",
                         questaoSalva.getId(),
                         questao.getCompetenciasAvaliacao(),
-                        questao.getConfiancaAvaliacao()
+                        questao.getConfiancaAvaliacao(),
+						AvaliacaoPublicacao.PRONTA
                 )
         );
 		return convert(questaoSalva, usuario);
@@ -91,10 +94,7 @@ public class QuestaoController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<QuestaoOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		Questao q = QuestaoIO.convert(questao, usuario);
-		if (!q.getEstado().equals(EstadoQuestao.RASCUNHO)) {
-			throw new PermissionDeniedException("Apenas questões rascunho podem ser editadas");
-		}
+		Questao q = QuestaoIO.convert(questao, usuario.getEmail());
 		Questao updatedQuestao = questaoService.update(q, id);
 
 		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario), HttpStatus.OK);
@@ -109,7 +109,7 @@ public class QuestaoController {
 		return questaoService.getSetCompetencias(enunciado);
 	}
 
-	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de resposta para o usuário.\r\n" + "")
+	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de avaliação para o usuário.\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
 	public QuestaoOutput getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
@@ -128,6 +128,41 @@ public class QuestaoController {
 			throw new PermissionDeniedException("Apenas questões rascunho podem ser publicadas");
 		}
 		questao.setEstado(EstadoQuestao.PEND_AVALIACAO);
+		questao = questaoService.update(questao, id);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+	}
+
+	@ApiOperation("Aprovar questão já avaliada.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/aprove/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<QuestaoOutput> aprovarQuestao(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id, @RequestBody QuestaoInput novaQuestaoInput) throws IOException {
+		Questao questao = questaoService.getById(id);
+		Questao novaQuestao = QuestaoIO.convert(novaQuestaoInput, questao.getAutor());
+
+		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
+			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode aprovar/reprovar uma questão");
+		}
+		if (!questao.getEstado().equals(EstadoQuestao.PEND_APROVACAO)) {
+			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
+		}
+		questaoService.update(novaQuestao, id);
+		questao.setEstado(EstadoQuestao.PUBLICADA);
+		questao = questaoService.update(questao, id);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+	}
+
+	@ApiOperation("Rejeitar questão já avaliada.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/reject/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<QuestaoOutput> rejeitarQuestao(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id) throws IOException {
+		Questao questao = questaoService.getById(id);
+		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
+			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode aprovar/reprovar uma questão");
+		}
+		if (!questao.getEstado().equals(EstadoQuestao.PEND_APROVACAO)) {
+			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
+		}
+		questao.setEstado(EstadoQuestao.REJEITADA);
 		questao = questaoService.update(questao, id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
 	}

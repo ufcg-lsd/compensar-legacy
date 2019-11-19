@@ -14,13 +14,13 @@ import java.util.List;
 
 public class QuestaoIO {
 
-    public static Questao convert(QuestaoInput questao, Usuario usuario) {
-        return new Questao(questao.getTipo(), questao.getConteudo(), questao.getEnunciado(), questao.getFonte(), usuario.getEmail(), questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
+    public static Questao convert(QuestaoInput questao, String autor) {
+        return new Questao(questao.getTipo(), questao.getConteudo(), questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
     }
 
     public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService) {
         List<String> sugestoes = new ArrayList<>();
-        if (usuarioAtual.getEmail().equals(questao.getAutor())) {
+        if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado().equals(EstadoQuestao.REJEITADA)) {
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
             for (Avaliacao aval : avaliacoes) {
                 if (!aval.getObservacaoQuestao().trim().equals("")) {

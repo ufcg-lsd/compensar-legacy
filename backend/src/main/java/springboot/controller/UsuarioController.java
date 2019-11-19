@@ -27,13 +27,14 @@ public class UsuarioController {
 	@Autowired
 	UsuarioService usuarioService;
 
+	/*
 	@ApiOperation("Permite apagar um usuário do sistema.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.DELETE)
 	public ResponseEntity<Usuario> delete(@PathVariable("email") String email) {
 		Usuario usuario = usuarioService.delete(email);
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
-	}
+	}*/
 
 	@ApiOperation("Permite atualizar um usuário do sistema. Requer que o corpo do request contenha um objeto com os atributos de um usuário.\r\n"
 			+ "")
@@ -51,12 +52,13 @@ public class UsuarioController {
 		return usuarioService.getAll();
 	}
 
+	/*
 	@ApiOperation("Recupera um usuario com específico email.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.GET)
 	public Usuario getByEmail(@PathVariable("email") String email) {
 		return usuarioService.getById(email);
-	}
+	}*/
 
 	@ApiOperation("Recupera informaçoes do usuario atual.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
