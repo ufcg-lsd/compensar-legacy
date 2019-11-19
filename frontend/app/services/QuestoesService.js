@@ -56,12 +56,11 @@ angular.module('app')
         $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
             if (response.status == 200) {
-              Notification.success('Questão removida com sucesso!');
-              
               var  index = $rootScope.Questoes.indexOf(questao);
               $rootScope.Questoes.splice(index,1);
-              var id = "#myModal" + index;
-              $(id).modal('toggle');
+              hideModals();
+              $rootScope.loading = false;
+              Notification.success('Questão removida com sucesso!');
               $location.path("/questoes");
             } else {
               Notification.error('Falha ao remover questão!');
@@ -80,6 +79,7 @@ angular.module('app')
             var  index = $rootScope.Questoes.indexOf(questao);
             $rootScope.Questoes[index] = response.data;
             $rootScope.loading = false;
+            hideModals();
 
             Notification.success('Questão atualizada com sucesso!');
             $location.path("/questoes");
@@ -102,6 +102,7 @@ service.publicaQuestao = function (questao) {
           var  index = $rootScope.Questoes.indexOf(questao);
           $rootScope.Questoes[index] = response.data;
           $rootScope.loading = false;
+          hideModals();
 
           Notification.success('Questão publicada com sucesso!');
           $location.path("/questoes");

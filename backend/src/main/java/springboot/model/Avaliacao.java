@@ -3,6 +3,7 @@ package springboot.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
+import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.CompetenciaType;
 
 import javax.validation.constraints.NotNull;
@@ -29,13 +30,16 @@ public class Avaliacao {
 
     private Integer confianca;
 
-    public Avaliacao(@NotNull String observacaoAvaliacao, String observacaoQuestao, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca) {
+    private AvaliacaoPublicacao avaliacaoPublicacao;
+
+    public Avaliacao(String observacaoAvaliacao, String observacaoQuestao, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca, AvaliacaoPublicacao avaliacaoPublicacao) {
         this.observacaoAvaliacao = observacaoAvaliacao;
         this.observacaoQuestao = observacaoQuestao;
         this.competencias = competencias;
         this.autor = autor;
         this.questao = questao;
         this.confianca = confianca;
+        this.avaliacaoPublicacao = avaliacaoPublicacao;
     }
 
     public String getId() {
@@ -92,5 +96,13 @@ public class Avaliacao {
 
     public void setConfianca(Integer confianca) {
         this.confianca = confianca;
+    }
+
+    public AvaliacaoPublicacao getAvaliacaoPublicacao() {
+        return avaliacaoPublicacao;
+    }
+
+    public void setAvaliacaoPublicacao(AvaliacaoPublicacao avaliacaoPublicacao) {
+        this.avaliacaoPublicacao = avaliacaoPublicacao;
     }
 }

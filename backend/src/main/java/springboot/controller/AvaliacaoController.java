@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springboot.dto.input.AvaliacaoInput;
+import springboot.enums.EstadoQuestao;
 import springboot.model.Avaliacao;
 import springboot.model.Questao;
 import springboot.model.Usuario;
@@ -45,10 +46,14 @@ public class AvaliacaoController {
                         avaliacao.getCompetencias(),
                         usuario.getEmail(),
                         questao.getId(),
-                        avaliacao.getConfianca()
+                        avaliacao.getConfianca(),
+                        avaliacao.getAvaliacaoPublicacao()
                 )
         );
         questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
+        if (questao.getQtdAvaliacoes() >= 3) {
+            questao.setEstado(EstadoQuestao.PEND_APROVACAO);
+        }
         questaoService.update(questao, questao.getId());
         return novaAvaliacao;
     }

@@ -326,7 +326,7 @@ angular.module('app')
             ($scope.update.espelho === "" || 
             $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
-        } else if ($scope.update.enunciado !== $scope.questao.enunciado) {
+        } else if ($scope.update.enunciado !== questao.enunciado) {
             QuestoesService.getCompetencias($scope.update.enunciado).then(() => {
                 $scope.repaginaCompetencias($rootScope.competencias);
                 $('#ModalEdicao').modal('toggle');
@@ -342,9 +342,6 @@ angular.module('app')
             
         } else {
             $scope.inputError = false;
-            var  index = $rootScope.Questoes.indexOf(questao);
-            var id = "#editar" + index;
-            $(id).modal('toggle');
             $scope.sendUpdate(questao);
         }
     }
@@ -482,6 +479,7 @@ angular.module('app')
             then(function (response) {
                 if (response.status == 200) {
                     $("#ModalAvaliacao").modal('hide');
+                    hideModals();
                     Notification.success('Avaliação criada com sucesso!');
                 }
                 else {
