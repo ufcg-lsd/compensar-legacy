@@ -17,17 +17,7 @@ angular.module('app')
 
 
 
-                $http.get(host + 'usuario/', AuthService.getAuthorization()).
-                then(function (response) { 
-                    console.log($scope.loading);
-        
-                    $scope.instituicao_usuario = response.data.nomeInstituicao,
-                    $scope.cargo_usuario = response.data.cargo,
-                    $scope.idade_usuario = response.data.idade,
-                    $scope.cidade_usuario = response.data.cidade
-                    $scope.loading = false;
-
-                });
+                
    
 
 

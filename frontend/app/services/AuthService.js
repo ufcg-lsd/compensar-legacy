@@ -15,6 +15,14 @@ angular.module('app')
     service.setAuthorization = function (token) {
       localStorageService.set("Authorization",token);
     },
+
+    service.setPermissions = function (token) {
+      localStorageService.set("Permissions",token);
+    },
+
+    service.getPermissions = function () {
+      return localStorageService.get("Permissions");
+    },
    
     service.logout = () => {
       localStorageService.remove("user");
@@ -34,6 +42,15 @@ angular.module('app')
       $http.get(host + 'auth/authenticate/', service.getAuthorization())
         .then(function () {
           $rootScope.registered = true;
+          $http.get(host + 'usuario/', AuthService.getAuthorization()).
+            then(function (response) {
+    
+                $scope.instituicao_usuario = response.data.nomeInstituicao,
+                $scope.cargo_usuario = response.data.cargo,
+                $scope.idade_usuario = response.data.idade,
+                $scope.cidade_usuario = response.data.cidade
+                AuthService.setPermissions(response.data.permissoes);
+            });
         }, function (err) {
           $rootScope.registered = false;
           if (err.status == 404) {

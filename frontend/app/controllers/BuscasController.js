@@ -398,7 +398,7 @@ angular.module('app')
         };
         $scope.getMinhasQuestoes = function () {
             return $scope.minhasQuestoes;
-        }
+        };
 
 
         QuestoesService.getQuestoes($scope.pagination.current , 4);
@@ -455,7 +455,7 @@ angular.module('app')
             });
             }
         });
-    }
+    };
 
     $scope.sendAvaliacao = function () {
 
@@ -489,8 +489,12 @@ angular.module('app')
             }
         )
 
-    }
-        
+    };
+
+    $scope.isJudge = function() {
+        return AuthService.getPermissions().indexOf('JUDGE') !== -1;
+    };
+
 });
 
 

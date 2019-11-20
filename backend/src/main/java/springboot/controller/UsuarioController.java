@@ -45,6 +45,7 @@ public class UsuarioController {
 		return new ResponseEntity<Usuario>(updatedUsuario, HttpStatus.OK);
 	}
 
+	/*
 	@ApiOperation("Fornece um array de objetos do tipo usuario registrados.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario", method = RequestMethod.GET)
@@ -52,7 +53,7 @@ public class UsuarioController {
 		return usuarioService.getAll();
 	}
 
-	/*
+
 	@ApiOperation("Recupera um usuario com específico email.")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.GET)
@@ -64,7 +65,7 @@ public class UsuarioController {
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/", method = RequestMethod.GET)
 	public Usuario getActualUser(@RequestAttribute(name="usuario") Usuario usuario) {
-		return usuarioService.save(new Usuario(usuario.getNome(), usuario.getIdade(), usuario.getNomeInstituicao(), usuario.getCargo(), usuario.getCidade(), usuario.getEmail(), true));
+		return usuario;
 	}
 	/*
 	 * @RequestMapping(value = "/usuario/search/{nome}", method = RequestMethod.GET)
