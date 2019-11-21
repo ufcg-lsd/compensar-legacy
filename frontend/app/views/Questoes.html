@@ -209,7 +209,7 @@
                         </li>
                         <li class="nav-item" ng-if="isJudge()"> 
                             <div ng-controller="BuscasController">
-                                    <a role=tab class="nav-link disabled" data-toggle="tab" ng-click="getQuestaoAvaliada()">Julgar questão</a>
+                                    <a role=tab class="nav-link disabled" data-toggle="tab" ng-click="getQuestaoAvaliada()" data-target="#editar{{$index}}">Julgar questão</a>
                             </div>
                         </li>
                         <li class="nav-item" > 
@@ -590,6 +590,18 @@
                                                         </div>
 
                                             </div>
+
+                                            <div ng-if="questao.sugestoes.length > 0">
+                                                <div class ="container">
+                                                    <b>Sugestões de avaliadores:</b>
+                                                </div>
+
+                                                <div class ="container" ng-repeat="sugestao in questao.sugestoes" >
+                                                    <em>{{sugestao}} </em>
+                                                </div>
+
+                                                <div><hr></div>
+                                            </div>
                                         
 
                                             <!-- Modal footer -->
@@ -597,8 +609,10 @@
                                                 <div ng-show="inputError" class="alert alert-warning">
                                                     <strong>Atenção!</strong> Você deve preencher todos os campos.
                                                 </div>
-                                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
-                                                <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)">Salvar</button>
+                                                <button type="button" class="btn btn-outline-danger" ng-if="!editingAprovacao" data-dismiss="modal">Cancelar</button>
+                                                <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)" ng-if="!editingAprovacao">Salvar</button>
+                                                <button type="button" class="btn btn-outline-danger" ng-if="editingAprovacao" ng-click="rejeitar(questao)" data-dismiss="modal">Rejeitar</button>
+                                                <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)" ng-if="editingAprovacao">Aceitar</button>
                                             </div>
                                             
                                         </div>

@@ -25,9 +25,9 @@ public class QuestaoIO {
         if ((usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado().equals(EstadoQuestao.REJEITADA)) || forceAvaliacoes) {
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
             for (Avaliacao aval : avaliacoes) {
+                avalPublicacoes.add(aval.getAvaliacaoPublicacao());
                 if (!aval.getObservacaoQuestao().trim().equals("")) {
                     sugestoes.add(aval.getObservacaoQuestao());
-                    avalPublicacoes.add(aval.getAvaliacaoPublicacao());
                 }
             }
         }

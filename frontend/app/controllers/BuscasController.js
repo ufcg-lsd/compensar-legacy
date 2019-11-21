@@ -22,6 +22,7 @@ angular.module('app')
         $scope.conteudoSearch = "";
         $scope.apenasAutor = false;
         $scope.avaliacaoPublicacao = "PRONTA";
+        $scope.editingAprovacao = false;
 
         $scope.competenciasAvaliador = {
             "COMP_ABSTRAÇÃO": "false",
@@ -252,7 +253,8 @@ angular.module('app')
 
 
 
-        $scope.atualizaQuestao = function (questao) {
+        $scope.atualizaQuestao = function (questao, editingAprovacao) {
+            $scope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
             $rootScope.loading = false;
             $scope.inputError = false;
             $scope.alertEspelho = false;
@@ -295,7 +297,12 @@ angular.module('app')
             novaQuestao.espelho = $scope.update.espelho;
         }
 
-        QuestoesService.atualizaQuestao(questao,novaQuestao);
+        
+        if ($scope.editingAprovacao) {
+            QuestoesService.aprovaQuestao(questao,novaQuestao);
+        } else {
+            QuestoesService.atualizaQuestao(questao,novaQuestao);
+        }
 
         var  index = $rootScope.Questoes.indexOf(questao);
         var id = "#myModal" + index;
@@ -459,16 +466,20 @@ angular.module('app')
 
     $scope.getQuestaoAvaliada = function() {
         $rootScope.questaoSobAvaliacao = null;
-        QuestoesService.getQuestaoAvaliada();/*.then(() => {
-            if ($rootScope.questaoSobAvaliacao !== null) {
-            $('#ModalAvaliacao').modal('toggle');
-            $('#ModalAvaliacao').modal({backdrop: 'static', keyboard: false})
-
-            $('a[href$="#ModalAvaliacao"]').on( "click", function() {
-                $('#ModalAvaliacao').modal('show');
-            });
+        QuestoesService.getQuestaoAvaliada().then((response) => {
+            if (response.status == 200) {
+                $scope.questao = response.data;
+                $scope.atualizaQuestao($scope.questao);
             }
-        });*/
+        });
+    };
+
+    $scope.aprovaQuestao = function(questao) {
+        QuestoesService.aprovaQuestao(questao);
+    };
+
+    $scope.rejeitaQuestao = function(questao) {
+        QuestoesService.rejeitaQuestao(questao);
     };
 
     $scope.sendAvaliacao = function () {

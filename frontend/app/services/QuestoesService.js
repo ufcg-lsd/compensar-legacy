@@ -241,15 +241,28 @@ service.getQuestaoPendente = function() {
 }
 
 service.getQuestaoAvaliada = function() {
-  return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
+  return $http.put(host + 'questao/avaliada/', {}, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
-      $rootScope.questaoSobAvaliacao = response.data;
+      Notification.success('Questão aprovada com sucesso!');
     } else {
-      Notification.warning('Nenhuma questão pendente de sua aprovação!');
+      Notification.error('Falha ao aprovar da questão!');
     }
   }, function() {
-    Notification.warning('Nenhuma questão pendente de sua aprovação!');
+    Notification.error('Falha ao aprovar da questão!');
+  })
+}
+
+service.rejeitaQuestao = function(questao) {
+  return $http.put(host + 'questao/avaliada/' + questao.id, {}, AuthService.getAuthorization())
+  .then(function(response) {
+    if (response.status == 200) {
+      Notification.success('Questão aprovada com sucesso!');
+    } else {
+      Notification.error('Falha ao rejeitar da questão!');
+    }
+  }, function() {
+    Notification.error('Falha ao rejeitar da questão!');
   })
 }
 
