@@ -38,7 +38,7 @@ public class QuestionSearchController {
 	UsuarioService usuarioService;
 
 	private QuestaoOutput convert(Questao questao, Usuario usuario) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService);
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, false);
 	}
 
 	

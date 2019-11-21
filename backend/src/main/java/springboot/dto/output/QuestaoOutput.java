@@ -1,5 +1,6 @@
 package springboot.dto.output;
 
+import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
 import springboot.model.Alternativa;
@@ -31,9 +32,11 @@ public class QuestaoOutput {
 
     private List<String> sugestoes;
 
+    private List<AvaliacaoPublicacao> avaliacoesPublicacao;
+
     private EstadoQuestao estado;
 
-    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes, EstadoQuestao estado) {
+    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes, List<AvaliacaoPublicacao> avaliacoesPublicacao, EstadoQuestao estado) {
         this.id = id;
         this.tipo = tipo;
         this.enunciado = enunciado;
@@ -45,6 +48,7 @@ public class QuestaoOutput {
         this.conteudo = conteudo;
         this.alternativas = alternativas;
         this.sugestoes = sugestoes;
+        this.avaliacoesPublicacao = avaliacoesPublicacao;
         this.estado = estado;
     }
 
@@ -134,6 +138,14 @@ public class QuestaoOutput {
 
     public void setSugestoes(List<String> sugestoes) {
         this.sugestoes = sugestoes;
+    }
+
+    public List<AvaliacaoPublicacao> getAvaliacoesPublicacao() {
+        return avaliacoesPublicacao;
+    }
+
+    public void setAvaliacoesPublicacao(List<AvaliacaoPublicacao> avaliacoesPublicacao) {
+        this.avaliacoesPublicacao = avaliacoesPublicacao;
     }
 
     public EstadoQuestao getEstado() {

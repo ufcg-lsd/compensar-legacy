@@ -320,5 +320,15 @@ public class QuestaoService {
 
 		return melhorQuestao;
 	}
+	public Questao getAvaliada() {
+		Questao q;
+		try {
+			q = questaoRepository.getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao.PEND_APROVACAO, 2);
+		} catch(Exception e) {
+			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de aprovação");
+		}
+		return q;
+	}
+
 
 }

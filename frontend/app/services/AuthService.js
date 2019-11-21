@@ -42,14 +42,14 @@ angular.module('app')
       $http.get(host + 'auth/authenticate/', service.getAuthorization())
         .then(function () {
           $rootScope.registered = true;
-          $http.get(host + 'usuario/', AuthService.getAuthorization()).
+          $http.get(host + 'usuario/', service.getAuthorization()).
             then(function (response) {
     
-                $scope.instituicao_usuario = response.data.nomeInstituicao,
-                $scope.cargo_usuario = response.data.cargo,
-                $scope.idade_usuario = response.data.idade,
-                $scope.cidade_usuario = response.data.cidade
-                AuthService.setPermissions(response.data.permissoes);
+                $rootScope.instituicao_usuario = response.data.nomeInstituicao,
+                $rootScope.cargo_usuario = response.data.cargo,
+                $rootScope.idade_usuario = response.data.idade,
+                $rootScope.cidade_usuario = response.data.cidade
+                service.setPermissions(response.data.permissoes);
             });
         }, function (err) {
           $rootScope.registered = false;

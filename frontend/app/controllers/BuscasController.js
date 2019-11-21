@@ -457,6 +457,20 @@ angular.module('app')
         });
     };
 
+    $scope.getQuestaoAvaliada = function() {
+        $rootScope.questaoSobAvaliacao = null;
+        QuestoesService.getQuestaoAvaliada();/*.then(() => {
+            if ($rootScope.questaoSobAvaliacao !== null) {
+            $('#ModalAvaliacao').modal('toggle');
+            $('#ModalAvaliacao').modal({backdrop: 'static', keyboard: false})
+
+            $('a[href$="#ModalAvaliacao"]').on( "click", function() {
+                $('#ModalAvaliacao').modal('show');
+            });
+            }
+        });*/
+    };
+
     $scope.sendAvaliacao = function () {
 
         let arr = [];

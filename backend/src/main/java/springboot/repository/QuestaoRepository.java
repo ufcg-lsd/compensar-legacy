@@ -11,6 +11,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import springboot.enums.EstadoQuestao;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 
@@ -24,6 +25,8 @@ public abstract interface QuestaoRepository extends MongoRepository<Questao, Str
 
 	@Query(":#{#query}")
 	Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(@Param("query") String query, Pageable pageable);
+
+	Questao getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao estado, int qtd);
 
 	//@Query("SELECT q FROM Question q WHERE q.qtdAvaliacoes <= 3 AND NOT EXISTS (SELECT a FROM Avaliacao a WHERE a.questao = q AND a.autor = ?1)")
 	//@org.springframework.data.jpa.repository.Query(value = "SELECT q FROM questao q", nativeQuery = false)

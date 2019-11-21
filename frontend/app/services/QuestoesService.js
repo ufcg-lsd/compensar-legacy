@@ -240,6 +240,18 @@ service.getQuestaoPendente = function() {
   })
 }
 
+service.getQuestaoAvaliada = function() {
+  return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
+  .then(function(response) {
+    if (response.status == 200) {
+      $rootScope.questaoSobAvaliacao = response.data;
+    } else {
+      Notification.warning('Nenhuma questão pendente de sua aprovação!');
+    }
+  }, function() {
+    Notification.warning('Nenhuma questão pendente de sua aprovação!');
+  })
+}
 
     return service;
   });

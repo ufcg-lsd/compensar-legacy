@@ -51,8 +51,8 @@ public class QuestaoController {
 	@Autowired
 	UsuarioService usuarioService;
 
-	private QuestaoOutput convert(Questao questao, Usuario usuario) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService);
+	private QuestaoOutput convert(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, forceAvaliacoes);
 	}
 
 	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
@@ -71,7 +71,7 @@ public class QuestaoController {
 						AvaliacaoPublicacao.PRONTA
                 )
         );
-		return convert(questaoSalva, usuario);
+		return convert(questaoSalva, usuario, false);
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")
@@ -86,7 +86,7 @@ public class QuestaoController {
 			throw new PermissionDeniedException("Apenas questões rascunho podem ser removidas");
 		}
 		questao = questaoService.delete(id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
 
 	@ApiOperation("Permite atualizar uma questão do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma questão subjetiva.\r\n"
@@ -102,7 +102,7 @@ public class QuestaoController {
 		Questao updatedQuestao = questaoService.update(q, id);
 
 
-		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario), HttpStatus.OK);
+		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario, false), HttpStatus.OK);
 	}
 
 
@@ -117,8 +117,15 @@ public class QuestaoController {
 	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de avaliação para o usuário.\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
-	public QuestaoOutput getAllPendentes(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
-		return convert(questaoService.getPendente(usuario), usuario);
+	public QuestaoOutput getPendente(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
+		return convert(questaoService.getPendente(usuario), usuario, false);
+	}
+
+	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de avaliação para o usuário.\r\n" + "")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/questao/avaliada/", method = RequestMethod.GET)
+	public QuestaoOutput getAvaliada(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
+		return convert(questaoService.getAvaliada(), usuario, true);
 	}
 
 	@ApiOperation("Permite enviar questão para avaliação.")
@@ -134,7 +141,7 @@ public class QuestaoController {
 		}
 		questao.setEstado(EstadoQuestao.PEND_AVALIACAO);
 		questao = questaoService.update(questao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
 
 	@ApiOperation("Aprovar questão já avaliada.")
@@ -153,7 +160,7 @@ public class QuestaoController {
 		questaoService.update(novaQuestao, id);
 		questao.setEstado(EstadoQuestao.PUBLICADA);
 		questao = questaoService.update(questao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
 
 	@ApiOperation("Rejeitar questão já avaliada.")
@@ -169,6 +176,6 @@ public class QuestaoController {
 		}
 		questao.setEstado(EstadoQuestao.REJEITADA);
 		questao = questaoService.update(questao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario), HttpStatus.OK);
+		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
 }
