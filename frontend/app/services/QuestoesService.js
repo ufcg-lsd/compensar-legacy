@@ -241,7 +241,21 @@ service.getQuestaoPendente = function() {
 }
 
 service.getQuestaoAvaliada = function() {
-  return $http.put(host + 'questao/avaliada/', {}, AuthService.getAuthorization())
+  return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
+  .then(function(response) {
+    if (response.status == 200) {
+      return response;
+    } else {
+      Notification.error('Nenhuma questão pendente de sua avaliação!');
+    }
+    return response;
+  }, function() {
+    Notification.error('Nenhuma questão pendente de sua avaliação!');
+  })
+}
+
+service.aprovaQuestao = function() {
+  return $http.put(host + 'questao/aprove/' + questao.id, {}, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
       Notification.success('Questão aprovada com sucesso!');
@@ -254,7 +268,7 @@ service.getQuestaoAvaliada = function() {
 }
 
 service.rejeitaQuestao = function(questao) {
-  return $http.put(host + 'questao/avaliada/' + questao.id, {}, AuthService.getAuthorization())
+  return $http.put(host + 'questao/reject/' + questao.id, {}, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
       Notification.success('Questão aprovada com sucesso!');

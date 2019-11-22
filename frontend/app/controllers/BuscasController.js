@@ -469,7 +469,7 @@ angular.module('app')
         QuestoesService.getQuestaoAvaliada().then((response) => {
             if (response.status == 200) {
                 $scope.questao = response.data;
-                $scope.atualizaQuestao($scope.questao);
+                $scope.atualizaQuestao($scope.questao, true);
             }
         });
     };
