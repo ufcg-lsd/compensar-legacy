@@ -76,7 +76,7 @@ angular.module('app')
     $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
       then(function (response) {
         if (response.status == 200) {
-            var  index = $rootScope.Questoes.indexOf(questao);
+            var index; = $rootScope.Questoes.indexOf(questao);
             $rootScope.Questoes[index] = response.data;
             $rootScope.loading = false;
             hideModals();

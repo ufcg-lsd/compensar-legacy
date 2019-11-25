@@ -438,3 +438,5 @@ font-size: 64px;
   body .carousel-control-next-icon{
     background-color:gray;
   }
+
+  .modal { overflow-y: auto !important; }

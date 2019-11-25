@@ -254,7 +254,7 @@ angular.module('app')
 
 
         $scope.atualizaQuestao = function (questao, editingAprovacao) {
-            $scope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
+            $rootScope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
             $rootScope.loading = false;
             $scope.inputError = false;
             $scope.alertEspelho = false;
@@ -344,7 +344,7 @@ angular.module('app')
                 });
                 
                 console.log("aaaa");
-                $scope.questao.enunciado = $scope.update.enunciado;
+                questao.enunciado = $scope.update.enunciado;
             });
             
         } else {

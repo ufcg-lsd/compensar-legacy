@@ -206,7 +206,7 @@
                     </li>
                     <li class="nav-item" ng-if="isJudge()"> 
                         <div ng-controller="BuscasController">
-                                <a role=tab class="nav-link disabled" data-toggle="tab" ng-click="getQuestaoAvaliada()" data-target="#editarAprovacao">Julgar questão</a>
+                                <a role=tab class="nav-link disabled" data-toggle="modal" ng-click="getQuestaoAvaliada()" data-target="#editarAprovacao">Julgar questão</a>
                         </div>
                     </li>
                     <li class="nav-item" > 
@@ -584,10 +584,8 @@
                                                             <div ng-show="inputError" class="alert alert-warning">
                                                                 <strong>Atenção!</strong> Você deve preencher todos os campos.
                                                             </div>
-                                                            <button type="button" class="btn btn-outline-danger" ng-if="!editingAprovacao" data-dismiss="modal">Cancelar</button>
-                                                            <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)" ng-if="!editingAprovacao">Salvar</button>
-                                                            <button type="button" class="btn btn-outline-danger" ng-if="editingAprovacao" ng-click="rejeitar(questao)" data-dismiss="modal">Rejeitar</button>
-                                                            <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)" ng-if="editingAprovacao">Aceitar</button>
+                                                            <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancelar</button>
+                                                            <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)">Salvar</button>
                                                         </div>
                                                         
                                                     </div>
@@ -812,6 +810,211 @@
                 </div>
 
                 <button type="button" class="btn btn-primary" ng-click="sendAvaliacao()">Enviar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========================   Editar Questão Modal ============================================== -->
+<div class="modal fade" id="editarAprovacao">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+        
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Editar Questão</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div class="row">
+                    <div  class="col updateTipo">
+                        <div  class="col-1">
+                            <label><h6>Tipo:</h6></label>               
+                            <div class="custom-control custom-radio">
+                                    <input type="radio" value="Objetiva"  id="subj"  class="custom-control-input" data-ng-model="$parent.update.tipo"> 
+                                    <label class="custom-control-label" for="subj">Objetiva</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control">
+                                    <input type="radio"  value="Subjetiva" id="obj"  class="custom-control-input"  data-ng-model="$parent.update.tipo">
+                                    <label class="custom-control-label" for="obj">Subjetiva</label>
+                            </div>
+                        </div>    
+                    </div>
+
+                    <div class="col">
+                            <label><h6>Fonte:</h6></label>
+                            <input type="text" placeholder = "{{questao.fonte}}" class="form-control" ng-model="update.fonte">
+                    </div>
+
+                    <div class="col">
+                        <label><h6>Conteúdo:</h6></label>
+                        <select class="form-control selectpicker " data-none-selected-text= "{{questao.conteudo}}" 
+                        data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
+                        data-live-search-normalize="true" ng-model = "$parent.update.conteudo">
+                            <option >Qualquer Um</option>
+                            <optgroup label="">
+                                <option data-tokens="somar">Adição</option>
+                                <option >Conjuntos</option>
+                                <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
+                                <option >Critérios de Divisibilidade</option>
+                                <option>Divisão</option>
+                                <option>Divisão de Frações</option>
+                                <option>Equação do Primeiro Grau</option>
+                                <option>Equação do Segundo Grau</option>
+                                <option>Estatística</option>
+                                <option>Expressões Numéricas</option>
+                                <option>Frações</option>
+                                <option data-tokens="Formas Geométricas">Geometria</option>
+                                <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
+                                <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
+                                <option>Inequação</option>
+                                <option>Juros Compostos</option>
+                                <option>Juros Simples</option>
+                                <option>Matrizes</option>
+                                <option>MDC: Máximo Divisor Comum</option>
+                                <option>MMC: Mínimo Múltiplo Comum</option>
+                                <option>Multiplicação</option>
+                                <option>Multiplicação de Frações</option>
+                                <option>Números Decimais</option>
+                                <option>Números Primos</option>
+                                <option>Potenciação</option>
+                                <option>PA: Progressão Aritmética</option>
+                                <option>PG: Progressão Geométrica</option>
+                                <option>Plano Cartesiano</option>
+                                <option>Porcentagem</option>
+                                <option>Produtos Notáveis</option>
+                                <option>Radiciação</option>
+                                <option>Razão e Proporção</option>
+                                <option>Sistemas Lineares</option>
+                                <option>Soma de Frações</option>
+                                <option>Subtração</option>
+                                <option>Subtração de Frações</option>
+                                <option>Tabuada</option>
+                                <option>Triângulo de Pascal</option>
+                                <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
+                                <option>Unidades de Medida</option>
+                            </optgroup>
+                            <option>Outros</option>
+                        </select>
+                    </div>
+                </div>
+                <hr>
+                <div id = "updateEnunciado">
+                        <label><h6>Enunciado:</h6></label>
+                        <ng-quill-editor id = "updateEnunciado" modules="editorModules" placeholder="{{update.enunciado}}" 
+                        ng-model="update.enunciado" on-content-changed="contentChanged()">                          
+                        </ng-quill-editor> 
+                </div>
+                <div class = "container" ng-switch = "isUpdateObjective()">
+                    <!-- ========================  Campos específicos de questão Subj  ============================================== -->
+                    <div ng-switch-when="false">
+                        <div id="espelho{{$index}}" class="form-group row">   
+                            <label><h6>Espelho da Questão:</h6></label>  
+                            <ng-quill-editor modules="editorModules" placeholder="{{update.espelho}}"
+                            ng-model="update.espelho" on-content-changed="contentChanged()"> </ng-quill-editor>
+                        </div>
+                    </div>
+            
+            
+                    <!-- ========================  Campos específicos de questão Obj  ============================================== -->
+                    <div ng-switch-when = "true">                  
+                        <div class="form-group row">
+                            <label><h6>Alternativas:</h6></label>
+                        </div>
+                        <div class="form-group row ">
+                            <div class = "col-sm-6">
+                                <div class="form-group row">
+                                    <label for="inputAlternativa1"><h6>a)</h6></label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control form-control-sm" placeholder="Digite a alternativa a)"  ng-model="update.alternativas[0].texto">
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAlternativa2"><h6>b)</h6></label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control form-control-sm" placeholder="Digite a alternativa b)"  ng-model="update.alternativas[1].texto">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAlternativa3"><h6>c)</h6></label>
+                                    <div class="col-sm-10">
+                                        <input class="form-control form-control-sm" placeholder="Digite a alternativa c)" ng-model="update.alternativas[2].texto">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAlternativa4"><h6>d)</h6></label>
+                                        <div class="col-sm-10">
+                                            <input  class="form-control form-control-sm" placeholder="Digite a alternativa d)"  ng-model="update.alternativas[3].texto">
+                                        </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="inputAlternativa5"><h6>e)</h6></label>
+                                    <div class="col-sm-10">
+                                        <input  class="form-control form-control-sm" placeholder="Digite a alternativa e)" ng-model="update.alternativas[4].texto">
+                                    </div>
+                                </div>                          
+                            </div>
+                            
+                            <div class = "col-sm-6">
+                                <div class="form-group row">
+                                    <label class="form-check-label"><h6>Correta:</h6></label>
+                                    <div class="ml-5">
+                                        <input type="checkbox" class="form-check-input" ng-model="update.alternativas[0].correta">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label ><h6>Correta:</h6></label>
+                                    <div class="ml-5">
+                                        <input type="checkbox" class="form-check-input" ng-model="update.alternativas[1].correta">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label><h6>Correta:</h6></label>
+                                    <div class="ml-5">
+                                        <input type="checkbox" class="form-check-input" ng-model="update.alternativas[2].correta">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label ><h6>Correta:</h6></label>
+                                    <div class="ml-5">
+                                        <input type="checkbox" class="form-check-input" ng-model="update.alternativas[3].correta">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label><h6>Correta:</h6></label>
+                                    <div class="ml-5">
+                                        <input type="checkbox" class="form-check-input" ng-model="update.alternativas[4].correta">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div ng-if="questao.sugestoes.length > 0">
+                    <div class ="container">
+                        <b>Sugestões de avaliadores:</b>
+                    </div>
+
+                    <div class ="container" ng-repeat="sugestao in questao.sugestoes" >
+                        <em>{{sugestao}} </em>
+                    </div>
+
+                    <div><hr></div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer mt-5" ng-show="loading === false">
+                    <div ng-show="inputError" class="alert alert-warning">
+                        <strong>Atenção!</strong> Você deve preencher todos os campos.
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" ng-click="rejeitar(questao)" data-dismiss="modal">Rejeitar</button>
+                    <button type="button" class="btn btn-primary" ng-class="{'active': enunciadoEditado == false}" ng-click="checkEdicaoInput(questao)">Aceitar</button>
+                </div>
+                
             </div>
         </div>
     </div>
