@@ -179,7 +179,7 @@ angular.module('app')
         $scope.setMinhasQuestoes = function () {
             $rootScope.nomeListaEscolhida = "";
             $scope.minhasQuestoes = true;
-            $scope.autorSearch = $rootScope.nome_usuario;
+            $scope.autorSearch = $rootScope.email_usuario;
             $scope.apenasAutor = true;
             $scope.setPageStart();
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,

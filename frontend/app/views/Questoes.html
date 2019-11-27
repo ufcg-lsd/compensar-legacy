@@ -151,7 +151,7 @@
                 <div ng-show = "getMinhasQuestoes() == true">
                     <div class="form-group row"  >
                         <label><h6>Autor:</h6></label>
-                            <input name="autorSearch" type="text" class="form-control" ng-model="autorSearch" readonly >
+                            <input name="autorSearch" type="text" class="form-control" ng-model="nome_usuario" readonly >
                     </div>
                 </div>
                 <div ng-show = "getMinhasQuestoes() == false">
@@ -206,7 +206,7 @@
                     </li>
                     <li class="nav-item" ng-if="isJudge()"> 
                         <div ng-controller="BuscasController">
-                                <a role=tab class="nav-link disabled" data-toggle="modal" ng-click="getQuestaoAvaliada()">Julgar questão</a>
+                                <a role=tab class="nav-link disabled" ng-class="{'visible': enunciadoEditado == false}" data-toggle="modal" ng-click="getQuestaoAvaliada()">Julgar questão</a>
 
                                 <!-- ========================   Editar Questão Modal ============================================== -->
                                 <div class="modal fade" id="editarAprovacao">

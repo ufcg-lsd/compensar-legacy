@@ -2,6 +2,7 @@ package springboot.controller;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import springboot.dto.IO.QuestaoIO;
 import springboot.dto.output.QuestaoOutput;
+import springboot.enums.EstadoQuestao;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
@@ -68,8 +70,9 @@ public class QuestionSearchController {
 			@PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
 			@PathVariable("page") int page,@PathVariable("size") int size) {
 		System.out.println(competencias);
-		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias,autor, fonte, tipo,conteudo,
-				page,size).map(q -> this.convert(q, usuario));
+		Set<EstadoQuestao> estados = new HashSet<>();
+		estados.add(EstadoQuestao.PUBLICADA);
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias,autor, fonte, tipo,conteudo, estados, page,size).map(q -> this.convert(q, usuario));
 	}
 
 	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado, competências (cada uma entre aspas), "
@@ -81,9 +84,11 @@ public class QuestionSearchController {
 																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
 																			 @PathVariable("page") int page, @PathVariable("size") int size) {
 		System.out.println(competencias);
-		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, usuario.getEmail(), fonte, tipo,conteudo, page,size).map(q -> this.convert(q, usuario));
+		Set<EstadoQuestao> estados = new HashSet<>();
+		estados.add(EstadoQuestao.RASCUNHO);
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, usuario.getEmail(), fonte, tipo,conteudo, estados, page,size).map(q -> this.convert(q, usuario));
 	}
-	
+
 
 
 }

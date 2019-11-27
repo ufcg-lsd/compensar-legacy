@@ -18,7 +18,7 @@ import springboot.model.Usuario;
 @Repository
 public abstract interface QuestaoRepository extends MongoRepository<Questao, String> {
 	
-	Page<Questao> findAll(Pageable pageable);
+	Page<Questao> findAllByEstado(EstadoQuestao estado, Pageable pageable);
 
 	Optional<Questao> findById(String id);
 

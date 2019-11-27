@@ -39,6 +39,7 @@ public class QuestaoService {
 	private final String errorMessage = "A questão não está cadastrada.";
 	public static final int ENUNCIADO = 0;
 	public static final int COMPETENCIA = 1;
+	public static final int ESTADO = 2;
 
 	private ArrayList<String> arrayParametros = new ArrayList<String>();
 	private ArrayList<String> arrayOperadores = new ArrayList<String>();
@@ -102,7 +103,7 @@ public class QuestaoService {
 	public Page<Questao> getAll(int page, int size) {
 
 	    Pageable pageable = PageRequest.of(page, size);
-	    Page<Questao> pagina = questaoRepository.findAll(pageable);
+	    Page<Questao> pagina = questaoRepository.findAllByEstado(EstadoQuestao.PUBLICADA, pageable);
 	    
 		return pagina;
 	}
@@ -119,11 +120,13 @@ public class QuestaoService {
 
 	private void iniciaColecoes() {
 		arrayParametros.add("{$text:{$search:");
-		arrayParametros.add("{competencias:  {$all:");
+		arrayParametros.add("{competencias:{$in:");
+		arrayParametros.add("{competencias:{$in:");
 		arrayParametros.add("{autor:{ $regex:");
 		arrayParametros.add("{fonte:{ $regex:");
 		arrayParametros.add("{tipo:{ $regex:");
 		arrayParametros.add("{conteudo:{ $regex:");
+
 
 
 		arrayOperadores.add("{'$or':[");
@@ -132,7 +135,7 @@ public class QuestaoService {
 	}
 
 	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-			String autor, String fonte, String tipo, String conteudo,int page, int size) {
+			String autor, String fonte, String tipo, String conteudo, Set<EstadoQuestao> estados, int page, int size) {
 
 		iniciaColecoes();
 
@@ -141,10 +144,14 @@ public class QuestaoService {
 			parametros.add("null");
 		else
 			parametros.add(competencias);
+		if (estados.contains("null"))
+			parametros.add("null");
+		else
+			parametros.add(estados);
 		parametros.add(autor);
 		parametros.add(fonte);
 		parametros.add(tipo);
-		parametros.add(conteudo);		
+		parametros.add(conteudo);
 		
 		// inicio da query com o operador lógico AND 
 
@@ -154,31 +161,28 @@ public class QuestaoService {
 		for (int i = 0; i < parametros.size(); i++) {
 			if (!isNull(parametros.get(i))) {
 				if (i == ENUNCIADO) {
-					// Caso tenha enunciado e NÃO competência
-					if (isNull(parametros.get(i + 1))) {
-						// Precisa de duas chaves de fechamento e aspas
-						arrayQuery.add(arrayParametros.get(i) + " '" + parametros.get(i) + "'}}");
-					} 
+					arrayQuery.add(arrayParametros.get(ENUNCIADO) + " '" + parametros.get(ENUNCIADO) + "'}}");
 				} else if (i == COMPETENCIA) {
-					String subQuery = "";
-					// Caso tenha competência E enunciado
-					if (!isNull(parametros.get(i - 1))) {
-												
-						subQuery = arrayParametros.get(i - 1) + " '" + parametros.get(i - 1);
-						
-						for (String competencia : competencias) {
-							subQuery += " " + competencia;
+					String subQuery = arrayParametros.get(COMPETENCIA) + "[";
+
+					for(String competencia : competencias) {
+						if (!subQuery.endsWith("[")) {
+							subQuery += ", ";
 						}
-					// Caso tenha competência e NÃO enunciado
-					} else {
-						subQuery = arrayParametros.get(i - 1) + " '";
-						
-						for (String competencia : competencias) {
-							subQuery += " " + competencia;
-						}	
+						subQuery += "'" + competencia + "'";
 					}
-					
-					subQuery += "'}}";	
+					subQuery += "]}}";
+					arrayQuery.add(subQuery);
+				} else if (i == ESTADO) {
+					String subQuery = arrayParametros.get(ESTADO) + "[";
+
+					for(EstadoQuestao estado : estados) {
+						if (!subQuery.endsWith("[")) {
+							subQuery += ", ";
+						}
+						subQuery += "'" + estado + "'";
+					}
+					subQuery += "]}}";
 					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
