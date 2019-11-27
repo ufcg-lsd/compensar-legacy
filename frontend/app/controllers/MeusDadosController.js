@@ -13,16 +13,20 @@ angular.module('app')
         $scope.cidade_usuario = "";
         $scope.idade_usuario = "";
 
-        $scope.loading = true;
+        $rootScope.loading = true;
 
+        $http.get(host + 'usuario/', AuthService.getAuthorization()).
+        then(function (response) { 
+            console.log($rootScope.loading);
 
+            $scope.instituicao_usuario = response.data.nomeInstituicao,
+            $scope.cargo_usuario = response.data.cargo,
+            $scope.idade_usuario = response.data.idade,
+            $scope.cidade_usuario = response.data.cidade
+            $rootScope.loading = false;
 
-                
-   
+        });
 
-
-
-    
         $scope.updateUser = function updateUser() {
 
             let user = {

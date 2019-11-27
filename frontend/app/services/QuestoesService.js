@@ -76,8 +76,13 @@ angular.module('app')
     $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
       then(function (response) {
         if (response.status == 200) {
-            var index; = $rootScope.Questoes.indexOf(questao);
-            $rootScope.Questoes[index] = response.data;
+          let index = 0;
+            for(; index < $rootScope.Questoes.length; index++) {
+              if ($rootScope.Questoes[index].id === questao.id) {
+                break;
+              }
+            }
+            $rootScope.Questoes.splice(index,1,response.data);
             $rootScope.loading = false;
             hideModals();
 
@@ -100,7 +105,7 @@ service.publicaQuestao = function (questao) {
     then(function (response) {
       if (response.status == 200) {
           var  index = $rootScope.Questoes.indexOf(questao);
-          $rootScope.Questoes[index] = response.data;
+          $rootScope.Questoes.splice(index,1,response.data);
           $rootScope.loading = false;
           hideModals();
 
@@ -245,25 +250,33 @@ service.getQuestaoAvaliada = function() {
   .then(function(response) {
     if (response.status == 200) {
       return response;
+      
     } else {
-      Notification.error('Nenhuma questão pendente de sua avaliação!');
+      Notification.error('Nenhuma questão pendente de sua aprovação!');
     }
     return response;
   }, function() {
-    Notification.error('Nenhuma questão pendente de sua avaliação!');
+    Notification.error('Nenhuma questão pendente de sua aprovação!');
   })
 }
 
-service.aprovaQuestao = function() {
-  return $http.put(host + 'questao/aprove/' + questao.id, {}, AuthService.getAuthorization())
+service.aprovaQuestao = function(questao) {
+  return $http.put(host + 'questao/aprove/' + questao.id, questao, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
       Notification.success('Questão aprovada com sucesso!');
+      $location.path("/questoes");
     } else {
       Notification.error('Falha ao aprovar da questão!');
+      $location.path("/questoes");
     }
+    $rootScope.loading = false;
+    hideModals();
   }, function() {
     Notification.error('Falha ao aprovar da questão!');
+    $location.path("/questoes");
+    $rootScope.loading = false;
+    hideModals();
   })
 }
 
@@ -271,12 +284,19 @@ service.rejeitaQuestao = function(questao) {
   return $http.put(host + 'questao/reject/' + questao.id, {}, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
-      Notification.success('Questão aprovada com sucesso!');
+      Notification.success('Questão rejeitada com sucesso!');
+      $location.path("/questoes");
     } else {
       Notification.error('Falha ao rejeitar da questão!');
+      $location.path("/questoes");
     }
+    $rootScope.loading = false;
+    hideModals();
   }, function() {
     Notification.error('Falha ao rejeitar da questão!');
+    $location.path("/questoes");
+    $rootScope.loading = false;
+    hideModals();
   })
 }
 

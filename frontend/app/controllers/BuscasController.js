@@ -254,7 +254,7 @@ angular.module('app')
 
 
         $scope.atualizaQuestao = function (questao, editingAprovacao) {
-            $rootScope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
+            $scope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
             $rootScope.loading = false;
             $scope.inputError = false;
             $scope.alertEspelho = false;
@@ -275,7 +275,14 @@ angular.module('app')
                 $scope.update.espelho = questao.espelho;
             }
 
+            $('#editarAprovacao').modal('toggle');
+            $('#editarAprovacao').modal({backdrop: 'static', keyboard: false});
+            
+            $('a[href$="#editarAprovacao"]').on( "click", function() {
+                $('#editarAprovacao').modal('show');
+            });
             $('.selectpicker').selectpicker('refresh');
+            
         };
 
 
@@ -300,13 +307,15 @@ angular.module('app')
         
         if ($scope.editingAprovacao) {
             QuestoesService.aprovaQuestao(questao,novaQuestao);
+            $("#editarAprovacao").modal('toggle');
         } else {
             QuestoesService.atualizaQuestao(questao,novaQuestao);
+            var  index = $rootScope.Questoes.indexOf(questao);
+            var id = "#myModal" + index;
+            $(id).modal('toggle');
         }
 
-        var  index = $rootScope.Questoes.indexOf(questao);
-        var id = "#myModal" + index;
-        $(id).modal('toggle');
+        
     };
 
     $scope.espelho = "nao";
@@ -474,10 +483,6 @@ angular.module('app')
         });
     };
 
-    $scope.aprovaQuestao = function(questao) {
-        QuestoesService.aprovaQuestao(questao);
-    };
-
     $scope.rejeitaQuestao = function(questao) {
         QuestoesService.rejeitaQuestao(questao);
     };
@@ -503,7 +508,7 @@ angular.module('app')
         $http.post(host + 'avaliacao', avaliacao, AuthService.getAuthorization()).
             then(function (response) {
                 if (response.status == 200) {
-                    $("#ModalAvaliacao").modal('hide');
+                    $("#ModalAvaliacao").modal('toggle');
                     hideModals();
                     Notification.success('Avaliação criada com sucesso!');
                 }
