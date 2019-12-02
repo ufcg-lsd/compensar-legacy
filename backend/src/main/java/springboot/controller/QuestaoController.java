@@ -158,8 +158,8 @@ public class QuestaoController {
 			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
 		}
 		questaoService.update(novaQuestao, id);
-		questao.setEstado(EstadoQuestao.PUBLICADA);
-		questao = questaoService.update(questao, id);
+		novaQuestao.setEstado(EstadoQuestao.PUBLICADA);
+		questao = questaoService.update(novaQuestao, id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
 

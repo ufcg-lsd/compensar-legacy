@@ -20,7 +20,7 @@ angular.module('app')
         $scope.fonteSearch = "";
         $scope.tipoSearch = "";
         $scope.conteudoSearch = "";
-        $scope.apenasAutor = false;
+        $rootScope.apenasAutor = false;
         $scope.avaliacaoPublicacao = "PRONTA";
         $scope.editingAprovacao = false;
 
@@ -68,7 +68,8 @@ angular.module('app')
         $scope.questao = {
             competencias: ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
             "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"]
+            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"],
+            estados: ["RASCUNHO", "PEND_AVALIACAO", "PUBLICADA", "REJEITADA"]
         };
         $scope.checkAll = true;
 
@@ -96,7 +97,6 @@ angular.module('app')
         };
         
 
-        $scope.minhasQuestoes = false;
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch) {
             $rootScope.loading = true;
 
@@ -116,13 +116,14 @@ angular.module('app')
                     let query = {
                         enunciado:  enunciadoSearch,
                         competencias: competenciasSearch,
+                        estados: ($scope.questao.estados.length === 0) ? [] : $scope.questao.estados,
                         autor: autorSearch,
                         fonte: fonteSearch,
                         tipo: tipoSearch,
                         conteudo: conteudoSearch
                     }
 
-                    QuestoesService.sendQuery(query, $scope.pagination.current , 4, $scope.apenasAutor);
+                    QuestoesService.sendQuery(query, $scope.pagination.current , 4, $rootScope.apenasAutor);
             }}, 10);
 
             $rootScope.painelListas = false;
@@ -177,11 +178,10 @@ angular.module('app')
 
 
         $rootScope.nomeListaEscolhida = "";
-        $scope.setMinhasQuestoes = function () {
+        $scope.setApenasAutor = function () {
             $rootScope.nomeListaEscolhida = "";
-            $scope.minhasQuestoes = true;
             $scope.autorSearch = $rootScope.email_usuario;
-            $scope.apenasAutor = true;
+            $rootScope.apenasAutor = true;
             $scope.setPageStart();
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
                 $scope.questao.competencias, $scope.conteudoSearch);
@@ -189,9 +189,8 @@ angular.module('app')
 
         $scope.setTodasQuestoes = function () {
             $rootScope.nomeListaEscolhida = "";
-            $scope.minhasQuestoes = false;
             $scope.autorSearch = "";
-            $scope.apenasAutor = false;
+            $rootScope.apenasAutor = false;
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,$scope.tipoSearch,
                 $scope.questao.competencias, $scope.conteudoSearch);
         };
@@ -344,7 +343,7 @@ angular.module('app')
             ($scope.update.espelho === "" || 
             $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
-        } else if ($scope.update.enunciado !== questao.enunciado) {
+        } else if (!$scope.editingAprovacao && $scope.update.enunciado !== questao.enunciado) {
             QuestoesService.getCompetencias($scope.update.enunciado).then(() => {
                 $scope.repaginaCompetencias($rootScope.competencias);
                 $('#ModalEdicao').modal('toggle');
@@ -414,8 +413,8 @@ angular.module('app')
         $scope.setLocation = function() {
             $location.path("/questoes");   
         };
-        $scope.getMinhasQuestoes = function () {
-            return $scope.minhasQuestoes;
+        $scope.getApenasAutor = function () {
+            return $rootScope.apenasAutor;
         };
 
 

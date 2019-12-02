@@ -112,6 +112,33 @@
                 </div>
             </div>
 
+            <div id = "estadoSearch" ng-if="apenasAutor" class="form-group row mt-2">
+                <label ><h6>Competências:</h6></label>
+                <div class="row">  
+                    <div class="col-sm-2">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" checklist-model="questao.estados" value="RASCUNHO" id="checkRascunho"> 
+                            <label class="custom-control-label" for="checkRascunho">Rascunho</label>
+                        </div>
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" checklist-model="questao.estados" value="PEND_AVALIACAO" id="checkPendente"> 
+                            <label class="custom-control-label" for="checkPendente">Pend. de Aprovação</label>
+                        </div>
+                    </div>
+        
+                    <div class="columnTelaQuestoes">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" checklist-model="questao.estados" value="PUBLICADA" id="checkPublicada"> 
+                            <label class="custom-control-label" for="checkPublicada">Publicada</label>
+                        </div>
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                            <input type="checkbox" class="custom-control-input" checklist-model="questao.estados" value="REJEITADA" id="checkRejeitada"> 
+                            <label class="custom-control-label" for="checkRejeitada">Rejeitada</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- ========================  Opçoes Avançadas  ============================================== -->
             <div class="form-group">
                 <button class="btn btn-outline-primary bt-maisOp btn-sm" type="button" data-toggle="collapse" data-target="#opcoesAvancadas">Mais filtros</button>
@@ -148,13 +175,13 @@
                     <input name="fonteSearch" type="text" class="form-control"  placeholder="Ex.: PISA, ENEM ou Autoral" ng-model="fonteSearch">
                 </div>
 
-                <div ng-show = "getMinhasQuestoes() == true">
+                <div ng-show = "getApenasAutor() == true">
                     <div class="form-group row"  >
                         <label><h6>Autor:</h6></label>
                             <input name="autorSearch" type="text" class="form-control" ng-model="nome_usuario" readonly >
                     </div>
                 </div>
-                <div ng-show = "getMinhasQuestoes() == false">
+                <div ng-show = "getApenasAutor() == false">
                     <div class="form-group row"  >
                         <label><h6>Autor:</h6></label>
                         <input  name = "autorSearch" type="text" class="form-control"  placeholder="Ex.: Edson Arantes do Nascimento" ng-model="autorSearch">
@@ -184,7 +211,7 @@
                     </li>
 
                     <li class="nav-item" >
-                        <a role=tab class="nav-link" data-toggle="tab"  ng-click="setMinhasQuestoes()" href="/questoes">Minhas Questões</a>
+                        <a role=tab class="nav-link" data-toggle="tab"  ng-click="setApenasAutor()" href="/questoes">Minhas Questões</a>
                     </li>
                     
                     <li  class = "nav-item dropdown">
@@ -452,14 +479,12 @@
                                         <div class="row">
                                             <div class="col-8" ng-controller="ListaQuestoesController" ng-switch="getPainelListaEmContrucao() || getListaEmEdicao()">
                                                 <div ng-switch-when="true">
-                                                    <div ng-switch="isAdded(questao)">
-                                                        <button ng-switch-when="false" type="button" class="btn btn-primary btn-sm addLista" ng-click="addQuestao(questao)"> 
-                                                            <i class="fas fa-plus"></i>                                 
-                                                        </button>
-                                                        <button ng-switch-when="true" type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)"> 
-                                                            <i class="fas fa-minus"></i>                               
-                                                        </button>
-                                                    </div>
+                                                    <button ng-if="questao.estado === 'PUBLICADA' && !isAdded(questao)" type="button" class="btn btn-primary btn-sm addLista" ng-click="addQuestao(questao)"> 
+                                                        <i class="fas fa-plus"></i>                                 
+                                                    </button>
+                                                    <button ng-if="questao.estado === 'PUBLICADA' && isAdded(questao)" type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)"> 
+                                                        <i class="fas fa-minus"></i>                               
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div  class="col-4">

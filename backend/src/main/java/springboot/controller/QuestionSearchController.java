@@ -78,14 +78,12 @@ public class QuestionSearchController {
 	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado, competências (cada uma entre aspas), "
 			+ "autor, fonte e tipo\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/searchMy/{enunciado}/{competencias}/{fonte}/{tipo}/{conteudo}/{page}/{size}", method = RequestMethod.GET)
+	@RequestMapping(value = "/questao/searchMy/{enunciado}/{competencias}/{estados}/{fonte}/{tipo}/{conteudo}/{page}/{size}", method = RequestMethod.GET)
 	public Page<QuestaoOutput> getMyQuestionsByEnunciadoCompetenciasAutorFonteTipo(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("enunciado") String enunciado,
-																			 @PathVariable("competencias") HashSet<String> competencias,
+																			 @PathVariable("competencias") HashSet<String> competencias, @PathVariable("estados") HashSet<EstadoQuestao> estados,
 																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
 																			 @PathVariable("page") int page, @PathVariable("size") int size) {
 		System.out.println(competencias);
-		Set<EstadoQuestao> estados = new HashSet<>();
-		estados.add(EstadoQuestao.RASCUNHO);
 		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, usuario.getEmail(), fonte, tipo,conteudo, estados, page,size).map(q -> this.convert(q, usuario));
 	}
 

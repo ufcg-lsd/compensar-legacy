@@ -144,10 +144,13 @@ public class QuestaoService {
 			parametros.add("null");
 		else
 			parametros.add(competencias);
-		if (estados.contains("null"))
+		if (estados == null)
 			parametros.add("null");
-		else
+		else {
+			if (estados.contains(EstadoQuestao.PEND_AVALIACAO))
+				estados.add(EstadoQuestao.PEND_APROVACAO);
 			parametros.add(estados);
+		}
 		parametros.add(autor);
 		parametros.add(fonte);
 		parametros.add(tipo);
@@ -326,9 +329,8 @@ public class QuestaoService {
 	}
 	public Questao getAvaliada() {
 		Questao q;
-		try {
-			q = questaoRepository.getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao.PEND_APROVACAO, 2);
-		} catch(Exception e) {
+		q = questaoRepository.getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao.PEND_APROVACAO, 2);
+		if (q == null) {
 			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de aprovação");
 		}
 		return q;

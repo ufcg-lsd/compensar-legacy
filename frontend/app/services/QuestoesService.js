@@ -24,8 +24,9 @@ angular.module('app')
 
 
    service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
-    $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + query.competencias 
-    + '/'  + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
+     let estados =  query.estados.length === 0 ? 'null' : query.estados;
+    $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + query.competencias + '/' + ((apenasAutor) ? estados + '/' : '')
+    + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
@@ -260,10 +261,13 @@ service.getQuestaoAvaliada = function() {
   })
 }
 
-service.aprovaQuestao = function(questao) {
-  return $http.put(host + 'questao/aprove/' + questao.id, questao, AuthService.getAuthorization())
+service.aprovaQuestao = function(questao, novaQuestao) {
+  return $http.put(host + 'questao/aprove/' + questao.id, novaQuestao, AuthService.getAuthorization())
   .then(function(response) {
     if (response.status == 200) {
+      if (!$rootScope.apenasAutor) {
+        $rootScope.Questoes.push(response.data);
+      }
       Notification.success('Questão aprovada com sucesso!');
       $location.path("/questoes");
     } else {

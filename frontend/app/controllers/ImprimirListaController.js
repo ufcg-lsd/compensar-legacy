@@ -10,7 +10,7 @@ angular.module('app')
         addLista(
         `
             <h1 class="ql-align-center">${listaAtiva.nomeLista}</h1>
-            <h3 class="ql-align-center">Autor: ${listaAtiva.autor.nome}</h3>
+            <h3 class="ql-align-center">Autor: ${listaAtiva.autor}</h3>
             <h3 class="ql-align-center">Aluno: ______________________________________________________________</h3><br>
         `);
         let i = 1;
@@ -27,7 +27,7 @@ angular.module('app')
         addRespostas(
         `
             <h1 class="ql-align-center">${listaAtiva.nomeLista}</h1>
-            <h3 class="ql-align-center">Autor: ${listaAtiva.autor.nome}</h3>
+            <h3 class="ql-align-center">Autor: ${listaAtiva.autor}</h3>
             <h3 class="ql-align-center">Folha de Respostas</h3><br>
         `);
         i = 1;
