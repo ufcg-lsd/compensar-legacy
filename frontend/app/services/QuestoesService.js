@@ -252,11 +252,11 @@ service.getQuestaoAvaliada = function() {
       return response;
       
     } else {
-      Notification.error('Nenhuma questão pendente de sua aprovação!');
+      Notification.warning('Nenhuma questão pendente de sua aprovação!');
     }
     return response;
   }, function() {
-    Notification.error('Nenhuma questão pendente de sua aprovação!');
+    Notification.warning('Nenhuma questão pendente de sua aprovação!');
   })
 }
 

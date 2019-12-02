@@ -105,7 +105,7 @@
                             <label class="custom-control-label" for="customCheck8">Simulação</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "toggleCheck($event)">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1" ng-click= "toggleCheck($event)" checked>
                             <label class="custom-control-label" for="customCheck1">Todas</label>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                     </li>
                     <li class="nav-item" ng-if="isJudge()"> 
                         <div ng-controller="BuscasController">
-                                <a role=tab class="nav-link disabled" ng-class="{'visible': enunciadoEditado == false}" data-toggle="modal" ng-click="getQuestaoAvaliada()">Julgar questão</a>
+                                <a role=tab class="nav-link" data-toggle="modal" ng-click="getQuestaoAvaliada()">Julgar questão</a>
 
                                 <!-- ========================   Editar Questão Modal ============================================== -->
                                 <div class="modal fade" id="editarAprovacao">
@@ -417,7 +417,7 @@
                     </li>
                     <li class="nav-item" > 
                         <div ng-controller="BuscasController">
-                                <a role=tab class="nav-link disabled" data-toggle="tab" ng-click="getQuestaoPendente()">Avaliar questão</a>
+                                <a role=tab class="nav-link" data-toggle="modal" ng-click="getQuestaoPendente()">Avaliar questão</a>
                         </div>
                     </li>
                 </ul>

@@ -66,10 +66,11 @@ angular.module('app')
         "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"];
 
         $scope.questao = {
-            competencias: []
+            competencias: ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
+            "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
+            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"]
         };
- 
-        $scope.checkAll = false;
+        $scope.checkAll = true;
 
         $scope.toggleCheck = function($event) {
             if($event.currentTarget.id === "customCheck1") {
@@ -275,14 +276,15 @@ angular.module('app')
                 $scope.update.espelho = questao.espelho;
             }
 
-            $('#editarAprovacao').modal('toggle');
-            $('#editarAprovacao').modal({backdrop: 'static', keyboard: false});
-            
-            $('a[href$="#editarAprovacao"]').on( "click", function() {
-                $('#editarAprovacao').modal('show');
-            });
-            $('.selectpicker').selectpicker('refresh');
-            
+            if ($scope.editingAprovacao) {
+                $('#editarAprovacao').modal('toggle');
+                $('#editarAprovacao').modal({backdrop: 'static', keyboard: false});
+                
+                $('a[href$="#editarAprovacao"]').on( "click", function() {
+                    $('#editarAprovacao').modal('show');
+                });
+            }
+            $('.selectpicker').selectpicker();
         };
 
 

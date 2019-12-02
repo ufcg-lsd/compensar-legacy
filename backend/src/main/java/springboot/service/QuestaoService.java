@@ -97,7 +97,7 @@ public class QuestaoService {
 
 		questaoRepository.save(questao);
 
-		return novaQuestao;
+		return questao;
 	}
 
 	public Page<Questao> getAll(int page, int size) {
@@ -121,7 +121,7 @@ public class QuestaoService {
 	private void iniciaColecoes() {
 		arrayParametros.add("{$text:{$search:");
 		arrayParametros.add("{competencias:{$in:");
-		arrayParametros.add("{competencias:{$in:");
+		arrayParametros.add("{estado:{$in:");
 		arrayParametros.add("{autor:{ $regex:");
 		arrayParametros.add("{fonte:{ $regex:");
 		arrayParametros.add("{tipo:{ $regex:");
