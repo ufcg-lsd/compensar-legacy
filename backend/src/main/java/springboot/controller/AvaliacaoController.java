@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springboot.dto.input.AvaliacaoInput;
+import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
 import springboot.model.Avaliacao;
 import springboot.model.Questao;
@@ -19,6 +20,8 @@ import springboot.service.AvaliacaoService;
 import springboot.service.QuestaoService;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
 
 @Controller
 @RestController
@@ -52,6 +55,20 @@ public class AvaliacaoController {
         );
         questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
         if (questao.getQtdAvaliacoes() >= 3) {
+            HashSet<CompetenciaType> tempNewCompetencias = new HashSet<>();
+            List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(avaliacao.getQuestao());
+            for (CompetenciaType competencia: CompetenciaType.values()) {
+                int cnt = 0;
+                for (Avaliacao tempAvaliacao : avaliacoes) {
+                    if (tempAvaliacao.getCompetencias().contains(competencia))
+                        cnt++;
+                }
+                if (cnt >= 2) {
+                    tempNewCompetencias.add(competencia);
+                }
+                //System.out.println("competencia: "+competencia);
+            }
+            questao.setCompetencias(tempNewCompetencias);
             questao.setEstado(EstadoQuestao.PEND_APROVACAO);
         }
         questaoService.update(questao, questao.getId());

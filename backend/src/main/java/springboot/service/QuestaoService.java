@@ -144,8 +144,8 @@ public class QuestaoService {
 			parametros.add("null");
 		else
 			parametros.add(competencias);
-		if (estados == null)
-			parametros.add("null");
+		if (estados.contains(null))
+			parametros.add(new HashSet<>());
 		else {
 			if (estados.contains(EstadoQuestao.PEND_AVALIACAO))
 				estados.add(EstadoQuestao.PEND_APROVACAO);
