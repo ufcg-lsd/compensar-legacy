@@ -210,6 +210,7 @@ angular.module('app')
                 $scope.inputError = true;
             } else if (passo === "anterior") {
                 $scope.prevStep();
+                document.querySelector(".ql-editor").contentEditable = true;
             } else {
                 $scope.alertEspelho = false;
                 document.querySelector(".ql-editor").contentEditable = false;

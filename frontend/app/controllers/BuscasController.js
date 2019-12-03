@@ -100,31 +100,26 @@ angular.module('app')
         $scope.sendQuery = function (enunciadoSearch,autorSearch,fonteSearch,tipoSearch, competenciasSearch, conteudoSearch) {
             $rootScope.loading = true;
 
-            setTimeout(function() {  
-                if ($scope.allEmpty()) {
-                    QuestoesService.getQuestoes($scope.pagination.current , 4);
-                } else {
-
-                    if (!enunciadoSearch) enunciadoSearch = "null";
-                    if (competenciasSearch.length === 0) competenciasSearch = ["null"]; 
-                    if (!autorSearch) autorSearch = "null";
-                    if (!fonteSearch) fonteSearch = "null";
-                    if (!tipoSearch)  tipoSearch = "null";
-                    if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
+            setTimeout(function() { 
+                if (!enunciadoSearch) enunciadoSearch = "null";
+                if (!autorSearch) autorSearch = "null";
+                if (!fonteSearch) fonteSearch = "null";
+                if (!tipoSearch)  tipoSearch = "null";
+                if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
 
 
-                    let query = {
-                        enunciado:  enunciadoSearch,
-                        competencias: competenciasSearch,
-                        estados: ($scope.questao.estados.length === 0) ? [] : $scope.questao.estados,
-                        autor: autorSearch,
-                        fonte: fonteSearch,
-                        tipo: tipoSearch,
-                        conteudo: conteudoSearch
-                    }
+                let query = {
+                    enunciado:  enunciadoSearch,
+                    competencias: competenciasSearch,
+                    estados: $scope.questao.estados,
+                    autor: autorSearch,
+                    fonte: fonteSearch,
+                    tipo: tipoSearch,
+                    conteudo: conteudoSearch
+                }
 
-                    QuestoesService.sendQuery(query, $scope.pagination.current , 4, $rootScope.apenasAutor);
-            }}, 10);
+                QuestoesService.sendQuery(query, $scope.pagination.current , 4, $rootScope.apenasAutor);
+            }, 10);
 
             $rootScope.painelListas = false;
         };

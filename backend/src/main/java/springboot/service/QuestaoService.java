@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
@@ -42,7 +43,6 @@ public class QuestaoService {
 	public static final int ESTADO = 2;
 
 	private ArrayList<String> arrayParametros = new ArrayList<String>();
-	private ArrayList<String> arrayOperadores = new ArrayList<String>();
 	private ArrayList<String> arrayQuery = new ArrayList<String>();
 	private ArrayList<Object> parametros = new ArrayList<Object>();
 
@@ -119,29 +119,54 @@ public class QuestaoService {
 	}
 
 	private void iniciaColecoes() {
-		arrayParametros.add("{$text:{$search:");
-		arrayParametros.add("{competencias:{$in:");
-		arrayParametros.add("{estado:{$in:");
-		arrayParametros.add("{autor:{ $regex:");
-		arrayParametros.add("{fonte:{ $regex:");
-		arrayParametros.add("{tipo:{ $regex:");
-		arrayParametros.add("{conteudo:{ $regex:");
+		arrayParametros.add("{\"enunciado\": { \"$regex\": ");
+		arrayParametros.add("{\"competencias\": { \"$in\": ");
+		arrayParametros.add("{\"estado\": { \"$in\": ");
+		arrayParametros.add("{\"autorInfo._id\": { \"$regex\": ");
+		arrayParametros.add("{\"autorInfo.nome\": { \"$regex\": ");
+		arrayParametros.add("{\"fonte\": { \"$regex\": ");
+		arrayParametros.add("{\"tipo\": { \"$regex\": ");
+		arrayParametros.add("{\"conteudo\": { \"$regex\": ");
 
 
 
-		arrayOperadores.add("{'$or':[");
-		arrayOperadores.add("{'$and':[");
-		arrayOperadores.add("{score: {$meta: \\\"textScore\\\"}}.sort({score:{$meta:\\\"textScore\\\"}})");
 	}
 
 	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-			String autor, String fonte, String tipo, String conteudo, Set<EstadoQuestao> estados, int page, int size) {
+			String autorNome, String autorEmail, String fonte, String tipo, String conteudo, Set<EstadoQuestao> estados, int page, int size) {
 
+		List<CustomAggregationOperation>  aggList = new ArrayList<>();
+		aggList.add(new CustomAggregationOperation(Document.parse(
+			"{\n" +
+			"    \"$lookup\": {\n" +
+			"        \"from\": \"usuario\",\n" +
+			"        \"pipeline\": [{\n" +
+			"            \"$match\": {\n" +
+			"                \"$expr\": {\n" +
+			"                    \"$and\": [\n" +
+			"                        { \"$eq\": [ \"$autor\", \"$id\" ] }\n" +
+			"                    ]\n" +
+			"                }\n" +
+			"            }\n" +
+			"        }],\n" +
+			"        \"as\": \"autorInfo\"\n" +
+			"    }\n" +
+			"}"
+		)));
+		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"autorInfo\": false } }")));
 		iniciaColecoes();
 
+		enunciado = (enunciado.equals("null")) ? "" : enunciado;
+		autorEmail = (autorEmail.equals("null")) ? "" : autorEmail;
+		autorNome = (autorNome.equals("null")) ? "" : autorNome;
+		fonte = (fonte.equals("null")) ? "" : fonte;
+		tipo = (tipo.equals("null")) ? "" : tipo;
+		conteudo = (conteudo.equals("null")) ? "" : conteudo;
+
 		parametros.add(enunciado);
-		if (competencias.contains("null"))
-			parametros.add("null");
+
+		if (competencias.contains(null))
+			parametros.add(new HashSet<>());
 		else
 			parametros.add(competencias);
 		if (estados.contains(null))
@@ -151,14 +176,15 @@ public class QuestaoService {
 				estados.add(EstadoQuestao.PEND_APROVACAO);
 			parametros.add(estados);
 		}
-		parametros.add(autor);
+		parametros.add(autorEmail);
+		parametros.add(autorNome);
 		parametros.add(fonte);
 		parametros.add(tipo);
 		parametros.add(conteudo);
 		
 		// inicio da query com o operador lógico AND 
 
-		String query = arrayOperadores.get(1);
+		String query = "{ \"$match\": {\"$and\":[";
 
 
 		for (int i = 0; i < parametros.size(); i++) {
@@ -189,7 +215,7 @@ public class QuestaoService {
 					arrayQuery.add(subQuery);
 				} else {
 					// Precisa de uma chave de fechamento e aspas
-					arrayQuery.add(arrayParametros.get(i) + "/" + parametros.get(i) + "/i}}");
+					arrayQuery.add(arrayParametros.get(i) + "/" + Pattern.quote((String)parametros.get(i)) + "/i}}");
 				}
 			}
 		}
@@ -197,7 +223,9 @@ public class QuestaoService {
 		query += String.join(",", arrayQuery);
 
 		// fechamento do operador lógico AND
-		query += "]}";
+		query += "]} }";
+
+		aggList.add(1, new CustomAggregationOperation(Document.parse(query)));
 
 		System.out.println(query);
 		parametros.clear();
@@ -207,10 +235,10 @@ public class QuestaoService {
 	    	    Sort.Order.desc("score"));
 	    
 	    Pageable pageable = PageRequest.of(page, size, sort);
-	    
-	    Page<Questao> pagina = questaoRepository.getByEnunciadoCompetenciasAutorFonteTipo(query,pageable);
-	    
-		return pagina;
+
+		Aggregation agg = Aggregation.newAggregation(aggList);
+		List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
+		return new PageImpl<Questao>(results,pageable, results.size());
 
 	}
 
@@ -328,12 +356,11 @@ public class QuestaoService {
 		return melhorQuestao;
 	}
 	public Questao getAvaliada() {
-		Questao q;
-		q = questaoRepository.getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao.PEND_APROVACAO, 2);
-		if (q == null) {
+		List<Questao> results = questaoRepository.getByEstadoAndQtdAvaliacoesGreaterThan(EstadoQuestao.PEND_APROVACAO, 2);
+		if (results.size() == 0) {
 			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de aprovação");
 		}
-		return q;
+		return results.get(0);
 	}
 
 
