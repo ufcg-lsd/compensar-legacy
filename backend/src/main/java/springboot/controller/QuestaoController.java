@@ -95,6 +95,7 @@ public class QuestaoController {
 	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<QuestaoOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
 		Questao q = QuestaoIO.convert(questao, usuario.getEmail());
+		q.setQtdAvaliacoes(1);
 		Questao oldQuestion = questaoService.getById(id);
 		if (!oldQuestion.getEstado().equals(EstadoQuestao.RASCUNHO)) {
 			throw new PermissionDeniedException("Uma questão definitiva não pode ser mais alterada");
@@ -157,7 +158,6 @@ public class QuestaoController {
 		if (!questao.getEstado().equals(EstadoQuestao.PEND_APROVACAO)) {
 			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
 		}
-		questaoService.update(novaQuestao, id);
 		novaQuestao.setEstado(EstadoQuestao.PUBLICADA);
 		questao = questaoService.update(novaQuestao, id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
