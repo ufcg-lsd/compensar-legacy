@@ -225,7 +225,7 @@ angular.module('app')
         $scope.update = {
             enunciado : "",
             tipo : "",
-            conteudo : "",
+            conteudo : "Divisão",
             espelho: "",
             fonte: "",
             alternativas: [{
@@ -249,12 +249,12 @@ angular.module('app')
 
 
         $scope.atualizaQuestao = function (questao, editingAprovacao) {
-            $scope.editingAprovacao = (editingAprovacao === undefined) ? false : true;
+            $scope.editingAprovacao = editingAprovacao;
             $rootScope.loading = false;
             $scope.inputError = false;
             $scope.alertEspelho = false;
 
-
+            
             $scope.update.fonte = questao.fonte;
             $scope.update.enunciado = questao.enunciado;
             $scope.update.tipo = questao.tipo;
@@ -278,7 +278,10 @@ angular.module('app')
                     $('#editarAprovacao').modal('show');
                 });
             }
-            $('.selectpicker').selectpicker();
+
+            $scope.$watch(function() {
+                $('.selectpicker').selectpicker('refresh');
+            });
         };
 
 
