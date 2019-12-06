@@ -73,16 +73,16 @@ angular.module('app')
 
             $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
                 then(function (response) {
-                    if (response.status == 200) {
-                        Notification.success('Questão criada com sucesso!');
-                        $location.path("/buscas");
-                    }
-                    else {
+                    Notification.success('Questão criada com sucesso!');
+                    $location.path("/buscas");
+                },function(err){
+                    if (err.status == 400) {
+                        signOut();
+                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                    } else {
                         Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
                     }
-                },function(){
-                    $location.path("/buscas");
                 }
             )
 
@@ -144,16 +144,16 @@ angular.module('app')
 
             $http.post(host + 'questao', questaoObj, AuthService.getAuthorization()).
                 then(function (response) {
-                    if (response.status == 200) {
-                        Notification.success('Questão criada com sucesso!');
-                        $location.path("/buscas");
-                    }
-                    else {
+                    Notification.success('Questão criada com sucesso!');
+                    $location.path("/buscas");
+                },function(){
+                    if (err.status == 400) {
+                        signOut();
+                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                    } else {
                         Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
                     }
-                },function(){
-                    $location.path("/buscas");
                 }
             )
 

@@ -28,6 +28,7 @@ angular.module('app')
       localStorageService.remove("user");
       localStorageService.remove("Authorization");
       localStorageService.remove("Permissions");
+      localStorageService.remove("listaAtiva");
     },
 
     service.getAuthorization = function () {

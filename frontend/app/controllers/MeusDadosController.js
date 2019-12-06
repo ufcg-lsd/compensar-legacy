@@ -41,13 +41,13 @@ angular.module('app')
 
             $http.put(host + 'usuario/', user, AuthService.getAuthorization()).
             then(function (response) {
-
-                if (response.status == 200) {
-                    Notification.success("Usuario atualizado com Sucesso!");
-                    $location.path("/meusdados");
-                }
-
-                else {
+                Notification.success("Usuario atualizado com Sucesso!");
+                $location.path("/meusdados");
+            }, function (err){
+                if (err.status == 400) {
+                    signOut();
+                    Notification.warning("Seu login expirou, por favor faça login novamente!");
+                } else {
                     Notification.error("Falha ao Atualizar dados!");
                     $location.path("/meusdados");
                 }

@@ -15,7 +15,11 @@ angular.module('app')
 
         
         deferred.resolve(response.data);
-      }, function () {
+      }, function (err) {
+        if (err.status == 400) {
+          signOut();
+          Notification.warning("Seu login expirou, por favor faça login novamente!");
+        }
         deferred.resolve([]);
       });
 
@@ -41,7 +45,11 @@ angular.module('app')
 
         deferred.resolve(response.data);
      
-      }, function () {
+      }, function (err) {
+        if (err.status == 400) {
+          signOut();
+          Notification.warning("Seu login expirou, por favor faça login novamente!");
+        }
         deferred.resolve([]);
 
         
@@ -57,18 +65,21 @@ angular.module('app')
 
         $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
-            if (response.status == 200) {
-              var  index = $rootScope.Questoes.indexOf(questao);
-              $rootScope.Questoes.splice(index,1);
-              hideModals();
-              $rootScope.loading = false;
-              Notification.success('Questão removida com sucesso!');
-              $location.path("/questoes");
+            var  index = $rootScope.Questoes.indexOf(questao);
+            $rootScope.Questoes.splice(index,1);
+            hideModals();
+            $rootScope.loading = false;
+            Notification.success('Questão removida com sucesso!');
+            $location.path("/questoes");
+          }).catch(function (err) {
+            if (err.status == 400) {
+              signOut();
+              Notification.warning("Seu login expirou, por favor faça login novamente!");
             } else {
               Notification.error('Falha ao remover questão!');
             }
-
-          }).catch(function () { deferred.resolve([]); });
+            deferred.resolve([]);
+          });
   },
 
 
@@ -77,26 +88,26 @@ angular.module('app')
 
     $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
       then(function (response) {
-        if (response.status == 200) {
-          let index = 0;
-            for(; index < $rootScope.Questoes.length; index++) {
-              if ($rootScope.Questoes[index].id === questao.id) {
-                break;
-              }
-            }
-            $rootScope.Questoes.splice(index,1,response.data);
-            $rootScope.loading = false;
-            hideModals();
+        let index = 0;
+        for(; index < $rootScope.Questoes.length; index++) {
+          if ($rootScope.Questoes[index].id === questao.id) {
+            break;
+          }
+        }
+        $rootScope.Questoes.splice(index,1,response.data);
+        $rootScope.loading = false;
+        hideModals();
 
-            Notification.success('Questão atualizada com sucesso!');
-            $location.path("/questoes");
-        }
-        else {
-            Notification.error('Falha ao atualizar questão!');
-            $location.path("/questoes");
-        }
-    },function(){
+        Notification.success('Questão atualizada com sucesso!');
         $location.path("/questoes");
+    },function(err){
+      if (err.status == 400) {
+        signOut();
+        Notification.warning("Seu login expirou, por favor faça login novamente!");
+      } else {
+        Notification.error('Falha ao atualizar questão!');
+        $location.path("/questoes");
+      }
     });
 },
 
@@ -105,21 +116,21 @@ service.publicaQuestao = function (questao) {
 
   $http.put(host + 'questao/publish/' + questao.id, {}, AuthService.getAuthorization()).
     then(function (response) {
-      if (response.status == 200) {
-          var  index = $rootScope.Questoes.indexOf(questao);
-          $rootScope.Questoes.splice(index,1,response.data);
-          $rootScope.loading = false;
-          hideModals();
+      var  index = $rootScope.Questoes.indexOf(questao);
+      $rootScope.Questoes.splice(index,1,response.data);
+      $rootScope.loading = false;
+      hideModals();
 
-          Notification.success('Questão publicada com sucesso!');
-          $location.path("/questoes");
-      }
-      else {
-          Notification.error('Falha ao publicar questão!');
-          $location.path("/questoes");
-      }
-  },function(){
+      Notification.success('Questão publicada com sucesso!');
       $location.path("/questoes");
+  },function(err){
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
+    } else {
+      Notification.error('Falha ao publicar questão!');
+          $location.path("/questoes");
+    }
   });
 },
 
@@ -131,17 +142,18 @@ service.publicaQuestao = function (questao) {
       lista.questoes = questoes;
       $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
         then(function (response) {
-            if (response.status == 200) {
-                Notification.success('Lista criada com sucesso!');
-                $location.path("/questoes");
-                service.getListaQuestoes();
-              }
-            else {
-                Notification.error('Falha no envio da lista!');
-                $location.path("/questoes");
-              }
-        },function(){
+          Notification.success('Lista criada com sucesso!');
           $location.path("/questoes");
+          service.getListaQuestoes();
+            
+        },function(err){
+          if (err.status == 400) {
+            signOut();
+            Notification.warning("Seu login expirou, por favor faça login novamente!");
+          } else {
+            Notification.error('Falha no envio da lista!');
+            $location.path("/questoes");
+          }
         }
     )
   },
@@ -151,7 +163,11 @@ service.publicaQuestao = function (questao) {
       then(function (response) {
         $rootScope.listas = response.data.content;
         deferred.resolve(response.data.content);
-      }, function () {
+      }, function (err) {
+        if (err.status == 400) {
+          signOut();
+          Notification.warning("Seu login expirou, por favor faça login novamente!");
+        }
         deferred.resolve([]);
       });
 
@@ -163,7 +179,11 @@ service.publicaQuestao = function (questao) {
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
     deferred.resolve(response.data);
-  }, function () {
+  }, function (err) {
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
+    }
     deferred.resolve([]);
   });
 
@@ -175,16 +195,18 @@ service.publicaQuestao = function (questao) {
 
   $http.delete(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
     then(function (response) {
-      if (response.status == 200) {
-        $location.path("/questoes");
-        Notification.success('Lista removida com sucesso!');
+      $location.path("/questoes");
+      Notification.success('Lista removida com sucesso!');
+    }).catch(function (err) {
+      if (err.status == 400) {
+        signOut();
+        Notification.warning("Seu login expirou, por favor faça login novamente!");
       } else {
         Notification.error('Falha ao remover lista!');
         $location.path("/questoes");      
       }
-
-    }).catch(function () { deferred.resolve([]);         $location.path("/questoes");
-  });
+      deferred.resolve([]);
+    });
 },
 
 service.sendUpdateLista = function (lista,novaLista) {
@@ -195,113 +217,115 @@ service.sendUpdateLista = function (lista,novaLista) {
   novaLista.questoes = questoes;
   $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
     then(function (response) {
-      if (response.status == 200) {
-          let index = 0;
-          for(; index < $rootScope.listas.length; index++) {
-            if ($rootScope.listas[index].id === lista.id) {
-              break;
-            }
-          }
-          $rootScope.listas[index] = response.data;
-          $rootScope.listaEmExibicao = response.data;
+    let index = 0;
+    for(; index < $rootScope.listas.length; index++) {
+      if ($rootScope.listas[index].id === lista.id) {
+        break;
+      }
+    }
+    $rootScope.listas[index] = response.data;
+    $rootScope.listaEmExibicao = response.data;
 
-          Notification.success('Lista atualizada com sucesso!');
-          return response.data;
-      }
-      else {
-        Notification.error('Falha ao atualizar lista!');
-          $location.path("/questoes");
-      }
-  },function(){
-      $location.path("/questoes");
+    Notification.success('Lista atualizada com sucesso!');
+    return response.data;
+  },function(err){
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
+    } else {
+      Notification.error('Falha ao atualizar lista!');
+        $location.path("/questoes");
+    }
   });
 },
 
 service.getCompetencias = function (enunciado) {
   return $http.post(host + 'competencias', enunciado, AuthService.getAuthorization()).
     then(function (response) {
-        if (response.status == 200) {
-          $rootScope.competencias = response.data;
-          $rootScope.loading = false;
-          console.log($rootScope.competencias)
-          Notification.success('Feedback das competências obtido com sucesso!');
-        }
-        else {
-            Notification.error('Falha no feedback das competências!');
-            $rootScope.loading = false;
-        }
-    },function() {}
+      $rootScope.competencias = response.data;
+      $rootScope.loading = false;
+      console.log($rootScope.competencias)
+      Notification.success('Feedback das competências obtido com sucesso!');
+    },function(err) {
+      if (err.status == 400) {
+        signOut();
+        Notification.warning("Seu login expirou, por favor faça login novamente!");
+      } else {
+        Notification.error('Falha no feedback das competências!');
+        $rootScope.loading = false;
+      }
+    }
   )
 }
 
 service.getQuestaoPendente = function() {
   return $http.get(host + 'questao/pendente/', AuthService.getAuthorization())
   .then(function(response) {
-    if (response.status == 200) {
-      $rootScope.questaoSobAvaliacao = response.data;
+    $rootScope.questaoSobAvaliacao = response.data;
+  }, function(err) {
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
     } else {
       Notification.warning('Nenhuma questão pendente de sua avaliação!');
     }
-  }, function() {
-    Notification.warning('Nenhuma questão pendente de sua avaliação!');
   })
 }
 
 service.getQuestaoAvaliada = function() {
   return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
   .then(function(response) {
-    if (response.status == 200) {
-      return response;
-      
+    return response;
+  }, function() {
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
     } else {
       Notification.warning('Nenhuma questão pendente de sua aprovação!');
     }
-    return response;
-  }, function() {
-    Notification.warning('Nenhuma questão pendente de sua aprovação!');
   })
 }
 
 service.aprovaQuestao = function(questao, novaQuestao) {
   return $http.put(host + 'questao/aprove/' + questao.id, novaQuestao, AuthService.getAuthorization())
   .then(function(response) {
-    if (response.status == 200) {
-      if (!$rootScope.apenasAutor) {
-        $rootScope.Questoes.push(response.data);
-      }
-      Notification.success('Questão aprovada com sucesso!');
-      $location.path("/questoes");
-    } else {
-      Notification.error('Falha ao aprovar da questão!');
-      $location.path("/questoes");
+    if (!$rootScope.apenasAutor) {
+      $rootScope.Questoes.push(response.data);
     }
-    $rootScope.loading = false;
-    hideModals();
-  }, function() {
-    Notification.error('Falha ao aprovar da questão!');
+    Notification.success('Questão aprovada com sucesso!');
     $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
+  }, function() {
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
+    } else {
+      Notification.error('Falha ao aprovar da questão!');
+      $location.path("/questoes");
+      $rootScope.loading = false;
+      hideModals();
+    }
   })
 }
 
 service.rejeitaQuestao = function(questao) {
   return $http.put(host + 'questao/reject/' + questao.id, {}, AuthService.getAuthorization())
   .then(function(response) {
-    if (response.status == 200) {
-      Notification.success('Questão rejeitada com sucesso!');
-      $location.path("/questoes");
-    } else {
-      Notification.error('Falha ao rejeitar da questão!');
-      $location.path("/questoes");
-    }
-    $rootScope.loading = false;
-    hideModals();
-  }, function() {
-    Notification.error('Falha ao rejeitar da questão!');
+    Notification.success('Questão rejeitada com sucesso!');
     $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
+  }, function() {
+    if (err.status == 400) {
+      signOut();
+      Notification.warning("Seu login expirou, por favor faça login novamente!");
+    } else {
+      Notification.error('Falha ao rejeitar a questão!');
+      $location.path("/questoes");
+      $rootScope.loading = false;
+      hideModals();
+    }
   })
 }
 

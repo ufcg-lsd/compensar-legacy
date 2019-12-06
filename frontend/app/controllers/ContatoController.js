@@ -18,16 +18,16 @@ angular.module('app')
     
                 $http.post(host + 'email', email).
                 then(function (response) {
-                    if (response.status == 200) {
-                        Notification.success("Mensagem enviada com sucesso!");        
-                        $location.path("/login");
-                    }
-                    else {
+                    Notification.success("Mensagem enviada com sucesso!");        
+                    $location.path("/login");
+                },function(){
+                    if (err.status == 400) {
+                        signOut();
+                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                    } else {
                         Notification.error("Falha no envio do email!");
                         $location.path("/login");
                     }
-                },function(){
-                    $location.path("/login");
                 }
                 );
             };

@@ -351,7 +351,6 @@ angular.module('app')
                     $('#ModalEdicao').modal('show');
                 });
                 
-                console.log("aaaa");
                 questao.enunciado = $scope.update.enunciado;
             });
             
@@ -375,10 +374,11 @@ angular.module('app')
                 if (i === (competencias.length - 1) && i === 0) {
                     $scope.amostraCompetencias += (compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".");
                 } else if (i === (competencias.length - 1)) {
-                    $scope.amostraCompetencias += ("e " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".");
-                }
-                else {
-                    $scope.amostraCompetencias += (compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ", ");
+                    $scope.amostraCompetencias += " e " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".";
+                } else if (i === 0) {
+                    $scope.amostraCompetencias += compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+                } else {
+                    $scope.amostraCompetencias += ", " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
                 }
             }      
         }
@@ -506,15 +506,17 @@ angular.module('app')
 
         $http.post(host + 'avaliacao', avaliacao, AuthService.getAuthorization()).
             then(function (response) {
-                if (response.status == 200) {
-                    $("#ModalAvaliacao").modal('toggle');
-                    hideModals();
-                    Notification.success('Avaliação criada com sucesso!');
-                }
-                else {
-                    Notification.error("Falha no envio da questão");
-                }
+                $("#ModalAvaliacao").modal('toggle');
+                hideModals();
+                Notification.success('Avaliação criada com sucesso!');
             },function(){
+                if (err.status == 400) {
+                    signOut();
+                    Notification.warning("Seu login expirou, por favor faça login novamente!");
+                } else {
+                    Notification.error("Falha no envio da avaliação");
+                    $location.path("/buscas");
+                }
             }
         )
 
