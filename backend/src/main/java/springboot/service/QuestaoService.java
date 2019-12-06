@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import com.mongodb.BasicDBObject;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -140,15 +139,8 @@ public class QuestaoService {
 			"{\n" +
 			"    \"$lookup\": {\n" +
 			"        \"from\": \"usuario\",\n" +
-			"        \"pipeline\": [{\n" +
-			"            \"$match\": {\n" +
-			"                \"$expr\": {\n" +
-			"                    \"$and\": [\n" +
-			"                        { \"$eq\": [ \"$autor\", \"$id\" ] }\n" +
-			"                    ]\n" +
-			"                }\n" +
-			"            }\n" +
-			"        }],\n" +
+			"        \"localField\": \"autor\",\n" +
+			"        \"foreignField\": \"_id\",\n" +
 			"        \"as\": \"autorInfo\"\n" +
 			"    }\n" +
 			"}"
