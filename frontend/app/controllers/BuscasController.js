@@ -521,7 +521,8 @@ angular.module('app')
     };
 
     $scope.isJudge = function() {
-        return AuthService.getPermissions().indexOf('JUDGE') !== -1;
+        let permissions = AuthService.getPermissions();
+        return permissions != null && permissions.indexOf('JUDGE') !== -1;
     };
 
 });

@@ -27,6 +27,7 @@ angular.module('app')
     service.logout = () => {
       localStorageService.remove("user");
       localStorageService.remove("Authorization");
+      localStorageService.remove("Permissions");
     },
 
     service.getAuthorization = function () {

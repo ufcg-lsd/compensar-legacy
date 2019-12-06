@@ -31,7 +31,6 @@ angular.module('app')
 
         if($rootScope.painelListaEmContrucao) {
           $rootScope.painelListaEmContrucao = false;
-          $location.path("/buscas");
         } else {
           $rootScope.listaEmEdicao = false;
           $scope.exibeLista($rootScope.listaEmExibicao);

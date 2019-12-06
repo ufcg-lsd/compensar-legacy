@@ -15,7 +15,7 @@ angular.module('app')
         `);
         let i = 1;
         for(let questao of listaAtiva.questoes) {
-            addLista(`<h3>Questão ${i++}:</h3><br>${questao.enunciado}<br>`);
+            addLista(`<h3>Questão ${i++} (<strong>${questao.fonte}</strong>):</h3><br>${questao.enunciado}<br>`);
             if (questao.tipo === "Objetiva") {
                 addLista(`<p>a) ${questao.alternativas[0].texto}<p>`);
                 addLista(`<p>b) ${questao.alternativas[1].texto}<p>`);
@@ -32,7 +32,7 @@ angular.module('app')
         `);
         i = 1;
         for(let questao of listaAtiva.questoes) {
-            addRespostas(`<h3>Questão ${i++}:</h3><br>`);
+            addRespostas(`<h3>Questão ${i++} (<strong>${questao.fonte}</strong>):</h3><br>`);
             if (questao.tipo === "Objetiva") {
                 let alts = questao.alternativas;
                 addRespostas(alts[0].correta ? `<strong><p>a) ${alts[0].texto}<p></strong>` : `<p>a) ${alts[0].texto}<p>`);
