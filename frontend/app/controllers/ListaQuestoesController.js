@@ -88,12 +88,17 @@ angular.module('app')
     };
 
     $scope.setListaEmConstrucao = function () {
+      limpaTabsQuestoes();
+
       $rootScope.minhasListas = false;
       $rootScope.painelListas = true;
     };
 
 
     $scope.exibeLista = function (lista) {
+      limpaTabsQuestoes()
+      document.querySelector(".nav-tabs .nav-item.dropdown .nav-link").classList.add("active");
+
       $rootScope.listaEmExibicao = lista;
       $rootScope.nomeLista = lista.nomeLista;
 
@@ -119,6 +124,7 @@ angular.module('app')
 
 
     $scope.atualizaLista = function() {
+      limpaTabsQuestoes();
       $rootScope.listaEmEdicao = true;
       $rootScope.painelListaEmContrucao = false;
       $rootScope.minhasListas = false; 

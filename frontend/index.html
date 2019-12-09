@@ -211,6 +211,13 @@ function hideModals() {
     $('.modal-backdrop').remove();
 }
 
+function limpaTabsQuestoes() {
+    let navLinks = document.querySelectorAll(".nav-tabs .nav-link");
+    for (let link of navLinks) {
+        link.classList.remove("active");
+    }
+}
+
 </script>
 
 </body>

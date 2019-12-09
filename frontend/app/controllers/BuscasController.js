@@ -174,6 +174,7 @@ angular.module('app')
 
         $rootScope.nomeListaEscolhida = "";
         $scope.setApenasAutor = function () {
+            limpaTabsQuestoes();
             $rootScope.nomeListaEscolhida = "";
             $scope.autorSearch = $rootScope.email_usuario;
             $rootScope.apenasAutor = true;
@@ -183,6 +184,7 @@ angular.module('app')
         };
 
         $scope.setTodasQuestoes = function () {
+            limpaTabsQuestoes();
             $rootScope.nomeListaEscolhida = "";
             $scope.autorSearch = "";
             $rootScope.apenasAutor = false;
@@ -357,6 +359,7 @@ angular.module('app')
             });
             
         } else {
+            $scope.update.enunciado = $scope.update.tempEnunciado;
             $scope.inputError = false;
             $scope.sendUpdate(questao);
         }
