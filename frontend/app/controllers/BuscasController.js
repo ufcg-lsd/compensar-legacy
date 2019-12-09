@@ -280,7 +280,9 @@ angular.module('app')
             }
 
             $scope.$watch(function() {
-                $('.selectpicker').selectpicker('refresh');
+                if($('.selectpicker') !== null) {
+                    $('.selectpicker').selectpicker('refresh');
+                }
             });
         };
 
@@ -363,24 +365,24 @@ angular.module('app')
 
 
         $scope.competenciasRepaginadas = [];
-        $scope.amostraCompetencias = "";
         $scope.repaginaCompetencias = function (competencias) {
             $scope.competenciasRepaginadas = [];
-            $scope.amostraCompetencias = "";
+            let amostraCompetencias = "";
             for (let i = 0; i < (competencias.length); i++) {
                 var compSplitted = competencias[i].split("_");
                 var compLowerCase = compSplitted[1].toLowerCase();
-                $scope.competenciasRepaginadas[i] = compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+                $scope.competenciasRepaginadas.push(compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1));
                 if (i === (competencias.length - 1) && i === 0) {
-                    $scope.amostraCompetencias += (compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".");
+                    amostraCompetencias += (compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".");
                 } else if (i === (competencias.length - 1)) {
-                    $scope.amostraCompetencias += " e " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".";
+                    amostraCompetencias += " e " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".";
                 } else if (i === 0) {
-                    $scope.amostraCompetencias += compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+                    amostraCompetencias += compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
                 } else {
-                    $scope.amostraCompetencias += ", " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+                    amostraCompetencias += ", " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
                 }
-            }      
+            }
+            return amostraCompetencias;  
         }
 
 

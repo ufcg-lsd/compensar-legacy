@@ -500,9 +500,8 @@
 
                                         <b>Competências:</b>
 
-                                        {{repaginaCompetencias(questao.competencias)}}
 
-                                        <em class="text-primary">{{amostraCompetencias}}</em>
+                                        <em class="text-primary">{{repaginaCompetencias(questao.competencias)}}</em>
 
                                         <hr>
 
@@ -866,11 +865,7 @@
                                                 
             <!-- Modal body -->
             <div class="modal-body">
-                <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
-                        <span  class="col-1">
-                            <em>{{competencia}} </em>
-                        </span>
-                </div> 
+                <em>{{repaginaCompetencias(competencias)}} </em>
             </div>
         </div>
     </div>
