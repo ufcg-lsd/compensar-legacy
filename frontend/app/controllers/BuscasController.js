@@ -517,7 +517,7 @@ angular.module('app')
                 $("#ModalAvaliacao").modal('toggle');
                 hideModals();
                 Notification.success('Avaliação criada com sucesso!');
-            },function(){
+            },function(err){
                 if (err.status == 400) {
                     signOut();
                     Notification.warning("Seu login expirou, por favor faça login novamente!");

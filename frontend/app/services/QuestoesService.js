@@ -276,7 +276,7 @@ service.getQuestaoAvaliada = function() {
   return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
   .then(function(response) {
     return response;
-  }, function() {
+  }, function(err) {
     if (err.status == 400) {
       signOut();
       Notification.warning("Seu login expirou, por favor faça login novamente!");
@@ -296,7 +296,7 @@ service.aprovaQuestao = function(questao, novaQuestao) {
     $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
-  }, function() {
+  }, function(err) {
     if (err.status == 400) {
       signOut();
       Notification.warning("Seu login expirou, por favor faça login novamente!");
@@ -316,7 +316,7 @@ service.rejeitaQuestao = function(questao) {
     $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
-  }, function() {
+  }, function(err) {
     if (err.status == 400) {
       signOut();
       Notification.warning("Seu login expirou, por favor faça login novamente!");

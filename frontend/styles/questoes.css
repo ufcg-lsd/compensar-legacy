@@ -138,21 +138,10 @@ button {
   margin-inline-start: 2%;
 }
 
-[ng-quill-editor] {
-  display: block; 
+ng-quill-editor {
+  display: block;
+  margin-block-end: 15px;
 }
-
-#quill{
-    height: 250px;
-}
-
-#updateEnunciado {
-height: 250px;
-
-margin-block-end: 20%;
-
-}
-
 .fonteConteudo {
 margin-inline-end: 20%;}
 

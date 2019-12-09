@@ -20,7 +20,7 @@ angular.module('app')
                 then(function (response) {
                     Notification.success("Mensagem enviada com sucesso!");        
                     $location.path("/login");
-                },function(){
+                },function(err){
                     if (err.status == 400) {
                         signOut();
                         Notification.warning("Seu login expirou, por favor faça login novamente!");
