@@ -234,7 +234,7 @@ margin-inline-end: 20%;}
   padding-right: 10%;
 }
 
-.badge {
+#estadoQuestaoBadge > .badge {
   padding: 5px !important;
   right: 25px;
   position: absolute;
