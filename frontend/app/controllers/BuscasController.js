@@ -61,7 +61,7 @@ angular.module('app')
             $scope.pagination.current = 0;
         }
 
-        $scope.competencias = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
+        $scope.competenciaList = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
         "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
         "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"];
 
@@ -77,7 +77,7 @@ angular.module('app')
             if($event.currentTarget.id === "customCheck1") {
                 if (!$scope.checkAll) {
                     $scope.checkAll = true;
-                    $scope.questao.competencias = angular.copy($scope.competencias);
+                    $scope.questao.competencias = angular.copy($scope.competenciaList);
                   } else {
                     $scope.checkAll = false;
                     $scope.questao.competencias = [];
@@ -224,6 +224,7 @@ angular.module('app')
              
         $scope.update = {
             enunciado : "",
+            tempEnunciado: "",
             tipo : "",
             conteudo : "Divisão",
             espelho: "",
@@ -256,7 +257,7 @@ angular.module('app')
 
             
             $scope.update.fonte = questao.fonte;
-            $scope.update.enunciado = questao.enunciado;
+            $scope.update.tempEnunciado = questao.enunciado;
             $scope.update.tipo = questao.tipo;
             $scope.update.conteudo = questao.conteudo;
             $rootScope.competencias = questao.competencias;
@@ -328,7 +329,7 @@ angular.module('app')
     $scope.inputError = false;
     $scope.checkEdicaoInput = function (questao) {
         if ($scope.update.conteudo === "" || typeof $scope.update.conteudo === 'undefined' ||
-        $scope.update.enunciado === "" ||  $scope.update.enunciado === null ||
+        $scope.update.tempEnunciado === "" ||  $scope.update.tempEnunciado === null ||
         $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
         $scope.update.tipo === "" || typeof $scope.update.tipo === 'undefined') {
             $scope.inputError = true;
@@ -343,8 +344,8 @@ angular.module('app')
             ($scope.update.espelho === "" || 
             $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
-        } else if (!$scope.editingAprovacao && $scope.update.enunciado !== questao.enunciado) {
-            QuestoesService.getCompetencias($scope.update.enunciado).then(() => {
+        } else if (!$scope.editingAprovacao && $scope.update.enunciado !== $scope.update.tempEnunciado) {
+            QuestoesService.getCompetencias($scope.update.tempEnunciado).then(() => {
                 $scope.repaginaCompetencias($rootScope.competencias);
                 $('#ModalEdicao').modal('toggle');
                 $('#ModalEdicao').modal({backdrop: 'static', keyboard: false});
@@ -352,8 +353,7 @@ angular.module('app')
                 $('a[href$="#ModalEdicao"]').on( "click", function() {
                     $('#ModalEdicao').modal('show');
                 });
-                
-                questao.enunciado = $scope.update.enunciado;
+                $scope.update.enunciado = $scope.update.tempEnunciado;
             });
             
         } else {
@@ -366,6 +366,9 @@ angular.module('app')
 
         $scope.competenciasRepaginadas = [];
         $scope.repaginaCompetencias = function (competencias) {
+            if (competencias === undefined) {
+                return "";
+            }
             $scope.competenciasRepaginadas = [];
             let amostraCompetencias = "";
             for (let i = 0; i < (competencias.length); i++) {
