@@ -233,3 +233,9 @@ margin-inline-end: 20%;}
   padding-left: 10%;
   padding-right: 10%;
 }
+
+.badge {
+  padding: 5px !important;
+  right: 25px;
+  position: absolute;
+}

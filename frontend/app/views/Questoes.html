@@ -498,10 +498,19 @@
 
                                         <div class="ql-snow"><div class="enunciadoCompactado ql-editor" ng-bind-html="enunciadoShow"></div></div>
 
-                                        <b>Competências:</b>
-
-
-                                        <em class="text-primary">{{repaginaCompetencias(questao.competencias)}}</em>
+                                        <div class="row">
+                                            <div  class="col-11">
+                                                <b>Competências:</b>
+                                                <em class="text-primary">{{repaginaCompetencias(questao.competencias)}}</em>
+                                            </div>
+                                            <div  class="col-1" ng-if="getApenasAutor()" ng-switch="questao.estado">
+                                                <span class="badge badge-primary" ng-switch-when="RASCUNHO">Rascunho</span>
+                                                <span class="badge badge-success" ng-switch-when="PUBLICADA">Publicada</span>
+                                                <span class="badge badge-danger" ng-switch-when="REJEITADA">Rejeitada</span>
+                                                <span class="badge badge-warning" ng-switch-when="PEND_AVALIACAO">Pendente</span>
+                                                <span class="badge badge-warning" ng-switch-when="PEND_APROVACAO">Pendente</span>
+                                            </div>
+                                        </div>
 
                                         <hr>
 

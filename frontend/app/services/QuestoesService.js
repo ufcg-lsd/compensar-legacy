@@ -289,8 +289,15 @@ service.getQuestaoAvaliada = function() {
 service.aprovaQuestao = function(questao, novaQuestao) {
   return $http.put(host + 'questao/aprove/' + questao.id, novaQuestao, AuthService.getAuthorization())
   .then(function(response) {
-    if (!$rootScope.apenasAutor) {
-      $rootScope.Questoes.push(response.data);
+    let index = -1;
+    for(let i = 0; i < $rootScope.Questoes.length; i++) {
+      if ($rootScope.Questoes[i].id === questao.id) {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      $rootScope.Questoes.splice(index,1,response.data);
     }
     Notification.success('Questão aprovada com sucesso!');
     $location.path("/questoes");
@@ -312,6 +319,17 @@ service.aprovaQuestao = function(questao, novaQuestao) {
 service.rejeitaQuestao = function(questao) {
   return $http.put(host + 'questao/reject/' + questao.id, {}, AuthService.getAuthorization())
   .then(function(response) {
+    let index = -1;
+    for(let i = 0; i < $rootScope.Questoes.length; i++) {
+      if ($rootScope.Questoes[i].id === questao.id) {
+        index = i;
+        break;
+      }
+    }
+    if (index !== -1) {
+      $rootScope.Questoes.splice(index,1,response.data);
+    }
+    $rootScope.loading = false;
     Notification.success('Questão rejeitada com sucesso!');
     $location.path("/questoes");
     $rootScope.loading = false;
