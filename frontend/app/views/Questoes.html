@@ -416,8 +416,8 @@
                                                         <b>Sugestões de avaliadores:</b>
                                                     </div>
 
-                                                    <div class ="container" ng-repeat="sugestao in questao.sugestoes" >
-                                                        <em>{{sugestao}} </em>
+                                                    <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
+                                                        <em ng-bind-html="questao.sugestoes[$index]"></em>
                                                     </div>
 
                                                     <div><hr></div>
@@ -599,8 +599,8 @@
                                                                 <b>Sugestões de avaliadores:</b>
                                                             </div>
 
-                                                            <div class ="container" ng-repeat="sugestao in questao.sugestoes" >
-                                                                <em>{{sugestao}} </em>
+                                                            <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
+                                                                <em ng-bind-html="questao.sugestoes[$index]"></em>
                                                             </div>
 
                                                             <div><hr></div>
@@ -805,8 +805,8 @@
                                                                 <b>Sugestões de avaliadores:</b>
                                                             </div>
 
-                                                            <div class ="container" ng-repeat="sugestao in questao.sugestoes" >
-                                                                <em>{{sugestao}} </em>
+                                                            <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
+                                                                <em ng-bind-html="questao.sugestoes[$index]"></em>
                                                             </div>
 
                                                             <div><hr></div>

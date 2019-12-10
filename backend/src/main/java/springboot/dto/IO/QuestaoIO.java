@@ -26,9 +26,20 @@ public class QuestaoIO {
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
             for (Avaliacao aval : avaliacoes) {
                 avalPublicacoes.add(aval.getAvaliacaoPublicacao());
+                String tmp = "";
                 if (!aval.getObservacaoQuestao().trim().equals("")) {
-                    sugestoes.add(aval.getObservacaoQuestao());
+                    tmp += aval.getObservacaoQuestao();
                 }
+                if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.PRONTA)) {
+                    tmp += "<strong>(Pronta para publicação)</strong>";
+                } else if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.PEQUENAS_ALTERACOES)) {
+                    tmp += "<strong>(Necessita de pequenas alterações)</strong>";
+                } else if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.MUITAS_ALTERACOES)) {
+                    tmp += "<strong>(Necessita de muitas alterações)</strong>";
+                } else {
+                    tmp += "<strong>(Fora de contexto)</strong>";
+                }
+                sugestoes.add(tmp);
             }
         }
 
