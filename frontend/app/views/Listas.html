@@ -4,8 +4,8 @@
                 <!-- Caso seja "Minha Lista" ou a "Lista Atual em construção" -->
                 <div  ng-switch = "getMinhasListas(lista)">
                     <div ng-switch-when="false" class="row col" >
-                        <div class="col row">
-                                <input class="form-control col-10" type="text" placeholder="{{getName()}}" ng-model="$parent.nomeLista" ng-blur="updateNomeLista()">
+                        <div class="col">
+                                <input class="form-control col-12" type="text" placeholder="{{getName()}}" ng-model="$parent.nomeLista" ng-blur="updateNomeLista()">
                         </div>  
                     </div>
                     <div ng-switch-when="true" class="row col">
@@ -61,197 +61,227 @@
         <div  ng-switch = "getMinhasListas()">
             <div ng-switch-when="false">
                 <!-- "Lista Atual em construção" utilizando array de questoes em construcao -->
-                <div class= "questoes container tab-pane active" ng-repeat="questao in questoes">
+                <div class= "questoes  tab-pane active" ng-repeat="questao in questoes" >
+
                         <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                         <div class="row">
+                            <div class="col-8" ng-controller="ListaQuestoesController">
+                                <button  type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)"> 
+                                    <i class="fas fa-minus"></i>                               
+                                </button>
+                            </div>
+                            <div  class="col-4">
+                                <md-button  data-placement="right"  class="md-icon-button test-tooltip modal-bt" >
+                                    <md-tooltip md-direction="left">Ver detalhes</md-tooltip>
+                                    <md-icon    data-toggle="modal" data-target="#myModal{{$index}}">
+                                        <i class="fas fa-info-circle fa-lg"></i> 
+                                    </md-icon>
+                                </md-button>
+                            </div>
+                        </div>
+                        
+                        <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{questao.conteudo}}</div>
         
-                                <div class="col"><h6 class="modal-title">{{questao.conteudo}}</h6></div>
-                                <div class="col-8">
-                                        <button type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)"> 
-                                                <i class="fas fa-minus"></i>                               
-                                        </button>
-                                        <button data-placement="right" title="Ver detalhes"  
-                                        class="btn btn-outline-secondary btn-sm modal-bt" data-toggle="modal" data-target="#myModal{{$index}}">                
-                                                <i class="fas fa-info-circle fa-lg"></i>                        
-                                        </button>
-                                </div>
+                        <div class="ql-snow"><div class="enunciadoCompactado ql-editor" ng-bind-html="enunciadoShow"></div></div>
+        
+                        <div class="row">
+                            <div  class="col-11">
+                                <b>Competências:</b>
+                                <em class="text-primary">{{repaginaCompetencias(questao.competencias)}}</em>
+                            </div>
                         </div>
         
-                        <div class="enunciadoCompactado" ng-bind-html="enunciadoShow"></div>
-        
-                        <em class="text-secondary">{{repaginaCompetencias(questao.competencias)}}</em>
-        
+                        <hr>
         
                         <!-- The Modal -->
                         <div class="modal" id="myModal{{$index}}">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
-                                                                
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">{{questao.conteudo}}</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                                                
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                    
-                                <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow"></div></div>
-                                                                                                                                                        
-                                    <div class="row container">
-                                        <div><b>Autor:</b> <br> <em>{{questao.autor}} </em></div>
-                    
-                                        <div class="col-2"><b>Fonte:</b> <br> <em> {{questao.fonte}} </em></div>
-                                                        
-                                        <div class="col-2"><b>Tipo:</b> <br> <em>{{questao.tipo}} </em></div>                   
-                                </div> 
-                                        
-                                </div>
-                    
-                                <div class = "container"> <hr>           
-                                    <b>Competências:</b> </div>
+                                    
+                                    <!-- Modal Header -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">{{questao.conteudo}}</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+                                    
+                                    <!-- Modal body -->
+                                    <div class="modal-body">
+        
+                                        <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow"></div></div>
+                                                                                                                                
+                                        <div class="row container">
+                                            <div><b>Autor:</b><em> {{questao.autor}} </em></div>
+                                        </div>
+        
+                                        <div class="row container">
+                                            <div><b>Fonte:</b><em> {{questao.fonte}} </em></div>
+                                        </div>
+                                        <div class="row container">
+                                            <div><b>Tipo:</b><em> {{questao.tipo}} </em></div> 
+                                        </div>
+                                    </div>
+        
+                                    <div><hr></div>
+                                
+                                    <div class = "container"><b>Competências:</b> </div>
                                     <div class =  "section">
-                    
-                                    <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
-                                        <span  class="col-1">
-                                            <em>{{competencia}} </em>
-                                        </span>
-                                    </div> 
-                    
-                                    </div> 
-                                                            
+        
+                                        <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
+                                            <span  class="col-1">
+                                                <em>{{competencia}} </em>
+                                            </span>
+                                        </div> 
+        
+                                    </div>
+        
                                     <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
                                     <div id = "camposEspecificos" ng-switch = "isObjective(questao.tipo)">
                                         <hr>
                                         <div ng-switch-when="false" class = "container">
                                             <div class="espelho "> <b>Espelho:</b> 
-                                                {{updateViewQuill(questao.espelho,"espelho")}}</div>                               
-                                                <p ng-bind-html="espelhoShow"></p>                             
+                                                {{updateViewQuill(questao.espelho,"espelho")}}</div>
+        
+                                            <p ng-bind-html="espelhoShow"></p>
+        
                                         </div>
                                         <div ng-switch-when="true">
-                                            <div class = "container"> <b>Alternativas:</b> </div>                                                                          
-                                                <div class =  "section">
-                                                    <div ng-repeat="alternativa in questao.alternativas" ng-class="{wrap:!($index % 5)}">
-                                                        <span class="col-1"><b>{{getLetter($index)}})</b> 
-                                                            {{alternativa.texto}}
-                                                            <span  ng-switch = "{{alternativa.correta}}">
+                                            <div class = "container"> <b>Alternativas:</b> </div>
+                                            
+                                            <div class =  "section">
+                                                <div  ng-repeat="alternativa in questao.alternativas" ng-class="{wrap:!($index % 5)}">
+                                                    <span class="col-1"><b>{{getLetter($index)}})</b> 
+                                                    {{alternativa.texto}}
+                                                        <span  ng-switch = "{{alternativa.correta}}">
                                                             <span ng-switch-when="false">
-                                                                <i class="fas fa-times-circle" ></i>                
+                                                                <i class="fas fa-times-circle" ></i>
                                                             </span>
                                                             <span ng-switch-when="true">
                                                                 <i class='fas fa-check-circle correta' ></i>
                                                             </span>
-                                                            </span>
                                                         </span>
-                                                    </div>
+                                                    </span>
                                                 </div>
-                                                <br>
+                                            </div>
+                                            <br>
                                         </div>
                                     </div>
-        
-                                    </div>
-                                                                
+                                </div>
                             </div>
-                        </div>                   
-                </div>
+                        </div>
+                    </div>
             </div>
             
-            <div ng-switch-when="true">   
-                <!-- "Minha Lista" com mudança utilizando array de questões ja criado -->
-                <div class= "questoes container tab-pane active" ng-repeat="questao in Questoes">
-                        <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
-                        <div class="row">
-        
-                                <div class="col"><h6 class="modal-title">{{questao.conteudo}}</h6></div>
-                                <div class="col-8">
+            <div ng-switch-when="true">
 
 
+            <div class= "questoes  tab-pane active" ng-repeat="questao in Questoes" >
 
-                                    
-                                        <button data-placement="right" title="Ver detalhes"  
-                                        class="btn btn-outline-secondary btn-sm modal-bt" data-toggle="modal" data-target="#myModal{{$index}}">                
-                                                <i class="fas fa-info-circle fa-lg"></i>                        
-                                        </button>
-                                </div>
-                        </div>
-        
-                        <div class="enunciadoCompactado" ng-bind-html="enunciadoShow"></div>
-        
-                        <em class="text-secondary">{{repaginaCompetencias(questao.competencias)}}</em>
-        
-        
-                        <!-- The Modal -->
-                        <div class="modal" id="myModal{{$index}}">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                                                
-                                <!-- Modal Header -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title">{{questao.conteudo}}</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-                                                                
-                                <!-- Modal body -->
-                                <div class="modal-body">
-                    
-                                <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow"></div></div>
-                                                                                                                                                        
-                                    <div class="row container">
-                                        <div><b>Autor:</b> <br> <em>{{questao.autor}} </em></div>
-                    
-                                        <div class="col-2"><b>Fonte:</b> <br> <em> {{questao.fonte}} </em></div>
-                                                        
-                                        <div class="col-2"><b>Tipo:</b> <br> <em>{{questao.tipo}} </em></div>                   
-                                </div> 
-                                        
-                                </div>
-                    
-                                <div class = "container"> <hr>           
-                                    <b>Competências:</b> </div>
-                                    <div class =  "section">
-                    
-                                    <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
-                                        <span  class="col-1">
-                                            <em>{{competencia}} </em>
-                                        </span>
-                                    </div> 
-                    
-                                    </div> 
-                                                            
-                                    <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
-                                    <div id = "camposEspecificos" ng-switch = "isObjective(questao.tipo)">
-                                        <hr>
-                                        <div ng-switch-when="false" class = "container">
-                                            <div class="espelho "> <b>Espelho:</b> 
-                                                {{updateViewQuill(questao.espelho,"espelho")}}</div>                               
-                                                <p ng-bind-html="espelhoShow"></p>                             
-                                        </div>
-                                        <div ng-switch-when="true">
-                                            <div class = "container"> <b>Alternativas:</b> </div>                                                                          
-                                                <div class =  "section">
-                                                    <div ng-repeat="alternativa in questao.alternativas" ng-class="{wrap:!($index % 5)}">
-                                                        <span class="col-1"><b>{{getLetter($index)}})</b> 
-                                                            {{alternativa.texto}}
-                                                            <span  ng-switch = "{{alternativa.correta}}">
-                                                            <span ng-switch-when="false">
-                                                                <i class="fas fa-times-circle" ></i>                
-                                                            </span>
-                                                            <span ng-switch-when="true">
-                                                                <i class='fas fa-check-circle correta' ></i>
-                                                            </span>
-                                                            </span>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                        </div>
-                                    </div>
-        
-                                    </div>
-                                                                
-                            </div>
-                        </div>                   
+                <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
+                <div class="row">
+                    <div class="col-8" ng-controller="ListaQuestoesController">
+                        <button  type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)"> 
+                            <i class="fas fa-minus"></i>                               
+                        </button>
+                    </div>
+                    <div  class="col-4">
+                        <md-button  data-placement="right"  class="md-icon-button test-tooltip modal-bt" >
+                            <md-tooltip md-direction="left">Ver detalhes</md-tooltip>
+                            <md-icon    data-toggle="modal" data-target="#myModal{{$index}}">
+                                <i class="fas fa-info-circle fa-lg"></i> 
+                            </md-icon>
+                        </md-button>
+                    </div>
                 </div>
+                
+                <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{questao.conteudo}}</div>
+
+                <div class="ql-snow"><div class="enunciadoCompactado ql-editor" ng-bind-html="enunciadoShow"></div></div>
+
+                <div class="row">
+                    <div  class="col-11">
+                        <b>Competências:</b>
+                        <em class="text-primary">{{repaginaCompetencias(questao.competencias)}}</em>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- The Modal -->
+                <div class="modal" id="myModal{{$index}}">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">{{questao.conteudo}}</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            
+                            <!-- Modal body -->
+                            <div class="modal-body">
+
+                                <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow"></div></div>
+                                                                                                                        
+                                <div class="row container">
+                                    <div><b>Autor:</b><em> {{questao.autor}} </em></div>
+                                </div>
+
+                                <div class="row container">
+                                    <div><b>Fonte:</b><em> {{questao.fonte}} </em></div>
+                                </div>
+                                <div class="row container">
+                                    <div><b>Tipo:</b><em> {{questao.tipo}} </em></div> 
+                                </div>
+                            </div>
+
+                            <div><hr></div>
+                        
+                            <div class = "container"><b>Competências:</b> </div>
+                            <div class =  "section">
+
+                                <div class="competencias" ng-repeat="competencia in competenciasRepaginadas"  ng-class="{wrap:!($index % 4)}">
+                                    <span  class="col-1">
+                                        <em>{{competencia}} </em>
+                                    </span>
+                                </div> 
+
+                            </div>
+
+                            <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
+                            <div id = "camposEspecificos" ng-switch = "isObjective(questao.tipo)">
+                                <hr>
+                                <div ng-switch-when="false" class = "container">
+                                    <div class="espelho "> <b>Espelho:</b> 
+                                        {{updateViewQuill(questao.espelho,"espelho")}}</div>
+
+                                    <p ng-bind-html="espelhoShow"></p>
+
+                                </div>
+                                <div ng-switch-when="true">
+                                    <div class = "container"> <b>Alternativas:</b> </div>
+                                    
+                                    <div class =  "section">
+                                        <div  ng-repeat="alternativa in questao.alternativas" ng-class="{wrap:!($index % 5)}">
+                                            <span class="col-1"><b>{{getLetter($index)}})</b> 
+                                            {{alternativa.texto}}
+                                                <span  ng-switch = "{{alternativa.correta}}">
+                                                    <span ng-switch-when="false">
+                                                        <i class="fas fa-times-circle" ></i>
+                                                    </span>
+                                                    <span ng-switch-when="true">
+                                                        <i class='fas fa-check-circle correta' ></i>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

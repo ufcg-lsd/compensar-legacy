@@ -96,7 +96,7 @@ angular.module('app')
 
 
     $scope.exibeLista = function (lista) {
-      limpaTabsQuestoes()
+      limpaTabsQuestoes();
       document.querySelector(".nav-tabs .nav-item.dropdown .nav-link").classList.add("active");
 
       $rootScope.listaEmExibicao = lista;
