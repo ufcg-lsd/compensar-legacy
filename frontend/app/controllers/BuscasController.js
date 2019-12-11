@@ -517,7 +517,7 @@ angular.module('app')
             avaliacaoPublicacao: $rootScope.avaliacao.avaliacaoPublicacao,
             questao: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
-            confianca: $rootScope.avaliacao.cofianca
+            confianca: $rootScope.avaliacao.confianca
         }
 
         $http.post(host + 'avaliacao', avaliacao, AuthService.getAuthorization()).
