@@ -21,24 +21,25 @@ angular.module('app')
         $scope.tipoSearch = "";
         $scope.conteudoSearch = "";
         $rootScope.apenasAutor = false;
-        $scope.avaliacaoPublicacao = "PRONTA";
         $scope.editingAprovacao = false;
 
-        $scope.competenciasAvaliador = {
-            "COMP_ABSTRAÇÃO": "false",
-            "COMP_ALGORITMOS": "false",
-            "COMP_ANÁLISE": "false",
-            "COMP_AUTOMAÇÃO": "false",
-            "COMP_COLETA": "false",
-            "COMP_DECOMPOSIÇÃO": "false",
-            "COMP_PARALELIZAÇÃO": "false",
-            "COMP_REPRESENTAÇÃO": "false",
-            "COMP_SIMULAÇÃO": "false"
-        };
-
-        $scope.confiancaAvaliacao = 0;
-        $scope.obsAvaliacao = "";
-        $scope.obsQuestao = "";
+        $rootScope.avaliacao = {
+            competencias: {
+                "COMP_ABSTRAÇÃO": "false",
+                "COMP_ALGORITMOS": "false",
+                "COMP_ANÁLISE": "false",
+                "COMP_AUTOMAÇÃO": "false",
+                "COMP_COLETA": "false",
+                "COMP_DECOMPOSIÇÃO": "false",
+                "COMP_PARALELIZAÇÃO": "false",
+                "COMP_REPRESENTAÇÃO": "false",
+                "COMP_SIMULAÇÃO": "false"
+            },
+            confianca: 0,
+            obsAvaliacao: "",
+            obsQuestao: "",
+            avaliacaoPublicacao: "PRONTA"
+        }
 
 
         $scope.pageChangeHandler = function(newPage) {
@@ -467,6 +468,13 @@ angular.module('app')
 
 
     $scope.getQuestaoPendente = function() {
+        for(let key of Object.keys($rootScope.avaliacao.competencias)) {
+            $rootScope.avaliacao.competencias[key] = "false";
+        }
+        $rootScope.avaliacao.confianca = 0;
+        $rootScope.avaliacao.obsAvaliacao = "";
+        $rootScope.avaliacao.obsQuestao = "";
+        $rootScope.avaliacao.avaliacaoPublicacao = "PRONTA";
         $rootScope.questaoSobAvaliacao = null;
         QuestoesService.getQuestaoPendente().then(() => {
             if ($rootScope.questaoSobAvaliacao !== null) {
@@ -497,19 +505,19 @@ angular.module('app')
     $scope.sendAvaliacao = function () {
 
         let arr = [];
-        for(let key of Object.keys($scope.competenciasAvaliador)) {
-            if ($scope.competenciasAvaliador[key] === "true") {
+        for(let key of Object.keys($rootScope.avaliacao.competencias)) {
+            if ($rootScope.avaliacao.competencias[key] === "true") {
                 arr.push(key);
             }
         }
 
         let avaliacao = {
-            observacaoAvaliacao: $scope.obsAvaliacao,
-            observacaoQuestao: $scope.obsQuestao,
-            avaliacaoPublicacao: $scope.avaliacaoPublicacao,
+            observacaoAvaliacao: $rootScope.avaliacao.obsAvaliacao,
+            observacaoQuestao: $rootScope.avaliacao.obsQuestao,
+            avaliacaoPublicacao: $rootScope.avaliacao.avaliacaoPublicacao,
             questao: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
-            confianca: $scope.confiancaAvaliacao
+            confianca: $rootScope.avaliacao.cofianca
         }
 
         $http.post(host + 'avaliacao', avaliacao, AuthService.getAuthorization()).
@@ -524,6 +532,7 @@ angular.module('app')
                 } else {
                     Notification.error("Falha no envio da avaliação");
                     $location.path("/buscas");
+                    hideModals();
                 }
             }
         )

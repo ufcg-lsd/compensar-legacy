@@ -320,7 +320,6 @@ public class QuestaoService {
 			"    }\n" +
 			"}"
 		)));
-        aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"qtdAvaliacoes\": { \"$lt\": 3 } } }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$match\": { \"avaliacao._id\": { \"$exists\": false }, \"estado\": \"PEND_AVALIACAO\" } }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$sort\" : { \"ultimoAcesso\" : 1 } }")));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$limit\" : 1 }")));
@@ -333,16 +332,7 @@ public class QuestaoService {
 			melhorQuestao.setUltimoAcesso(System.currentTimeMillis());
 			update(melhorQuestao, melhorQuestao.getId());
 		} catch(Exception e) {
-			try {
-				aggList.remove(1);
-				Aggregation agg = Aggregation.newAggregation(aggList);
-				List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
-				melhorQuestao = results.get(0);
-				melhorQuestao.setUltimoAcesso(System.currentTimeMillis());
-				update(melhorQuestao, melhorQuestao.getId());
-			} catch (Exception e2) {
-				throw new NoPendentQuestionException("Não existe nenhuma questão pendente de avaliação");
-			}
+			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de avaliação");
 		}
 
 		return melhorQuestao;

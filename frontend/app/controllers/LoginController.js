@@ -1,8 +1,5 @@
 angular.module('app')
   .controller('LoginController', function (ProfileService,$scope,$rootScope, $location, AuthService) {
-  
-    $rootScope.activetab = $location.path();
-
 
     $rootScope.login = (profile, auth) => {
           $rootScope.isLogged = true;
@@ -83,4 +80,7 @@ $scope.topFunction = function () {
   document.documentElement.scrollTop = 0;
 }
 
+$(document).ready(function() {
+  $scope.scrollFunction();
+});
 });

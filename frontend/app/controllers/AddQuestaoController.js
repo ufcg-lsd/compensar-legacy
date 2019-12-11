@@ -46,8 +46,8 @@ angular.module('app')
         $scope.enunciado = "";
         $scope.tipo = "";
         $scope.conteudo = "";
-        $scope.confiancaAvaliacao = 0;
-        $scope.obsAvaliacao = "";
+        $rootScope.avaliacao.cofianca = 0;
+        $rootScope.avaliacao.obsAvaliacao = "";
 
         $scope.title = '';
         $scope.changeDetected = false;
@@ -101,7 +101,7 @@ angular.module('app')
                     arr.push(key);
                 }
             }
-            return {competencias: arr, confianca: $scope.confiancaAvaliacao, observacao: $scope.obsAvaliacao};
+            return {competencias: arr, confianca: $rootScope.avaliacao.cofianca, observacao: $rootScope.avaliacao.obsAvaliacao};
         }
 
 

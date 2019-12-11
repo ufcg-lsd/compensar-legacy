@@ -880,7 +880,7 @@
     </div>
 </div>
 
-<div class="modal" id="ModalAvaliacao">
+<div class="modal" id="ModalAvaliacao" ng-controller="BuscasController">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             
@@ -954,86 +954,86 @@
                         <tbody>
                             <tr>
                                 <th scope="row">Abstração</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ABSTRAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ABSTRAÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ABSTRAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ABSTRAÇÃO']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Algoritmos</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ALGORITMOS']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ALGORITMOS']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ALGORITMOS']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ALGORITMOS']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Análise</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_ANÁLISE']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_ANÁLISE']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ANÁLISE']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ANÁLISE']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Automação</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_AUTOMAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_AUTOMAÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_AUTOMAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_AUTOMAÇÃO']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Coleta</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_COLETA']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_COLETA']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_COLETA']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_COLETA']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Decomposição</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_DECOMPOSIÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_DECOMPOSIÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_DECOMPOSIÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_DECOMPOSIÇÃO']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Paralelização</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_PARALELIZAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_PARALELIZAÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_PARALELIZAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_PARALELIZAÇÃO']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Representação</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_REPRESENTAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_REPRESENTAÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_REPRESENTAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_REPRESENTAÇÃO']"></td>
                             </tr>
                             <tr>
                                 <th scope="row">Simulação</th>
-                                <td><input type="radio" value="true" data-ng-model="competenciasAvaliador['COMP_SIMULAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="competenciasAvaliador['COMP_SIMULAÇÃO']"></td>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_SIMULAÇÃO']"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_SIMULAÇÃO']"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="form-group row"  >
-                    <label><h6>Seu nível de confiança nesta avaliação: {{confiancaAvaliacao}}%</h6></label>
-                    <input type="range" class="custom-range" min="0" max="100" step="1" data-ng-model="confiancaAvaliacao">
+                    <label><h6>Seu nível de confiança nesta avaliação: {{avaliacao.confianca}}%</h6></label>
+                    <input type="range" class="custom-range" min="0" max="100" step="1" data-ng-model="avaliacao.confianca">
                 </div>
 
                 <div class="form-group row"  >
                     <label><h6>Aqui você pode escrever alguma observação com relação a avaliação:</h6></label>
-                    <textarea class="form-control" data-ng-model="obsAvaliacao" rows="3"></textarea>
+                    <textarea class="form-control" data-ng-model="avaliacao.obsAvaliacao" rows="3"></textarea>
                 </div>
 
                 <div class="form-group row"  >
                     <label><h6>Aqui você pode escrever sugestões para a questão:</h6></label>
-                    <textarea class="form-control" data-ng-model="obsQuestao" rows="3"></textarea>
+                    <textarea class="form-control" data-ng-model="avaliacao.obsQuestao" rows="3"></textarea>
                 </div>
 
                 <div class="form-group row"  >
                     <label><h6>O quanto você acha que a questão está preparada para publicação:</h6></label>
                     <div class="custom-control custom-radio custom-control container text-left">
-                        <input type="radio" value="PRONTA"  id="radioPronta" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                        <input type="radio" value="PRONTA"  id="radioPronta" class="custom-control-input" data-ng-model="avaliacao.avaliacaoPublicacao"> 
                         <label class="custom-control-label" for="radioPronta">Pronta para publicação</label><br>
                     </div>
 
                     <div class="custom-control custom-radio custom-control container text-left">
-                        <input type="radio" value="PEQUENAS_ALTERACOES"  id="radioPequenasAlteracoes" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                        <input type="radio" value="PEQUENAS_ALTERACOES"  id="radioPequenasAlteracoes" class="custom-control-input" data-ng-model="avaliacao.avaliacaoPublicacao"> 
                         <label class="custom-control-label" for="radioPequenasAlteracoes">Necessita de pequenas alterações</label><br>
                     </div>
 
                     <div class="custom-control custom-radio custom-control container text-left">
-                        <input type="radio" value="MUITAS_ALTERACOES"  id="radioMuitasAlteracoes" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                        <input type="radio" value="MUITAS_ALTERACOES"  id="radioMuitasAlteracoes" class="custom-control-input" data-ng-model="avaliacao.avaliacaoPublicacao"> 
                         <label class="custom-control-label" for="radioMuitasAlteracoes">Necessita de muitas alterações</label><br>
                     </div>
 
                     <div class="custom-control custom-radio custom-control container text-left">
-                        <input type="radio" value="FORA_CONTEXTO"  id="radioForaContexto" class="custom-control-input" data-ng-model="avaliacaoPublicacao"> 
+                        <input type="radio" value="FORA_CONTEXTO"  id="radioForaContexto" class="custom-control-input" data-ng-model="avaliacao.avaliacaoPublicacao"> 
                         <label class="custom-control-label" for="radioForaContexto">Fora de contexto</label><br>
                     </div>
                 </div>

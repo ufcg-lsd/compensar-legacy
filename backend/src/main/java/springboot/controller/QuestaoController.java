@@ -115,14 +115,14 @@ public class QuestaoController {
 		return questaoService.getSetCompetencias(enunciado);
 	}
 
-	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de avaliação para o usuário.\r\n" + "")
+	@ApiOperation("Fornece uma questão pendente de avaliação para o usuário.\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
 	public QuestaoOutput getPendente(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
 		return convert(questaoService.getPendente(usuario), usuario, false);
 	}
 
-	@ApiOperation("Fornece um array de objetos do tipo questão correspondente às questões pendente de avaliação para o usuário.\r\n" + "")
+	@ApiOperation("Fornece uma questão pendente de aprovação para publicação para o usuário.\r\n" + "")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
 	@RequestMapping(value = "/questao/avaliada/", method = RequestMethod.GET)
 	public QuestaoOutput getAvaliada(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
