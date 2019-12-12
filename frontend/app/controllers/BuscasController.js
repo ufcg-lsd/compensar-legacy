@@ -64,12 +64,12 @@ angular.module('app')
 
         $scope.competenciaList = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
         "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"];
+        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "TODAS"];
 
         $scope.questao = {
             competencias: ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
             "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS"],
+            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "TODAS"],
             estados: ["RASCUNHO", "PEND_AVALIACAO", "PUBLICADA", "REJEITADA"]
         };
         $scope.checkAll = true;
@@ -81,17 +81,22 @@ angular.module('app')
                     $scope.questao.competencias = angular.copy($scope.competenciaList);
                   } else {
                     $scope.checkAll = false;
-                    $scope.questao.competencias = [];
                 }
             } else {
                 if(!$scope.questao.competencias.includes($event.currentTarget.value)) {
                     $scope.checkAll = false;
-                    document.querySelector("#customCheck1").checked = false;
-                    //uncheck all
+                    for(let i = $scope.questao.competencias.length-1; i >= 0; i--) {
+                        if ($scope.questao.competencias[i] === "TODAS") {
+                            $scope.questao.competencias.splice(i, 1);
+                            document.querySelector("#customCheck1").checked = false;
+                            //uncheck all
+                        }
+                    }
                 } else {
                     if($scope.questao.competencias.length === 9) {
                         $scope.checkAll = true;
                         document.querySelector("#customCheck1").checked = true;
+                        $scope.questao.competencias.push("TODAS");
                     }
                 }
             }

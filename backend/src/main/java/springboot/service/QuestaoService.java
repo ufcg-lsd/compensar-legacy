@@ -148,17 +148,20 @@ public class QuestaoService {
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"autorInfo\": false } }")));
 		iniciaColecoes();
 
-		enunciado = (enunciado.equals("null")) ? "" : enunciado;
+		/*
+		enunciado = (enunciado.equals("null")) ? "null" : enunciado;
 		autorEmail = (autorEmail.equals("null")) ? "" : autorEmail;
 		autorNome = (autorNome.equals("null")) ? "" : autorNome;
 		fonte = (fonte.equals("null")) ? "" : fonte;
 		tipo = (tipo.equals("null")) ? "" : tipo;
 		conteudo = (conteudo.equals("null")) ? "" : conteudo;
-
+		*/
 		parametros.add(enunciado);
 
 		if (competencias.contains(null))
 			parametros.add(new HashSet<>());
+		else if (competencias.contains("TODAS"))
+			parametros.add("null");
 		else
 			parametros.add(competencias);
 		if (estados.contains(null))
