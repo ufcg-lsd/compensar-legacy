@@ -532,8 +532,7 @@ angular.module('app')
                 Notification.success('Avaliação criada com sucesso!');
             },function(err){
                 if (err.status == 400) {
-                    signOut();
-                    Notification.warning("Seu login expirou, por favor faça login novamente!");
+                    $rootScope.forceSignOut();
                 } else {
                     Notification.error("Falha no envio da avaliação");
                     $location.path("/buscas");

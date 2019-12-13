@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('LoginController', function (ProfileService,$scope,$rootScope, $location, AuthService) {
+  .controller('LoginController', function (ProfileService,$scope,$rootScope, $location, AuthService, Notification,  QuestoesService) {
 
     $rootScope.login = (profile, auth) => {
           $rootScope.isLogged = true;
@@ -82,5 +82,16 @@ $scope.topFunction = function () {
 
 $(document).ready(function() {
   $scope.scrollFunction();
+  if ($location.path() === '/questoes') {
+    QuestoesService.getListaQuestoes();
+  }
 });
+$rootScope.forceSignOut = function () {
+  if ($rootScope.loaded === true || $rootScope.loaded === undefined) {
+    $rootScope.loaded = false;
+    signOut();
+    Notification.warning("Seu login expirou, por favor faça login novamente!");
+    setTimeout(() => { $rootScope.loaded = true; }, 300);
+  }
+}
 });

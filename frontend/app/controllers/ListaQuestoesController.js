@@ -165,7 +165,6 @@ angular.module('app')
       return $rootScope.nomeLista;
     }
     
-    QuestoesService.getListaQuestoes();
 
     $scope.inputError = false;
     $scope.checkAddLista = function() {
@@ -180,5 +179,11 @@ angular.module('app')
       localStorageService.set("listaAtiva", $rootScope.lista);
       window.open('/lista/', '_blank');
     }
+
+    $(document).ready(function() {
+      if ($location.path() === '/questoes') {
+        QuestoesService.getListaQuestoes();
+      }
+    });
   });
 

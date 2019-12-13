@@ -17,8 +17,7 @@ angular.module('app')
         deferred.resolve(response.data);
       }, function (err) {
         if (err.status == 400) {
-          signOut();
-          Notification.warning("Seu login expirou, por favor faça login novamente!");
+          $rootScope.forceSignOut();
         }
         deferred.resolve([]);
       });
@@ -47,8 +46,7 @@ angular.module('app')
      
       }, function (err) {
         if (err.status == 400) {
-          signOut();
-          Notification.warning("Seu login expirou, por favor faça login novamente!");
+          $rootScope.forceSignOut();
         }
         deferred.resolve([]);
 
@@ -73,8 +71,7 @@ angular.module('app')
             $location.path("/questoes");
           }).catch(function (err) {
             if (err.status == 400) {
-              signOut();
-              Notification.warning("Seu login expirou, por favor faça login novamente!");
+              $rootScope.forceSignOut();
             } else {
               Notification.error('Falha ao remover questão!');
             }
@@ -102,8 +99,7 @@ angular.module('app')
         $location.path("/questoes");
     },function(err){
       if (err.status == 400) {
-        signOut();
-        Notification.warning("Seu login expirou, por favor faça login novamente!");
+        $rootScope.forceSignOut();
       } else {
         Notification.error('Falha ao atualizar questão!');
         $location.path("/questoes");
@@ -125,8 +121,7 @@ service.publicaQuestao = function (questao) {
       $location.path("/questoes");
   },function(err){
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao publicar questão!');
           $location.path("/questoes");
@@ -148,8 +143,7 @@ service.publicaQuestao = function (questao) {
             
         },function(err){
           if (err.status == 400) {
-            signOut();
-            Notification.warning("Seu login expirou, por favor faça login novamente!");
+            $rootScope.forceSignOut();
           } else {
             Notification.error('Falha no envio da lista!');
             $location.path("/questoes");
@@ -165,8 +159,7 @@ service.publicaQuestao = function (questao) {
         deferred.resolve(response.data.content);
       }, function (err) {
         if (err.status == 400) {
-          signOut();
-          Notification.warning("Seu login expirou, por favor faça login novamente!");
+          $rootScope.forceSignOut();
         }
         deferred.resolve([]);
       });
@@ -181,8 +174,7 @@ service.publicaQuestao = function (questao) {
     deferred.resolve(response.data);
   }, function (err) {
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     }
     deferred.resolve([]);
   });
@@ -199,8 +191,7 @@ service.publicaQuestao = function (questao) {
       Notification.success('Lista removida com sucesso!');
     }).catch(function (err) {
       if (err.status == 400) {
-        signOut();
-        Notification.warning("Seu login expirou, por favor faça login novamente!");
+        $rootScope.forceSignOut();
       } else {
         Notification.error('Falha ao remover lista!');
         $location.path("/questoes");      
@@ -230,8 +221,7 @@ service.sendUpdateLista = function (lista,novaLista) {
     return response.data;
   },function(err){
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao atualizar lista!');
         $location.path("/questoes");
@@ -248,8 +238,7 @@ service.getCompetencias = function (enunciado) {
       Notification.success('Feedback das competências obtido com sucesso!');
     },function(err) {
       if (err.status == 400) {
-        signOut();
-        Notification.warning("Seu login expirou, por favor faça login novamente!");
+        $rootScope.forceSignOut();
       } else {
         Notification.error('Falha no feedback das competências!');
         $rootScope.loading = false;
@@ -264,8 +253,7 @@ service.getQuestaoPendente = function() {
     $rootScope.questaoSobAvaliacao = response.data;
   }, function(err) {
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.warning('Nenhuma questão pendente de sua avaliação!');
     }
@@ -278,8 +266,7 @@ service.getQuestaoAvaliada = function() {
     return response;
   }, function(err) {
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.warning('Nenhuma questão pendente de sua aprovação!');
     }
@@ -305,8 +292,7 @@ service.aprovaQuestao = function(questao, novaQuestao) {
     hideModals();
   }, function(err) {
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao aprovar da questão!');
       $location.path("/questoes");
@@ -336,8 +322,7 @@ service.rejeitaQuestao = function(questao) {
     hideModals();
   }, function(err) {
     if (err.status == 400) {
-      signOut();
-      Notification.warning("Seu login expirou, por favor faça login novamente!");
+      $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao rejeitar a questão!');
       $location.path("/questoes");

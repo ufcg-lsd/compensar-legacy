@@ -45,8 +45,7 @@ angular.module('app')
                 $location.path("/meusdados");
             }, function (err){
                 if (err.status == 400) {
-                    signOut();
-                    Notification.warning("Seu login expirou, por favor faça login novamente!");
+                    $rootScope.forceSignOut();
                 } else {
                     Notification.error("Falha ao Atualizar dados!");
                     $location.path("/meusdados");

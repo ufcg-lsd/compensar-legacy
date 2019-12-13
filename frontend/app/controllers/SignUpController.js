@@ -21,8 +21,7 @@ angular.module('app')
                     $location.path("/buscas");
                 },function(err){
                     if (err.status == 400) {
-                        Notification.error("Ocorreu um erro com o seu login, faça login novamente!");
-                        $location.path("/login");
+                        $rootScope.forceSignOut();
                     } else if (err.status == 409) {
                         Notification.error("Já existe um usuário cadastrado com esse email!");
                         $location.path("/login");

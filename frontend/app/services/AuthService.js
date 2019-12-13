@@ -59,11 +59,13 @@ angular.module('app')
             Notification.info("Complete seu cadastro");
             $location.path("/signup");
           } else if (err.status == 400) {
-            signOut();
-            Notification.warning("Seu login expirou, por favor faça login novamente!");
+            $rootScope.forceSignOut();
           } else {
-            signOut();
-            Notification.error("Algo inexperado aconteceu, você precisa fazer login novamente!");
+            if($rootScope.loaded === true) {
+              $rootScope.loaded = false;
+              signOut();
+              Notification.error("Algo inexperado aconteceu, você precisa fazer login novamente!");
+            }
           }
         });
     };

@@ -22,8 +22,7 @@ angular.module('app')
                     $location.path("/login");
                 },function(err){
                     if (err.status == 400) {
-                        signOut();
-                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                        $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio do email!");
                         $location.path("/login");

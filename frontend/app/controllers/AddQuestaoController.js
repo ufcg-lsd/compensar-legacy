@@ -77,8 +77,7 @@ angular.module('app')
                     $location.path("/buscas");
                 },function(err){
                     if (err.status == 400) {
-                        signOut();
-                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                        $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
@@ -148,8 +147,7 @@ angular.module('app')
                     $location.path("/buscas");
                 },function(err){
                     if (err.status == 400) {
-                        signOut();
-                        Notification.warning("Seu login expirou, por favor faça login novamente!");
+                        $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
                         $location.path("/buscas");
