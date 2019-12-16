@@ -20,6 +20,7 @@ angular.module('app')
           $rootScope.forceSignOut();
         }
         deferred.resolve([]);
+        $rootScope.loading = false;
       });
 
     return deferred.promise;
@@ -60,7 +61,6 @@ angular.module('app')
 
   
   service.removeQuestao = function (questao) {
-
         $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
             var  index = $rootScope.Questoes.indexOf(questao);
@@ -104,6 +104,7 @@ angular.module('app')
         Notification.error('Falha ao atualizar questão!');
         $location.path("/questoes");
       }
+      $rootScope.loading = false;
     });
 },
 
@@ -236,6 +237,7 @@ service.getCompetencias = function (enunciado) {
       $rootScope.loading = false;
       console.log($rootScope.competencias)
       Notification.success('Feedback das competências obtido com sucesso!');
+      return response;
     },function(err) {
       if (err.status == 400) {
         $rootScope.forceSignOut();
@@ -243,6 +245,7 @@ service.getCompetencias = function (enunciado) {
         Notification.error('Falha no feedback das competências!');
         $rootScope.loading = false;
       }
+      return err;
     }
   )
 }

@@ -60,7 +60,7 @@
             <div id = "compSearch" class="form-group row mt-3">
                 <label ><h6>Competências:</h6></label>
                 <div class="row">  
-                    <div class="col-sm-2">
+                    <div class="columnTelaQuestoes">
                         <div class="custom-control custom-checkbox custom-control-inline">
                             <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7" ng-click= "toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck7">Abstração</label>
@@ -105,7 +105,7 @@
                             <label class="custom-control-label" for="customCheck8">Simulação</label>
                         </div>
                         <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="TODAS" id="customCheck1" ng-click= "toggleCheck($event)" checked>
+                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="TODAS" id="customCheck1" ng-click= "toggleCheck($event)">
                             <label class="custom-control-label" for="customCheck1">Todas</label>
                         </div>
                     </div>
@@ -419,8 +419,6 @@
                                                     <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
                                                         <em ng-bind-html="questao.sugestoes[$index]"></em>
                                                     </div>
-
-                                                    <div><hr></div>
                                                 </div>
 
                                                 <!-- Modal footer -->
@@ -905,9 +903,10 @@
                 <div class="row container">
                     <div><b>Tipo:</b><em> {{questaoSobAvaliacao.tipo}} </em></div> 
                 </div>
+                <hr>
                 <!-- ========================  Campos específicos de questão Obj/Subj  ============================================== -->
                 <div id = "camposEspecificos" ng-switch = "isObjective(questaoSobAvaliacao.tipo)">
-                    <hr>
+                    
                     <div ng-switch-when="false" class = "container">
                         <div class="espelho "> <b>Espelho:</b> 
                             {{updateViewQuill(questaoSobAvaliacao.espelho,"espelho")}}</div>

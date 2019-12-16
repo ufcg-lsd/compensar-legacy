@@ -219,15 +219,7 @@ margin-inline-end: 20%;}
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-.custom-radio .fake-label {
-  left: 0 !important;
-}
-
-.custom-radio .fake-input {
-  display: none;
-}
+} 
 
 #ModalAvaliacao .modal-body {
   padding-left: 10%;
@@ -238,4 +230,7 @@ margin-inline-end: 20%;}
   padding: 5px !important;
   right: 25px;
   position: absolute;
+}
+#espelho .ql-container {
+  height: unset !important;
 }

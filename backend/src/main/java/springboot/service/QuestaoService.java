@@ -238,44 +238,44 @@ public class QuestaoService {
 	}
 
 	public Set<CompetenciaType> getSetCompetencias(String enunciado) throws IOException  {
-		
+
 		String enunciadoText = extractAllText(enunciado);
 
 		Set<CompetenciaType> competencias = new HashSet<>();
 
-	    URL obj = new URL("https://question-classifier.herokuapp.com/classifier/");
-	    HttpsURLConnection postConnection = (HttpsURLConnection) obj.openConnection();
-	    postConnection.setRequestMethod("POST");
-	    postConnection.setRequestProperty("Content-Type", "text/plain");
-	    postConnection.setDoOutput(true);
-	    OutputStream os = postConnection.getOutputStream();
-	    os.write(enunciadoText.getBytes());
-	    os.flush();
-	    os.close();
-	    int responseCode = postConnection.getResponseCode();
-	        
-	    
-	    BufferedReader in = new BufferedReader(new InputStreamReader(
-	            postConnection.getInputStream()));
-	        String inputLine;
-	        StringBuffer response = new StringBuffer();
-	        while ((inputLine = in .readLine()) != null) {
-	            response.append(inputLine);
-	        } in .close();
-	        
-	        
-	        
-	        List<String> result = Arrays.asList(response.toString().split(","));
+		URL obj = new URL("https://question-classifier.herokuapp.com/classifier/");
+		HttpsURLConnection postConnection = (HttpsURLConnection) obj.openConnection();
+		postConnection.setRequestMethod("POST");
+		postConnection.setRequestProperty("Content-Type", "text/plain");
+		postConnection.setDoOutput(true);
+		postConnection.setConnectTimeout(10000);
+		OutputStream os = postConnection.getOutputStream();
+		os.write(enunciadoText.getBytes());
+		os.flush();
+		os.close();
+		int responseCode = postConnection.getResponseCode();
 
 
-	        for (int i = 0; i < result.size(); i++) {
-	        	List<String> compChave = Arrays.asList(result.get(i).split(":"));
+		BufferedReader in = new BufferedReader(new InputStreamReader(
+				postConnection.getInputStream()));
+		String inputLine;
+		StringBuffer response = new StringBuffer();
+		while ((inputLine = in.readLine()) != null) {
+			response.append(inputLine);
+		}
+		in.close();
 
-	        	if (compChave.get(1).charAt(2) == '1') {
-	        		competencias.add(getCompetencia(compChave.get(0)));
-	        	}
-	        }
-		
+
+		List<String> result = Arrays.asList(response.toString().split(","));
+
+
+		for (int i = 0; i < result.size(); i++) {
+			List<String> compChave = Arrays.asList(result.get(i).split(":"));
+
+			if (compChave.get(1).charAt(2) == '1') {
+				competencias.add(getCompetencia(compChave.get(0)));
+			}
+		}
 
 
 		return competencias;

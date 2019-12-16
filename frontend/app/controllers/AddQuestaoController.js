@@ -46,8 +46,23 @@ angular.module('app')
         $scope.enunciado = "";
         $scope.tipo = "";
         $scope.conteudo = "";
-        $rootScope.avaliacao.confianca = 0;
-        $rootScope.avaliacao.obsAvaliacao = "";
+        $rootScope.avaliacao = {
+            competencias: {
+                "COMP_ABSTRAÇÃO": "false",
+                "COMP_ALGORITMOS": "false",
+                "COMP_ANÁLISE": "false",
+                "COMP_AUTOMAÇÃO": "false",
+                "COMP_COLETA": "false",
+                "COMP_DECOMPOSIÇÃO": "false",
+                "COMP_PARALELIZAÇÃO": "false",
+                "COMP_REPRESENTAÇÃO": "false",
+                "COMP_SIMULAÇÃO": "false"
+            },
+            confianca: 0,
+            obsAvaliacao: "",
+            obsQuestao: "",
+            avaliacaoPublicacao: "PRONTA"
+        }
 
         $scope.title = '';
         $scope.changeDetected = false;
@@ -212,8 +227,10 @@ angular.module('app')
             } else {
                 $scope.alertEspelho = false;
                 document.querySelector(".ql-editor").contentEditable = false;
-                $scope.getCompetencias().then(() => {
-                    $scope.nextStep();
+                $scope.getCompetencias().then((response) => {
+                    if(response.status === 200) {
+                        $scope.nextStep();
+                    }
                 });
             }
         }
