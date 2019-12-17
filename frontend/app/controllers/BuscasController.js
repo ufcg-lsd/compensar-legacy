@@ -11,7 +11,7 @@ angular.module('app')
         $rootScope.pageNumber = 0; 
 
 
-        $scope.pagination = {
+        $rootScope.pagination = {
             current: 0
         };
 
@@ -40,18 +40,19 @@ angular.module('app')
             obsQuestao: "",
             avaliacaoPublicacao: "PRONTA"
         }
+        $rootScope.lastQuery = {}
 
 
         $scope.pageChangeHandler = function(newPage) {
 
-            if (newPage === 'anterior' && $scope.pagination.current > 0) {
-                $scope.pagination.current = $scope.pagination.current - 1;
+            if (newPage === 'anterior' && $rootScope.pagination.current > 0) {
+                $rootScope.pagination.current = $rootScope.pagination.current - 1;
             } else if (newPage === 'proxima' && $rootScope.pageNumber < ($rootScope.totalPags - 1)) {
-                $scope.pagination.current = $scope.pagination.current + 1;
+                $rootScope.pagination.current = $rootScope.pagination.current + 1;
             } else if (newPage === 'primeiraPag') {
-                $scope.pagination.current = 0;
+                $rootScope.pagination.current = 0;
             } else if (newPage === 'ultimaPag') {
-                $scope.pagination.current = $rootScope.totalPags - 1;
+                $rootScope.pagination.current = $rootScope.totalPags - 1;
             }
 
             $scope.sendQuery($scope.enunciadoSearch,$scope.autorSearch,$scope.fonteSearch,
@@ -59,7 +60,7 @@ angular.module('app')
         };
 
         $scope.setPageStart = function() {
-            $scope.pagination.current = 0;
+            $rootScope.pagination.current = 0;
         }
 
         $scope.competenciaList = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
@@ -116,15 +117,15 @@ angular.module('app')
 
                 let query = {
                     enunciado:  enunciadoSearch,
-                    competencias: competenciasSearch,
-                    estados: $scope.questao.estados,
+                    competencias: competenciasSearch ? competenciasSearch : [],
+                    estados: $scope.questao.estados ? $scope.questao.estados : [],
                     autor: autorSearch,
                     fonte: fonteSearch,
                     tipo: tipoSearch,
                     conteudo: conteudoSearch
                 }
-
-                QuestoesService.sendQuery(query, $scope.pagination.current , 4, $rootScope.apenasAutor);
+                $rootScope.lastQuery = query;
+                QuestoesService.sendQuery(query, $rootScope.pagination.current , 4, $rootScope.apenasAutor);
             }, 10);
 
             $rootScope.painelListas = false;
@@ -316,7 +317,11 @@ angular.module('app')
 
         
         if ($scope.editingAprovacao) {
-            QuestoesService.aprovaQuestao(questao,novaQuestao);
+            QuestoesService.aprovaQuestao(questao,novaQuestao).then((response) => {
+                if(response.status == 200) {
+                    QuestoesService.sendQuery($rootScope.lastQuery, $rootScope.pagination.current, 4, $rootScope.apenasAutor);
+                }
+            });
             $("#editarAprovacao").modal('toggle');
         } else {
             QuestoesService.atualizaQuestao(questao,novaQuestao);
@@ -430,7 +435,7 @@ angular.module('app')
         };
 
 
-        QuestoesService.getQuestoes($scope.pagination.current , 4);
+        $scope.sendNewQuery($scope.questao.competencias, $scope.conteudoSearch);
         
 
         $scope.options = [

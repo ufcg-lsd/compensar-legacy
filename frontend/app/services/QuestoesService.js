@@ -28,8 +28,8 @@ angular.module('app')
 
 
    service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
-    let estados =  query.estados.length === 0 ? ' ' : query.estados;
-    let competencias =  query.competencias.length === 0 ? ' ' : query.competencias;
+    let estados =  query.estados.length === 0 ? ' ' : query.estados.join(",");
+    let competencias =  query.competencias.length === 0 ? ' ' : query.competencias.join(",");
     $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + competencias + '/' + ((apenasAutor) ? estados + '/' : '')
     + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
@@ -279,20 +279,10 @@ service.getQuestaoAvaliada = function() {
 service.aprovaQuestao = function(questao, novaQuestao) {
   return $http.put(host + 'questao/aprove/' + questao.id, novaQuestao, AuthService.getAuthorization())
   .then(function(response) {
-    let index = -1;
-    for(let i = 0; i < $rootScope.Questoes.length; i++) {
-      if ($rootScope.Questoes[i].id === questao.id) {
-        index = i;
-        break;
-      }
-    }
-    if (index !== -1) {
-      $rootScope.Questoes.splice(index,1,response.data);
-    }
     Notification.success('Questão aprovada com sucesso!');
-    $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
+    return response;
   }, function(err) {
     if (err.status == 400) {
       $rootScope.forceSignOut();
@@ -302,6 +292,7 @@ service.aprovaQuestao = function(questao, novaQuestao) {
       $rootScope.loading = false;
       hideModals();
     }
+    return err;
   })
 }
 

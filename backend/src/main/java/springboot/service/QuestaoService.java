@@ -225,15 +225,15 @@ public class QuestaoService {
 		System.out.println(query);
 		parametros.clear();
 		arrayQuery.clear();
-		
-	    Sort sort = Sort.by(
-	    	    Sort.Order.desc("score"));
-	    
-	    Pageable pageable = PageRequest.of(page, size, sort);
+
+		Sort sort = Sort.by(Sort.Order.desc("score"));
+
+		Pageable pageable = PageRequest.of(page, size, sort);
 
 		Aggregation agg = Aggregation.newAggregation(aggList);
 		List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
-		return new PageImpl<Questao>(results,pageable, results.size());
+		List<Questao> subResults = results.subList(Math.min(page*size, results.size()), Math.min((page+1)*size, results.size()));
+		return new PageImpl<Questao>(subResults,pageable, results.size());
 
 	}
 
