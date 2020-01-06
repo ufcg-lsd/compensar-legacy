@@ -1,6 +1,6 @@
 /* global host */
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http,UserService, AuthService, QuestoesService, $mdDialog, Notification)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification)
     {
         $rootScope.activetab = $location.path();
 
@@ -66,6 +66,7 @@ angular.module('app')
 
         $scope.title = '';
         $scope.changeDetected = false;
+        $scope.enunciadoShow = "";
 
 
         $scope.isObjective = function(){ 
@@ -269,5 +270,15 @@ angular.module('app')
             } else {
                 $scope.sendQuestionSubjective($scope.getAvaliacao());
             }
+        }
+        $scope.openModalCompetencia = function() {
+            $scope.enunciadoShow = $sce.trustAsHtml($scope.enunciado);
+            /*
+            $('#addCompetencia').modal('toggle');
+            $('#addCompetencia').modal({backdrop: 'static', keyboard: false});
+            
+            $('a[href$="#addCompetencia"]').on( "click", function() {
+                $('#addCompetencia').modal('show');
+            });*/
         }
     });
