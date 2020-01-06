@@ -218,6 +218,43 @@ function limpaTabsQuestoes() {
     }
 }
 
+function isOrContains(node, container) {
+    while (node) {
+        if (node === container) {
+            return true;
+        }
+        node = node.parentNode;
+    }
+    return false;
+}
+
+function getHTMLOfSelection () {
+    var range;
+    let parent1 = document.querySelector("#areaSelecaoCriacaoQuestao");
+    if (document.selection && document.selection.createRange) {
+        range = document.selection.createRange();
+        if (!isOrContains(range.parentElement(), parent1)) {
+            return '';
+        }
+        return range.htmlText;
+    } else if (window.getSelection) {
+        var selection = window.getSelection();
+        if (selection.rangeCount > 0) {
+            range = selection.getRangeAt(0);
+            if (!isOrContains(range.commonAncestorContainer, parent1)) {
+                return '';
+            }
+            var clonedSelection = range.cloneContents();
+            var div = document.createElement('div');
+            div.appendChild(clonedSelection);
+            return div.innerHTML;
+        } else {
+            return '';
+        }
+    }  else {
+        return '';
+    }
+}
 </script>
 
 </body>

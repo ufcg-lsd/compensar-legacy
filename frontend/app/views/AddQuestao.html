@@ -349,17 +349,15 @@
                                 
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">{{trechoCompetencia === "" ? "Selecione um trecho em que a competência está presente" : "Selecione a competência relacionada ao trecho"}}</h4>
+                                        <!--<h4 class="modal-title" ng-if="trechoSelecionado !== ''">Selecione a competência relacionada ao trecho</h4>-->
+                                        <h4 class="modal-title"  ng-bind-html="trechoSelecionado">Selecione um trecho em que a competência está presente</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     
                                     <!-- Modal body -->
                                     <div class="modal-body">
                                         <div class="form-group row container">
-                                            <label><h6>Nome da Lista:</h6></label>
-                                            <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciado"></div></div>
-
-                                            <input class="form-control" type="text" ng-bind-html="enunciado" ng-model = "enunciado" readonly>
+                                            <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciado" id="areaSelecaoCriacaoQuestao"></div></div>
                                         </div>                        
                                     </div>
                                 

@@ -3,6 +3,10 @@ angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification)
     {
         $rootScope.activetab = $location.path();
+        $scope.trechoSelecionado = "abc";
+
+        window.onmouseup = () => { $scope.trechoSelecionado = getHTMLOfSelection(); 
+        if ($scope.trechoSelecionado) {console.log($scope.trechoSelecionado); }};
 
         // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {
