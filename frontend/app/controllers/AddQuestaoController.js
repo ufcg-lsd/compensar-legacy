@@ -1,12 +1,24 @@
-/* global host */
+/* global host, isOrContains, highlight */
 angular.module('app')
     .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification)
     {
         $rootScope.activetab = $location.path();
         $scope.trechoSelecionado = "abc";
+        $scope.highlightType = true;
 
-        window.onmouseup = () => { $scope.trechoSelecionado = getHTMLOfSelection(); 
-        if ($scope.trechoSelecionado) {console.log($scope.trechoSelecionado); }};
+        $scope.setHighlightType = (type) => {$scope.highlightType = type;}
+
+        window.onmouseup = () => {
+            let parent1 = document.querySelector("#areaSelecaoCriacaoQuestao");
+            let selection = window.getSelection();
+            if (selection.rangeCount > 0 && !window.getSelection().isCollapsed) {
+                let range = selection.getRangeAt(0);
+                if (!isOrContains(parent1, range.commonAncestorContainer)) {
+                    return;
+                }
+                highlight($scope.highlightType);
+            }
+        };
 
         // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {
@@ -275,7 +287,7 @@ angular.module('app')
                 $scope.sendQuestionSubjective($scope.getAvaliacao());
             }
         }
-        $scope.openModalCompetencia = function() {
+        $scope.addCompetencia = function() {
             $scope.enunciadoShow = $sce.trustAsHtml($scope.enunciado);
             /*
             $('#addCompetencia').modal('toggle');

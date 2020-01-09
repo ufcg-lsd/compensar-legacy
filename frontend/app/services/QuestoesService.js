@@ -1,6 +1,6 @@
 /* global host */
 angular.module('app')
-  .factory('QuestoesService', function($rootScope,$http,$q,Notification,$location, AuthService) {
+  .factory('QuestoesService', function($rootScope,$http,$q,Notification,$location, AuthService, $sce) {
    const service = {};
    let deferred = $q.defer();
 
@@ -254,6 +254,7 @@ service.getQuestaoPendente = function() {
   return $http.get(host + 'questao/pendente/', AuthService.getAuthorization())
   .then(function(response) {
     $rootScope.questaoSobAvaliacao = response.data;
+    $rootScope.questaoSobAvaliacao.enunciado = $sce.trustAsHtml($rootScope.questaoSobAvaliacao.enunciado);
   }, function(err) {
     if (err.status == 400) {
       $rootScope.forceSignOut();

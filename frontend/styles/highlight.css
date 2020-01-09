@@ -1,0 +1,25 @@
+.highlighted {
+    background: #ffc107;
+}   
+img.highlighted  {
+     border: 2px solid #ffc107;
+}
+#highlighter {
+    float: left;
+}
+
+#eraser, #highlighter {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    margin: 0 10px;
+}
+  
+#eraser:hover, #eraser.active {
+    background-color: #c5535e;
+}
+
+#highlighter:hover, #highlighter.active {
+    background-color: #ffda6d;
+}

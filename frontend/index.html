@@ -19,6 +19,7 @@
     <link href="styles/questoes.css" rel="stylesheet" type="text/css">
     <link href="styles/searchQuestion.css" rel="stylesheet" type="text/css">
     <link href="styles/imprimirlista.css" rel="stylesheet" type="text/css">
+    <link href="styles/highlight.css" rel="stylesheet" type="text/css">
 
     <!-- Plugins -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
@@ -147,6 +148,7 @@
 
 <!--Scripts Aplicação -->
 <script src="app/app.js"></script>
+<script src="app/util/highlight.js"></script>
 
 <!--Services-->
 <script src="app/services/AuthService.js"></script>
@@ -215,44 +217,6 @@ function limpaTabsQuestoes() {
     let navLinks = document.querySelectorAll(".nav-tabs .nav-link");
     for (let link of navLinks) {
         link.classList.remove("active");
-    }
-}
-
-function isOrContains(node, container) {
-    while (node) {
-        if (node === container) {
-            return true;
-        }
-        node = node.parentNode;
-    }
-    return false;
-}
-
-function getHTMLOfSelection () {
-    var range;
-    let parent1 = document.querySelector("#areaSelecaoCriacaoQuestao");
-    if (document.selection && document.selection.createRange) {
-        range = document.selection.createRange();
-        if (!isOrContains(range.parentElement(), parent1)) {
-            return '';
-        }
-        return range.htmlText;
-    } else if (window.getSelection) {
-        var selection = window.getSelection();
-        if (selection.rangeCount > 0) {
-            range = selection.getRangeAt(0);
-            if (!isOrContains(range.commonAncestorContainer, parent1)) {
-                return '';
-            }
-            var clonedSelection = range.cloneContents();
-            var div = document.createElement('div');
-            div.appendChild(clonedSelection);
-            return div.innerHTML;
-        } else {
-            return '';
-        }
-    }  else {
-        return '';
     }
 }
 </script>
