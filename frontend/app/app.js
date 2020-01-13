@@ -1,4 +1,38 @@
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar', 'ui-notification']);
+
+app.run(function($rootScope) {
+    $rootScope.competenciasRepaginadas = [];
+
+    $rootScope.repaginaComp = function (competencia) {
+        //console.log(competencia);
+        var compLowerCase = competencia.split("_")[1].toLowerCase();
+        return compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
+    }
+
+    $rootScope.repaginaCompetencias = function(competencias) {
+        //console.log(competencias);
+        if (competencias === undefined) {
+            return "";
+        }
+        let competenciasRepaginadas = [];
+        let amostraCompetencias = "";
+        for (let i = 0; i < (competencias.length); i++) {
+            let repaginada = $rootScope.repaginaComp(competencias[i]);
+            competenciasRepaginadas.push(repaginada);
+            if (i === (competencias.length - 1) && i === 0) {
+                amostraCompetencias += repaginada + ".";
+            } else if (i === (competencias.length - 1)) {
+                amostraCompetencias += " e " + repaginada + ".";
+            } else if (i === 0) {
+                amostraCompetencias += repaginada;
+            } else {
+                amostraCompetencias += ", " + repaginada;
+            }
+        }
+        $rootScope.competenciasRepaginadas = competenciasRepaginadas;
+        return amostraCompetencias;
+    }
+});
 /* eslint-disable no-unused-vars */
 //var host = "https://compensar.herokuapp.com/api/";
 var host = "http://localhost:5458/api/";

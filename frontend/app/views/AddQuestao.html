@@ -69,7 +69,7 @@
                             </div>
                             <div ng-show="loading === false">
                                 <button type="button" class="btn btn-outline-secondary" ng-click="checkPasso1('anterior')">
-                                        <i class="far fa-arrow-alt-circle-left"></i>                            
+                                        <i class="fas fa-arrow-alt-circle-left"></i>                            
                                         Voltar
                                 </button>
 
@@ -153,7 +153,7 @@
                                 </div>
 
                                 <button type="button" class="btn btn-outline-secondary" ng-click="checkPasso2('anterior')">
-                                        <i class="far fa-arrow-alt-circle-left"></i>                            
+                                        <i class="fas fa-arrow-alt-circle-left"></i>                            
                                         Voltar
                                 </button>
                                 <button type="button"   class="btn btn-primary " ng-click="checkPasso3('subjetiva')">Registrar</button>
@@ -238,7 +238,7 @@
                             </div>
 
                             <button type="button" class="btn btn-outline-secondary " ng-click="checkPasso2('anterior')">
-                                    <i class="far fa-arrow-alt-circle-left"></i>                            
+                                    <i class="fas fa-arrow-alt-circle-left"></i>                            
                                     Voltar
                             </button>
                             <button type="button" class="btn btn-primary" ng-click="checkPasso3('objetiva')">Continuar</button>
@@ -250,9 +250,9 @@
                         <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:80%"></div>
                     </div>
                     <label><h6>Competências identificadas pelo classificador automático:</h6></label>
-                    <div class="competencias" ng-repeat="competencia in competencias"  ng-class="{wrap:!($index % 4)}">
+                    <div class="competencias">
                             <span  class="col-1">
-                                <em>{{repaginaCompetencia(competencia)}} </em>
+                                <em>{{repaginaCompetencias(competencias)}} </em>
                             </span>
                     </div>
                     <br>
@@ -264,7 +264,7 @@
                             <thead>
                                 <tr>
                                 <th scope="col" style="border-bottom: none">Competência</th>
-                                <th scope="col" colspan="2" style="border-bottom: none">Esta competência está presente na questão?</th>
+                                <th scope="col" colspan="3" style="border-bottom: none">Esta competência está presente na questão?</th>
                                 </tr>
                             </thead>
                             <thead>
@@ -272,54 +272,56 @@
                                 <th scope="col" style="border-top: none"></th>
                                 <th scope="col" style="border-top: none">Sim</th>
                                 <th scope="col" style="border-top: none">Não</th>
+                                <th scope="col" style="border-top: none"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">Abstração</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ABSTRAÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ABSTRAÇÃO']"></td>
+                                <tr ng-repeat="(key, value) in avaliacao.competencias" >
+                                    <th scope="row">{{repaginaComp(key)}}</th>
+                                    <td><input type="radio" value="true" data-ng-model="avaliacao.competencias[key]"></td>
+                                    <td><input type="radio" value="false" data-ng-model="avaliacao.competencias[key]"></td>
+                                    <td scope="row">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="toggleAddCompetencia({{$index}})" data-target="#addCompetencia{{$index}}">
+                                            Conte-nos mais <i class="fas fa-edit"></i>
+                                        </button>
+                                                <div class="modal fade" id="addCompetencia{{$index}}">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                        
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" >Selecione trechos em que a competência {{key.split("_")[1].toLowerCase()}} está presente</h4>
+                                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                            </div>
+                                                            
+                                                            <!-- Modal body -->
+                                                            <div class="modal-body">
+                                                                <div class="form-group row container">
+                                                                    <div class="ql-snow"><div class="enunciado ql-editor areaSelecaoCriacaoQuestao" ng-bind-html="avaliacao.maisInfo[key]" id="areaSelecaoCriacaoQuestao"></div></div>
+                                                                </div>
+                                                            </div>
+                                                        
+                                                            <!-- Modal footer -->
+                                                            <div class="modal-footer">
+                                                                <div style="margin: auto;">
+                                                                    <button  type="button" id="highlighter" class="btn btn-warning btn-sm" ng-class="{'active': highlightType == true}" ng-click="setHighlightType(true)"> 
+                                                                        <i class="fas fa-highlighter"></i>
+                                                                    </button>
+                                                                    <button  type="button" id="eraser" class="btn btn-danger btn-sm" ng-class="{'active': highlightType == false}" ng-click="setHighlightType(false)"> 
+                                                                        <i class="fas fa-eraser"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <button type="button" class="btn btn-primary addLista-bt" data-dismiss="modal" ng-click="updateNomeLista()">Continuar
+                                                                    <i class="fas fa-arrow-circle-right"></i>
+                                                                </button>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">Algoritmos</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ALGORITMOS']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ALGORITMOS']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Análise</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_ANÁLISE']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_ANÁLISE']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Automação</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_AUTOMAÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_AUTOMAÇÃO']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Coleta</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_COLETA']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_COLETA']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Decomposição</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_DECOMPOSIÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_DECOMPOSIÇÃO']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Paralelização</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_PARALELIZAÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_PARALELIZAÇÃO']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Representação</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_REPRESENTAÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_REPRESENTAÇÃO']"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Simulação</th>
-                                    <td><input type="radio" value="true" data-ng-model="competenciasAutor['COMP_SIMULAÇÃO']"></td>
-                                    <td><input type="radio" value="false" data-ng-model="competenciasAutor['COMP_SIMULAÇÃO']"></td>
-                                </tr>
+                                
                             </tbody>
                         </table>
                     </div>
@@ -338,46 +340,14 @@
                     
 
                     <button type="button" class="btn btn-outline-secondary " ng-click="checkPasso3('anterior')">
-                            <i class="far fa-arrow-alt-circle-left"></i>                            
+                            <i class="fas fa-arrow-alt-circle-left"></i>                            
                             Voltar
                     </button>
+                    <!--
                     <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="addCompetencia()" data-target="#addCompetencia">Adicionar trecho correspondente a competência</button>
+                    -->
                     <button type="button" class="btn btn-primary" ng-click="checkPasso4()">Registrar</button>
-                    <div class="modal fade" id="addCompetencia">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" >Selecione um trecho em que a competência está presente</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <div class="form-group row container">
-                                            <div class="ql-snow"><div class="enunciado ql-editor" ng-bind-html="enunciadoShow" id="areaSelecaoCriacaoQuestao"></div></div>
-                                        </div>
-                                    </div>
-                                
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <div style="margin: auto;">
-                                            <button  type="button" id="highlighter" class="btn btn-warning btn-sm" ng-class="{'active': highlightType == true}" ng-click="setHighlightType(true)"> 
-                                                <i class="fas fa-highlighter"></i>
-                                            </button>
-                                            <button  type="button" id="eraser" class="btn btn-danger btn-sm" ng-class="{'active': highlightType == false}" ng-click="setHighlightType(false)"> 
-                                                <i class="fas fa-eraser"></i>
-                                            </button>
-                                        </div>
-                                        <button type="button" class="btn btn-primary addLista-bt" data-dismiss="modal" ng-click="updateNomeLista()">Continuar
-                                            <i class="fas fa-arrow-circle-right"></i>
-                                        </button>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
+                    
                 </div>
             </form>
         </div>

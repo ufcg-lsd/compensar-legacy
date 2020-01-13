@@ -9,16 +9,22 @@ angular.module('app')
         $scope.setHighlightType = (type) => {$scope.highlightType = type;}
 
         window.onmouseup = () => {
-            let parent1 = document.querySelector("#areaSelecaoCriacaoQuestao");
+            let parents = document.querySelectorAll("#areaSelecaoCriacaoQuestao");
             let selection = window.getSelection();
             if (selection.rangeCount > 0 && !window.getSelection().isCollapsed) {
                 let range = selection.getRangeAt(0);
-                if (!isOrContains(parent1, range.commonAncestorContainer)) {
-                    return;
+                for(let p of parents) {
+                    if (isOrContains(p, range.commonAncestorContainer)) {
+                        highlight($scope.highlightType);
+                        return;
+                    }
                 }
-                highlight($scope.highlightType);
             }
         };
+
+        $scope.toggleAddCompetencia = function (index) {
+            $("#myModal"+index).modal('toggle');
+        }
 
         // Ativadores das opções de edição no Quill Editor
         $rootScope.editorModules = {
@@ -46,18 +52,6 @@ angular.module('app')
             ]
         }
 
-        $scope.competenciasAutor = {
-            "COMP_ABSTRAÇÃO": "false",
-            "COMP_ALGORITMOS": "false",
-            "COMP_ANÁLISE": "false",
-            "COMP_AUTOMAÇÃO": "false",
-            "COMP_COLETA": "false",
-            "COMP_DECOMPOSIÇÃO": "false",
-            "COMP_PARALELIZAÇÃO": "false",
-            "COMP_REPRESENTAÇÃO": "false",
-            "COMP_SIMULAÇÃO": "false"
-        };
-
         $scope.fonte = "";
         $scope.enunciado = "";
         $scope.tipo = "";
@@ -73,6 +67,17 @@ angular.module('app')
                 "COMP_PARALELIZAÇÃO": "false",
                 "COMP_REPRESENTAÇÃO": "false",
                 "COMP_SIMULAÇÃO": "false"
+            },
+            maisInfo: {
+                "COMP_ABSTRAÇÃO": "",
+                "COMP_ALGORITMOS": "",
+                "COMP_ANÁLISE": "",
+                "COMP_AUTOMAÇÃO": "",
+                "COMP_COLETA": "",
+                "COMP_DECOMPOSIÇÃO": "",
+                "COMP_PARALELIZAÇÃO": "",
+                "COMP_REPRESENTAÇÃO": "",
+                "COMP_SIMULAÇÃO": ""
             },
             confianca: 0,
             obsAvaliacao: "",
@@ -127,8 +132,8 @@ angular.module('app')
 
         $scope.getAvaliacao = function() {
             let arr = [];
-            for(let key of Object.keys($scope.competenciasAutor)) {
-                if ($scope.competenciasAutor[key] === "true") {
+            for(let key of Object.keys($rootScope.avaliacao.competencias)) {
+                if ($rootScope.avaliacao.competencias[key] === "true") {
                     arr.push(key);
                 }
             }
@@ -190,15 +195,10 @@ angular.module('app')
         }
         
         $rootScope.loading = false;
-        $rootScope.competencias = "";
+        $rootScope.competencias = [];
         $scope.getCompetencias = function () {
             $rootScope.loading = true;
             return QuestoesService.getCompetencias($scope.enunciado);
-        };
-
-        $scope.repaginaCompetencia = function (competencia) {
-            var compSplitted = competencia.split("_");
-            return compSplitted[1];
         };
 
         $scope.contentChanged = function () {
@@ -246,6 +246,18 @@ angular.module('app')
                 document.querySelector(".ql-editor").contentEditable = false;
                 $scope.getCompetencias().then((response) => {
                     if(response.status === 200) {
+                        let tmp = $sce.trustAsHtml($scope.enunciado);
+                        $rootScope.avaliacao.maisInfo = {
+                            "COMP_ABSTRAÇÃO": tmp,
+                            "COMP_ALGORITMOS": tmp,
+                            "COMP_ANÁLISE": tmp,
+                            "COMP_AUTOMAÇÃO": tmp,
+                            "COMP_COLETA": tmp,
+                            "COMP_DECOMPOSIÇÃO": tmp,
+                            "COMP_PARALELIZAÇÃO": tmp,
+                            "COMP_REPRESENTAÇÃO": tmp,
+                            "COMP_SIMULAÇÃO": tmp
+                        };
                         $scope.nextStep();
                     }
                 });

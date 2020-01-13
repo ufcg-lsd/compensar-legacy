@@ -35,6 +35,17 @@ angular.module('app')
                 "COMP_REPRESENTAÇÃO": "false",
                 "COMP_SIMULAÇÃO": "false"
             },
+            maisInfo: {
+                "COMP_ABSTRAÇÃO": "",
+                "COMP_ALGORITMOS": "",
+                "COMP_ANÁLISE": "",
+                "COMP_AUTOMAÇÃO": "",
+                "COMP_COLETA": "",
+                "COMP_DECOMPOSIÇÃO": "",
+                "COMP_PARALELIZAÇÃO": "",
+                "COMP_REPRESENTAÇÃO": "",
+                "COMP_SIMULAÇÃO": ""
+            },
             confianca: 0,
             obsAvaliacao: "",
             obsQuestao: "",
@@ -359,7 +370,7 @@ angular.module('app')
             $scope.inputError = true;
         } else if (!$scope.editingAprovacao && $scope.update.enunciado !== $scope.update.tempEnunciado) {
             QuestoesService.getCompetencias($scope.update.tempEnunciado).then(() => {
-                $scope.repaginaCompetencias($rootScope.competencias);
+                $rootScope.repaginaCompetencias($rootScope.competencias);
                 $('#ModalEdicao').modal('toggle');
                 $('#ModalEdicao').modal({backdrop: 'static', keyboard: false});
                 
@@ -378,29 +389,6 @@ angular.module('app')
 
 
 
-        $scope.competenciasRepaginadas = [];
-        $scope.repaginaCompetencias = function (competencias) {
-            if (competencias === undefined) {
-                return "";
-            }
-            $scope.competenciasRepaginadas = [];
-            let amostraCompetencias = "";
-            for (let i = 0; i < (competencias.length); i++) {
-                var compSplitted = competencias[i].split("_");
-                var compLowerCase = compSplitted[1].toLowerCase();
-                $scope.competenciasRepaginadas.push(compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1));
-                if (i === (competencias.length - 1) && i === 0) {
-                    amostraCompetencias += (compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".");
-                } else if (i === (competencias.length - 1)) {
-                    amostraCompetencias += " e " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1) + ".";
-                } else if (i === 0) {
-                    amostraCompetencias += compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
-                } else {
-                    amostraCompetencias += ", " + compLowerCase.charAt(0).toUpperCase() + compLowerCase.slice(1);
-                }
-            }
-            return amostraCompetencias;  
-        }
 
 
         $scope.alternativasLetras = ["a","b","c","d","e"];
