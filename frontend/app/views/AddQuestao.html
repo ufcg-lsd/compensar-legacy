@@ -281,7 +281,7 @@
                                     <td><input type="radio" value="true" data-ng-model="avaliacao.competencias[key]"></td>
                                     <td><input type="radio" value="false" data-ng-model="avaliacao.competencias[key]"></td>
                                     <td scope="row">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="toggleAddCompetencia({{$index}})" data-target="#addCompetencia{{$index}}">
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="toggleAddCompetencia($index)" data-target="#addCompetencia{{$index}}">
                                             Conte-nos mais <i class="fas fa-edit"></i>
                                         </button>
                                                 <div class="modal fade" id="addCompetencia{{$index}}">
