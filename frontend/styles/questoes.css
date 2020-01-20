@@ -141,6 +141,7 @@ button {
 ng-quill-editor {
   display: block;
   margin-block-end: 15px;
+  width: 100%;
 }
 .fonteConteudo {
 margin-inline-end: 20%;}

@@ -940,7 +940,7 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="border-bottom: none">Competência</th>
-                                <th scope="col" colspan="2" style="border-bottom: none">Esta competência está presente na questão?</th>
+                                <th scope="col" colspan="3" style="border-bottom: none">Esta competência está presente na questão?</th>
                             </tr>
                         </thead>
                         <thead>
@@ -948,53 +948,50 @@
                                 <th scope="col" style="border-top: none"></th>
                                 <th scope="col" style="border-top: none">Sim</th>
                                 <th scope="col" style="border-top: none">Não</th>
+                                <th scope="col" style="border-top: none"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">Abstração</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ABSTRAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ABSTRAÇÃO']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Algoritmos</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ALGORITMOS']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ALGORITMOS']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Análise</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_ANÁLISE']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_ANÁLISE']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Automação</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_AUTOMAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_AUTOMAÇÃO']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Coleta</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_COLETA']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_COLETA']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Decomposição</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_DECOMPOSIÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_DECOMPOSIÇÃO']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Paralelização</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_PARALELIZAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_PARALELIZAÇÃO']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Representação</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_REPRESENTAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_REPRESENTAÇÃO']"></td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Simulação</th>
-                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias['COMP_SIMULAÇÃO']"></td>
-                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias['COMP_SIMULAÇÃO']"></td>
+                            <tr ng-repeat="(key, value) in avaliacao.competencias" >
+                                <th scope="row">{{repaginaComp(key)}}</th>
+                                <td><input type="radio" value="true" data-ng-model="avaliacao.competencias[key]"></td>
+                                <td><input type="radio" value="false" data-ng-model="avaliacao.competencias[key]"></td>
+                                <td scope="row">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="toggleAddCompetencia($index)" data-target="#addCompetencia{{$index}}">
+                                        Conte-nos mais <i class="fas fa-edit"></i>
+                                    </button>
+                                            <div class="modal fade" id="addCompetencia{{$index}}">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                    
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" >Selecione trechos em que a competência {{key.split("_")[1].toLowerCase()}} está presente</h4>
+                                                            <button type="button" class="close" ng-click="closeInnerModal($index)">&times;</button>
+                                                        </div>
+                                                        
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <div class="form-group row container">
+                                                                <div class="ql-snow"><div comp="{{key}}" class="enunciado ql-editor areaSelecaoCriacaoQuestao" ng-bind-html="avaliacao.maisInfo[key]" id="areaSelecaoCriacaoQuestao"></div></div>
+                                                            </div>
+                                                        </div>
+                                                    
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <div style="margin: auto;">
+                                                                <button  type="button" id="highlighter" class="btn btn-warning btn-sm" ng-class="{'active': highlightType == true}" ng-click="setHighlightType(true)"> 
+                                                                    <i class="fas fa-highlighter"></i>
+                                                                </button>
+                                                                <button  type="button" id="eraser" class="btn btn-danger btn-sm" ng-class="{'active': highlightType == false}" ng-click="setHighlightType(false)"> 
+                                                                    <i class="fas fa-eraser"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

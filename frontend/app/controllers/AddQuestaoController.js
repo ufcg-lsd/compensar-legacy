@@ -16,6 +16,7 @@ angular.module('app')
                 for(let p of parents) {
                     if (isOrContains(p, range.commonAncestorContainer)) {
                         highlight($scope.highlightType);
+                        $rootScope.avaliacao.maisInfo[p.getAttribute("comp")] = p.innerHTML;
                         return;
                     }
                 }
@@ -51,6 +52,10 @@ angular.module('app')
               ['formula','link','image']                         // link and image, video
             ]
         }
+        $rootScope.emptyModules = {
+            formula: true,
+            toolbar: null
+        };
 
         $scope.fonte = "";
         $scope.enunciado = "";
@@ -104,6 +109,7 @@ angular.module('app')
                 competencias: $rootScope.competencias,
                 tipo: $scope.tipo,
                 competenciasAvaliacao: avaliacao.competencias,
+                infoCompetenciasAvaliacao: avaliacao.infoCompetencias,
                 confiancaAvaliacao: avaliacao.confianca,
                 obsAvaliacao: avaliacao.observacao
             };
@@ -130,14 +136,20 @@ angular.module('app')
         $scope.alternativas = {}
         $scope.corretas = {}
 
-        $scope.getAvaliacao = function() {
+        $scope.getAvaliacao = () => {
             let arr = [];
             for(let key of Object.keys($rootScope.avaliacao.competencias)) {
                 if ($rootScope.avaliacao.competencias[key] === "true") {
                     arr.push(key);
                 }
             }
-            return {competencias: arr, confianca: $rootScope.avaliacao.confianca, observacao: $rootScope.avaliacao.obsAvaliacao};
+            let arr2 = [];
+            for(let key of Object.keys($rootScope.avaliacao.competencias)) {
+                if ($rootScope.avaliacao.competencias[key] === "true") {
+                    arr2.push(key+"|"+$rootScope.avaliacao.maisInfo[key]);
+                }
+            }
+            return {competencias: arr, confianca: $rootScope.avaliacao.confianca, observacao: $rootScope.avaliacao.obsAvaliacao, infoCompetencias: arr2};
         }
 
 
@@ -172,6 +184,7 @@ angular.module('app')
                 competencias: $rootScope.competencias,
                 tipo: $scope.tipo,
                 competenciasAvaliacao: avaliacao.competencias,
+                infoCompetenciasAvaliacao: avaliacao.infoCompetencias,
                 confiancaAvaliacao: avaliacao.confianca,
                 obsAvaliacao: avaliacao.observacao
             };

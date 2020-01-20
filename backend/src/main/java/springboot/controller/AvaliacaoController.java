@@ -47,6 +47,7 @@ public class AvaliacaoController {
                         avaliacao.getObservacaoAvaliacao(),
                         avaliacao.getObservacaoQuestao(),
                         avaliacao.getCompetencias(),
+                        avaliacao.getInfoCompetencias(),
                         usuario.getEmail(),
                         questao.getId(),
                         avaliacao.getConfianca(),

@@ -2,6 +2,29 @@
 angular.module('app')
     .controller('BuscasController', function ($rootScope, $scope, QuestoesService,$location, $sce,UserService, $http, AuthService, Notification) {
 
+        $scope.highlightType = true;
+
+        $scope.setHighlightType = (type) => {$scope.highlightType = type;}
+
+        $scope.closeInnerModal = (index) => {
+            $("#addCompetencia" + index).modal('toggle');
+        }
+
+        window.onmouseup = () => {
+            let parents = document.querySelectorAll("#areaSelecaoCriacaoQuestao");
+            let selection = window.getSelection();
+            if (selection.rangeCount > 0 && !window.getSelection().isCollapsed) {
+                let range = selection.getRangeAt(0);
+                for(let p of parents) {
+                    if (isOrContains(p, range.commonAncestorContainer)) {
+                        highlight($scope.highlightType);
+                        $rootScope.avaliacao.maisInfo[p.getAttribute("comp")] = p.innerHTML;
+                        return;
+                    }
+                }
+            }
+        };
+
         $rootScope.activetab = $location.path();
         
         $rootScope.Questoes = [];
@@ -482,6 +505,18 @@ angular.module('app')
             $('a[href$="#ModalAvaliacao"]').on( "click", function() {
                 $('#ModalAvaliacao').modal('show');
             });
+            let tmp = $rootScope.questaoSobAvaliacao.enunciado;
+            $rootScope.avaliacao.maisInfo = {
+                "COMP_ABSTRAÇÃO": tmp,
+                "COMP_ALGORITMOS": tmp,
+                "COMP_ANÁLISE": tmp,
+                "COMP_AUTOMAÇÃO": tmp,
+                "COMP_COLETA": tmp,
+                "COMP_DECOMPOSIÇÃO": tmp,
+                "COMP_PARALELIZAÇÃO": tmp,
+                "COMP_REPRESENTAÇÃO": tmp,
+                "COMP_SIMULAÇÃO": tmp
+            };
             }
         });
     };
@@ -509,12 +544,20 @@ angular.module('app')
             }
         }
 
+        let arr2 = [];
+        for(let key of Object.keys($rootScope.avaliacao.competencias)) {
+            if ($rootScope.avaliacao.competencias[key] === "true") {
+                arr2.push(key+"|"+$rootScope.avaliacao.maisInfo[key]);
+            }
+        }
+
         let avaliacao = {
             observacaoAvaliacao: $rootScope.avaliacao.obsAvaliacao,
             observacaoQuestao: $rootScope.avaliacao.obsQuestao,
             avaliacaoPublicacao: $rootScope.avaliacao.avaliacaoPublicacao,
             questao: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
+            infoCompetencias: arr2,
             confianca: $rootScope.avaliacao.confianca
         }
 

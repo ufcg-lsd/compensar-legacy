@@ -297,7 +297,7 @@
                                                             <!-- Modal body -->
                                                             <div class="modal-body">
                                                                 <div class="form-group row container">
-                                                                    <div class="ql-snow"><div class="enunciado ql-editor areaSelecaoCriacaoQuestao" ng-bind-html="avaliacao.maisInfo[key]" id="areaSelecaoCriacaoQuestao"></div></div>
+                                                                    <div class="ql-snow"><div comp="{{key}}" class="enunciado ql-editor areaSelecaoCriacaoQuestao" ng-bind-html="avaliacao.maisInfo[key]" id="areaSelecaoCriacaoQuestao"></div></div>
                                                                 </div>
                                                             </div>
                                                         
@@ -311,11 +311,7 @@
                                                                         <i class="fas fa-eraser"></i>
                                                                     </button>
                                                                 </div>
-                                                                <button type="button" class="btn btn-primary addLista-bt" data-dismiss="modal" ng-click="updateNomeLista()">Continuar
-                                                                    <i class="fas fa-arrow-circle-right"></i>
-                                                                </button>
                                                             </div>
-                                                            
                                                         </div>
                                                     </div>
                                                 </div>

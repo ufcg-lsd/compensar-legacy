@@ -3,6 +3,8 @@ package springboot.dto.input;
 import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.CompetenciaType;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class AvaliacaoInput {
@@ -14,15 +16,18 @@ public class AvaliacaoInput {
 
     private Set<CompetenciaType> competencias;
 
+    private List<String> infoCompetencias;
+
     private Integer confianca;
 
     private AvaliacaoPublicacao avaliacaoPublicacao;
 
-    public AvaliacaoInput(String observacaoAvaliacao, String observacaoQuestao, String questao, Set<CompetenciaType> competencias, Integer confianca, AvaliacaoPublicacao avaliacaoPublicacao) {
+    public AvaliacaoInput(String observacaoAvaliacao, String observacaoQuestao, String questao, Set<CompetenciaType> competencias, List<String> infoCompetencias, Integer confianca, AvaliacaoPublicacao avaliacaoPublicacao) {
         this.observacaoAvaliacao = observacaoAvaliacao;
         this.observacaoQuestao = observacaoQuestao;
         this.questao = questao;
         this.competencias = competencias;
+        this.infoCompetencias = infoCompetencias;
         this.confianca = confianca;
         this.avaliacaoPublicacao = avaliacaoPublicacao;
     }
@@ -57,6 +62,14 @@ public class AvaliacaoInput {
 
     public void setCompetencias(Set<CompetenciaType> competencias) {
         this.competencias = competencias;
+    }
+
+    public List<String> getInfoCompetencias() {
+        return infoCompetencias;
+    }
+
+    public void setInfoCompetencias(List<String> infoCompetencias) {
+        this.infoCompetencias = infoCompetencias;
     }
 
     public Integer getConfianca() {

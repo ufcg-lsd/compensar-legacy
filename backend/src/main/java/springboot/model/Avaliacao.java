@@ -7,6 +7,8 @@ import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.CompetenciaType;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Avaliacao {
@@ -24,6 +26,8 @@ public class Avaliacao {
     @TextIndexed
     private Set<CompetenciaType> competencias;
 
+    private List<String> infoCompetencias;
+
     private String autor;
 
     private String questao;
@@ -32,10 +36,11 @@ public class Avaliacao {
 
     private AvaliacaoPublicacao avaliacaoPublicacao;
 
-    public Avaliacao(String observacaoAvaliacao, String observacaoQuestao, Set<CompetenciaType> competencias, String autor, String questao, Integer confianca, AvaliacaoPublicacao avaliacaoPublicacao) {
+    public Avaliacao(String observacaoAvaliacao, String observacaoQuestao, Set<CompetenciaType> competencias, List<String> infoCompetencias, String autor, String questao, Integer confianca, AvaliacaoPublicacao avaliacaoPublicacao) {
         this.observacaoAvaliacao = observacaoAvaliacao;
         this.observacaoQuestao = observacaoQuestao;
         this.competencias = competencias;
+        this.infoCompetencias = infoCompetencias;
         this.autor = autor;
         this.questao = questao;
         this.confianca = confianca;
@@ -72,6 +77,14 @@ public class Avaliacao {
 
     public void setCompetencias(Set<CompetenciaType> competencias) {
         this.competencias = competencias;
+    }
+
+    public List<String> getInfoCompetencias() {
+        return infoCompetencias;
+    }
+
+    public void setInfoCompetencias(List<String> infoCompetencias) {
+        this.infoCompetencias = infoCompetencias;
     }
 
     public String getAutor() {

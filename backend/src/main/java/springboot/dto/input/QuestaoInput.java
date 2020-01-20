@@ -4,6 +4,7 @@ import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class QuestaoInput {
@@ -24,11 +25,13 @@ public class QuestaoInput {
 
     private Set<CompetenciaType> competenciasAvaliacao;
 
+    private List<String> infoCompetenciasAvaliacao;
+
     private Integer confiancaAvaliacao;
 
     private String obsAvaliacao;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, List<String> infoCompetenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
@@ -37,6 +40,7 @@ public class QuestaoInput {
         this.conteudo = conteudo;
         this.alternativas = alternativas;
         this.competenciasAvaliacao = competenciasAvaliacao;
+        this.infoCompetenciasAvaliacao = infoCompetenciasAvaliacao;
         this.confiancaAvaliacao = confiancaAvaliacao;
         this.obsAvaliacao = obsAvaliacao;
     }
@@ -103,6 +107,14 @@ public class QuestaoInput {
 
     public void setCompetenciasAvaliacao(Set<CompetenciaType> competenciasAvaliacao) {
         this.competenciasAvaliacao = competenciasAvaliacao;
+    }
+
+    public List<String> getInfoCompetenciasAvaliacao() {
+        return infoCompetenciasAvaliacao;
+    }
+
+    public void setInfoCompetenciasAvaliacao(List<String> infoCompetenciasAvaliacao) {
+        this.infoCompetenciasAvaliacao = infoCompetenciasAvaliacao;
     }
 
     public Integer getConfiancaAvaliacao() {

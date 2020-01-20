@@ -42,8 +42,8 @@ public class QuestaoController {
 	@Autowired
 	QuestaoService questaoService;
 
-    @Autowired
-    AvaliacaoController avaliacaoController;
+	@Autowired
+	AvaliacaoController avaliacaoController;
 
 	@Autowired
 	AvaliacaoService avaliacaoService;
@@ -62,15 +62,16 @@ public class QuestaoController {
 	public QuestaoOutput save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
 		Questao questaoSalva =  questaoService.save(QuestaoIO.convert(questao, usuario.getEmail()));
 		avaliacaoController.save(usuario,
-                new AvaliacaoInput(
-                        questao.getObsAvaliacao(),
-                        "",
-                        questaoSalva.getId(),
-                        questao.getCompetenciasAvaliacao(),
-                        questao.getConfiancaAvaliacao(),
+				new AvaliacaoInput(
+						questao.getObsAvaliacao(),
+						"",
+						questaoSalva.getId(),
+						questao.getCompetenciasAvaliacao(),
+						questao.getInfoCompetenciasAvaliacao(),
+						questao.getConfiancaAvaliacao(),
 						AvaliacaoPublicacao.PRONTA
-                )
-        );
+				)
+		);
 		return convert(questaoSalva, usuario, false);
 	}
 
