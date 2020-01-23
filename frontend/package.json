@@ -27,7 +27,7 @@
     "express": "4.16.4",
     "ionicons": "4.5.8",
     "jquery": "3.3.1",
-    "katex": "0.10.0",
+    "katex": "0.11.1",
     "live-server": "1.2.1",
     "ng-quill": "2.2.1",
     "popper": "1.0.1",
