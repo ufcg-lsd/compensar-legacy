@@ -1,0 +1,970 @@
+/* =================================================== Contato ====================================================== */
+
+#contato {
+    padding:15px 15px 40px !important;
+    background-color: white;
+  }
+  
+  #cabecario h3 {
+    color: rgb(90, 90, 90);
+  }
+  #cabecario h6{
+    color: rgb(163, 161, 161);
+  }
+  
+  #contatoForm {
+    margin-block-start: 4%;
+    margin-inline-start: 25%;
+  }
+  
+  #contato button{
+    margin-inline-start: 53%;
+  }
+  
+  @media screen and (max-width: 580px) {
+  
+    #contatoForm {
+      margin-block-start: 4%;
+      margin-inline-start: 5%;
+    }
+  
+    #contato button{
+      margin-inline-start: 5%;
+    }
+  
+  }
+  
+  .highlighted {
+    background: #ffc107;
+}   
+img.highlighted  {
+     border: 2px solid #ffc107;
+}
+#highlighter {
+    float: left;
+}
+
+#eraser, #highlighter {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    margin: 0 10px;
+}
+  
+#eraser:hover, #eraser.active {
+    background-color: #c5535e;
+}
+
+#highlighter:hover, #highlighter.active {
+    background-color: #ffda6d;
+}
+#impressaoLista, #impressaoRespostas {
+    margin: auto;
+    padding: 2cm;
+    width: 60%;
+    background-color: white;
+}
+#fundoPdf {
+    padding: 5px;
+    background-color: dimgray;
+}
+.ql-editor img {
+    margin: auto;
+    display: block;
+}
+#impressaoLista blockquote {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-width: 0 0 0 4px;
+}
+#impressaoRespostas {
+    margin-top: 10px;
+}
+
+#imprimeLista, #imprimeRespostas {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 100px;
+}
+
+#imprimeLista {
+    bottom: 85px;
+    right: 30px;
+    background-color: rgb(2, 129, 255);
+}
+
+#imprimeRespostas {
+    bottom: 20px;
+    right: 30px;
+    background-color: rgb(255,20,147);
+}
+
+#imprimeLista:hover, #imprimeRespostas:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+}
+
+@media print {
+    @page { margin: 2cm; padding: 0cm;}
+    body { margin: 0cm; padding: 0cm;}
+    blockquote { border: none; }
+    #fundopdf { padding: 0;}
+    #impressaoLista, #impressaoRespostas {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        box-shadow: none !important;
+    }
+}
+
+@charset "utf-8";
+/* CSS Document */
+  
+* {box-sizing: border-box;}
+body { 
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+    background-color: white;
+}
+
+#log{
+    background-color: white;
+}
+
+/* =================================================== NavBar ====================================================== */
+
+#navbar {
+    transition: 0.4s; /* Efeito de transição quando diminui o padding (com JS) */
+    position: fixed; 
+    background-color: black;
+  }
+  
+  
+  .topnav a:hover {
+    border-bottom: 3px solid dodgerblue;
+  }
+  
+  .navbar-nav li.active > a {
+    border-bottom: 3px solid dodgerblue;
+  }
+
+  #navbar-right {
+    float: right;
+  }
+
+  #navbar-left {
+    float: left;
+    transition: 0.4s;
+  }
+
+  .g-signin2{
+    width: 100%;
+  }
+  
+  .g-signin2 > div{
+    margin: 0 auto;
+  }
+
+ .navbar, .navbar-expand-lg, .navbar-light, .bg-light, .fixed-top{
+    padding:0px 0px 0px !important;
+   }
+
+  .nav-item .dropdown #naav {
+     margin-inline-end: 5%;
+   }
+
+.barra {
+    padding-top:5px;
+    padding-right: 10px;
+}
+
+.barra img{
+  width: 40px ;
+  height: 40px ;
+  margin-block-start: 5%;
+  margin-block-end:   15%;
+}
+  
+
+
+
+/* =================================================== Capa ====================================================== */
+
+
+/* Efeito na capa */
+.parallax {
+  height: auto;
+  //background-image: url("../images/cit.jpeg")!important;
+  
+  padding:110px 90px 500px !important;
+  color: rgb(90, 90, 90);
+
+    /* parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#parallax{
+  background-image: url("../images/cit2.jpeg");
+}
+
+.parallax .centered {
+  position: absolute;
+  height: auto;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 10%;
+}
+
+.parallax .centered img{
+  //margin-block-start: 20%;
+  margin-bottom: 20px;
+
+}
+
+.parallax .centered ion-icon{
+  font-size: 32px;
+  //margin-block-start: 40%;
+}
+
+
+/* =================================================== Apresentação Questões ====================================================== */
+
+
+#apresentacao {
+  height: auto;
+  background-color:  rgb(255, 255, 255);
+  padding:15px 15px 50px !important;
+  font-size:16px;
+  color: rgb(90, 90, 90);
+  margin-block-start: 2%;
+
+
+}
+
+#apresentacao ion-icon{
+  font-size: 32px;
+}
+
+ion-icon {
+font-size: 64px;
+}
+
+
+#questoes-apresentacao{
+  overflow: scroll;
+  height: 500px;
+}
+
+
+/* =================================================== Competencias ====================================================== */
+
+
+.presentation {
+  height: auto;
+  background-color:  rgb(255, 255, 255);
+  padding:15px 15px 100px !important;
+  font-size:16px;
+  color: rgb(90, 90, 90);
+}
+
+/* =================================================== Create Questions ====================================================== */
+
+#create-questions {
+  height: auto;
+  background-color:  rgb(230, 230, 230);
+  width: 100%;
+  float: left;
+}
+
+#create-questions h2{
+  color: rgb(90, 90, 90);
+  text-align: left;
+  margin-block-start: 10%;
+  margin-inline-start: 2%;
+}
+
+#create-questions p{
+  color: rgb(163, 161, 161);
+  text-align: left;
+  margin-inline-start: 2%;
+  margin-inline-end: 51%;
+
+}
+
+#create-questions img{
+  width: 50%;
+  background-color:  rgb(230, 230, 230);
+  height: auto;
+  float: right;
+}
+
+/* =================================================== Export Questions ====================================================== */
+
+#export-questions {
+  height: auto;
+  background-color:  rgb(230, 230, 230);
+  width: 100%;
+  float: right;
+  text-align: center;
+  color: rgb(90, 90, 90);
+  margin-bottom: 25px;
+}
+
+#export-questions h2{
+  color: rgb(90, 90, 90);
+  text-align: right;
+  margin-block-start: 10%;
+  margin-inline-end: 2%;
+
+}
+
+#export-questions p{
+  color: rgb(163, 161, 161);
+  text-align: right;
+  margin-inline-end: 2%;
+}
+
+
+#export-questions img{
+  width: 50%;
+  background-color:  rgb(230, 230, 230);
+  height: auto;
+  float: left;
+}
+
+
+
+
+/* =================================================== Cadastro ====================================================== */
+
+
+#cadastro {
+  margin-block-start: 5%;
+  }
+  
+
+
+
+/* =================================================== Footer ====================================================== */
+
+
+.parallax #footer{
+  margin-block-start: 30%;
+
+}
+
+#parallax #footer ion-icon{
+  font-size: 50px;
+}
+
+#parallax #footer p {
+    background-color: white;
+}
+
+/* =================================================== Login Google ====================================================== */
+
+
+#login{
+  margin-top: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#profile{
+  display: block;  
+  margin-left: auto;
+  margin-right: auto; 
+  margin-top: 5%;
+}
+
+#botao{
+  margin-top: 30px;
+  width: 100px;
+}
+
+
+
+/* =================================================== Outros ====================================================== */
+
+.container-fluid {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#image {
+  margin-block-start: 10%;
+}
+
+
+/* =================================================== Responsividade ====================================================== */
+
+
+@media screen and (max-width: 580px) {
+    #navbar {
+      padding: 20px 10px !important; 
+    }
+    #navbar a {
+      float: none;
+      display: block;
+      text-align: left;
+    }
+    #navbar-right {
+      float: none;
+    }
+    #navbar-left {
+      float: none;
+      display: block;
+      max-height: 10%;
+    }
+
+    .page-header{
+      margin-top: 30%;
+   }
+   #create-questions h2{
+    margin-block-start: 0%;
+    font-size: 16px;
+  }
+   #export-questions h2{
+     margin-block-start: 0%;
+     font-size: 16px;
+   }
+   .parallax{
+    padding:110px 90px 600px !important;
+
+   }
+
+   .justify-content-center .dropdown-menu .logged{
+      left: 50%;
+      transform: translateX(-50%);
+  }
+
+  .dropdown-menu .notLogged{
+    
+  }
+
+  
+  }
+
+  #backToTop {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 30px; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: rgb(2, 129, 255); /* Set a background color */
+    color: white; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 100px; /* Rounded corners */
+  }
+  
+  #backToTop:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+  }
+
+
+  /* ============================================ CAROUSEL ========================================= */
+
+  @media (min-width: 768px) {
+
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+    
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+    
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
+
+  }
+
+  body .carousel-control-prev-icon,
+  body .carousel-control-next-icon{
+    background-color:gray;
+  }
+
+  .modal { overflow-y: auto !important; }
+
+  @import url('https://fonts.googleapis.com/css?family=Oswald');
+
+/* ========== headboxs styles ======= */
+#headbox h3{
+    font-family: 'Oswald', sans-serif;
+}
+
+
+.loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 70%;
+    border-top: 10px solid #267bdd;
+    width: 70px;
+    height: 70px;
+    margin-inline-start: 40%;
+    -webkit-animation: spin 0.5s linear infinite; /* Safari */
+    animation: spin 0.5s linear infinite;
+  }
+
+  /* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  label {
+    margin-right: 5px;
+}  
+ 
+input[type=text], input[type=password] {
+  padding: 7px;
+  background: #ffffff;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #cad5da;
+  outline: none;
+}
+
+input[type=number], input[type=password] {
+  padding: 7px;
+  background: #ffffff;
+}
+
+input[type=number]:focus, input[type=password]:focus {
+  background-color: #f3f6f7;
+  outline: none;
+}
+
+button {
+  background-color: #17a2b8;
+  color: white;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.btn-remove, .btn-danger, .btn-sm{
+  width: 4%;
+  float: right;
+}
+
+
+.btn-sm {
+  width: 35px;
+  height: 30px;
+}
+
+.left{
+  float: left;  
+  width: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.right{
+  float: right;  
+  width: 45%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+.modal-bt{
+  float: right;  
+  width: 35px;
+  height: 30px;
+}
+
+.pagination {
+  margin-block-start: 2%;
+  background-color: white;
+}
+
+.questoes{
+  text-align: justify;
+  padding:15px 15px 0px ;
+}
+
+
+#lixeira{
+  font-size: 20px;
+}
+
+#question-bt {
+  margin-block-start: 2%;
+}
+
+
+.autor{
+  color: gray;
+}
+
+.section ion-icon {
+  font-size: 22px;
+}
+
+.section  i{
+  font-size:22px;color:red
+}
+
+.section  .correta{
+  font-size:22px;color:green
+}
+
+.section > div.wrap{
+  clear:both;
+
+}
+
+
+
+
+
+.section .competencias{
+  position: relative;
+  float: left;
+
+  padding:0px 1px;
+  padding-top:10px;
+}
+
+.section div{
+  position: relative;
+  float: left;
+}
+#camposEspecificos{
+  margin-block-end: 3%;
+}
+
+#alterarQuestao i{
+  font-size:22px;
+  color:rgb(10, 70, 233);
+}
+#alterarQuestao{
+  float: right;
+}
+
+
+
+#addEspelho {
+  margin-block-start: 1%;
+  margin-inline-start: 2%;
+}
+
+ng-quill-editor {
+  display: block;
+  margin-block-end: 15px;
+  width: 100%;
+}
+.fonteConteudo {
+margin-inline-end: 20%;}
+
+#bt-subjetiva {
+  margin-top: 17%;
+}
+
+.conteudoAdd{
+  margin-block-start: 25%;
+}
+
+#notFoundMessage {
+  text-align: justify;
+  margin-inline-start: 2%;
+  margin-block-start: 2%;
+}
+
+.addTipo {
+  margin-inline-end: 100%;
+  float: left;
+}
+
+#questoes {
+    margin-top: 4%;
+}
+
+
+
+#questoes .enunciadoCompactado{
+  height: 2.65em;
+  line-height: 1.3em; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 10px;
+  margin-right: 20px 
+}
+
+.addLista {
+  width: 30px;
+  height: 30px;
+}
+
+@media screen and (max-width: 580px) {
+  .conteudoAdd{
+    margin-block-start: 45%;
+  }
+
+  #question-bt {
+    margin-block-start: 6%;
+  }
+
+  #bt-subjetiva {
+    margin-block-start: 35%;
+  }
+
+
+}
+
+#dropdown-listas {
+  width: 100%;
+}
+
+
+.enunciadoCompactado {
+  position: relative;
+}
+
+#containerQuestoes {
+  margin: 0;
+}
+.truncated {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} 
+
+#ModalAvaliacao .modal-body {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+#estadoQuestaoBadge > .badge {
+  padding: 5px !important;
+  right: 25px;
+  position: absolute;
+}
+#espelho .ql-container {
+  height: unset !important;
+}
+
+label{
+    margin-right: 5px;
+}
+
+#search-menu {
+    float:left;
+    margin-inline-start: 3%;
+    padding:15px 15px 30px ;
+  }
+
+#outros-tipos button {
+  margin-block-start: 4%;
+}
+
+#search-menu h3 {
+  margin-inline-start: 2%;
+}
+
+#buscas{
+  margin-block-start: 5%;
+}
+
+
+.bt-maisOp {
+  width: 90px;
+  margin-inline-end: 45%;
+}
+
+#opcoesAvancadas{
+  margin-block-start: 10%;
+  margin-inline-start: 4%;
+}
+
+#compSearch, #estadoSearch {
+  margin-top: 2%;
+  margin-inline-start: 4%;
+}
+
+
+
+#searchCompetencias {
+  float: left; 
+  margin-inline-end: 100%;
+}
+
+.column {
+  flex: 5%;
+  max-width: 6%;
+  padding: 0 4px;
+  margin-inline-start: 9%;
+}
+
+.columnTelaQuestoes {
+  flex: 5%;
+  max-width: 17%;
+  padding: 0 4px;
+  margin-inline-start: 11%;
+}
+
+#competenciasSearch{
+  margin-inline-start: 18%;
+}
+
+#competenciasSearchLabel {
+  margin-inline-start: 26%;
+  margin-block-start: 2%;
+}
+
+
+
+.todasOpcoes {
+  padding:15px 15px 5px ;
+}
+
+#circle-icon{
+  font-size: 25px;
+  color: rgb(0, 110, 255);
+}
+
+  #lupa-icon{
+    font-size: 15px;
+  }
+
+  div.dropdown-menu.open{
+    max-height: 500px !important;
+    overflow: hidden;
+  }
+  ul.dropdown-menu.inner{
+    max-height: 500px !important;
+    overflow-y: auto;
+  }
+
+  .conteudoSearch{
+    margin-inline-start: 24%;
+
+  }
+
+  #enunciado {
+    width: 70%;
+    margin-inline-start: 30%;
+  }
+
+  .search{
+      margin-left:5px;
+  }
+
+  .search button {
+    margin-block-start: 55%;
+  }
+
+  #sendBusca button{
+    width: 48%; 
+    margin-block-start: 2%;
+    margin-inline-end: 2%;
+  }
+
+
+  @media screen and (max-width: 580px) {
+    #buscas{
+      margin-block-start: 14%;
+    }
+
+  }
+
+  #listName {
+    padding: 0;
+  }
+
+/* ======================================= Botão competências/autor/fonte/tipo ====================== */
+
+
+
+

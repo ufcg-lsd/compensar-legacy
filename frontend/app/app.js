@@ -1,4 +1,4 @@
-var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','ngMessages','angular-loading-bar', 'ui-notification']);
+var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','angular-loading-bar', 'ui-notification']);
 
 app.run(function($rootScope) {
     $rootScope.competenciasRepaginadas = [];
