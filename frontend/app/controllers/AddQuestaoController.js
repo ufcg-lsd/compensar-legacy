@@ -272,6 +272,8 @@ angular.module('app')
                             "COMP_SIMULAÇÃO": tmp
                         };
                         $scope.nextStep();
+                    } else {
+                        document.querySelector(".ql-editor").contentEditable = true;
                     }
                 });
             }

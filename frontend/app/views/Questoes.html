@@ -232,7 +232,7 @@
                         </div>
                     </li>
                     <li class="nav-item" ng-if="isJudge()"> 
-                        <div ng-controller="BuscasController">
+                        <div>
                                 <a role=tab class="nav-link" data-toggle="modal" ng-click="getQuestaoAvaliada()">Julgar questão</a>
 
                                 <!-- ========================   Editar Questão Modal ============================================== -->
@@ -438,7 +438,7 @@
                         </div>
                     </li>
                     <li class="nav-item" > 
-                        <div ng-controller="BuscasController">
+                        <div>
                                 <a role=tab class="nav-link" data-toggle="modal" ng-click="getQuestaoPendente()">Avaliar questão</a>
                         </div>
                     </li>
@@ -878,7 +878,7 @@
     </div>
 </div>
 
-<div class="modal" id="ModalAvaliacao" ng-controller="BuscasController">
+<div class="modal" id="ModalAvaliacao">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             
