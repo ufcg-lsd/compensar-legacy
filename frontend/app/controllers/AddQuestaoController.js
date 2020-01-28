@@ -1,6 +1,6 @@
 /* global host, isOrContains, highlight */
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification, $route)
     {
         $rootScope.activetab = $location.path();
         $scope.trechoSelecionado = "abc";
@@ -117,13 +117,12 @@ angular.module('app')
             $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $location.path("/buscas");
+                    $route.reload();
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
-                        $location.path("/buscas");
                     }
                 }
             )
@@ -194,13 +193,12 @@ angular.module('app')
             $http.post(host + 'questao', questaoObj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $location.path("/buscas");
+                    $route.reload();
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
-                        $location.path("/buscas");
                     }
                 }
             )

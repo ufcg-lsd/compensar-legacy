@@ -571,8 +571,6 @@ angular.module('app')
                     $rootScope.forceSignOut();
                 } else {
                     Notification.error("Falha no envio da avaliação");
-                    $location.path("/buscas");
-                    hideModals();
                 }
             }
         )

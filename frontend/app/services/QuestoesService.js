@@ -2,10 +2,8 @@
 angular.module('app')
   .factory('QuestoesService', function($rootScope,$http,$q,Notification,$location, AuthService, $sce) {
    const service = {};
-   let deferred = $q.defer();
-
    service.getQuestoes = function (pageNumber, usersPerPage) {
-      $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
+      return $http.get(host + 'questao/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
@@ -14,23 +12,22 @@ angular.module('app')
         $rootScope.loading = false;
 
         
-        deferred.resolve(response.data);
+        return response;
       }, function (err) {
         if (err.status == 400) {
           $rootScope.forceSignOut();
         }
-        deferred.resolve([]);
+        
         $rootScope.loading = false;
+        return err;
       });
-
-    return deferred.promise;
    },
 
 
    service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
     let estados =  query.estados.length === 0 ? ' ' : query.estados.join(",");
     let competencias =  query.competencias.length === 0 ? ' ' : query.competencias.join(",");
-    $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + competencias + '/' + ((apenasAutor) ? estados + '/' : '')
+    return $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + competencias + '/' + ((apenasAutor) ? estados + '/' : '')
     + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
@@ -43,25 +40,20 @@ angular.module('app')
         if (query.enunciado !== "") $rootScope.adicionaMarcadores(query.enunciado);
 
 
-        deferred.resolve(response.data);
+        return response;
      
       }, function (err) {
         if (err.status == 400) {
           $rootScope.forceSignOut();
         }
-        deferred.resolve([]);
-
-        
-
+        return err;
       });
-
-    return deferred.promise;
    },
 
 
   
   service.removeQuestao = function (questao) {
-        $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
+        return $http.delete(host + 'questao/' + questao.id, AuthService.getAuthorization()).
           then(function (response) {
             var  index = $rootScope.Questoes.indexOf(questao);
             $rootScope.Questoes.splice(index,1);
@@ -69,13 +61,14 @@ angular.module('app')
             $rootScope.loading = false;
             Notification.success('Questão removida com sucesso!');
             $location.path("/questoes");
+            return response;
           }).catch(function (err) {
             if (err.status == 400) {
               $rootScope.forceSignOut();
             } else {
               Notification.error('Falha ao remover questão!');
             }
-            deferred.resolve([]);
+            return err;
           });
   },
 
@@ -83,7 +76,7 @@ angular.module('app')
   service.atualizaQuestao = function (questao,novaQuestao) {
     $rootScope.loading = true;
 
-    $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
+    return $http.put(host + 'questao/' + questao.id, novaQuestao, AuthService.getAuthorization()).
       then(function (response) {
         let index = 0;
         for(; index < $rootScope.Questoes.length; index++) {
@@ -97,6 +90,7 @@ angular.module('app')
 
         Notification.success('Questão atualizada com sucesso!');
         $location.path("/questoes");
+        return response;
     },function(err){
       if (err.status == 400) {
         $rootScope.forceSignOut();
@@ -105,13 +99,14 @@ angular.module('app')
         $location.path("/questoes");
       }
       $rootScope.loading = false;
+      return err;
     });
 },
 
 service.publicaQuestao = function (questao) {
   $rootScope.loading = true;
 
-  $http.put(host + 'questao/publish/' + questao.id, {}, AuthService.getAuthorization()).
+  return $http.put(host + 'questao/publish/' + questao.id, {}, AuthService.getAuthorization()).
     then(function (response) {
       var  index = $rootScope.Questoes.indexOf(questao);
       $rootScope.Questoes.splice(index,1,response.data);
@@ -120,6 +115,7 @@ service.publicaQuestao = function (questao) {
 
       Notification.success('Questão publicada com sucesso!');
       $location.path("/questoes");
+      return response;
   },function(err){
     if (err.status == 400) {
       $rootScope.forceSignOut();
@@ -127,6 +123,7 @@ service.publicaQuestao = function (questao) {
       Notification.error('Falha ao publicar questão!');
           $location.path("/questoes");
     }
+    return err;
   });
 },
 
@@ -136,60 +133,57 @@ service.publicaQuestao = function (questao) {
         questoes.push(questao.id);
       }
       lista.questoes = questoes;
-      $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
+      return $http.post(host + 'listaquestoes', lista, AuthService.getAuthorization()).
         then(function (response) {
           Notification.success('Lista criada com sucesso!');
-          $location.path("/questoes");
           service.getListaQuestoes();
-            
+          return response;
         },function(err){
           if (err.status == 400) {
             $rootScope.forceSignOut();
           } else {
             Notification.error('Falha no envio da lista!');
-            $location.path("/questoes");
           }
+          return err;
         }
     )
   },
 
   service.getListaQuestoes = function () {
-    $http.get(host + 'listaquestoes/0/100', AuthService.getAuthorization()).
+    $rootScope.listasRequest = true;
+    return $http.get(host + 'listaquestoes/0/100', AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.listas = response.data.content;
-        deferred.resolve(response.data.content);
+        return response;
       }, function (err) {
         if (err.status == 400) {
           $rootScope.forceSignOut();
         }
-        deferred.resolve([]);
+        return err;
       });
-
-  return deferred.promise;
  },
 
  service.getListaQuestoesById = function (lista) {
-  $http.get(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
+  return $http.get(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
   then(function (response) {
     $rootScope.Questoes = response.data.questoes;
-    deferred.resolve(response.data);
+    return response;
   }, function (err) {
     if (err.status == 400) {
       $rootScope.forceSignOut();
     }
-    deferred.resolve([]);
+    return err;
   });
-
-  return deferred.promise;
  },
 
    
  service.removeLista = function (lista) {
 
-  $http.delete(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
+  return $http.delete(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
     then(function (response) {
       $location.path("/questoes");
       Notification.success('Lista removida com sucesso!');
+      return response;
     }).catch(function (err) {
       if (err.status == 400) {
         $rootScope.forceSignOut();
@@ -197,7 +191,7 @@ service.publicaQuestao = function (questao) {
         Notification.error('Falha ao remover lista!');
         $location.path("/questoes");      
       }
-      deferred.resolve([]);
+      return err;
     });
 },
 
@@ -207,7 +201,7 @@ service.sendUpdateLista = function (lista,novaLista) {
     questoes.push(questao.id);
   }
   novaLista.questoes = questoes;
-  $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
+  return $http.put(host + 'listaquestoes/' + lista.id, novaLista, AuthService.getAuthorization()).
     then(function (response) {
     let index = 0;
     for(; index < $rootScope.listas.length; index++) {
@@ -219,7 +213,7 @@ service.sendUpdateLista = function (lista,novaLista) {
     $rootScope.listaEmExibicao = response.data;
 
     Notification.success('Lista atualizada com sucesso!');
-    return response.data;
+    return response;
   },function(err){
     if (err.status == 400) {
       $rootScope.forceSignOut();
@@ -227,6 +221,7 @@ service.sendUpdateLista = function (lista,novaLista) {
       Notification.error('Falha ao atualizar lista!');
         $location.path("/questoes");
     }
+    return err;
   });
 },
 
@@ -255,12 +250,14 @@ service.getQuestaoPendente = function() {
   .then(function(response) {
     $rootScope.questaoSobAvaliacao = response.data;
     $rootScope.questaoSobAvaliacao.enunciado = $sce.trustAsHtml($rootScope.questaoSobAvaliacao.enunciado);
+    return response;
   }, function(err) {
     if (err.status == 400) {
       $rootScope.forceSignOut();
     } else {
       Notification.warning('Nenhuma questão pendente de sua avaliação!');
     }
+    return err;
   })
 }
 
@@ -274,6 +271,7 @@ service.getQuestaoAvaliada = function() {
     } else {
       Notification.warning('Nenhuma questão pendente de sua aprovação!');
     }
+    return err;
   })
 }
 
@@ -315,6 +313,7 @@ service.rejeitaQuestao = function(questao) {
     $location.path("/questoes");
     $rootScope.loading = false;
     hideModals();
+    return response;
   }, function(err) {
     if (err.status == 400) {
       $rootScope.forceSignOut();
@@ -324,6 +323,7 @@ service.rejeitaQuestao = function(questao) {
       $rootScope.loading = false;
       hideModals();
     }
+    return err;
   })
 }
 

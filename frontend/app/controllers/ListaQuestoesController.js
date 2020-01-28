@@ -1,12 +1,11 @@
 angular.module('app')
-    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, localStorageService)
+    .controller('ListaQuestoesController', function($rootScope,$scope, $location, QuestoesService,UserService, localStorageService, $route)
     {
  
       $rootScope.activetab = $location.path();
 
       $scope.nomeLista = "";
 
-      $rootScope.listas = [];
       $rootScope.loading = false;
 
 
@@ -80,11 +79,13 @@ angular.module('app')
         email: UserService.getEmail(),
         questoes: $rootScope.questoes
       }
-      QuestoesService.sendListaQuestao(lista);
-
-      $rootScope.painelListaEmContrucao = false;
-      $rootScope.questoes = [];
-      $location.path("/questoes");
+      QuestoesService.sendListaQuestao(lista).then((response) => {
+        if (response.status === 200) {
+          $rootScope.painelListaEmContrucao = false;
+          $rootScope.questoes = [];
+          $location.path("/questoes");
+        }
+      });
     };
 
     $scope.setListaEmConstrucao = function () {
@@ -116,9 +117,13 @@ angular.module('app')
           break;
         }
       }
-      QuestoesService.removeLista($rootScope.listaEmExibicao);
-      $rootScope.listas.splice(index,1);
-      location.reload();
+      QuestoesService.removeLista($rootScope.listaEmExibicao).then((response) => {
+        if (response.status === 200) {
+          $rootScope.listas.splice(index,1);
+          $route.reload();
+        }
+      });
+      
 
     }
 
@@ -142,15 +147,16 @@ angular.module('app')
         questoes: $rootScope.questoes
       }
 
-      QuestoesService.sendUpdateLista($rootScope.listaEmExibicao, novaLista);
+      QuestoesService.sendUpdateLista($rootScope.listaEmExibicao, novaLista).then((response) => {
+        if (response.status === 200) {
+          $rootScope.painelListaEmContrucao = false;
+          $rootScope.listaEmEdicao = false;
+          $rootScope.questoes = [];
+          $scope.nomeLista = "";
 
-      $rootScope.painelListaEmContrucao = false;
-      $rootScope.listaEmEdicao = false;
-      $rootScope.questoes = [];
-      $scope.nomeLista = "";
-
-      $scope.exibeLista($rootScope.listaEmExibicao);
-
+          $scope.exibeLista($rootScope.listaEmExibicao);
+        }
+      });
     }
 
     $scope.getListaEmEdicao = function() {
@@ -181,7 +187,7 @@ angular.module('app')
     }
 
     $(document).ready(function() {
-      if ($location.path() === '/questoes') {
+      if ($location.path() === '/questoes' && !$rootScope.listasRequest) {
         QuestoesService.getListaQuestoes();
       }
     });

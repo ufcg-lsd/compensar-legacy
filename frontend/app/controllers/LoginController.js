@@ -82,7 +82,7 @@ $scope.topFunction = function () {
 
 $(document).ready(function() {
   $scope.scrollFunction();
-  if ($location.path() === '/questoes') {
+  if ($location.path() === '/questoes' && !$rootScope.listasRequest) {
     QuestoesService.getListaQuestoes();
   }
 });

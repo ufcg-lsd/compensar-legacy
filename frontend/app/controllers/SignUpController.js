@@ -27,7 +27,6 @@ angular.module('app')
                         $location.path("/login");
                     } else {
                         Notification.error("Falha inesperada no cadastro!");
-                        $location.path("/signup");
                     }
                 }
             )

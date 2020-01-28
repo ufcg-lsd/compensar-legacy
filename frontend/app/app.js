@@ -1,8 +1,9 @@
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','angular-loading-bar', 'ui-notification']);
 
-app.run(function($rootScope) {
+app.run(function($rootScope, $interval, AuthService) {
     $rootScope.competenciasRepaginadas = [];
-
+    $rootScope.listas = [];
+    $rootScope.listasRequest = false;
     $rootScope.repaginaComp = function (competencia) {
         //console.log(competencia);
         var compLowerCase = competencia.split("_")[1].toLowerCase();
@@ -32,6 +33,8 @@ app.run(function($rootScope) {
         $rootScope.competenciasRepaginadas = competenciasRepaginadas;
         return amostraCompetencias;
     }
+
+    $interval(AuthService.update_view, 5000);
 });
 /* eslint-disable no-unused-vars */
 //var host = "https://compensar.herokuapp.com/api/";
