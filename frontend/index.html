@@ -176,10 +176,7 @@
 <script src="app/test/gremlins.min.js"></script>
 <script src="app/test/gremlinsTests.js"></script>
 -->
-<script>  
-function onSignIn(googleUser) {
-    angular.element(document.getElementById('myctrl')).scope().login(googleUser.getBasicProfile(), googleUser.getAuthResponse(true));
-}
+<script>
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     angular.element(document.getElementById('myctrl2')).scope().sair();
@@ -188,9 +185,16 @@ function signOut() {
     });
 }
 
+function userChanged(googleUser) {
+    if (googleUser.getBasicProfile()) {
+        angular.element(document.getElementById('myctrl')).scope().login(googleUser.getBasicProfile(), googleUser.getAuthResponse(true));
+    }
+};
+
 function onLoad() {
     gapi.load('auth2', function() {
-        gapi.auth2.init().then(() => {})
+        let auth2 = gapi.auth2.init();
+        auth2.currentUser.listen(userChanged);
     });
 }
 
