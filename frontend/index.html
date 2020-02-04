@@ -186,7 +186,7 @@ function signOut() {
 }
 
 function userChanged(googleUser) {
-    if (googleUser.getBasicProfile()) {
+    if (googleUser.getBasicProfile() && googleUser.getAuthResponse(true)) {
         angular.element(document.getElementById('myctrl')).scope().login(googleUser.getBasicProfile(), googleUser.getAuthResponse(true));
     }
 };

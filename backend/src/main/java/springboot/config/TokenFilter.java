@@ -48,6 +48,11 @@ public class TokenFilter extends GenericFilterBean {
             payload = GoogleIdVerifier.getPayload(token);
             System.out.println(new Date(payload.getExpirationTimeSeconds()*1000));
             System.out.println(payload.getExpirationTimeSeconds());
+            /*
+            if (new Random().nextInt(10) > 8) {
+                System.out.println("Simula expirado");
+                throw new Exception();
+            }*/
             if (new Date().getTime() > payload.getExpirationTimeSeconds()*1000) {
                 throw new Exception();
             }
