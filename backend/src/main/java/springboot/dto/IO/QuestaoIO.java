@@ -5,6 +5,7 @@ import springboot.dto.output.QuestaoOutput;
 import springboot.enums.AvaliacaoPublicacao;
 import springboot.enums.EstadoQuestao;
 import springboot.model.Avaliacao;
+import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
@@ -16,11 +17,16 @@ import java.util.List;
 public class QuestaoIO {
 
     public static Questao convert(QuestaoInput questao, String autor) {
-        return new Questao(questao.getTipo(), questao.getConteudo(), questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
+        List<Conteudo> conteudos = new ArrayList<>();
+        for (String conteudoItem : questao.getConteudo()) {
+            conteudos.add(new Conteudo(conteudoItem));
+        }
+        return new Questao(questao.getTipo(), conteudos, questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
     }
 
     public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, boolean forceAvaliacoes) {
         List<String> sugestoes = new ArrayList<>();
+        List<String> conteudo = new ArrayList<>();
         List<AvaliacaoPublicacao> avalPublicacoes = new ArrayList<>();
         if ((usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado().equals(EstadoQuestao.REJEITADA)) || forceAvaliacoes) {
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
@@ -42,7 +48,10 @@ public class QuestaoIO {
                 sugestoes.add(tmp);
             }
         }
+        for (Conteudo conteudoItem : questao.getConteudo()) {
+            conteudo.add(conteudoItem.getNome())
+;        }
 
-        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
+        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
     }
 }

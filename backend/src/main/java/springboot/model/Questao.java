@@ -49,7 +49,7 @@ public class Questao {
 
 	private String espelho;
 	
-	private String conteudo;
+	private List<Conteudo> conteudo;
 
 	private List<Alternativa> alternativas;
 
@@ -73,7 +73,7 @@ public class Questao {
 	 * 
 	 * 
 	 */
-	public Questao(String tipo, String conteudo, String enunciado, String fonte, String autor, String espelho,
+	public Questao(String tipo, List<Conteudo> conteudo, String enunciado, String fonte, String autor, String espelho,
 			List<Alternativa> alternativas, Collection<CompetenciaType> competencias) {
 
 		this.tipo = tipo;
@@ -122,11 +122,11 @@ public class Questao {
 	
 	
 
-	public String getConteudo() {
+	public List<Conteudo> getConteudo() {
 		return conteudo;
 	}
 
-	public void setConteudo(String conteudo) {
+	public void setConteudo(List<Conteudo> conteudo) {
 		this.conteudo = conteudo;
 	}
 

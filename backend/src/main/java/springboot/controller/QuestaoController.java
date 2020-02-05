@@ -26,9 +26,11 @@ import springboot.enums.EstadoQuestao;
 import springboot.enums.PermissaoType;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.model.Avaliacao;
+import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
+import springboot.service.ConteudoService;
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
@@ -50,6 +52,9 @@ public class QuestaoController {
 
 	@Autowired
 	UsuarioService usuarioService;
+
+	@Autowired
+	ConteudoService conteudoService;
 
 	private QuestaoOutput convert(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
 		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, forceAvaliacoes);
@@ -73,6 +78,13 @@ public class QuestaoController {
 				)
 		);
 		return convert(questaoSalva, usuario, false);
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
+	@RequestMapping(value = "/conteudo", method = RequestMethod.POST)
+	public Conteudo saveConteudo(@RequestBody String conteudo) throws IOException {
+		conteudoService.save(new Conteudo(conteudo));
+		return new Conteudo(conteudo);
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")

@@ -19,7 +19,7 @@ public class QuestaoInput {
 
     private String espelho;
 
-    private String conteudo;
+    private List<String> conteudo;
 
     private List<Alternativa> alternativas;
 
@@ -31,7 +31,7 @@ public class QuestaoInput {
 
     private String obsAvaliacao;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, List<String> infoCompetenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, List<String> conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, List<String> infoCompetenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
@@ -85,11 +85,11 @@ public class QuestaoInput {
         this.espelho = espelho;
     }
 
-    public String getConteudo() {
+    public List<String> getConteudo() {
         return conteudo;
     }
 
-    public void setConteudo(String conteudo) {
+    public void setConteudo(List<String> conteudo) {
         this.conteudo = conteudo;
     }
 

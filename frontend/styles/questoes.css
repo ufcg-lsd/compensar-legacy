@@ -235,3 +235,7 @@ margin-inline-end: 20%;}
 #espelho .ql-container {
   height: unset !important;
 }
+
+ul.dropdown-menu.inner {
+  overflow-y: visible;
+}

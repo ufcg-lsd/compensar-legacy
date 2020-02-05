@@ -26,7 +26,7 @@ public class QuestaoOutput {
 
     private String espelho;
 
-    private String conteudo;
+    private List<String> conteudo;
 
     private List<Alternativa> alternativas;
 
@@ -36,7 +36,7 @@ public class QuestaoOutput {
 
     private EstadoQuestao estado;
 
-    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, String conteudo, List<Alternativa> alternativas, List<String> sugestoes, List<AvaliacaoPublicacao> avaliacoesPublicacao, EstadoQuestao estado) {
+    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, List<String> conteudo, List<Alternativa> alternativas, List<String> sugestoes, List<AvaliacaoPublicacao> avaliacoesPublicacao, EstadoQuestao estado) {
         this.id = id;
         this.tipo = tipo;
         this.enunciado = enunciado;
@@ -116,11 +116,11 @@ public class QuestaoOutput {
         this.espelho = espelho;
     }
 
-    public String getConteudo() {
+    public List<String> getConteudo() {
         return conteudo;
     }
 
-    public void setConteudo(String conteudo) {
+    public void setConteudo(List<String> conteudo) {
         this.conteudo = conteudo;
     }
 
