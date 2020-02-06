@@ -2,6 +2,8 @@ package springboot.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,6 +87,17 @@ public class QuestaoController {
 	public Conteudo saveConteudo(@RequestBody String conteudo) throws IOException {
 		conteudoService.save(new Conteudo(conteudo));
 		return new Conteudo(conteudo);
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
+	@RequestMapping(value = "/conteudo", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getAllConteudo(@RequestBody String conteudo) throws IOException {
+		List<String> l = new ArrayList<>();
+		for (Conteudo conteudoItem : conteudoService.getAll()) {
+			l.add(conteudoItem.getNome());
+		}
+
+		return new ResponseEntity<List<String>>(l, HttpStatus.OK);
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")
