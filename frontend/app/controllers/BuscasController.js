@@ -42,7 +42,7 @@ angular.module('app')
         $scope.enunciadoSearch = "";
         $scope.fonteSearch = "";
         $scope.tipoSearch = "";
-        $scope.conteudoSearch = "";
+        $scope.conteudoSearch = [];
         $rootScope.apenasAutor = false;
         $scope.editingAprovacao = false;
 
@@ -146,7 +146,6 @@ angular.module('app')
                 if (!autorSearch) autorSearch = "null";
                 if (!fonteSearch) fonteSearch = "null";
                 if (!tipoSearch)  tipoSearch = "null";
-                if (!conteudoSearch || (conteudoSearch === "Qualquer Um")) conteudoSearch = "null";
 
 
                 let query = {
@@ -156,7 +155,7 @@ angular.module('app')
                     autor: autorSearch,
                     fonte: fonteSearch,
                     tipo: tipoSearch,
-                    conteudo: conteudoSearch
+                    conteudo: conteudoSearch ? conteudoSearch : []
                 }
                 $rootScope.lastQuery = query;
                 QuestoesService.sendQuery(query, $rootScope.pagination.current , 4, $rootScope.apenasAutor);
@@ -171,11 +170,6 @@ angular.module('app')
 
             $scope.sendQuery('', '', '', '', competenciasSearch, conteudoSearch);
 
-        }
-
-        $scope.allEmpty = function () {
-            return !$scope.enunciadoSearch && $scope.questao.competencias.length === 0 && !$scope.autorSearch
-            && !$scope.fonteSearch && !$scope.tipoSearch && (!$scope.conteudoSearch || ($scope.conteudoSearch === "Qualquer Um"));
         }
 
         $scope.enunciadoShow = "";
@@ -269,7 +263,7 @@ angular.module('app')
             enunciado : "",
             tempEnunciado: "",
             tipo : "",
-            conteudo : "Divisão",
+            conteudo : [],
             espelho: "",
             fonte: "",
             alternativas: [{
@@ -373,7 +367,7 @@ angular.module('app')
 
     $scope.inputError = false;
     $scope.checkEdicaoInput = function (questao) {
-        if ($scope.update.conteudo === "" || typeof $scope.update.conteudo === 'undefined' ||
+        if ($scope.update.conteudo === [] || typeof $scope.update.conteudo === 'undefined' ||
         $scope.update.tempEnunciado === "" ||  $scope.update.tempEnunciado === null ||
         $scope.update.fonte === "" || typeof $scope.update.fonte === 'undefined' ||
         $scope.update.tipo === "" || typeof $scope.update.tipo === 'undefined') {
@@ -387,7 +381,7 @@ angular.module('app')
             $scope.inputError = true;
         } else if ($scope.update.tipo === "Subjetiva" && 
             ($scope.update.espelho === "" || 
-            $scope.update.espelho === null || $scope.update.espelho === 'undefined')) {
+            $scope.update.espelho === null || typeof $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
         } else if (!$scope.editingAprovacao && $scope.update.enunciado !== $scope.update.tempEnunciado) {
             QuestoesService.getCompetencias($scope.update.tempEnunciado).then(() => {
@@ -436,15 +430,19 @@ angular.module('app')
 
 
 
-        $scope.setLocation = function() {
-            $location.path("/questoes");   
+        $scope.showResults = function() {
+            $location.path("/questoes");
+            $rootScope.blockSearch = true;
         };
         $scope.getApenasAutor = function () {
             return $rootScope.apenasAutor;
         };
 
-
-        $scope.sendNewQuery($scope.questao.competencias, $scope.conteudoSearch);
+        if (!$rootScope.blockSearch) {
+            $scope.sendNewQuery($scope.questao.competencias, $scope.conteudoSearch);
+        }
+        $rootScope.blockSearch = false;
+        
         
 
         $scope.options = [

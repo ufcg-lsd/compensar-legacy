@@ -94,8 +94,10 @@ public class QuestaoController {
 	public ResponseEntity<List<String>> getAllConteudo() throws IOException {
 		List<String> l = new ArrayList<>();
 		for (Conteudo conteudoItem : conteudoService.getAll()) {
-			l.add(conteudoItem.getNome());
+			if (!conteudoItem.getNome().equals("Outros"))
+				l.add(conteudoItem.getNome());
 		}
+		l.add("Outros");
 
 		return new ResponseEntity<List<String>>(l, HttpStatus.OK);
 	}

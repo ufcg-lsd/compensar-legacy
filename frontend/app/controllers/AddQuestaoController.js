@@ -60,7 +60,7 @@ angular.module('app')
         $scope.fonte = "";
         $scope.enunciado = "";
         $scope.tipo = "";
-        $scope.conteudo = "";
+        $scope.conteudo = [];
         $rootScope.avaliacao = {
             competencias: {
                 "COMP_ABSTRAÇÃO": "false",
@@ -284,7 +284,7 @@ angular.module('app')
             $scope.inputError = false;
             if (passo === "anterior") {
                 $scope.prevStep();
-            } else if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
+            } else if ($scope.conteudo === [] || typeof $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
             } else if ($scope.tipo === "Objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &&
                 typeof $scope.corretas.Value2 === 'undefined' && typeof $scope.corretas.Value3 === 'undefined' &&
@@ -295,7 +295,7 @@ angular.module('app')
 
                 $scope.inputError = true;
             } else if ($scope.tipo === "Subjetiva" && ($scope.resposta.espelho === "" || 
-                $scope.resposta.espelho === null || $scope.resposta.espelho === 'undefined')) {
+                $scope.resposta.espelho === null || typeof $scope.resposta.espelho === 'undefined')) {
                 $scope.inputError = true;
             } else {
                 $scope.nextStep();

@@ -154,5 +154,9 @@
   {
     "_class": "springboot.model.Conteudo",
     "nome": "Unidades de Medida"
+  },
+  {
+    "_class": "springboot.model.Conteudo",
+    "nome": "Outros"
   }
 ]

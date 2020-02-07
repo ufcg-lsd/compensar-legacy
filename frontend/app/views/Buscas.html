@@ -11,7 +11,7 @@
             <label><h6>Conteúdo:</h6></label>
             <select class="form-control selectpicker " 
             data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" editable="true" 
-             ng-model="conteudoSearch">
+            multiple="true" ng-model="conteudoSearch">
             </select>
         </div>
     </div>
@@ -76,7 +76,7 @@
     </div>
     </div>
     <div id="sendBusca">
-            <button class="btn btn-primary" type="submit" ng-click="setPageStart(); setLocation();  sendNewQuery(questao.competencias, conteudoSearch)"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
+            <button class="btn btn-primary" type="submit" ng-click="setPageStart(); showResults();  sendNewQuery(questao.competencias, conteudoSearch)"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
     </div>
 </div>
 </div>

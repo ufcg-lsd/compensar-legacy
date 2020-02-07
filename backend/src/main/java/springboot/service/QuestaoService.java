@@ -28,6 +28,7 @@ import springboot.enums.EstadoQuestao;
 import springboot.exception.data.NoPendentQuestionException;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
+import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.repository.QuestaoRepository;
@@ -40,6 +41,7 @@ public class QuestaoService {
 	public static final int ENUNCIADO = 0;
 	public static final int COMPETENCIA = 1;
 	public static final int ESTADO = 2;
+	public static final int CONTEUDO = 7;
 
 	private ArrayList<String> arrayParametros = new ArrayList<String>();
 	private ArrayList<String> arrayQuery = new ArrayList<String>();
@@ -125,14 +127,14 @@ public class QuestaoService {
 		arrayParametros.add("{\"autorInfo.nome\": { \"$regex\": ");
 		arrayParametros.add("{\"fonte\": { \"$regex\": ");
 		arrayParametros.add("{\"tipo\": { \"$regex\": ");
-		arrayParametros.add("{\"conteudo\": { \"$regex\": ");
+		arrayParametros.add("{\"conteudo\": { \"$in\": ");
 
 
 
 	}
 
 	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-			String autorNome, String autorEmail, String fonte, String tipo, String conteudo, Set<EstadoQuestao> estados, int page, int size) {
+		String autorNome, String autorEmail, String fonte, String tipo, Set<Conteudo> conteudo, Set<EstadoQuestao> estados, int page, int size) {
 
 		List<CustomAggregationOperation>  aggList = new ArrayList<>();
 		aggList.add(new CustomAggregationOperation(Document.parse(
@@ -205,6 +207,18 @@ public class QuestaoService {
 							subQuery += ", ";
 						}
 						subQuery += "'" + estado + "'";
+					}
+					subQuery += "]}}";
+					arrayQuery.add(subQuery);
+				} else if (i == CONTEUDO) {
+					if (conteudo.isEmpty()) continue;
+					String subQuery = arrayParametros.get(CONTEUDO) + "[";
+
+					for(Conteudo conteudoItem : conteudo) {
+						if (!subQuery.endsWith("[")) {
+							subQuery += ", ";
+						}
+						subQuery += "'" + conteudoItem.getNome() + "'";
 					}
 					subQuery += "]}}";
 					arrayQuery.add(subQuery);

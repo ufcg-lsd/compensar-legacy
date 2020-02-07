@@ -87,7 +87,7 @@ $(document).ready(function() {
   }
 });
 $rootScope.forceSignOut = function () {
-  if ($rootScope.loaded === true || $rootScope.loaded === undefined) {
+  if ($rootScope.loaded === true || typeof $rootScope.loaded === undefined) {
     $rootScope.loaded = false;
     signOut();
     Notification.warning("Seu login expirou, por favor faça login novamente!");

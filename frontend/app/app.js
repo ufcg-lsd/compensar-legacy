@@ -9,6 +9,7 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
     $rootScope.competenciasRepaginadas = [];
     $rootScope.listas = [];
     $rootScope.listasRequest = false;
+    $rootScope.blockSearch = false;
     $rootScope.repaginaComp = function (competencia) {
         //console.log(competencia);
         var compLowerCase = competencia.split("_")[1].toLowerCase();
@@ -17,7 +18,7 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
 
     $rootScope.repaginaCompetencias = function(competencias) {
         //console.log(competencias);
-        if (competencias === undefined) {
+        if (typeof competencias === 'undefined') {
             return "";
         }
         let competenciasRepaginadas = [];
@@ -39,17 +40,35 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
         return amostraCompetencias;
     }
 
+  $rootScope.repaginaConteudo = function(conteudo) {
+      //console.log(competencias);
+      if (typeof conteudo === 'undefined') {
+        return "";
+      }
+      let conteudoRepaginado = "";
+      for (let i = 0; i < (conteudo.length); i++) {
+          if (i === (conteudo.length - 1) && i === 0) {
+            conteudoRepaginado += conteudo[i] + ".";
+          } else if (i === (conteudo.length - 1)) {
+            conteudoRepaginado += " e " + conteudo[i] + ".";
+          } else if (i === 0) {
+            conteudoRepaginado += conteudo[i];
+          } else {
+            conteudoRepaginado += ", " + conteudo[i];
+          }
+      }
+      return conteudoRepaginado;
+  }
+
     $interval(AuthService.update_view, 5000);
 
     $rootScope.updateSelect = function() {
       $http.get(host + 'conteudo', AuthService.getAuthorization())
       .then(function (response) {
         if ($('.selectpicker') !== null) {
-          $('.selectpicker').empty().append('<option value="">Selecione um conteúdo</option>');
           for(let conteudo of response.data) {
             $('.selectpicker').append('<option>'+conteudo+'</option>');
           }
-          $('.selectpicker').append('<option>Outros</option>');
           $('.selectpicker').selectpicker("refresh");
         }
       }, function (err) {

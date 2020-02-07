@@ -27,8 +27,9 @@ angular.module('app')
    service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
     let estados =  query.estados.length === 0 ? ' ' : query.estados.join(",");
     let competencias =  query.competencias.length === 0 ? ' ' : query.competencias.join(",");
+    let conteudo =  query.conteudo.length === 0 ? ' ' : query.conteudo.join(",");
     return $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + competencias + '/' + ((apenasAutor) ? estados + '/' : '')
-    + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + query.conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
+    + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
       then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;

@@ -42,4 +42,15 @@ public class ConteudoService {
         return conteudoRepository.findAll();
     }
 
+    public Conteudo getById(String id) {
+        Optional<Conteudo> optConteudo = conteudoRepository.findById(id);
+
+        if (!optConteudo.isPresent()) {
+            throw new RegisterNotFoundException(errorMessage);
+        }
+
+        Conteudo conteudo = optConteudo.get();
+        return conteudo;
+    }
+
 }
