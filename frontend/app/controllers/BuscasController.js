@@ -324,9 +324,7 @@ angular.module('app')
             }
 
             $scope.$watch(function() {
-                if($('.selectpicker') !== null) {
-                    $('.selectpicker').selectpicker('refresh');
-                }
+                $rootScope.updateSelect();
             });
         };
 
@@ -425,7 +423,7 @@ angular.module('app')
         };
 
         $(document).ready(function() {
-            $('.selectpicker').selectpicker();
+            $rootScope.updateSelect();
         });
 
         $(function () {

@@ -970,3 +970,7 @@ label{
 ul.dropdown-menu.inner {
   overflow-y: visible;
 }
+
+.dropdown-menu {
+  width: 100%;
+}

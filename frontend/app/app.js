@@ -1,6 +1,11 @@
+/* eslint-disable no-unused-vars */
+//var host = "https://compensar.herokuapp.com/api/";
+var host = "http://localhost:5458/api/";
+/* eslint-enable no-unused-vars */
+
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','angular-loading-bar', 'ui-notification']);
 
-app.run(function($rootScope, $interval, AuthService) {
+app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
     $rootScope.competenciasRepaginadas = [];
     $rootScope.listas = [];
     $rootScope.listasRequest = false;
@@ -35,11 +40,23 @@ app.run(function($rootScope, $interval, AuthService) {
     }
 
     $interval(AuthService.update_view, 5000);
+
+    $rootScope.updateSelect = function() {
+      $http.get(host + 'conteudo', AuthService.getAuthorization())
+      .then(function (response) {
+        if ($('.selectpicker') !== null) {
+          $('.selectpicker').empty().append('<option value="">Selecione um conteúdo</option>');
+          for(let conteudo of response.data) {
+            $('.selectpicker').append('<option>'+conteudo+'</option>');
+          }
+          $('.selectpicker').append('<option>Outros</option>');
+          $('.selectpicker').selectpicker("refresh");
+        }
+      }, function (err) {
+        $timeout($rootScope.updateSelect, 2000);
+      });
+    };
 });
-/* eslint-disable no-unused-vars */
-//var host = "https://compensar.herokuapp.com/api/";
-var host = "http://localhost:5458/api/";
-/* eslint-enable no-unused-vars */
 
 app.config(function($routeProvider, $locationProvider) {
     
@@ -102,11 +119,6 @@ app.config(function($routeProvider, $locationProvider) {
       .otherwise({
         redirectTo: '/login'
       });
-
-
-      $(document).ready(function() {
-        $('.selectpicker').selectpicker();
-    });
 
     });
 

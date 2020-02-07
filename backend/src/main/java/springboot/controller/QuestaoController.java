@@ -91,7 +91,7 @@ public class QuestaoController {
 
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
 	@RequestMapping(value = "/conteudo", method = RequestMethod.GET)
-	public ResponseEntity<List<String>> getAllConteudo(@RequestBody String conteudo) throws IOException {
+	public ResponseEntity<List<String>> getAllConteudo() throws IOException {
 		List<String> l = new ArrayList<>();
 		for (Conteudo conteudoItem : conteudoService.getAll()) {
 			l.add(conteudoItem.getNome());
