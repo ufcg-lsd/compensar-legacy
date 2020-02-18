@@ -971,6 +971,6 @@ ul.dropdown-menu.inner {
   overflow-y: visible;
 }
 
-.dropdown-menu {
-  width: 100%;
+.dropdown-menu, .bootstrap-select {
+  width: 100% !important;
 }

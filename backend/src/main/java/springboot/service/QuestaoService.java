@@ -134,7 +134,7 @@ public class QuestaoService {
 	}
 
 	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-		String autorNome, String autorEmail, String fonte, String tipo, Set<Conteudo> conteudo, Set<EstadoQuestao> estados, int page, int size) {
+		String autorNome, String autorEmail, String fonte, String tipo, Set<String> conteudo, Set<EstadoQuestao> estados, int page, int size) {
 
 		List<CustomAggregationOperation>  aggList = new ArrayList<>();
 		aggList.add(new CustomAggregationOperation(Document.parse(
@@ -214,11 +214,11 @@ public class QuestaoService {
 					if (conteudo.isEmpty()) continue;
 					String subQuery = arrayParametros.get(CONTEUDO) + "[";
 
-					for(Conteudo conteudoItem : conteudo) {
+					for(String conteudoItem : conteudo) {
 						if (!subQuery.endsWith("[")) {
 							subQuery += ", ";
 						}
-						subQuery += "'" + conteudoItem.getNome() + "'";
+						subQuery += "'" + conteudoItem + "'";
 					}
 					subQuery += "]}}";
 					arrayQuery.add(subQuery);

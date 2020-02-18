@@ -76,10 +76,10 @@ public class QuestionSearchController {
 			@PathVariable("page") int page,@PathVariable("size") int size) {
 		System.out.println(competencias);
 		Set<EstadoQuestao> estados = new HashSet<>();
-		Set<Conteudo> newConteudo = new HashSet<>();
+		Set<String> newConteudo = new HashSet<>();
 		for(String conteudoItem : conteudo) {
 			if (!conteudoItem.equals(""))
-				newConteudo.add(conteudoService.getById(conteudoItem));
+				newConteudo.add(conteudoItem);
 		}
 		estados.add(EstadoQuestao.PUBLICADA);
 		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, autor, "", fonte, tipo,newConteudo, estados, page,size).map(q -> this.convert(q, usuario));
@@ -93,10 +93,10 @@ public class QuestionSearchController {
 																			 @PathVariable("competencias") HashSet<String> competencias, @PathVariable("estados") HashSet<EstadoQuestao> estados,
 																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") HashSet<String> conteudo,
 																			 @PathVariable("page") int page, @PathVariable("size") int size) {
-		Set<Conteudo> newConteudo = new HashSet<>();
+		Set<String> newConteudo = new HashSet<>();
 		for(String conteudoItem : conteudo) {
 			if (!conteudoItem.equals(""))
-				newConteudo.add(conteudoService.getById(conteudoItem));
+				newConteudo.add(conteudoItem);
 		}
 		System.out.println(competencias);
 		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, "", usuario.getEmail(), fonte, tipo,newConteudo, estados, page,size).map(q -> this.convert(q, usuario));

@@ -3,6 +3,7 @@ package springboot.dto.input;
 import springboot.enums.CompetenciaType;
 import springboot.model.Alternativa;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class QuestaoInput {
 
     private String espelho;
 
-    private List<String> conteudo;
+    private HashSet<String> conteudo;
 
     private List<Alternativa> alternativas;
 
@@ -31,7 +32,7 @@ public class QuestaoInput {
 
     private String obsAvaliacao;
 
-    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, List<String> conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, List<String> infoCompetenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
+    public QuestaoInput(String tipo, String enunciado, Set<CompetenciaType> competencias, String fonte, String espelho, HashSet<String> conteudo, List<Alternativa> alternativas, Set<CompetenciaType> competenciasAvaliacao, List<String> infoCompetenciasAvaliacao, Integer confiancaAvaliacao, String obsAvaliacao) {
         this.tipo = tipo;
         this.enunciado = enunciado;
         this.competencias = competencias;
@@ -85,11 +86,11 @@ public class QuestaoInput {
         this.espelho = espelho;
     }
 
-    public List<String> getConteudo() {
+    public HashSet<String> getConteudo() {
         return conteudo;
     }
 
-    public void setConteudo(List<String> conteudo) {
+    public void setConteudo(HashSet<String> conteudo) {
         this.conteudo = conteudo;
     }
 

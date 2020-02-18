@@ -17,11 +17,7 @@ import java.util.List;
 public class QuestaoIO {
 
     public static Questao convert(QuestaoInput questao, String autor) {
-        List<Conteudo> conteudos = new ArrayList<>();
-        for (String conteudoItem : questao.getConteudo()) {
-            conteudos.add(new Conteudo(conteudoItem));
-        }
-        return new Questao(questao.getTipo(), conteudos, questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
+        return new Questao(questao.getTipo(), questao.getConteudo(), questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
     }
 
     public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, boolean forceAvaliacoes) {
@@ -48,8 +44,8 @@ public class QuestaoIO {
                 sugestoes.add(tmp);
             }
         }
-        for (Conteudo conteudoItem : questao.getConteudo()) {
-            conteudo.add(conteudoItem.getNome())
+        for (String conteudoItem : questao.getConteudo()) {
+            conteudo.add(conteudoItem);
 ;        }
 
         return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
