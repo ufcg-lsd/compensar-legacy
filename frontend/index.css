@@ -974,3 +974,14 @@ ul.dropdown-menu.inner {
 .dropdown-menu, .bootstrap-select {
   width: 100% !important;
 }
+.bs-searchbox {
+  padding: 1% 2% !important;
+}
+.bs-searchbox input {
+  width: 94% !important;
+}
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+  display: none;
+}
