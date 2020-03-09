@@ -316,9 +316,11 @@ angular.module('app')
                     $('#editarAprovacao').modal('show');
                 });
             }
-
-            $scope.$watch(function() {
-                $rootScope.updateSelect();
+            $().ready(function() {
+                $rootScope.updateSelect('.editionSelect').then(() => {
+                    $('.editionSelect').val($scope.update.conteudo);
+                    $('.editionSelect').selectpícker("refresh");
+                });
             });
         };
 
@@ -417,7 +419,7 @@ angular.module('app')
         };
 
         $(document).ready(function() {
-            $rootScope.updateSelect();
+            $rootScope.updateSelect('.selectpicker');
         });
 
         $(function () {

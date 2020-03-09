@@ -45,7 +45,7 @@ public class QuestionSearchController {
 	ConteudoService conteudoService;
 
 	private QuestaoOutput convert(Questao questao, Usuario usuario) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, false);
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, questaoService, false);
 	}
 
 	

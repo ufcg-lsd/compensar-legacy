@@ -95,6 +95,9 @@ public class QuestaoService {
 
 
         questao.setId(id);
+		if (novaQuestao.getEstado() != EstadoQuestao.RASCUNHO) {
+			questao.setOriginalEnunciado(novaQuestao.getOriginalEnunciado());
+		}
 
 		questaoRepository.save(questao);
 

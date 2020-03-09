@@ -40,6 +40,8 @@ public class Questao {
 	@TextIndexed
 	private String enunciado;
 
+	private String originalEnunciado;
+
 	@TextIndexed
 	private Set<CompetenciaType> competencias;
 
@@ -79,6 +81,7 @@ public class Questao {
 		this.tipo = tipo;
 		this.conteudo = conteudo;
 		this.enunciado = enunciado;
+		this.originalEnunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
 		this.espelho = espelho;
@@ -195,6 +198,13 @@ public class Questao {
 		this.enunciado = enunciado;
 	}
 
+	public String getOriginalEnunciado() {
+		return originalEnunciado;
+	}
+
+	public void setOriginalEnunciado(String originalEnunciado) {
+		this.originalEnunciado = originalEnunciado;
+	}
 
 	public Set<CompetenciaType> getCompetencias() {
 		return competencias;

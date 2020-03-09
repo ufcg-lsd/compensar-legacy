@@ -16,11 +16,17 @@ public class QuestaoOutput {
 
     private String enunciado;
 
+    private String originalEnunciado;
+
     public String autor;
 
     public String emailAutor;
 
     private Set<CompetenciaType> competencias;
+
+    private Set<CompetenciaType> competenciasAutor;
+
+    private Set<CompetenciaType> competenciasClassficador;
 
     private String fonte;
 
@@ -36,13 +42,16 @@ public class QuestaoOutput {
 
     private EstadoQuestao estado;
 
-    public QuestaoOutput(String id, String tipo, String enunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, String fonte, String espelho, List<String> conteudo, List<Alternativa> alternativas, List<String> sugestoes, List<AvaliacaoPublicacao> avaliacoesPublicacao, EstadoQuestao estado) {
+    public QuestaoOutput(String id, String tipo, String enunciado, String originalEnunciado, String autor, String emailAutor, Set<CompetenciaType> competencias, Set<CompetenciaType> competenciasAutor, Set<CompetenciaType> competenciasClassficador, String fonte, String espelho, List<String> conteudo, List<Alternativa> alternativas, List<String> sugestoes, List<AvaliacaoPublicacao> avaliacoesPublicacao, EstadoQuestao estado) {
         this.id = id;
         this.tipo = tipo;
         this.enunciado = enunciado;
+        this.originalEnunciado = originalEnunciado;
         this.autor = autor;
         this.emailAutor = emailAutor;
         this.competencias = competencias;
+        this.competenciasAutor = competenciasAutor;
+        this.competenciasClassficador = competenciasClassficador;
         this.fonte = fonte;
         this.espelho = espelho;
         this.conteudo = conteudo;
@@ -76,6 +85,14 @@ public class QuestaoOutput {
         this.enunciado = enunciado;
     }
 
+    public String getOriginalEnunciado() {
+        return originalEnunciado;
+    }
+
+    public void setOriginalEnunciado(String originalEnunciado) {
+        this.originalEnunciado = originalEnunciado;
+    }
+
     public String getAutor() {
         return autor;
     }
@@ -98,6 +115,22 @@ public class QuestaoOutput {
 
     public void setCompetencias(Set<CompetenciaType> competencias) {
         this.competencias = competencias;
+    }
+
+    public Set<CompetenciaType> getCompetenciasAutor() {
+        return competenciasAutor;
+    }
+
+    public void setCompetenciasAutor(Set<CompetenciaType> competenciasAutor) {
+        this.competenciasAutor = competenciasAutor;
+    }
+
+    public Set<CompetenciaType> getCompetenciasClassficador() {
+        return competenciasClassficador;
+    }
+
+    public void setCompetenciasClassficador(Set<CompetenciaType> competenciasClassficador) {
+        this.competenciasClassficador = competenciasClassficador;
     }
 
     public String getFonte() {

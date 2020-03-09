@@ -62,17 +62,20 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
 
     $interval(AuthService.update_view, 5000);
 
-    $rootScope.updateSelect = function() {
-      $http.get(host + 'conteudo', AuthService.getAuthorization())
+    $rootScope.updateSelect = function(selector) {
+      return $http.get(host + 'conteudo', AuthService.getAuthorization())
       .then(function (response) {
-        if ($('.selectpicker') !== null) {
+        if ($("select"+selector) !== null) {
+          $("select"+selector).empty();
           for(let conteudo of response.data) {
-            $('.selectpicker').append('<option>'+conteudo+'</option>');
+            $("select"+selector).append('<option>'+conteudo+'</option>');
           }
-          $('.selectpicker').selectpicker("refresh");
+          $().ready(function() {
+            $("select"+selector).selectpicker("refresh");
+          });
         }
       }, function (err) {
-        $timeout($rootScope.updateSelect, 2000);
+        $timeout(function() {$rootScope.updateSelect(selector);}, 2000);
       });
     };
 });

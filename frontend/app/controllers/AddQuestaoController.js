@@ -218,7 +218,7 @@ angular.module('app')
     
 
         $().ready(function() {
-            $rootScope.updateSelect();
+            $rootScope.updateSelect('.selectpicker');
         });
 
         $scope.step = 1;

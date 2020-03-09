@@ -59,7 +59,7 @@ public class QuestaoController {
 	ConteudoService conteudoService;
 
 	private QuestaoOutput convert(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, forceAvaliacoes);
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, questaoService, forceAvaliacoes);
 	}
 
 	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
@@ -184,7 +184,7 @@ public class QuestaoController {
 			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode aprovar/reprovar uma questão");
 		}
 		if (!questao.getEstado().equals(EstadoQuestao.PEND_APROVACAO)) {
-			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
+			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovadas/reprovadas");
 		}
 		novaQuestao.setEstado(EstadoQuestao.PUBLICADA);
 		questao = questaoService.update(novaQuestao, id);

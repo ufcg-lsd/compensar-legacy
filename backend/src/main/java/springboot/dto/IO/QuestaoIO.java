@@ -3,16 +3,20 @@ package springboot.dto.IO;
 import springboot.dto.input.QuestaoInput;
 import springboot.dto.output.QuestaoOutput;
 import springboot.enums.AvaliacaoPublicacao;
+import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
 import springboot.model.Avaliacao;
 import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
+import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class QuestaoIO {
 
@@ -20,9 +24,12 @@ public class QuestaoIO {
         return new Questao(questao.getTipo(), questao.getConteudo(), questao.getEnunciado(), questao.getFonte(), autor, questao.getEspelho(), questao.getAlternativas(), questao.getCompetencias());
     }
 
-    public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, boolean forceAvaliacoes) {
+    public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, QuestaoService questaoService, boolean forceAvaliacoes) {
         List<String> sugestoes = new ArrayList<>();
         List<String> conteudo = new ArrayList<>();
+        String originalConteudo = null;
+        Set<CompetenciaType> competenciasAutor = new HashSet<>();
+        Set<CompetenciaType> competenciasClassificador = new HashSet<>();
         List<AvaliacaoPublicacao> avalPublicacoes = new ArrayList<>();
         if ((usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado().equals(EstadoQuestao.REJEITADA)) || forceAvaliacoes) {
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
@@ -44,10 +51,28 @@ public class QuestaoIO {
                 sugestoes.add(tmp);
             }
         }
-        for (String conteudoItem : questao.getConteudo()) {
-            conteudo.add(conteudoItem);
-;        }
+        if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado() != EstadoQuestao.RASCUNHO) {
+            originalConteudo = questao.getOriginalEnunciado();
+        }
 
-        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
+        if (usuarioAtual.getEmail().equals(questao.getAutor())) {
+
+            List<Avaliacao> avaliacoesQuestao = avaliacaoService.getAllByQuestao(questao.getId());
+            for (Avaliacao av : avaliacoesQuestao) {
+                if (av.getAutor().equals(usuarioAtual.getEmail())) {
+                    competenciasAutor = av.getCompetencias();
+                }
+            }
+        }
+        if (usuarioAtual.getEmail().equals(questao.getAutor())) {
+            try {
+                competenciasClassificador = questaoService.getSetCompetencias(questao.getOriginalEnunciado());
+            } catch (Exception e) {
+
+            }
+        }
+
+
+        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalConteudo, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAutor, competenciasClassificador, questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
     }
 }

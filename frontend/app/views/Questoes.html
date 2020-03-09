@@ -231,7 +231,7 @@
 
                                                     <div class="col">
                                                         <label><h6>Conteúdo:</h6></label>
-                                                        <select class="form-control selectpicker " data-none-selected-text= "{{questao.conteudo.join(', ')}}" 
+                                                        <select class="form-control selectpicker editionSelect" data-none-selected-text= "{{update.conteudo.join(', ')}}" 
                                                         data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
                                                         data-live-search-normalize="true" multiple="true" ng-model = "update.conteudo">
                                                         </select>
@@ -577,9 +577,9 @@
 
                                                             <div class="col">
                                                                 <label><h6>Conteúdo:</h6></label>
-                                                                <select class="form-control selectpicker " data-none-selected-text= "{{questao.conteudo.join(', ')}}" 
+                                                                <select class="form-control selectpicker editionSelect" data-none-selected-text= "{{update.conteudo.join(', ')}}" 
                                                                 data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
-                                                                data-live-search-normalize="true" multiple="true" ng-model ="$parent.update.conteudo">
+                                                                data-live-search-normalize="true" multiple="true" ng-model ="update.conteudo">
                                                                 </select>
                                                             </div>
                                                         </div>
