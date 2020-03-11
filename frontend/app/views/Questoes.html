@@ -511,17 +511,54 @@
                                                         </div>
                                                     </div>
 
-                                                    <div ng-switch = "questao.sugestoes.length > 0">
-                                                        <div ng-switch-when="true">
-                                                            <div class ="container">
-                                                                <b>Sugestões de avaliadores:</b>
+                                                    <div ng-if = "questao.sugestoes.length > 0 || questao.originalEnunciado !== null || questao.competenciasAutor.length > 0 || questao.competenciasClassficador.length > 0">
+                                                        <div class="form-group">
+                                                            <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#moreInfo" aria-expanded="false">
+                                                                <span class="collapsed">Mais informações</span>
+                                                                <span class="expanded">Menos informações</span>
+                                                            </button>
+                                                        </div>
+                                                        <div id="moreInfo"  class="collapse">
+                                                            <div ng-if = "questao.sugestoes.length > 0">
+                                                                <div><hr></div>
+                                                                <div class ="container">
+                                                                    <b>Sugestões de avaliadores:</b>
+                                                                </div>
+    
+                                                                <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
+                                                                    <em ng-bind-html="questao.sugestoes[$index]"></em>
+                                                                </div>
                                                             </div>
-
-                                                            <div class ="container" ng-repeat="sugestao in questao.sugestoes track by $index" >
-                                                                <em ng-bind-html="questao.sugestoes[$index]"></em>
+                                                            <div ng-if = "questao.originalEnunciado !== null">
+                                                                <div><hr></div>
+                                                                <div class ="container">
+                                                                    <b>Enunciado original: </b><div></div>
+                                                                </div>  
+    
+                                                                <div class ="container" ng-bind-html="questao.originalEnunciado" ></div>
                                                             </div>
-
-                                                            <div><hr></div>
+                                                            <div ng-if = "questao.competenciasAutor.length > 0">
+                                                                <div><hr></div>
+                                                                <div class = "container"><b>Competências dadas pelo autor:</b> </div>
+                                                                <div class =  "container">
+                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasAutor">
+                                                                        <span  class="col-1">
+                                                                            <em>{{repaginaComp(competencia)}} </em>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div ng-if = "questao.competenciasClassficador.length > 0">
+                                                                <div><hr></div>
+                                                                <div class = "container"><b>Competências dadas pelo classificador:</b> </div>
+                                                                <div class =  "section">
+                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasClassficador" >
+                                                                        <span  class="col-1">
+                                                                            <em>{{repaginaComp(competencia)}} </em>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <!-- ========================  Campos de Editar/Remover questão  ============================================== -->
