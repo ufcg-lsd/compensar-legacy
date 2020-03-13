@@ -63,16 +63,9 @@ public class QuestaoIO {
                     competenciasAutor = av.getCompetencias();
                 }
             }
+
+            competenciasClassificador = questao.getCompetenciasClassificador();
         }
-        if (usuarioAtual.getEmail().equals(questao.getAutor())) {
-            try {
-                competenciasClassificador = questaoService.getSetCompetencias(questao.getOriginalEnunciado());
-            } catch (Exception e) {
-
-            }
-        }
-
-
         return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalConteudo, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAutor, competenciasClassificador, questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
     }
 }

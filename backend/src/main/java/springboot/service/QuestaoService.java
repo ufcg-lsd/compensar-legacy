@@ -98,6 +98,7 @@ public class QuestaoService {
 		if (novaQuestao.getEstado() != EstadoQuestao.RASCUNHO) {
 			questao.setOriginalEnunciado(novaQuestao.getOriginalEnunciado());
 		}
+		questao.setCompetenciasClassificador(novaQuestao.getCompetenciasClassificador());
 
 		questaoRepository.save(questao);
 
@@ -365,5 +366,17 @@ public class QuestaoService {
 		return results.get(0);
 	}
 
-
+	public boolean updateClassificador() {
+		List<Questao> l = questaoRepository.findAll();
+		for (Questao q : l) {
+			try {
+				q.setCompetenciasClassificador(getSetCompetencias(q.getEnunciado()));
+				questaoRepository.save(q);
+			}
+			catch (Exception e) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

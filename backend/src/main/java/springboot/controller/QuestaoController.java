@@ -206,4 +206,14 @@ public class QuestaoController {
 		questao = questaoService.update(questao, id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
 	}
+
+	@ApiOperation("Atualizar competenciaClassificador questão já avaliada.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/updateClassificador", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> updateCompetencias(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
+		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
+			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode atualizar a classificação automática das questões");
+		}
+		return new ResponseEntity<Boolean>(questaoService.updateClassificador(), HttpStatus.OK);
+	}
 }

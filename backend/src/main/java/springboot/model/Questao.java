@@ -45,6 +45,8 @@ public class Questao {
 	@TextIndexed
 	private Set<CompetenciaType> competencias;
 
+	private Set<CompetenciaType> competenciasClassificador;
+
 	private String fonte;
 
 	private String autor;
@@ -87,6 +89,7 @@ public class Questao {
 		this.espelho = espelho;
 		this.alternativas = alternativas;
 		this.competencias = new HashSet<CompetenciaType>(competencias);
+		this.competenciasClassificador = new HashSet<CompetenciaType>(competencias);
 		this.qtdAvaliacoes = 0;
 		this.ultimoAcesso = System.currentTimeMillis();
 		this.estado = EstadoQuestao.RASCUNHO;
@@ -214,7 +217,14 @@ public class Questao {
 	public void setCompetencias(Set<CompetenciaType> competencias) {
 		this.competencias = competencias;
 	}
-	
+
+	public Set<CompetenciaType> getCompetenciasClassificador() {
+		return competenciasClassificador;
+	}
+
+	public void setCompetenciasClassificador(Set<CompetenciaType> competenciasClassificador) {
+		this.competenciasClassificador = competenciasClassificador;
+	}
 
 	public Float getScore() {
 		return score;
