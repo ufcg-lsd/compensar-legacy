@@ -533,24 +533,50 @@
                                                                 <div><hr></div>
                                                                 <div class ="container">
                                                                     <b>Enunciado original: </b><div></div>
-                                                                </div>  
-    
-                                                                <div class ="container" ng-bind-html="questao.originalEnunciado" ></div>
+                                                                </div>
+                                                                <div class="ql-snow"><div class="ql-editor shadow">
+                                                                    <div class ="container" ng-bind-html="questao.originalEnunciado" ></div>
+                                                                </div></div>
                                                             </div>
-                                                            <div ng-if = "questao.competenciasAutor.length > 0">
+                                                            <div ng-if = "questao.competenciasClassficador.length > 0">
                                                                 <div><hr></div>
-                                                                <div class = "container"><b>Competências dadas pelo autor:</b> </div>
-                                                                <div class =  "container">
-                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasAutor">
+                                                                <div class = "container"><b>Competências dadas pelo classificador:</b> </div>
+                                                                <div class =  "section">
+                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasClassficador" >
                                                                         <span  class="col-1">
                                                                             <em>{{repaginaComp(competencia)}} </em>
                                                                         </span>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div ng-if = "questao.competenciasClassficador.length > 0">
+                                                            <div class="container" ng-if = "questao.competenciasAutor.length > 0">
                                                                 <div><hr></div>
-                                                                <div class = "container"><b>Competências dadas pelo classificador:</b> </div>
+                                                                <div class="row"><b>Avaliação do autor</b></div>
+                                                                <div class="row">Competências identificadas pelo autor:</div>
+                                                                <div class =  "section">
+                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasClassficador" >
+                                                                        <span  class="col-1">
+                                                                            <em>{{repaginaComp(competencia)}} </em>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container" ng-if = "questao.competenciasAutor.length > 0">
+                                                                <div><hr></div>
+                                                                <div class="row"><b>Avaliação do avaliador n° 1</b></div>
+                                                                <div class="row">Competências identificadas pelo avaliador:</div>
+                                                                <div class =  "section">
+                                                                    <div class="competencias" ng-repeat="competencia in questao.competenciasClassficador" >
+                                                                        <span  class="col-1">
+                                                                            <em>{{repaginaComp(competencia)}} </em>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="container" ng-if = "questao.competenciasAutor.length > 0">
+                                                                <div><hr></div>
+                                                                <div class="row"><b>Avaliação do avaliador n° 1</b></div>
+                                                                <div class="row">Competências identificadas pelo avaliador:</div>
                                                                 <div class =  "section">
                                                                     <div class="competencias" ng-repeat="competencia in questao.competenciasClassficador" >
                                                                         <span  class="col-1">

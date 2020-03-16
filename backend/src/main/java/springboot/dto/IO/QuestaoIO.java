@@ -26,8 +26,7 @@ public class QuestaoIO {
 
     public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, QuestaoService questaoService, boolean forceAvaliacoes) {
         List<String> sugestoes = new ArrayList<>();
-        List<String> conteudo = new ArrayList<>();
-        String originalConteudo = null;
+        String originalEnunciado = null;
         Set<CompetenciaType> competenciasAutor = new HashSet<>();
         Set<CompetenciaType> competenciasClassificador = new HashSet<>();
         List<AvaliacaoPublicacao> avalPublicacoes = new ArrayList<>();
@@ -52,7 +51,7 @@ public class QuestaoIO {
             }
         }
         if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado() != EstadoQuestao.RASCUNHO) {
-            originalConteudo = questao.getOriginalEnunciado();
+            originalEnunciado = questao.getOriginalEnunciado();
         }
 
         if (usuarioAtual.getEmail().equals(questao.getAutor())) {
@@ -66,6 +65,6 @@ public class QuestaoIO {
 
             competenciasClassificador = questao.getCompetenciasClassificador();
         }
-        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalConteudo, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAutor, competenciasClassificador, questao.getFonte(), questao.getEspelho(), conteudo, questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
+        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalEnunciado, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAutor, competenciasClassificador, questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
     }
 }
