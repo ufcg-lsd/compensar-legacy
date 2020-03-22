@@ -166,7 +166,7 @@ public class QuestaoService {
 
 		if (competencias.contains(null))
 			parametros.add(new HashSet<>());
-		else if (competencias.contains("TODAS"))
+		else if (competencias.contains("COMP_TODAS"))
 			parametros.add("null");
 		else
 			parametros.add(competencias);

@@ -5,7 +5,7 @@ var host = "http://localhost:5458/api/";
 
 var app = angular.module('app',['ngQuill','LocalStorageModule','ngRoute','ngSanitize','checklist-model','ngMaterial','angular-loading-bar', 'ui-notification']);
 
-app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
+app.run(function($rootScope, $interval, AuthService, $http, $timeout, $sce) {
     $rootScope.competenciasRepaginadas = [];
     $rootScope.listas = [];
     $rootScope.listasRequest = false;
@@ -21,6 +21,7 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
         if (typeof competencias === 'undefined') {
             return "";
         }
+        if (competencias.length == 0) return "Nenhuma."
         let competenciasRepaginadas = [];
         let amostraCompetencias = "";
         for (let i = 0; i < (competencias.length); i++) {
@@ -58,6 +59,10 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout) {
           }
       }
       return conteudoRepaginado;
+  }
+
+  $rootScope.trustedHTML = function(text) {
+    return $sce.trustAsHtml(text);
   }
 
     $interval(AuthService.update_view, 5000);

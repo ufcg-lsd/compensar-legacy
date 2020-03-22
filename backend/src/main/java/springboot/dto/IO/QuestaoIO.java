@@ -27,44 +27,36 @@ public class QuestaoIO {
     public static QuestaoOutput convert(Questao questao, Usuario usuarioAtual, UsuarioService usuarioService, AvaliacaoService avaliacaoService, QuestaoService questaoService, boolean forceAvaliacoes) {
         List<String> sugestoes = new ArrayList<>();
         String originalEnunciado = null;
-        Set<CompetenciaType> competenciasAutor = new HashSet<>();
-        Set<CompetenciaType> competenciasClassificador = new HashSet<>();
+        List<Set<CompetenciaType> > competenciasAvaliacoes = new ArrayList<>();
         List<AvaliacaoPublicacao> avalPublicacoes = new ArrayList<>();
         if ((usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado().equals(EstadoQuestao.REJEITADA)) || forceAvaliacoes) {
-            List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId());
+            List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao.getId()).subList(1, 3);
             for (Avaliacao aval : avaliacoes) {
                 avalPublicacoes.add(aval.getAvaliacaoPublicacao());
-                String tmp = "";
-                if (!aval.getObservacaoQuestao().trim().equals("")) {
-                    tmp += aval.getObservacaoQuestao();
-                }
+                String tmp = aval.getObservacaoQuestao().trim().equals("") ? "Sem sugestões" : aval.getObservacaoQuestao();
                 if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.PRONTA)) {
-                    tmp += "<strong>(Pronta para publicação)</strong>";
+                    tmp += " <strong>(Pronta para publicação)</strong>";
                 } else if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.PEQUENAS_ALTERACOES)) {
-                    tmp += "<strong>(Necessita de pequenas alterações)</strong>";
+                    tmp += " <strong>(Necessita de pequenas alterações)</strong>";
                 } else if (aval.getAvaliacaoPublicacao().equals(AvaliacaoPublicacao.MUITAS_ALTERACOES)) {
-                    tmp += "<strong>(Necessita de muitas alterações)</strong>";
+                    tmp += " <strong>(Necessita de muitas alterações)</strong>";
                 } else {
-                    tmp += "<strong>(Fora de contexto)</strong>";
+                    tmp += " <strong>(Fora de contexto)</strong>";
                 }
                 sugestoes.add(tmp);
             }
+
+            competenciasAvaliacoes.add(questao.getCompetenciasClassificador());
+
+            List<Avaliacao> avaliacoesQuestao = avaliacaoService.getAllByQuestao(questao.getId()).subList(0, 3);
+            for (Avaliacao av : avaliacoesQuestao) {
+                competenciasAvaliacoes.add(av.getCompetencias());
+            }
         }
-        if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado() != EstadoQuestao.RASCUNHO) {
+        if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado() == EstadoQuestao.PUBLICADA && !questao.getEnunciado().equals(questao.getOriginalEnunciado())) {
             originalEnunciado = questao.getOriginalEnunciado();
         }
 
-        if (usuarioAtual.getEmail().equals(questao.getAutor())) {
-
-            List<Avaliacao> avaliacoesQuestao = avaliacaoService.getAllByQuestao(questao.getId());
-            for (Avaliacao av : avaliacoesQuestao) {
-                if (av.getAutor().equals(usuarioAtual.getEmail())) {
-                    competenciasAutor = av.getCompetencias();
-                }
-            }
-
-            competenciasClassificador = questao.getCompetenciasClassificador();
-        }
-        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalEnunciado, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAutor, competenciasClassificador, questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
+        return new QuestaoOutput(questao.getId(), questao.getTipo(), questao.getEnunciado(), originalEnunciado, usuarioService.getById(questao.getAutor()).getNome(), questao.getAutor(), questao.getCompetencias(), competenciasAvaliacoes, questao.getFonte(), questao.getEspelho(), questao.getConteudo(), questao.getAlternativas(), sugestoes, avalPublicacoes, questao.getEstado());
     }
 }
