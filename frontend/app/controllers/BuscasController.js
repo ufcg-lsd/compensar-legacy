@@ -99,12 +99,12 @@ angular.module('app')
 
         $scope.competenciaList = ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
         "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "TODAS"];
+        "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "COMP_TODAS"];
 
         $scope.questao = {
             competencias: ["COMP_COLETA","COMP_PARALELIZAÇÃO","COMP_ANÁLISE",
             "COMP_REPRESENTAÇÃO","COMP_DECOMPOSIÇÃO","COMP_ABSTRAÇÃO","COMP_SIMULAÇÃO",
-            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "TODAS"],
+            "COMP_AUTOMAÇÃO","COMP_ALGORITMOS", "COMP_TODAS"],
             estados: ["RASCUNHO", "PEND_AVALIACAO", "PUBLICADA", "REJEITADA"]
         };
         $scope.checkAll = true;
@@ -121,7 +121,7 @@ angular.module('app')
                 if(!$scope.questao.competencias.includes($event.currentTarget.value)) {
                     $scope.checkAll = false;
                     for(let i = $scope.questao.competencias.length-1; i >= 0; i--) {
-                        if ($scope.questao.competencias[i] === "TODAS") {
+                        if ($scope.questao.competencias[i] === "COMP_TODAS") {
                             $scope.questao.competencias.splice(i, 1);
                             document.querySelector("#customCheck1").checked = false;
                             //uncheck all
@@ -131,7 +131,7 @@ angular.module('app')
                     if($scope.questao.competencias.length === 9) {
                         $scope.checkAll = true;
                         document.querySelector("#customCheck1").checked = true;
-                        $scope.questao.competencias.push("TODAS");
+                        $scope.questao.competencias.push("COMP_TODAS");
                     }
                 }
             }

@@ -985,3 +985,7 @@ ul.dropdown-menu.inner {
 [aria-expanded="true"] > .collapsed {
   display: none;
 }
+
+.bootstrap-select > .dropdown-menu.show {
+  transform: translate3d(0px, 37px, 0px) !important;
+}
