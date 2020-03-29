@@ -45,14 +45,19 @@ public class QuestaoIO {
                 }
                 sugestoes.add(tmp);
             }
+        }
 
+        if ((usuarioAtual.getEmail().equals(questao.getAutor()) && (questao.getEstado().equals(EstadoQuestao.REJEITADA) || questao.getEstado().equals(EstadoQuestao.PUBLICADA))) || forceAvaliacoes) {
             competenciasAvaliacoes.add(questao.getCompetenciasClassificador());
-
-            List<Avaliacao> avaliacoesQuestao = avaliacaoService.getAllByQuestao(questao.getId()).subList(0, 3);
+            List<Avaliacao>avaliacoesQuestao = avaliacaoService.getAllByQuestao(questao.getId());
+            if (avaliacoesQuestao.size() > 3) {
+                avaliacoesQuestao = avaliacoesQuestao.subList(0, 3);
+            }
             for (Avaliacao av : avaliacoesQuestao) {
                 competenciasAvaliacoes.add(av.getCompetencias());
             }
         }
+
         if (usuarioAtual.getEmail().equals(questao.getAutor()) && questao.getEstado() == EstadoQuestao.PUBLICADA && !questao.getEnunciado().equals(questao.getOriginalEnunciado())) {
             originalEnunciado = questao.getOriginalEnunciado();
         }
