@@ -557,13 +557,16 @@
                                                                     <em ng-bind-html="questao.sugestoes[$index]"></em>
                                                                 </div>
                                                             </div>
-                                                            
-                                                            <div ng-if = "questao.competenciasAvaliacoes.length >= 4">
+
+                                                            <div ng-if = "questao.competenciasAvaliacoes.length > 0">
                                                                 <div><hr></div>
                                                                 <div class = "container"><b>Competências dadas pelo classificador:</b> </div>
                                                                 <div class =  "container">
                                                                     <em>{{repaginaCompetencias(questao.competenciasAvaliacoes[0])}} </em>
                                                                 </div>
+                                                            </div>
+                                                            
+                                                            <div ng-if = "questao.competenciasAvaliacoes.length >= 4">
                                                                 <div><hr></div>
                                                                 <div class = "container"><b>Competências dadas pelo autor:</b> </div>
                                                                 <div class =  "container">
