@@ -5,12 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -364,6 +359,47 @@ public class QuestaoService {
 			throw new NoPendentQuestionException("Não existe nenhuma questão pendente de aprovação");
 		}
 		return results.get(0);
+	}
+
+	// Busca duas questões (uma com a competência recebida e outra sem a competência recebida) e as embaralha numa lista
+	public List<Questao> getSamples(String competencia) {
+		List<CustomAggregationOperation>  aggList1 = new ArrayList<>();
+		List<CustomAggregationOperation>  aggList2 = new ArrayList<>();
+		aggList1.add(new CustomAggregationOperation(Document.parse(
+				"{\n" +
+				"    $match: {\n" +
+				"        competencias: \"" + competencia + "\",\n" +
+				"        estado: \"PUBLICADA\"\n" +
+				"    }\n" +
+				"}"
+		)));
+		aggList2.add(new CustomAggregationOperation(Document.parse(
+				"{\n" +
+						"    $match: {\n" +
+						"        competencias: { $ne: \"" + competencia + "\" },\n" +
+						"        estado: \"PUBLICADA\"\n" +
+						"    }\n" +
+						"}"
+		)));
+		aggList1.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
+		aggList2.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
+		Aggregation agg = Aggregation.newAggregation(aggList1);
+		List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
+		agg = Aggregation.newAggregation(aggList2);
+		results.addAll(mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults());
+		//Embaralha a ordem de retrno das questões de exemplo (com ou sem a competência)
+		Collections.swap(results, 0, new Random().nextInt(2));
+		return results;
+	}
+
+	// Retorna lista de booleanos que representa se as questoes passadas como parametro possuem ou não a competência buscada
+	public List<Boolean> evaluateQuestoes(String competencia, List<String> questoes) {
+		List<Boolean> ret = new ArrayList<>();
+		for (String id : questoes) {
+			Questao q = getById(id);
+			ret.add(q.getCompetencias().contains(competencia));
+		}
+		return ret;
 	}
 
 	public boolean updateClassificador() {

@@ -36,8 +36,7 @@ public class AvaliacaoController {
     @Autowired
     QuestaoService questaoService;
 
-    @ApiOperation("Permite registrar uma nova avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n"
-            + "")
+    @ApiOperation("Permite registrar uma nova avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Avaliacao.class) })
     @RequestMapping(value = "/avaliacao", method = RequestMethod.POST)
     public Avaliacao save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody AvaliacaoInput avaliacao) throws IOException {
