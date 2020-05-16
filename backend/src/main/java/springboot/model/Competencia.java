@@ -16,6 +16,9 @@ public class Competencia {
         this.cursoAvaliacao = cursoAvaliacao;
     }
 
+    public Competencia() {
+    }
+
     public String getNome() {
         return nome;
     }

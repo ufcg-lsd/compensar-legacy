@@ -72,6 +72,7 @@ public class ModuloCurso {
     }
 
     public enum EstadoModulo {
+        INATIVO,
         DESCRICAO,
         EXEMPLOS,
         PRATICA,

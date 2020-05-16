@@ -143,6 +143,12 @@ app.config(function($routeProvider, $locationProvider) {
       requireAuth: true,
       requireRegistered: true
     })
+    .when('/cursos', {	
+      templateUrl: '/app/views/Cursos.html',	
+      controller: 'CursosController',
+      requireAuth: true,
+      requireRegistered: true
+    })
       .otherwise({
         redirectTo: '/login'
       });

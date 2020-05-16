@@ -297,7 +297,7 @@ public class QuestaoService {
 	private static String extractAllText(String htmlText) {
 	    Source source = new Source(htmlText);
 	    return source.getTextExtractor().toString();
-	}   
+	}
 
 	private CompetenciaType getCompetencia(String chave) {
 		CompetenciaType valor = null;
@@ -375,32 +375,49 @@ public class QuestaoService {
 		)));
 		aggList2.add(new CustomAggregationOperation(Document.parse(
 				"{\n" +
-						"    $match: {\n" +
-						"        competencias: { $ne: \"" + competencia + "\" },\n" +
-						"        estado: \"PUBLICADA\"\n" +
-						"    }\n" +
-						"}"
+				"    $match: {\n" +
+				"        competencias: { $ne: \"" + competencia + "\" },\n" +
+				"        estado: \"PUBLICADA\"\n" +
+				"    }\n" +
+				"}"
 		)));
 		aggList1.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
 		aggList2.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
 		Aggregation agg = Aggregation.newAggregation(aggList1);
-		List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
+		List<Questao> results = new ArrayList();
+		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
+			results.add(q);
+		}
 		agg = Aggregation.newAggregation(aggList2);
-		results.addAll(mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults());
+		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
+			results.add(q);
+		}
 		//Embaralha a ordem de retrno das questões de exemplo (com ou sem a competência)
 		Collections.swap(results, 0, new Random().nextInt(2));
 		return results;
+	}
+
+	public Boolean evaluateQuestao(String competencia, String questao) {
+		Questao q = getById(questao);
+		boolean achou = false;
+		for (CompetenciaType c : q.getCompetencias()) {
+			if (c.name().equals(competencia)){
+				achou = true;
+			}
+		}
+		return achou;
 	}
 
 	// Retorna lista de booleanos que representa se as questoes passadas como parametro possuem ou não a competência buscada
 	public List<Boolean> evaluateQuestoes(String competencia, List<String> questoes) {
 		List<Boolean> ret = new ArrayList<>();
 		for (String id : questoes) {
-			Questao q = getById(id);
-			ret.add(q.getCompetencias().contains(competencia));
+			ret.add(evaluateQuestao(competencia, id));
 		}
 		return ret;
 	}
+
+
 
 	public boolean updateClassificador() {
 		List<Questao> l = questaoRepository.findAll();

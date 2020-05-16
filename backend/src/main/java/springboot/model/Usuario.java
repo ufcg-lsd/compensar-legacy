@@ -48,7 +48,6 @@ public class Usuario {
 	@TextIndexed
 	private List<PermissaoType> permissoes;
 
-	@NotNull
 	private List<ModuloCurso> cursoAvaliacao;
 
 	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {

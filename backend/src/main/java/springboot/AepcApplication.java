@@ -16,7 +16,17 @@ public class AepcApplication {
 	public FilterRegistrationBean filterJwt() {
 		FilterRegistrationBean filterRb = new FilterRegistrationBean();
 		filterRb.setFilter(new TokenFilter());
-		filterRb.addUrlPatterns("/api/auth/authenticate/*", "/api/listaquestoes/*", "/api/questao/*", "/api/competencias/*", "/api/usuario/*",  "/api/avaliacao/*", "/api/conteudo/*", "/api/updateClassificador");
+		filterRb.addUrlPatterns(
+				"/api/auth/authenticate/*",
+				"/api/listaquestoes/*",
+				"/api/questao/*",
+				"/api/competencias/*",
+				"/api/usuario/*",
+				"/api/avaliacao/*",
+				"/api/conteudo/*",
+				"/api/updateClassificador",
+				"/api/cursoAvaliacao/*",
+				"/api/cursoCriacao/*");
 		return filterRb;
 	}
 

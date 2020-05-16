@@ -9,10 +9,16 @@ public class Curso {
 
     private List<String> exemplos; //Tambem são videos
 
-    public Curso(String video, String descricao, List<String> exemplos) {
+    private List<String> textoExemplos; //No mesmo formato da descrição
+
+    public Curso(String video, String descricao, List<String> exemplos, List<String> textoExemplos) {
         this.video = video;
         this.descricao = descricao;
         this.exemplos = exemplos;
+        this.textoExemplos = textoExemplos;
+    }
+
+    public Curso() {
     }
 
     public String getVideo() {
@@ -37,5 +43,13 @@ public class Curso {
 
     public void setExemplos(List<String> exemplos) {
         this.exemplos = exemplos;
+    }
+
+    public List<String> getTextoExemplos() {
+        return textoExemplos;
+    }
+
+    public void setTextoExemplos(List<String> textoExemplos) {
+        this.textoExemplos = textoExemplos;
     }
 }

@@ -3,27 +3,29 @@ package springboot.dto.output;
 import springboot.model.ModuloCurso;
 import springboot.model.Questao;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CursoAvaliacaoOutput {
-    private String competencia;
+public class CursoOutput {
+    private String mensagem;
 
     private List<ModuloCursoOutput> cursoAvaliacao;
 
-    public CursoAvaliacaoOutput(String competencia, List<ModuloCursoOutput> cursoAvaliacao) {
-        this.competencia = competencia;
+    public CursoOutput(List<ModuloCursoOutput> cursoAvaliacao, String mensagem) {
+        this.mensagem = mensagem;
         this.cursoAvaliacao = cursoAvaliacao;
     }
 
-    public CursoAvaliacaoOutput() {
+    public CursoOutput() {
+        this.cursoAvaliacao = new ArrayList<>();
     }
 
-    public String getCompetencia() {
-        return competencia;
+    public String getMensagem() {
+        return mensagem;
     }
 
-    public void setCompetencia(String competencia) {
-        this.competencia = competencia;
+    public void setMensagem(String mensagem) {
+        this.mensagem = mensagem;
     }
 
     public List<ModuloCursoOutput> getCursoAvaliacao() {
