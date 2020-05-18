@@ -4,7 +4,7 @@ angular.module('app')
     {
         $rootScope.activetab = $location.path();
         $().ready(function() {
-            $('.carousel').carousel();
+            $('.carousel').carousel({interval: false});
         });
 
         $scope.compList = ["COMP_ABSTRAÇÃO", "COMP_ALGORITMOS", "COMP_ANÁLISE", "COMP_AUTOMAÇÃO", "COMP_COLETA", "COMP_DECOMPOSIÇÃO", "COMP_PARALELIZAÇÃO", "COMP_REPRESENTAÇÃO", "COMP_SIMULAÇÃO"];
@@ -14,7 +14,6 @@ angular.module('app')
         $scope.idCurso = -1;
         $scope.idModulo = -1;
         $scope.estado = "";
-        $scope.idAvaliacaoFinal = 0;
 
         $scope.respostaQuestoes = [false, false];
 
@@ -159,7 +158,7 @@ angular.module('app')
         }
 
         $scope.getIcon = (modulos) => {
-            if (allEstadoEquals(modulos, "INATIVO")) return "fa-times-circle text-danger";
+            if (!modulos || allEstadoEquals(modulos, "INATIVO")) return "fa-times-circle text-danger";
             if (allEstadoEquals(modulos, "FINALIZADO")) return "fa-check-circle text-success";
             return "fa-angle-right text-primary";
         }
@@ -177,6 +176,13 @@ angular.module('app')
                 return $rootScope.repaginaComp($scope.compList[parseInt(key/2)]);
             } else {
                 return $rootScope.repaginaComp($scope.cursoAvaliacao[idModulo].nome);
+            }
+        }
+
+        pauseVideo = () => {
+            let iframes = document.getElementsByTagName("iframe");
+            for(let iframe of iframes) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"' + 'pauseVideo' +   '","args":""}', '*');
             }
         }
 
