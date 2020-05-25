@@ -397,15 +397,18 @@ public class QuestaoService {
 		return results;
 	}
 
-	public Boolean evaluateQuestao(String competencia, String questao) {
-		Questao q = getById(questao);
-		boolean achou = false;
-		for (CompetenciaType c : q.getCompetencias()) {
+	public Boolean hasCompetencia(String competencia, Set<CompetenciaType> competencias) {
+		for (CompetenciaType c : competencias) {
 			if (c.name().equals(competencia)){
-				achou = true;
+				return true;
 			}
 		}
-		return achou;
+		return false;
+	}
+
+	public Boolean evaluateQuestao(String competencia, String questao) {
+		Questao q = getById(questao);
+		return hasCompetencia(competencia, q.getCompetencias());
 	}
 
 	// Retorna lista de booleanos que representa se as questoes passadas como parametro possuem ou não a competência buscada

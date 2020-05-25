@@ -65,24 +65,54 @@ app.run(function($rootScope, $interval, AuthService, $http, $timeout, $sce) {
     return $sce.trustAsHtml(text);
   }
 
-    $interval(AuthService.update_view, 5000);
+  $interval(AuthService.update_view, 5000);
 
-    $rootScope.updateSelect = function(selector) {
-      return $http.get(host + 'conteudo', AuthService.getAuthorization())
-      .then(function (response) {
-        if ($("select"+selector) !== null) {
-          $("select"+selector).empty();
-          for(let conteudo of response.data) {
-            $("select"+selector).append('<option>'+conteudo+'</option>');
-          }
-          $().ready(function() {
-            $("select"+selector).selectpicker("refresh");
-          });
+  $rootScope.updateSelect = function(selector) {
+    return $http.get(host + 'conteudo', AuthService.getAuthorization())
+    .then(function (response) {
+      if ($("select"+selector) !== null) {
+        $("select"+selector).empty();
+        for(let conteudo of response.data) {
+          $("select"+selector).append('<option>'+conteudo+'</option>');
         }
-      }, function (err) {
-        $timeout(function() {$rootScope.updateSelect(selector);}, 2000);
-      });
-    };
+        $().ready(function() {
+          $("select"+selector).selectpicker("refresh");
+        });
+      }
+    }, function (err) {
+      $timeout(function() {$rootScope.updateSelect(selector);}, 2000);
+    });
+  };
+
+  // Ativadores das opções de edição no Quill Editor
+  $rootScope.editorModules = {
+    formula: true,
+    toolbar: [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote'],
+
+      //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+
+      //['clean'],                                         // remove formatting button
+
+      ['formula','link','image']                         // link and image, video
+    ]
+  }
+  $rootScope.emptyModules = {
+      formula: true,
+      toolbar: null
+  };
 });
 
 app.config(function($routeProvider, $locationProvider) {
@@ -111,7 +141,7 @@ app.config(function($routeProvider, $locationProvider) {
     })
 
     .when('/questoes', {	 
-        templateUrl: '/app/views/Questoes.html',	
+        templateUrl: '/app/views/Questoes.html',
         controller: 'BuscasController',
         requireAuth: true,
         requireRegistered: true

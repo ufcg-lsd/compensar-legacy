@@ -26,7 +26,8 @@ public class AepcApplication {
 				"/api/conteudo/*",
 				"/api/updateClassificador",
 				"/api/cursoAvaliacao/*",
-				"/api/cursoCriacao/*");
+				"/api/cursoCriacao/*",
+				"/api/cursos/*");
 		return filterRb;
 	}
 

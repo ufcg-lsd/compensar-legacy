@@ -11,9 +11,12 @@ public class Competencia {
 
     private Curso cursoAvaliacao;
 
-    public Competencia(String nome, Curso cursoAvaliacao) {
+    private Curso cursoCriacao;
+
+    public Competencia(String nome, Curso cursoAvaliacao, Curso cursoCriacao) {
         this.nome = nome;
         this.cursoAvaliacao = cursoAvaliacao;
+        this.cursoCriacao = cursoCriacao;
     }
 
     public Competencia() {
@@ -33,5 +36,13 @@ public class Competencia {
 
     public void setCursoAvaliacao(Curso cursoAvaliacao) {
         this.cursoAvaliacao = cursoAvaliacao;
+    }
+
+    public Curso getCursoCriacao() {
+        return cursoCriacao;
+    }
+
+    public void setCursoCriacao(Curso cursoCriacao) {
+        this.cursoCriacao = cursoCriacao;
     }
 }

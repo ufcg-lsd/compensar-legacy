@@ -1,6 +1,7 @@
 package springboot.dto.output;
 
 import springboot.model.ModuloCurso;
+import springboot.model.Questao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,9 @@ public class ModuloCursoOutput {
 
     private List<String> questoes;
 
-    public ModuloCursoOutput(String nome, ModuloCurso.EstadoModulo estado, String video, String descricao, List<String> exemplos, List<String> textoExemplos, List<String> questoes) {
+    private List<QuestaoOutput> qustoesDetalhadas;
+
+    public ModuloCursoOutput(String nome, ModuloCurso.EstadoModulo estado, String video, String descricao, List<String> exemplos, List<String> textoExemplos, List<String> questoes, List<QuestaoOutput> questoesDetalhadas) {
         this.nome = nome;
         this.estado = estado;
         this.video = video;
@@ -28,12 +31,14 @@ public class ModuloCursoOutput {
         this.exemplos = exemplos;
         this.textoExemplos = textoExemplos;
         this.questoes = questoes;
+        this.qustoesDetalhadas = qustoesDetalhadas;
     }
 
     public ModuloCursoOutput() {
         this.exemplos = new ArrayList<>();
         this.textoExemplos = new ArrayList<>();
         this.questoes = new ArrayList<>();
+        this.qustoesDetalhadas = new ArrayList<>();
     }
 
     public String getNome() {
@@ -90,5 +95,13 @@ public class ModuloCursoOutput {
 
     public void setTextoExemplos(List<String> textoExemplos) {
         this.textoExemplos = textoExemplos;
+    }
+
+    public List<QuestaoOutput> getQustoesDetalhadas() {
+        return qustoesDetalhadas;
+    }
+
+    public void setQustoesDetalhadas(List<QuestaoOutput> qustoesDetalhadas) {
+        this.qustoesDetalhadas = qustoesDetalhadas;
     }
 }

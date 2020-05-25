@@ -11,13 +11,17 @@ public class CursoOutput {
 
     private List<ModuloCursoOutput> cursoAvaliacao;
 
-    public CursoOutput(List<ModuloCursoOutput> cursoAvaliacao, String mensagem) {
+    private List<ModuloCursoOutput> cursoCriacao;
+
+    public CursoOutput(String mensagem, List<ModuloCursoOutput> cursoAvaliacao, List<ModuloCursoOutput> cursoCriacao) {
         this.mensagem = mensagem;
         this.cursoAvaliacao = cursoAvaliacao;
+        this.cursoCriacao = cursoCriacao;
     }
 
     public CursoOutput() {
         this.cursoAvaliacao = new ArrayList<>();
+        this.cursoCriacao = cursoCriacao;
     }
 
     public String getMensagem() {
@@ -34,5 +38,13 @@ public class CursoOutput {
 
     public void setCursoAvaliacao(List<ModuloCursoOutput> cursoAvaliacao) {
         this.cursoAvaliacao = cursoAvaliacao;
+    }
+
+    public List<ModuloCursoOutput> getCursoCriacao() {
+        return cursoCriacao;
+    }
+
+    public void setCursoCriacao(List<ModuloCursoOutput> cursoCriacao) {
+        this.cursoCriacao = cursoCriacao;
     }
 }

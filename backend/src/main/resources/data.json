@@ -175,12 +175,40 @@
         "<p>Texto representativo do exemplo 2</p>",
         "<p>Texto representativo do exemplo 3</p>"
       ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
     }
   },
   {
     "_class": "springboot.model.Competencia",
     "nome": "COMP_PARALELIZAÇÃO",
     "cursoAvaliacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
+    },
+    "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
       "exemplos": [
@@ -210,12 +238,40 @@
         "<p>Texto representativo do exemplo 2</p>",
         "<p>Texto representativo do exemplo 3</p>"
       ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
     }
   },
   {
     "_class": "springboot.model.Competencia",
     "nome": "COMP_REPRESENTAÇÃO",
     "cursoAvaliacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
+    },
+    "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
       "exemplos": [
@@ -246,6 +302,20 @@
         "<p>Texto representativo do exemplo 2</p>",
         "<p>Texto representativo do exemplo 3</p>"
       ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
     }
   },
   {
@@ -264,12 +334,40 @@
         "<p>Texto representativo do exemplo 2</p>",
         "<p>Texto representativo do exemplo 3</p>"
       ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
     }
   },
   {
     "_class": "springboot.model.Competencia",
     "nome": "COMP_SIMULAÇÃO",
     "cursoAvaliacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
+    },
+    "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
       "exemplos": [
@@ -300,6 +398,20 @@
         "<p>Texto representativo do exemplo 2</p>",
         "<p>Texto representativo do exemplo 3</p>"
       ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
     }
   },
   {
@@ -307,6 +419,20 @@
     "nome": "COMP_ALGORITMOS",
     "cursoAvaliacao": {
       "video": null,
+      "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
+      "exemplos": [
+        "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
+        "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
+        "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
+      ],
+      "textoExemplos": [
+        "<p>Texto representativo do exemplo 1</p>",
+        "<p>Texto representativo do exemplo 2</p>",
+        "<p>Texto representativo do exemplo 3</p>"
+      ]
+    },
+    "cursoCriacao": {
+      "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
       "exemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",

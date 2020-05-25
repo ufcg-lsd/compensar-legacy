@@ -21,7 +21,7 @@
                     <h5 class="card-title">Criação</h5>
                     <p class="card-text text-muted">Curso que explica os princípios da criação de questões de forma que se encaixem em determinadas competências</p>
                 </div>
-                <div class="col-2" id="curso-icon" ng-click="goToCursoCriacao()"><i class="fas" ng-class="getIcon([])"></i></div>
+                <div class="col-2" id="curso-icon" ng-click="goToCursoCriacao()"><i class="fas" ng-class="getIcon(cursoCriacao)"></i></div>
             </div>
         </div>
     </div>
@@ -89,7 +89,7 @@
                       </div>
                   </div>
               </div>
-              <div id="video-exemplo" ng-if="estado == 'EXEMPLOS'">
+              <div ng-if="estado == 'EXEMPLOS'">
                 <div id="demo{{index}}" class="carousel slide" data-ride="carousel">
 
                   
@@ -119,13 +119,13 @@
                               Ver questão do exemplo
                             </button>
                           </div>
-                          <div class="col-3" ng-class="'offset-' + (2 + (idModulo === progresso.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
-                            <button class="btn btn-primary col-12 my-2" ng-click="prevStepAvaliacao()">
+                          <div class="col-3" ng-class="'offset-' + (2 + (idModulo === progressoAvaliacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
+                            <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
                               <i class="fas fa-angle-double-left" ></i>
                               Descrição
                             </button>
                           </div>
-                          <div class="col-4" ng-if="idModulo === progresso.modulo">
+                          <div class="col-4" ng-if="idModulo === progressoAvaliacao.modulo">
                             <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
                               Teste seus conhecimentos!
                               <i class="fas fa-angle-double-right" ></i>
@@ -146,7 +146,7 @@
                 </div>
               </div>
               <br>
-              <div class="col-10 offset-1" id="video-exemplo" ng-if="estado == 'PRATICA'">
+              <div class="col-10 offset-1" ng-if="estado == 'PRATICA'">
                 <div id="accordion">
                   <div class="card" ng-repeat="(key, questao) in modulo.questoes track by $index">
                     <div class="card-header" id="heading{{key}}">
@@ -163,14 +163,14 @@
                           <div class="ql-editor" ng-bind-html="modulo.questoes[key]"></div>
                         </div>
                         <br>
-                        <h5>A questão acima possui a competência "{{getCorrespModule(idModulo, key)}}"?</h5>
+                        <h5>A questão acima possui a competência "{{repaginaComp(modulo.nome)}}"?</h5>
                         <div  class="col-2">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" value="true"  id="customRadioTrue{{key}}" class="custom-control-input" data-ng-model="respostaQuestoes[key]"> 
+                                <input type="radio" value="true"  id="customRadioTrue{{key}}" class="custom-control-input" data-ng-model="progressoAvaliacao.respostas[key]"> 
                                 <label class="custom-control-label" for="customRadioTrue{{key}}">Sim</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio"  value="false" id="customRadioFalse{{key}}" class="custom-control-input"  data-ng-model="respostaQuestoes[key]">
+                                <input type="radio"  value="false" id="customRadioFalse{{key}}" class="custom-control-input"  data-ng-model="progressoAvaliacao.respostas[key]">
                                 <label class="custom-control-label" for="customRadioFalse{{key}}">Não</label>
                             </div>
                         </div>
@@ -181,7 +181,7 @@
                 </div>
                   <div class="row">
                       <div class="col-3 offset-md-6">
-                          <button class="btn btn-primary col-12 my-2" ng-click="prevStepAvaliacao()">
+                          <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
                             <i class="fas fa-angle-double-left" ></i>
                             Exemplos
                           </button>
@@ -194,7 +194,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-10 offset-1" id="video-exemplo" ng-if="estado == 'FINALIZADO'">
+              <div class="col-10 offset-1" ng-if="estado == 'FINALIZADO'">
                   <br>
                   <i class="fas fa-check-circle text-success" style="font-size: 75px"></i>
                   <h4>Parabéns, você concluiu o módulo "{{repaginaComp(modulo.nome)}}"!</h4>
@@ -214,7 +214,165 @@
 
     </div>
     <div ng-if="idCurso == 1">
+      <div class="container col-lg-4 offset-sm-4" id=headbox >
+        <h3> CURSO DE CRIAÇÃO </h3>
+        <hr>
+      </div>
+      <br>
+
+      <div class="col-6 offset-3 row" ng-if="idModulo == -1">
+        <div class="col-1" id="modulo-icon" ng-click="goToMain()"><i class="fas fa-angle-left text-primary" ></i></div>
+        <div class="col-10">
+          <h5 class="card-title">Voltar ao menu</h5>
+        </div>
+      </div>
+      <br>
+
+      <div ng-repeat="(index, modulo) in cursoCriacao">
+        <div class="col-lg-6 offset-sm-3 card p-3 text-left" ng-if="idModulo == -1">
+          <div class="row">
+              <div class="col-10">
+                  <h5 class="card-title">{{repaginaComp(modulo.nome)}}</h5>
+              </div>
+              <div class="col-2" id="modulo-icon" ng-click="goToModulo(index)"><i class="fas" ng-class="getIcon([modulo])"></i></div>
+          </div>
+        </div>
+        <div ng-if="idModulo == index">
+          <div class="col-10 offset-1 row">
+            <div class="col-1" id="modulo-icon" ng-click="goToModulo(-1)"><i class="fas fa-angle-left text-primary" ></i></div>
+            <div class="col-10">
+                <h5 class="card-title">{{repaginaComp(modulo.nome)}}</h5>
+            </div>
+          </div>
+          <div class="col-10 offset-1" id="video-descricao" ng-if="estado == 'DESCRICAO'">
+            <div ng-if="modulo.video">
+              <br>
+              <div class="card" >
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" ng-src="{{modulo.video}}" allowfullscreen></iframe>
+                </div>
+              </div>
+            </div>
+            <div id="collapseTextDescription" class="collapse" ng-class="{'show': !modulo.video}" >
+              <br>
+              <div class="ql-snow card">
+                <div class="ql-editor shadow" ng-bind-html="modulo.descricao"></div>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-3" ng-if="modulo.video">
+                    <button class="btn btn-primary col-12 my-2" data-toggle="collapse" data-target="#collapseTextDescription" aria-expanded="false" aria-controls="collapseTextDescription">
+                      Ver descrição textual
+                    </button>
+                </div>
+                <div class="col-3" ng-class="{'offset-6': modulo.video, 'offset-9': !modulo.video}">
+                    <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
+                      Exemplos
+                      <i class="fas fa-angle-double-right" ></i>
+                    </button>
+                </div>
+            </div>
+          </div>
+
+          <div ng-if="estado == 'EXEMPLOS'">
+            <div id="demo{{index}}" class="carousel slide" data-ride="carousel">
+
+              
+              <ul class="carousel-indicators" ng-if="modulo.exemplos.length > 1">
+                <li data-target="#demo{{index}}" data-slide-to="$index" ng-class="{active:!key}" ng-repeat="(key, exemplo) in modulo.exemplos track by $index"></li>
+              </ul>
         
+              <div class="carousel-inner">
+                <div class="carousel-item" ng-class="{active:!key}" ng-repeat="(key, exemplo) in modulo.exemplos track by $index">
+                  <div class="col-10 offset-1">
+                    <div ng-show="exemplo">
+                      <br>
+                      <div class="embed-responsive embed-responsive-16by9" >
+                        <iframe class="embed-responsive-item" ng-src="{{exemplo}}" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                    <div id="collapseTextExemplo{{$index}}" class="collapse" ng-class="{'show': !exemplo}">
+                      <br>
+                      <div class="ql-snow card">
+                        <div class="ql-editor shadow" ng-bind-html="modulo.textoExemplos[$index]"></div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-3" ng-if="exemplo">
+                        <button class="btn btn-primary col-12 my-2" data-toggle="collapse" data-target="#collapseTextExemplo{{$index}}" aria-expanded="false" aria-controls="collapseTextExemplo">
+                          Ver questão do exemplo
+                        </button>
+                      </div>
+                      <div class="col-3" ng-class="'offset-' + (2 + (idModulo === progressoCriacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
+                        <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
+                          <i class="fas fa-angle-double-left" ></i>
+                          Descrição
+                        </button>
+                      </div>
+                      <div class="col-4" ng-if="idModulo === progressoCriacao.modulo">
+                        <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
+                          Teste seus conhecimentos!
+                          <i class="fas fa-angle-double-right" ></i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <a class="carousel-control-prev col-1" href="#demo{{index}}" onclick="pauseVideo(); return false;" data-slide="prev" ng-if="modulo.exemplos.length > 1">
+                      <span class="carousel-control-prev-icon"></span>
+                    </a>
+                    <a class="carousel-control-next col-1 offset-10" href="#demo{{index}}" onclick="pauseVideo(); return false;" data-slide="next" ng-if="modulo.exemplos.length > 1">
+                      <span class="carousel-control-next-icon"></span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-10 offset-1" ng-if="estado == 'PRATICA' && idModulo >= 0 && idModulo < 9">
+            <div>
+              <div class="form-group">
+                <label><h5>Elabore o eunciado de uma questão que possui a competência "{{repaginaComp(modulo.nome)}}":</h5></label>
+                <ng-quill-editor id = "quill" modules="editorModules" placeholder="Digite o enunciado da questão." 
+                    ng-model="progressoCriacao.respostas[0]">
+                </ng-quill-editor>
+              </div>
+            </div>
+              
+            <div class="row">
+              <div class="col-3 offset-md-6">
+                <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
+                  <i class="fas fa-angle-double-left" ></i>
+                  Exemplos
+                </button>
+              </div>
+              <div class="col-3">
+                <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
+                  Enviar respostas
+                  <i class="fas fa-angle-double-right" ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-10 offset-1" ng-if="estado == 'FINALIZADO'">
+            <br>
+            <i class="fas fa-check-circle text-success" style="font-size: 75px"></i>
+            <h4>Parabéns, você concluiu o módulo "{{repaginaComp(modulo.nome)}}"!</h4>
+            <br>
+            <div class="row">
+              <div class="col-3 offset-md-9">
+                <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
+                  Prosseguir
+                  <i class="fas fa-angle-double-right" ></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <br>
+        </div>
+      </div>
     </div>
     
 </div>

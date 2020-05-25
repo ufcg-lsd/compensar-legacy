@@ -20,7 +20,7 @@ public class ModuloCurso {
         this.estado = EstadoModulo.DESCRICAO;
         this.erros = 0;
         this.questoes = new ArrayList<>();
-        this.numeroExemplo = 0;
+        this.numeroExemplo = -1;
     }
 
     public String getNome() {

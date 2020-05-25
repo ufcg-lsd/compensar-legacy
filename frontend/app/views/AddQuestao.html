@@ -54,11 +54,11 @@
                         <label><h6>Enunciado:</h6></label>
                         <ng-quill-editor id = "quill" modules="editorModules" placeholder="Digite o enunciado da questão." 
                             ng-model="enunciado" on-content-changed="contentChanged()">                          
-                        </ng-quill-editor>               
+                        </ng-quill-editor>
                     </div>
 
 
-                    <div class = "conteudoAdd">         
+                    <div>         
                             <div ng-show="inputError" class="alert alert-warning">
                                 <strong>Atenção!</strong> Você deve preencher todos os campos.
                             </div>
@@ -105,7 +105,7 @@
                             </div>
 
 
-                            <div class = "conteudoAdd"> 
+                            <div> 
                                 <div  ng-show="inputError" class="alert alert-warning">
                                     <strong>Atenção!</strong> Você deve preencher todos os campos.
                                 </div>
