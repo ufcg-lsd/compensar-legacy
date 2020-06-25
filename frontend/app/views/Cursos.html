@@ -1,12 +1,13 @@
 <div class = "row">
 
-<div id = "main" class="container">
-    <div class="col-6 offset-3" ng-if="idCurso == -1">
-        <div id=headbox >
+<div id = "main" class="col-12 row">
+    <div ng-if="estadoAtual.curso == -1">
+        <div class="col-6 offset-3" id=headbox >
             <h3> CURSOS </h3>
-            <hr>
+            <h5 class="text-muted">Nesta página você pode encontrar cursos que podem ajudá-lo a utilizar o Compensar da melhor forma possível. Os cursos abaixo são focados em ensinar de maneira teórica como deve ser feita a avaliação e a criação de novas questões para o sistema.</h5>
+            <br>
         </div>
-        <div class="card p-3 text-left">
+        <div class="col-4 offset-4 card p-3 text-left">
             <div  class="row">
                 <div class="col-10">
                     <h5 class="card-title">Avaliação</h5>
@@ -15,7 +16,7 @@
                 <div class="col-2" id="curso-icon" ng-click="goToCursoAvaliacao()"><i class="fas" ng-class="getIcon(cursoAvaliacao)"></i></div>
             </div>
         </div>
-        <div class="card p-3 text-left">
+        <div class="col-4 offset-4 card p-3 text-left">
             <div  class="row">
                 <div class="col-10">
                     <h5 class="card-title">Criação</h5>
@@ -26,14 +27,18 @@
         </div>
     </div>
     
-    <div ng-if="idCurso == 0">
-        <div class="container col-lg-4 offset-sm-4" id=headbox >
+    <div id="treeview1" class="pl-5 col-2 text-left" class="treeview" ng-class="{invisible: estadoAtual.curso === -1 || estadoAtual.modulo === -1}"></div>
+
+    
+    
+    <div ng-if="estadoAtual.curso == 0" class="col-8">
+        <div class="col-6 offset-3" id=headbox >
             <h3> CURSO DE AVALIAÇÃO </h3>
             <hr>
         </div>
         <br>
 
-        <div class="col-6 offset-3 row" ng-if="idModulo == -1">
+        <div class="col-6 offset-3 row" ng-if="estadoAtual.modulo == -1">
           <div class="col-1" id="modulo-icon" ng-click="goToMain()"><i class="fas fa-angle-left text-primary" ></i></div>
           <div class="col-10">
             <h5 class="card-title">Voltar ao menu</h5>
@@ -41,7 +46,7 @@
         </div>
         <br>
         <div ng-repeat="(index, modulo) in cursoAvaliacao">
-          <div class="col-lg-6 offset-sm-3 card p-3 text-left" ng-if="idModulo == -1">
+          <div class="col-6 offset-3 card p-3 text-left" ng-if="estadoAtual.modulo == -1">
               <div class="row">
                   <div class="col-10">
                       <h5 class="card-title">{{repaginaComp(modulo.nome)}}</h5>
@@ -49,7 +54,7 @@
                   <div class="col-2" id="modulo-icon" ng-click="goToModulo(index)"><i class="fas" ng-class="getIcon([modulo])"></i></div>
               </div>
           </div>
-          <div ng-if="idModulo == index">
+          <div ng-if="estadoAtual.modulo == index" class="col-12">
               
               <div class="col-10 offset-1 row">
                   <div class="col-1" id="modulo-icon" ng-click="goToModulo(-1)"><i class="fas fa-angle-left text-primary" ></i></div>
@@ -58,38 +63,77 @@
                   </div>
                   
               </div>
-              <div class="col-10 offset-1" id="video-descricao" ng-if="estado == 'DESCRICAO'">
-                  
-                  <div ng-if="modulo.video">
+              <div class="col-10 offset-1" id="video-descricao" ng-if="estadoAtual.estado == 'DESCRICAO'">
+                  <div ng-if="index == 0">
                     <br>
-                    <div class="card" >
-                      <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" ng-src="{{modulo.video}}" allowfullscreen></iframe>
+                    <div>
+                      <br>
+                      <div class="card" >
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1" allowfullscreen></iframe>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div id="collapseTextDescription" class="collapse" ng-class="{'show': !modulo.video}" >
-                    <br>
-                    <div class="ql-snow card">
-                      <div class="ql-editor shadow" ng-bind-html="modulo.descricao"></div>
+                    <div id="collapseTextDescription" class="collapse">
+                      <br>
+                      <div class="ql-snow card"><div class="ql-editor shadow"><div class="ql-align-center">
+<h2>Objetivo do curso</h2>
+<h3>Este curso tem como objetivo principal ensinar o princípio de classificação de questões de matemática com relação às competências do Pensamento Computacional. Essa classificação é um dos pilares do Compensar, permitindo que o sistema cresça de forma colaborativa e que ainda exista controle sobre as questões publicadas no sistema.</h3>
+<h2>Pensamento Computacional</h2>
+<h3>O Pensamento Computacional (PC) é um conceito utilizado no contexto de resolução de problemas de forma esquematizada, utilizando-se de técnicas utilizadas no âmbito da Computação. Este conceito pode ser utilizado nas mais divérsas áreas, independente da sua ligação com a Computação, e está sendo utilizado na educação básica em alguns países como forma de estimular este tipo de raciocínio nas crianças.
+As técnicas abordadas no PC são chamadas de competências e definem de forma teórica o que é cada técnica e como utilizá-la no contexto de resolução de problemas</h3>
+<h2>Competências</h2>
+<h3>As competências do Pensamento computacional podem ter várias definições dependendo de qual abordagem foi usada para definí-las.
+No Compensar o conceito utilizado apresenta nove competências, que serão explicadas uma a uma durante os próximos módulos do curso.</h3>
+<h2>Classificação de questões</h2>
+<h3>Os módulos específicos de cada competência terão foco na identificação da presença ou da ausência da mesma em questões de matemática tendo como base seu enunciado. Para completar cada módulo, você precisa demonstrar o seu conhecimento a partir da avaliação de duas questões que poderão ter ou não a competência estudada.</h3>
+<h2>Fluxograma do curso</h2>
+<h3>Cada um dos nove módulos seguintes apresenta uma nova competência do PC e está dividido em três sessões: Descrição,  Exemplos e Avaliação parcial.
+A primeira sessão dá uma visão teórica da abordagem da competência estudada, a segunda sessão dá exemplos de questões que possuem e que não possuem esta competência, e a terceira sessão apresenta duas questões (uma que possui e outra que não possui a competência estudada) e pede que você escolha qual dentre elas possui a competência.
+O último módulo é a avaliação final do curso, que apresenta questões que você deve julgar como possuir ou não possuir cada competência.</h3>
+</div></div></div>
                     </div>
                   </div>
-                  <br>
+                  <div ng-if="index != 0">
+                    <div ng-if="modulo.video">
+                      <br>
+                      <div class="card" >
+                        <div class="embed-responsive embed-responsive-16by9">
+                          <iframe class="embed-responsive-item" ng-src="{{modulo.video}}" allowfullscreen></iframe>
+                        </div>
+                      </div>
+                    </div>
+                    <div id="collapseTextDescription" class="collapse" ng-class="{'show': !modulo.video}" >
+                      <br>
+                      <div class="ql-snow card">
+                        <div class="ql-editor shadow" ng-bind-html="modulo.descricao"></div>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
                   <div class="row">
-                      <div class="col-3" ng-if="modulo.video">
+                      <div class="col-3" ng-if="modulo.video || index === 0">
                           <button class="btn btn-primary col-12 my-2" data-toggle="collapse" data-target="#collapseTextDescription" aria-expanded="false" aria-controls="collapseTextDescription">
                             Ver descrição textual
                           </button>
                       </div>
-                      <div class="col-3" ng-class="{'offset-6': modulo.video, 'offset-9': !modulo.video}">
+
+                      <div class="col-3" ng-class="{'offset-6': modulo.video, 'offset-9': !modulo.video}" ng-if="index != 0">
+                        <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
+                          Exemplos
+                          <i class="fas fa-angle-double-right" ></i>
+                        </button>
+                      </div>
+
+                      <div class="col-3 offset-6" ng-if="index == 0">
                           <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
-                            Exemplos
+                            Continuar
                             <i class="fas fa-angle-double-right" ></i>
                           </button>
                       </div>
                   </div>
               </div>
-              <div ng-if="estado == 'EXEMPLOS'">
+              <div ng-if="estadoAtual.estado == 'EXEMPLOS'">
                 <div id="demo{{index}}" class="carousel slide" data-ride="carousel">
 
                   
@@ -119,13 +163,13 @@
                               Ver questão do exemplo
                             </button>
                           </div>
-                          <div class="col-3" ng-class="'offset-' + (2 + (idModulo === progressoAvaliacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
+                          <div class="col-3" ng-class="'offset-' + (2 + (estadoAtual.modulo === progressoAvaliacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
                             <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
                               <i class="fas fa-angle-double-left" ></i>
                               Descrição
                             </button>
                           </div>
-                          <div class="col-4" ng-if="idModulo === progressoAvaliacao.modulo">
+                          <div class="col-4" ng-if="estadoAtual.modulo === progressoAvaliacao.modulo">
                             <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
                               Teste seus conhecimentos!
                               <i class="fas fa-angle-double-right" ></i>
@@ -146,7 +190,7 @@
                 </div>
               </div>
               <br>
-              <div class="col-10 offset-1" ng-if="estado == 'PRATICA'">
+              <div class="col-10 offset-1" ng-if="estadoAtual.estado == 'PRATICA'">
                 <div id="accordion">
                   <div class="card" ng-repeat="(key, questao) in modulo.questoes track by $index">
                     <div class="card-header" id="heading{{key}}">
@@ -163,7 +207,7 @@
                           <div class="ql-editor" ng-bind-html="modulo.questoes[key]"></div>
                         </div>
                         <br>
-                        <h5>A questão acima possui a competência "{{repaginaComp(modulo.nome)}}"?</h5>
+                        <h5>A questão acima possui a competência "{{repaginaComp(estadoAtual.modulo !== 10 ? modulo.nome : compList[key])}}"?</h5>
                         <div  class="col-2">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" value="true"  id="customRadioTrue{{key}}" class="custom-control-input" data-ng-model="progressoAvaliacao.respostas[key]"> 
@@ -179,25 +223,26 @@
                   </div>
                   
                 </div>
-                  <div class="row">
-                      <div class="col-3 offset-md-6">
-                          <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
-                            <i class="fas fa-angle-double-left" ></i>
-                            Exemplos
-                          </button>
-                      </div>
-                      <div class="col-3">
-                          <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
-                            Enviar respostas
-                            <i class="fas fa-angle-double-right" ></i>
-                          </button>
-                      </div>
-                  </div>
+
+                <div class="row">
+                    <div class="col-3 offset-md-6">
+                        <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
+                          <i class="fas fa-angle-double-left" ></i>
+                          Exemplos
+                        </button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary col-12 my-2" ng-click="nextStepAvaliacao()">
+                          Enviar respostas
+                          <i class="fas fa-angle-double-right" ></i>
+                        </button>
+                    </div>
+                </div>
               </div>
-              <div class="col-10 offset-1" ng-if="estado == 'FINALIZADO'">
+              <div class="col-10 offset-1" ng-if="estadoAtual.estado == 'FINALIZADO'">
                   <br>
                   <i class="fas fa-check-circle text-success" style="font-size: 75px"></i>
-                  <h4>Parabéns, você concluiu o módulo "{{repaginaComp(modulo.nome)}}"!</h4>
+                  <h4>Parabéns, você concluiu "{{repaginaComp(modulo.nome)}}"!</h4>
                   <br>
                   <div class="row">
                       <div class="col-3 offset-md-9">
@@ -213,14 +258,14 @@
         </div>
 
     </div>
-    <div ng-if="idCurso == 1">
-      <div class="container col-lg-4 offset-sm-4" id=headbox >
+    <div ng-if="estadoAtual.curso == 1" class="col-8">
+      <div class="col-6 offset-3" id=headbox >
         <h3> CURSO DE CRIAÇÃO </h3>
         <hr>
       </div>
       <br>
 
-      <div class="col-6 offset-3 row" ng-if="idModulo == -1">
+      <div class="col-6 offset-3 row" ng-if="estadoAtual.modulo == -1">
         <div class="col-1" id="modulo-icon" ng-click="goToMain()"><i class="fas fa-angle-left text-primary" ></i></div>
         <div class="col-10">
           <h5 class="card-title">Voltar ao menu</h5>
@@ -229,7 +274,7 @@
       <br>
 
       <div ng-repeat="(index, modulo) in cursoCriacao">
-        <div class="col-lg-6 offset-sm-3 card p-3 text-left" ng-if="idModulo == -1">
+        <div class="col-6 offset-3 card p-3 text-left" ng-if="estadoAtual.modulo == -1">
           <div class="row">
               <div class="col-10">
                   <h5 class="card-title">{{repaginaComp(modulo.nome)}}</h5>
@@ -237,45 +282,84 @@
               <div class="col-2" id="modulo-icon" ng-click="goToModulo(index)"><i class="fas" ng-class="getIcon([modulo])"></i></div>
           </div>
         </div>
-        <div ng-if="idModulo == index">
+        <div ng-if="estadoAtual.modulo == index" class="col-12">
           <div class="col-10 offset-1 row">
             <div class="col-1" id="modulo-icon" ng-click="goToModulo(-1)"><i class="fas fa-angle-left text-primary" ></i></div>
             <div class="col-10">
                 <h5 class="card-title">{{repaginaComp(modulo.nome)}}</h5>
             </div>
           </div>
-          <div class="col-10 offset-1" id="video-descricao" ng-if="estado == 'DESCRICAO'">
-            <div ng-if="modulo.video">
+          <div class="col-10 offset-1" id="video-descricao" ng-if="estadoAtual.estado == 'DESCRICAO'">
+            <div ng-if="index == 0">
               <br>
-              <div class="card" >
-                <div class="embed-responsive embed-responsive-16by9">
-                  <iframe class="embed-responsive-item" ng-src="{{modulo.video}}" allowfullscreen></iframe>
+              <div>
+                <br>
+                <div class="card" >
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1" allowfullscreen></iframe>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div id="collapseTextDescription" class="collapse" ng-class="{'show': !modulo.video}" >
-              <br>
-              <div class="ql-snow card">
-                <div class="ql-editor shadow" ng-bind-html="modulo.descricao"></div>
+              <div id="collapseTextDescription" class="collapse">
+                <br>
+                <div class="ql-snow card"><div class="ql-editor shadow"><div class="ql-align-center">
+<h2>Objetivo do curso</h2>
+<h3>Este curso tem como objetivo principal ensinar o princípio de classificação de questões de matemática com relação às competências do Pensamento Computacional. Essa classificação é um dos pilares do Compensar, permitindo que o sistema cresça de forma colaborativa e que ainda exista controle sobre as questões publicadas no sistema.</h3>
+<h2>Pensamento Computacional</h2>
+<h3>O Pensamento Computacional (PC) é um conceito utilizado no contexto de resolução de problemas de forma esquematizada, utilizando-se de técnicas utilizadas no âmbito da Computação. Este conceito pode ser utilizado nas mais divérsas áreas, independente da sua ligação com a Computação, e está sendo utilizado na educação básica em alguns países como forma de estimular este tipo de raciocínio nas crianças.
+As técnicas abordadas no PC são chamadas de competências e definem de forma teórica o que é cada técnica e como utilizá-la no contexto de resolução de problemas</h3>
+<h2>Competências</h2>
+<h3>As competências do Pensamento computacional podem ter várias definições dependendo de qual abordagem foi usada para definí-las.
+No Compensar o conceito utilizado apresenta nove competências, que serão explicadas uma a uma durante os próximos módulos do curso.</h3>
+<h2>Classificação de questões</h2>
+<h3>Os módulos específicos de cada competência terão foco na identificação da presença ou da ausência da mesma em questões de matemática tendo como base seu enunciado. Para completar cada módulo, você precisa demonstrar o seu conhecimento a partir da avaliação de duas questões que poderão ter ou não a competência estudada.</h3>
+<h2>Fluxograma do curso</h2>
+<h3>Cada um dos nove módulos seguintes apresenta uma nova competência do PC e está dividido em três sessões: Descrição,  Exemplos e Avaliação parcial.
+A primeira sessão dá uma visão teórica da abordagem da competência estudada, a segunda sessão dá exemplos de questões que possuem e que não possuem esta competência, e a terceira sessão apresenta duas questões (uma que possui e outra que não possui a competência estudada) e pede que você escolha qual dentre elas possui a competência.
+O último módulo é a avaliação final do curso, que apresenta questões que você deve julgar como possuir ou não possuir cada competência.</h3>
+</div></div></div>
               </div>
             </div>
-            <br>
+            <div ng-if="index != 0">
+              <div ng-if="modulo.video">
+                <br>
+                <div class="card" >
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" ng-src="{{modulo.video}}" allowfullscreen></iframe>
+                  </div>
+                </div>
+              </div>
+              <div id="collapseTextDescription" class="collapse" ng-class="{'show': !modulo.video}" >
+                <br>
+                <div class="ql-snow card">
+                  <div class="ql-editor shadow" ng-bind-html="modulo.descricao"></div>
+                </div>
+              </div>
+              <br>
+            </div>
             <div class="row">
-                <div class="col-3" ng-if="modulo.video">
+                <div class="col-3" ng-if="modulo.video || index === 0">
                     <button class="btn btn-primary col-12 my-2" data-toggle="collapse" data-target="#collapseTextDescription" aria-expanded="false" aria-controls="collapseTextDescription">
                       Ver descrição textual
                     </button>
                 </div>
-                <div class="col-3" ng-class="{'offset-6': modulo.video, 'offset-9': !modulo.video}">
+                <div class="col-3" ng-class="{'offset-6': modulo.video, 'offset-9': !modulo.video}" ng-if="index != 0">
                     <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
                       Exemplos
                       <i class="fas fa-angle-double-right" ></i>
                     </button>
                 </div>
+
+                <div class="col-3 offset-6" ng-if="index == 0">
+                  <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
+                    Continuar
+                    <i class="fas fa-angle-double-right" ></i>
+                  </button>
+              </div>
             </div>
           </div>
 
-          <div ng-if="estado == 'EXEMPLOS'">
+          <div ng-if="estadoAtual.estado == 'EXEMPLOS'">
             <div id="demo{{index}}" class="carousel slide" data-ride="carousel">
 
               
@@ -305,13 +389,13 @@
                           Ver questão do exemplo
                         </button>
                       </div>
-                      <div class="col-3" ng-class="'offset-' + (2 + (idModulo === progressoCriacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
+                      <div class="col-3" ng-class="'offset-' + (2 + (estadoAtual.modulo === progressoCriacao.modulo ? 0 : 4) + (exemplo ? 0 : 3))">
                         <button class="btn btn-primary col-12 my-2" ng-click="prevStep()">
                           <i class="fas fa-angle-double-left" ></i>
                           Descrição
                         </button>
                       </div>
-                      <div class="col-4" ng-if="idModulo === progressoCriacao.modulo">
+                      <div class="col-4" ng-if="estadoAtual.modulo === progressoCriacao.modulo">
                         <button class="btn btn-primary col-12 my-2" ng-click="nextStepCriacao()">
                           Teste seus conhecimentos!
                           <i class="fas fa-angle-double-right" ></i>
@@ -331,7 +415,8 @@
               </div>
             </div>
           </div>
-          <div class="col-10 offset-1" ng-if="estado == 'PRATICA' && idModulo >= 0 && idModulo < 9">
+          <br>
+          <div class="col-10 offset-1" ng-if="estadoAtual.estado == 'PRATICA' && estadoAtual.modulo >= 0 && estadoAtual.modulo < 10">
             <div>
               <div class="form-group">
                 <label><h5>Elabore o eunciado de uma questão que possui a competência "{{repaginaComp(modulo.nome)}}":</h5></label>
@@ -356,7 +441,29 @@
               </div>
             </div>
           </div>
-          <div class="col-10 offset-1" ng-if="estado == 'FINALIZADO'">
+          <div class="col-12" ng-if="estadoAtual.estado == 'PRATICA' && estadoAtual.modulo == 10">
+            <div id="accordion">
+              <div class="card" ng-repeat="(key, compName) in compList">
+                <div class="card-header" id="heading{{key}}">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{key}}" aria-expanded="{{key === 0}}" aria-controls="collapse{{key}}">
+                      {{repaginaComp(compName)}}
+                    </button>
+                  </h5>
+                </div>
+                
+            
+                <div id="collapse{{key}}" class="collapse" aria-labelledby="heading{{key}}" data-parent="#accordion">
+                  <div class="card-body">
+                    <div ng-include src="'app/views/AddQuestao.html'" ng-init="contId = key"></div>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+          </div>
+          <div class="col-10 offset-1" ng-if="estadoAtual.estado == 'FINALIZADO'">
             <br>
             <i class="fas fa-check-circle text-success" style="font-size: 75px"></i>
             <h4>Parabéns, você concluiu o módulo "{{repaginaComp(modulo.nome)}}"!</h4>
@@ -376,4 +483,25 @@
     </div>
     
 </div>
+</div>
+<div class="modal fade" id="error-modal">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+          <!-- Modal Header -->
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+              <div class="text-center">
+                  <i class="far fa-times-circle text-danger" style="font-size: 60px"></i>
+                  <br><br>
+                  <h5>{{erro.descricaoErro}}</h5>
+              </div>                        
+          </div>
+          
+      </div>
+  </div>
 </div>

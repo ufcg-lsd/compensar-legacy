@@ -5,6 +5,7 @@ angular.module('app')
         $rootScope.activetab = $location.path();
         $scope.trechoSelecionado = "abc";
         $scope.highlightType = true;
+        $scope.contId;
 
         $scope.setHighlightType = (type) => {$scope.highlightType = type;}
 
@@ -87,7 +88,11 @@ angular.module('app')
             $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $route.reload();
+                    if ($scope.$parent && $scope.$parent.newQuestion) {
+                        $scope.$parent.newQuestion($scope.contId, response.data);
+                    } else {
+                        $route.reload();
+                    }
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
@@ -163,7 +168,11 @@ angular.module('app')
             $http.post(host + 'questao', questaoObj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $route.reload();
+                    if ($scope.$parent && $scope.$parent.newQuestion) {
+                        $scope.$parent.newQuestion($scope.contId, response.data);
+                    } else {
+                        $route.reload();
+                    }
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();

@@ -161,6 +161,22 @@
   },
   {
     "_class": "springboot.model.Competencia",
+    "nome": "COMP_INTRODUÇÃO",
+    "cursoAvaliacao": {
+      "video": "",
+      "descricao": "",
+      "exemplos": [],
+      "textoExemplos": []
+    },
+    "cursoCriacao": {
+      "video": "",
+      "descricao": "",
+      "exemplos": [],
+      "textoExemplos": []
+    }
+  },
+  {
+    "_class": "springboot.model.Competencia",
     "nome": "COMP_COLETA",
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",

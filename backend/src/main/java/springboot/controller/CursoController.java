@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiResponse;
 import org.springframework.http.MediaType;
 import springboot.dto.output.CursoOutput;
 import springboot.dto.output.ModuloCursoOutput;
+import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.*;
 import springboot.model.ModuloCurso.EstadoModulo;
 import springboot.repository.CompetenciaRepository;
@@ -112,7 +113,7 @@ public class CursoController {
             ret.add(moduloOutput);
         }
 
-        ModuloCurso modAvaliacao = usuario.getCursoAvaliacao().get(9);
+        ModuloCurso modAvaliacao = usuario.getCursoAvaliacao().get(10);
         ModuloCursoOutput outputAvaliacao = new ModuloCursoOutput();
         outputAvaliacao.setNome(modAvaliacao.getNome());
         outputAvaliacao.setEstado(modAvaliacao.getEstado());
@@ -121,11 +122,9 @@ public class CursoController {
             modAvaliacao.setQuestoes(new ArrayList<>());
             for(String comp : COMP_NAMES) {
                 // Get 2 samples of questions (one with an one without competencia) unordered
-                List<Questao> samples = questaoService.getSamples(comp);
-                for(Questao q : samples) {
-                    modAvaliacao.getQuestoes().add(q.getId());
-                    outputAvaliacao.getQuestoes().add(q.getEnunciado());
-                }
+                Questao sample = questaoService.getSample(comp);
+                modAvaliacao.getQuestoes().add(sample.getId());
+                outputAvaliacao.getQuestoes().add(sample.getEnunciado());
             }
         }
 
@@ -133,7 +132,7 @@ public class CursoController {
             outputAvaliacao.setEstado(EstadoModulo.INATIVO);
         }
 
-        usuario.getCursoAvaliacao().set(9, modAvaliacao);
+        usuario.getCursoAvaliacao().set(10, modAvaliacao);
         ret.add(outputAvaliacao);
 
         usuario = usuarioService.update(usuario, usuario.getEmail());
@@ -149,11 +148,13 @@ public class CursoController {
         if (usuario.getCursoAvaliacao() == null || usuario.getCursoAvaliacao().size() == 0) {
             usuario.setCursoAvaliacao(new ArrayList<>());
 
+            usuario.getCursoAvaliacao().add(new ModuloCurso("COMP_INTRODUÇÃO"));
+
             for(String comp : COMP_NAMES) {
                 usuario.getCursoAvaliacao().add(new ModuloCurso(comp));
             }
             usuario.getCursoAvaliacao().add(new ModuloCurso("COMP_AVALIAÇÃO FINAL"));
-            usuario.getCursoAvaliacao().get(9).setEstado(EstadoModulo.PRATICA);
+            usuario.getCursoAvaliacao().get(10).setEstado(EstadoModulo.PRATICA);
 
             usuario = usuarioService.update(usuario, usuario.getEmail());
         }
@@ -161,12 +162,18 @@ public class CursoController {
         if (usuario.getCursoCriacao() == null || usuario.getCursoCriacao().size() == 0) {
             usuario.setCursoCriacao(new ArrayList<>());
 
+            usuario.getCursoCriacao().add(new ModuloCurso("COMP_INTRODUÇÃO"));
+
             for(String comp : COMP_NAMES) {
                 usuario.getCursoCriacao().add(new ModuloCurso(comp));
             }
             //TODO mudar visualização da avaliação final
-            usuario.getCursoCriacao().add(new ModuloCurso("COMP_AVALIAÇÃO FINAL"));
-            usuario.getCursoCriacao().get(9).setEstado(EstadoModulo.PRATICA);
+            ModuloCurso finalModule = new ModuloCurso("COMP_AVALIAÇÃO FINAL");
+            for(int i = 0; i < 9; i++) {
+                finalModule.getQuestoes().add(null);
+            }
+            usuario.getCursoCriacao().add(finalModule);
+            usuario.getCursoCriacao().get(10).setEstado(EstadoModulo.PRATICA);
             usuario = usuarioService.update(usuario, usuario.getEmail());
         }
 
@@ -192,26 +199,27 @@ public class CursoController {
             if (!modulo.getEstado().equals(EstadoModulo.FINALIZADO)) {
                 boolean sendToBack = false;
                 Curso c = new Curso();
-                if (i != 9)
+                if (i != 10)
                     c = competenciaRepository.findById(modulo.getNome()).get().getCursoAvaliacao();
                 String competencia = modulo.getNome();
                 if (modulo.getEstado().equals(EstadoModulo.DESCRICAO)) {
-                    modulo.setEstado(EstadoModulo.EXEMPLOS);
+                    if (i == 0) {
+                        modulo.setEstado(EstadoModulo.FINALIZADO);
+                    } else {
+                        modulo.setEstado(EstadoModulo.EXEMPLOS);
+                    }
                 } else if (modulo.getEstado().equals(EstadoModulo.EXEMPLOS)) {
                     modulo.setEstado(EstadoModulo.PRATICA);
                 }else if (modulo.getEstado().equals(EstadoModulo.PRATICA)) {
                     int total = 0;
                     int erros = 0;
                     if (i == usuario.getCursoAvaliacao().size()-1) {
-                        total = 9*2;
-                        if (respostas == null || respostas.size() != 9*2) {
-                            erros += 18;
+                        total = 9;
+                        if (respostas == null || respostas.size() != 9) {
+                            erros += 9;
                         } else {
                             int j = 0;
                             for (String comp : COMP_NAMES) {
-                                if (!respostas.get(j).equals(questaoService.evaluateQuestao(comp,modulo.getQuestoes().get(j))))
-                                    erros++;
-                                j++;
                                 if (!respostas.get(j).equals(questaoService.evaluateQuestao(comp,modulo.getQuestoes().get(j))))
                                     erros++;
                                 j++;
@@ -229,30 +237,30 @@ public class CursoController {
                         modulo.setEstado(EstadoModulo.FINALIZADO);
                         modulo.zeraErros();
                     } else if (i == usuario.getCursoAvaliacao().size()-1) {
-                        mensagem = "Você obteve menos de 70% de acerto, tente novamente mais tarde!";
+                        mensagem = "Você obteve menos de 70% de acerto, tente novamente ou volte e estude mais um pouco sobre as competências!";
                     } else {
                         modulo.addErro();
                         if (modulo.getErros() == 2) {
-                            mensagem = "Percebemos que você teve dificuldade com essa competência, então volte e veja algum exemplo";
+                            mensagem = "Percebemos que você novamente teve dificuldade em identificar a competência nas questões apresentadas, por isso deve voltar e ver mais um exemplo!";
                             modulo.setEstado(EstadoModulo.EXEMPLOS);
                         } else if (modulo.getErros() == 3) {
-                            mensagem = "Como você não conseguiu identificar bem a competência, veja uma nova competência e depois voltamos para essa";
+                            mensagem = "Como você não conseguiu identificar bem a presença ou ausência da competência nas questões apresentadas, veja uma nova competência e depois tentaremos essa novamente!";
                             sendToBack = true;
                             modulo.zeraErros();
                             modulo.setEstado(EstadoModulo.DESCRICAO);
                             //processa devido ao numero de erros
                         } else {
-                            mensagem = "Você não conseguiu identificar a presença/ausência da competência, tente novamente!";
+                            mensagem = "Você não conseguiu identificar a presença ou ausência da competência nas questões apresentadas, tente novamente!";
                         }
                     }
 
                 }
                 usuario.getCursoAvaliacao().set(i, modulo);
                 if (sendToBack) {
-                    usuario.getCursoAvaliacao().add(usuario.getCursoAvaliacao().get(9));
+                    usuario.getCursoAvaliacao().add(usuario.getCursoAvaliacao().get(10));
                     usuario.getCursoAvaliacao().remove(i);
 
-                    usuario.getCursoAvaliacao().set(8, modulo);
+                    usuario.getCursoAvaliacao().set(9, modulo);
                 }
                 usuario = usuarioService.update(usuario, usuario.getEmail());
                 break;
@@ -313,7 +321,7 @@ public class CursoController {
 
         ModuloCursoOutput outputAvaliacao = new ModuloCursoOutput();
 
-        ModuloCurso modAvaliacao = usuario.getCursoCriacao().get(9);
+        ModuloCurso modAvaliacao = usuario.getCursoCriacao().get(10);
         outputAvaliacao.setNome(modAvaliacao.getNome());
         outputAvaliacao.setEstado(modAvaliacao.getEstado());
         //TODO mudar visualização da avaliação final
@@ -334,7 +342,7 @@ public class CursoController {
             outputAvaliacao.setEstado(EstadoModulo.INATIVO);
         }
 
-        usuario.getCursoCriacao().set(9, modAvaliacao);
+        usuario.getCursoCriacao().set(10, modAvaliacao);
 
 
         ret.add(outputAvaliacao);
@@ -360,15 +368,19 @@ public class CursoController {
             if (!modulo.getEstado().equals(EstadoModulo.FINALIZADO)) {
                 boolean sendToBack = false;
                 Curso c = new Curso();
-                if (i != 9)
+                if (i != 10)
                     c = competenciaRepository.findById(modulo.getNome()).get().getCursoCriacao();
                 String competencia = modulo.getNome();
                 if (modulo.getEstado().equals(EstadoModulo.DESCRICAO)) {
-                    modulo.setEstado(EstadoModulo.EXEMPLOS);
+                    if (i == 0) {
+                        modulo.setEstado(EstadoModulo.FINALIZADO);
+                    } else {
+                        modulo.setEstado(EstadoModulo.EXEMPLOS);
+                    }
                 } else if (modulo.getEstado().equals(EstadoModulo.EXEMPLOS)) {
                     modulo.setEstado(EstadoModulo.PRATICA);
                 }else if (modulo.getEstado().equals(EstadoModulo.PRATICA)) {
-                    if (i != 9) {
+                    if (i != 10) {
                         try {
                             Boolean hasCompetencia = questaoService.hasCompetencia(competencia, questaoService.getSetCompetencias(respostas.get(0)));
                             if(!hasCompetencia) {
@@ -398,10 +410,10 @@ public class CursoController {
                 }
                 usuario.getCursoCriacao().set(i, modulo);
                 if (sendToBack) {
-                    usuario.getCursoCriacao().add(usuario.getCursoCriacao().get(9));
+                    usuario.getCursoCriacao().add(usuario.getCursoCriacao().get(10));
                     usuario.getCursoCriacao().remove(i);
 
-                    usuario.getCursoCriacao().set(8, modulo);
+                    usuario.getCursoCriacao().set(9, modulo);
                 }
                 usuario = usuarioService.update(usuario, usuario.getEmail());
                 break;
@@ -409,5 +421,54 @@ public class CursoController {
         }
 
         return auxCursoCriacao(usuario, mensagem);
+    }
+
+    @ApiOperation("Registra questão criada na avaliação final do usuário logado.\r\n")
+    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
+    @RequestMapping(value = "/cursoCriacao/newQuestion", method = RequestMethod.POST)
+    public ResponseEntity<CursoOutput> registraAvaliacaoCriacao(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody NewQuestion newQuestion) {
+        int competencia = newQuestion.competencia;
+        String questao = newQuestion.questao;
+        if (usuario.getCursoCriacao() == null || usuario.getCursoCriacao().size() == 0) {
+            return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
+        }
+
+        List<String> modulo = usuario.getCursoCriacao().get(10).getQuestoes();
+
+        String mensagem = null;
+
+        if (modulo.get(competencia) == null) {
+            try {
+                questaoService.getById(questao);
+                modulo.set(competencia, questao);
+            } catch (RegisterNotFoundException e) {
+                mensagem = "A questão especificada não existe";
+            }
+        } else {
+            mensagem = "Já existe uma questão criada para esta competência";
+        }
+
+        return auxCursoCriacao(usuario, mensagem);
+    }
+
+    public class NewQuestion {
+        private int competencia;
+        private String questao;
+
+        public int getCompetencia() {
+            return competencia;
+        }
+
+        public void setCompetencia(int competencia) {
+            this.competencia = competencia;
+        }
+
+        public String getQuestao() {
+            return questao;
+        }
+
+        public void setQuestao(String questao) {
+            this.questao = questao;
+        }
     }
 }

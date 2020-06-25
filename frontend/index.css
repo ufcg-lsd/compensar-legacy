@@ -942,3 +942,29 @@ hr {
 .carousel-control-next-icon {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
 }
+
+/* Treeview component */
+.treeview .list-group-item{
+  cursor:pointer !important;
+}.treeview span.indent{
+  margin-left:20px !important;
+  margin-right:20px !important;
+}.treeview span.icon{
+  width:12px !important;
+  margin-right:5px !important;
+}
+.treeview .node-disabled{
+  color:silver !important;
+  cursor:not-allowed !important;
+}
+.node-treeview1{
+  color:#428bca !important;
+  border:none !important;
+}
+.node-treeview1:not(.node-disabled):hover{
+  background-color:#F5F5F5 !important;
+} 
+.node-selected {
+  background-color: #FFFFFF !important;
+  color: #28a745 !important;
+}

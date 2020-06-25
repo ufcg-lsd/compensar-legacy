@@ -397,6 +397,10 @@ public class QuestaoService {
 		return results;
 	}
 
+	public Questao getSample(String competencia) {
+		return getSamples(competencia).get(new Random().nextInt(2));
+	}
+
 	public Boolean hasCompetencia(String competencia, Set<CompetenciaType> competencias) {
 		for (CompetenciaType c : competencias) {
 			if (c.name().equals(competencia)){

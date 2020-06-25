@@ -21,7 +21,7 @@ public class ModuloCursoOutput {
 
     private List<String> questoes;
 
-    private List<QuestaoOutput> qustoesDetalhadas;
+    private List<QuestaoOutput> questoesDetalhadas;
 
     public ModuloCursoOutput(String nome, ModuloCurso.EstadoModulo estado, String video, String descricao, List<String> exemplos, List<String> textoExemplos, List<String> questoes, List<QuestaoOutput> questoesDetalhadas) {
         this.nome = nome;
@@ -31,14 +31,14 @@ public class ModuloCursoOutput {
         this.exemplos = exemplos;
         this.textoExemplos = textoExemplos;
         this.questoes = questoes;
-        this.qustoesDetalhadas = qustoesDetalhadas;
+        this.questoesDetalhadas = questoesDetalhadas;
     }
 
     public ModuloCursoOutput() {
         this.exemplos = new ArrayList<>();
         this.textoExemplos = new ArrayList<>();
         this.questoes = new ArrayList<>();
-        this.qustoesDetalhadas = new ArrayList<>();
+        this.questoesDetalhadas = new ArrayList<>();
     }
 
     public String getNome() {
@@ -97,11 +97,11 @@ public class ModuloCursoOutput {
         this.textoExemplos = textoExemplos;
     }
 
-    public List<QuestaoOutput> getQustoesDetalhadas() {
-        return qustoesDetalhadas;
+    public List<QuestaoOutput> getQuestoesDetalhadas() {
+        return questoesDetalhadas;
     }
 
-    public void setQustoesDetalhadas(List<QuestaoOutput> qustoesDetalhadas) {
-        this.qustoesDetalhadas = qustoesDetalhadas;
+    public void setQuestoesDetalhadas(List<QuestaoOutput> questoesDetalhadas) {
+        this.questoesDetalhadas = questoesDetalhadas;
     }
 }

@@ -6,6 +6,9 @@ angular.module('app')
         $().ready(function() {
             $('.carousel').carousel({interval: false});
         });
+        $scope.erro = {tituloErro: "", descricaoErro: ""};
+
+        $scope.compList = ["COMP_ABSTRAÇÃO", "COMP_ALGORITMOS", "COMP_ANÁLISE", "COMP_AUTOMAÇÃO", "COMP_COLETA", "COMP_DECOMPOSIÇÃO", "COMP_PARALELIZAÇÃO", "COMP_REPRESENTAÇÃO", "COMP_SIMULAÇÃO"];
 
         $scope.cursoAvaliacao = null;
         $scope.cursoCriacao = null;
@@ -20,42 +23,58 @@ angular.module('app')
             modulo: -1,
             estado: "",
             respostas: [""]
-        }
+        };
 
-        $scope.idCurso = -1;
-        $scope.idModulo = -1;
-        $scope.estado = "";
+        $scope.estadoAtual = {
+            curso: -1,
+            modulo: -1,
+            estado: "",
+        };
 
         
 
         $scope.goToCursoAvaliacao = () => {
-            $scope.idCurso = 0;
-            $scope.idModulo = -1;
+            $scope.estadoAtual.curso = 0;
+            if ($scope.progressoAvaliacao.modulo != -1) {
+                $scope.estadoAtual.modulo = $scope.progressoAvaliacao.modulo;
+                $scope.estadoAtual.estado = $scope.progressoAvaliacao.estado;
+            } else {
+                $scope.estadoAtual.modulo = -1;
+            }
+            $scope.updateTreeView();
         }
 
         $scope.goToCursoCriacao = () => {
-            $scope.idCurso = 1;
-            $scope.idModulo = -1;
+            $scope.estadoAtual.curso = 1;
+            $scope.estadoAtual.modulo = -1;
+            if ($scope.progressoCriacao.modulo != -1) {
+                $scope.estadoAtual.modulo = $scope.progressoCriacao.modulo;
+                $scope.estadoAtual.estado = $scope.progressoCriacao.estado;
+            } else {
+                $scope.estadoAtual.modulo = -1;
+            }
+            $scope.updateTreeView();
         }
 
         $scope.goToMain = () => {
-            $scope.idCurso = -1;
+            $scope.estadoAtual.curso = -1;
         }
 
         $scope.goToModulo = (id) => {
-            let progresso = ($scope.idCurso === 0) ? $scope.progressoAvaliacao : $scope.progressoCriacao;
+            let progresso = ($scope.estadoAtual.curso === 0) ? $scope.progressoAvaliacao : $scope.progressoCriacao;
             if (id > progresso.modulo && progresso.modulo !== -1) {
                 Notification.error("Você precisa completar os módulos anteriores a este primeiro!");
                 return;
             }
-            $scope.idModulo = id;
+            $scope.estadoAtual.modulo = id;
             if (id === progresso.modulo) {
-                $scope.estado = progresso.estado;
-            } else if (id === 9) {
-                $scope.estado = "FINALIZADO";
+                $scope.estadoAtual.estado = progresso.estado;
+            } else if (id === 10) {
+                $scope.estadoAtual.estado = "FINALIZADO";
             } else {
-                $scope.estado = "DESCRICAO";
+                $scope.estadoAtual.estado = "DESCRICAO";
             }
+            $scope.updateTreeView();
         }
 
         let allEstadoEquals = (arr, val) => {
@@ -84,7 +103,69 @@ angular.module('app')
             }
         }
 
-        $scope.populaDadosAvaliacao = (dados, permitirFinalizado) => {
+        $scope.getTreeView = () => {
+            let treeView = []
+            let progressoAtual = ($scope.estadoAtual.curso === 0) ? $scope.progressoAvaliacao : $scope.progressoCriacao;
+            let cursoAtual = ($scope.estadoAtual.curso === 0) ? $scope.cursoAvaliacao : $scope.cursoCriacao;
+            let acabou = progressoAtual.modulo === -1;
+            treeView.push({text: "Introdução", state: {selected: $scope.estadoAtual.modulo === 0}});
+            treeView.push({
+                text: "Competências",
+                nodes: [],
+                state: {
+                    selected: $scope.estadoAtual.modulo >= 1 && $scope.estadoAtual.modulo <= 9,
+                    disabled: progressoAtual.modulo === 0
+                }
+            });
+            for(let i = 1; i < cursoAtual.length-1; i++) {
+                let tmpNode = {
+                    text: $rootScope.repaginaComp(cursoAtual[i].nome),
+                    state: {
+                        selected: $scope.estadoAtual.modulo === i,
+                        disabled: !acabou && progressoAtual.modulo < i
+                    }
+                };
+                treeView[1].nodes.push(tmpNode);
+            }
+            treeView.push({text: "Avaliação final", state: { selected: $scope.estadoAtual.modulo === 10, disabled: !acabou && progressoAtual.modulo < 10}});
+            return treeView;
+        }
+
+        $scope.updateTreeView = () => {
+            $('#treeview1').treeview({
+                data: $scope.getTreeView(),
+                multiSelect: true,
+                expandIcon: 'fas fa-angle-right',
+                collapseIcon: 'fas fa-angle-down',
+            });
+            $('#treeview1').on('nodeSelected', function(event, data) {
+                event.stopPropagation();
+                console.log(data);
+                for(let node of $('#treeview1').treeview('getSelected')) {
+                    if (node.nodeId !== data.nodeId) {
+                        $('#treeview1').treeview('unselectNode', [ node.nodeId, { silent: true } ]);
+                    }
+                }
+                if (data.nodeId === 1) {
+                    $('#treeview1').treeview('selectNode', [ 2, { silent: true } ]);
+                } else if (data.nodeId >= 2 && data.nodeId <= 10) {
+                    $('#treeview1').treeview('selectNode', [ 1, { silent: true } ]);
+                }
+                if (data.nodeId <= 1) {
+                    $scope.goToModulo(data.nodeId);
+                } else {
+                    $scope.goToModulo(data.nodeId-1);
+                }
+            });
+            $('#treeview1').on('nodeUnselected', function(event, data) {
+                event.stopPropagation();
+                $('#treeview1').treeview('selectNode', [ data.nodeId, {} ]);
+            });
+        }
+
+        
+
+        $scope.populaDadosAvaliacao = (dados, permitirFinalizado, semCursoDefinido) => {
             $scope.cursoAvaliacao = dados;
             let lastFinalizado = -1;
             $scope.progressoAvaliacao.modulo = -1;
@@ -106,28 +187,34 @@ angular.module('app')
                     $scope.progressoAvaliacao.estado = estado;
                 } else if (lastFinalizado === -1) {lastFinalizado = i;}
             }
-            if ($scope.progressoAvaliacao.estado == "DESCRICAO" && permitirFinalizado === true) {
-                $scope.idModulo = lastFinalizado;
-                $scope.estado = "FINALIZADO";
+            if (($scope.progressoAvaliacao.estado == "DESCRICAO" || $scope.progressoAvaliacao.modulo == 10) && permitirFinalizado === true) {
+                $scope.estadoAtual.modulo = lastFinalizado;
+                $scope.estadoAtual.estado = "FINALIZADO";
             } else {
-                $scope.idModulo = $scope.progressoAvaliacao.modulo;
-                $scope.estado = $scope.progressoAvaliacao.estado;
+                $scope.estadoAtual.modulo = $scope.progressoAvaliacao.modulo;
+                $scope.estadoAtual.estado = $scope.progressoAvaliacao.estado;
             }
-            if ($scope.progressoAvaliacao.modulo === 9) {
-                $scope.progressoAvaliacao.respostas = [false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false];
+            if ($scope.progressoAvaliacao.modulo === 10) {
+                $scope.progressoAvaliacao.respostas = [false, false, false, false, false, false, false, false, false];
             } else {
                 $scope.progressoAvaliacao.respostas = [false, false];
             }
+            if (!semCursoDefinido) {
+                $scope.updateTreeView();
+            }
+            
         }
 
         $scope.nextStepAvaliacao = () => {
-            if ($scope.idModulo === $scope.progressoAvaliacao.modulo && $scope.estado === $scope.progressoAvaliacao.estado) {
+            if ($scope.estadoAtual.modulo === $scope.progressoAvaliacao.modulo && $scope.estadoAtual.estado === $scope.progressoAvaliacao.estado) {
                 $rootScope.loading = true;
                 $http.post(host + 'cursoAvaliacao/', $scope.progressoAvaliacao.respostas, AuthService.getAuthorization()).then(
                     response => {
                         $rootScope.loading = false;
                         if (response.data.mensagem) {
-                            Notification.info(response.data.mensagem);
+                            $scope.erro = {tituloErro: "Erro ao prosseguir no curso", descricaoErro: response.data.mensagem};
+                            $('#error-modal').modal('toggle');
+                            $('#error-modal').modal({backdrop: 'static', keyboard: false});
                             $scope.populaDadosAvaliacao(response.data.cursoAvaliacao, false);
                         } else {
                             $scope.populaDadosAvaliacao(response.data.cursoAvaliacao, true);
@@ -136,46 +223,54 @@ angular.module('app')
                         $location.path("/cursos");
                         Notification.error("Falha ao verificar cursos");
                     });
-            } else if ($scope.estado == "DESCRICAO") {
-                $scope.estado = "EXEMPLOS";
-            } else if ($scope.estado == "EXEMPLOS") {
-                if ($scope.idModulo === $scope.progressoAvaliacao.modulo || ($scope.idModulo === 8 && $scope.progressoAvaliacao.modulo === 9)) {
-                    $scope.estado = "PRATICA";
+                    return;
+            }
+            if ($scope.estadoAtual.estado == "DESCRICAO") {
+                if  ($scope.estadoAtual.modulo === 0) {
+                    $scope.estadoAtual.modulo++;
+                    $scope.estadoAtual.estado = "DESCRICAO";
                 } else {
-                    $scope.estado = "DESCRICAO";
+                    $scope.estadoAtual.estado = "EXEMPLOS";
                 }
-                if ($scope.idModulo !== $scope.progressoAvaliacao.modulo) {
-                    if ($scope.idModulo === 8 && $scope.progressoAvaliacao.modulo === -1) {
-                        $scope.idModulo = -1;
+            } else if ($scope.estadoAtual.estado == "EXEMPLOS") {
+                if ($scope.estadoAtual.modulo === $scope.progressoAvaliacao.modulo || ($scope.estadoAtual.modulo === 9 && $scope.progressoAvaliacao.modulo === 10)) {
+                    $scope.estadoAtual.estado = "PRATICA";
+                } else {
+                    $scope.estadoAtual.estado = "DESCRICAO";
+                }
+                if ($scope.estadoAtual.modulo !== $scope.progressoAvaliacao.modulo) {
+                    if ($scope.estadoAtual.modulo === 9 && $scope.progressoAvaliacao.modulo === -1) {
+                        $scope.estadoAtual.modulo = -1;
                     } else {
-                        $scope.idModulo++;
+                        $scope.estadoAtual.modulo++;
                     }
                 }
-            } else if ($scope.estado == "FINALIZADO") {
-                if ($scope.idModulo === 8) {
-                    $scope.estado = "PRATICA";
+            } else if ($scope.estadoAtual.estado == "FINALIZADO") {
+                if ($scope.estadoAtual.modulo === 9) {
+                    $scope.estadoAtual.estado = "PRATICA";
                 } else {
-                    $scope.estado = "DESCRICAO";
+                    $scope.estadoAtual.estado = "DESCRICAO";
                 }
-                if ($scope.idModulo !== $scope.progressoAvaliacao.modulo) {
-                    if ($scope.idModulo === 9) {
-                        $scope.idModulo = -1;
+                if ($scope.estadoAtual.modulo !== $scope.progressoAvaliacao.modulo) {
+                    if ($scope.estadoAtual.modulo === 10) {
+                        $scope.estadoAtual.modulo = -1;
                     } else {
-                        $scope.idModulo++;
+                        $scope.estadoAtual.modulo++;
                     }
                 }
             }
+            $scope.updateTreeView();
         }
 
         $scope.prevStep = () => {
-            if ($scope.estado == "EXEMPLOS") {
-                $scope.estado = "DESCRICAO";
-            } else if ($scope.estado == "PRATICA") {
-                $scope.estado = "EXEMPLOS";
+            if ($scope.estadoAtual.estado == "EXEMPLOS") {
+                $scope.estadoAtual.estado = "DESCRICAO";
+            } else if ($scope.estadoAtual.estado == "PRATICA") {
+                $scope.estadoAtual.estado = "EXEMPLOS";
             }
         }
 
-        $scope.populaDadosCriacao = (dados, permitirFinalizado) => {
+        $scope.populaDadosCriacao = (dados, permitirFinalizado, semCursoDefinido) => {
             $scope.cursoCriacao = dados;
             let lastFinalizado = -1;
             $scope.progressoCriacao.modulo = -1;
@@ -198,27 +293,32 @@ angular.module('app')
                 } else if (lastFinalizado === -1) {lastFinalizado = i;}
             }
             if ($scope.progressoCriacao.estado == "DESCRICAO" && permitirFinalizado === true) {
-                $scope.idModulo = lastFinalizado;
-                $scope.estado = "FINALIZADO";
+                $scope.estadoAtual.modulo = lastFinalizado;
+                $scope.estadoAtual.estado = "FINALIZADO";
             } else {
-                $scope.idModulo = $scope.progressoCriacao.modulo;
-                $scope.estado = $scope.progressoCriacao.estado;
+                $scope.estadoAtual.modulo = $scope.progressoCriacao.modulo;
+                $scope.estadoAtual.estado = $scope.progressoCriacao.estado;
             }
-            if ($scope.progressoCriacao.modulo === 9) {
+            if ($scope.progressoCriacao.modulo === 10) {
                 $scope.progressoCriacao.respostas = ["", "", "", "", "", "", "", "", ""]; //id das questões
             } else {
                 $scope.progressoCriacao.respostas = [""]; //enunciado
             }
+            if (!semCursoDefinido) {
+                $scope.updateTreeView();
+            }
         }
 
         $scope.nextStepCriacao = () => {
-            if ($scope.idModulo === $scope.progressoCriacao.modulo && $scope.estado === $scope.progressoCriacao.estado) {
+            if ($scope.estadoAtual.modulo === $scope.progressoCriacao.modulo && $scope.estadoAtual.estado === $scope.progressoCriacao.estado) {
                 $rootScope.loading = true;
                 $http.post(host + 'cursoCriacao/', $scope.progressoCriacao.respostas, AuthService.getAuthorization()).then(
                     response => {
                         $rootScope.loading = false;
                         if (response.data.mensagem) {
-                            Notification.info(response.data.mensagem);
+                            $scope.erro = {tituloErro: "Erro ao prosseguir no curso", descricaoErro: response.data.mensagem};
+                            $('#error-modal').modal('toggle');
+                            $('#error-modal').modal({backdrop: 'static', keyboard: false});
                             $scope.populaDadosCriacao(response.data.cursoCriacao, false);
                         } else {
                             $scope.populaDadosCriacao(response.data.cursoCriacao, true);
@@ -227,46 +327,77 @@ angular.module('app')
                         $location.path("/cursos");
                         Notification.error("Falha ao verificar cursos");
                     });
-            } else if ($scope.estado == "DESCRICAO") {
-                $scope.estado = "EXEMPLOS";
-            } else if ($scope.estado == "EXEMPLOS") {
-                if ($scope.idModulo === $scope.progressoCriacao.modulo || ($scope.idModulo === 8 && $scope.progressoCriacao.modulo === 9)) {
-                    $scope.estado = "PRATICA";
+            } else if ($scope.estadoAtual.estado == "DESCRICAO") {
+                $scope.estadoAtual.estado = "EXEMPLOS";
+            } else if ($scope.estadoAtual.estado == "EXEMPLOS") {
+                if ($scope.estadoAtual.modulo === $scope.progressoCriacao.modulo || ($scope.estadoAtual.modulo === 9 && $scope.progressoCriacao.modulo === 10)) {
+                    $scope.estadoAtual.estado = "PRATICA";
                 } else {
-                    $scope.estado = "DESCRICAO";
+                    $scope.estadoAtual.estado = "DESCRICAO";
                 }
-                if ($scope.idModulo !== $scope.progressoCriacao.modulo) {
-                    if ($scope.idModulo === 8 && $scope.progressoCriacao.modulo === -1) {
-                        $scope.idModulo = -1;
+                if ($scope.estadoAtual.modulo !== $scope.progressoCriacao.modulo) {
+                    if ($scope.estadoAtual.modulo === 9 && $scope.progressoCriacao.modulo === -1) {
+                        $scope.estadoAtual.modulo = -1;
                     } else {
-                        $scope.idModulo++;
+                        $scope.estadoAtual.modulo++;
                     }
                 }
-            } else if ($scope.estado == "FINALIZADO") {
-                if ($scope.idModulo === 8) {
-                    $scope.estado = "PRATICA";
+            } else if ($scope.estadoAtual.estado == "FINALIZADO") {
+                if ($scope.estadoAtual.modulo === 9) {
+                    $scope.estadoAtual.estado = "PRATICA";
                 } else {
-                    $scope.estado = "DESCRICAO";
+                    $scope.estadoAtual.estado = "DESCRICAO";
                 }
-                if ($scope.idModulo !== $scope.progressoCriacao.modulo) {
-                    if ($scope.idModulo === 9) {
-                        $scope.idModulo = -1;
+                if ($scope.estadoAtual.modulo !== $scope.progressoCriacao.modulo) {
+                    if ($scope.estadoAtual.modulo === 10) {
+                        $scope.estadoAtual.modulo = -1;
                     } else {
-                        $scope.idModulo++;
+                        $scope.estadoAtual.modulo++;
                     }
                 }
             }
+            $scope.updateTreeView();
         }
 
         $scope.getCursos = () => {
             $http.get(host + 'cursos/', AuthService.getAuthorization()).then(
             response => {
-                $scope.populaDadosAvaliacao(response.data.cursoAvaliacao, false);
-                $scope.populaDadosCriacao(response.data.cursoCriacao, false);
+                $scope.populaDadosAvaliacao(response.data.cursoAvaliacao, false, true);
+                $scope.populaDadosCriacao(response.data.cursoCriacao, false, true);
             }, err => {
                 $location.path("/cursos");
                 Notification.error("Falha ao verificar cursos");
             });
+        }
+
+        $scope.newQuestion = (modulo, questao) => {
+            console.log(modulo);
+            console.log(questao);
+            $http.post(host + 'cursoCriacao/newQuestion', { newQuestion: {competencia: modulo, questao: questao.id}}, AuthService.getAuthorization()).then(
+                response => {
+                    $rootScope.loading = false;
+                    let tempCurso = $scope.estadoAtual.curso;
+                    let tempModulo = $scope.estadoAtual.modulo;
+                    if (response.data.mensagem) {
+                        $scope.erro = {tituloErro: "Erro ao cadastrar nova questão", descricaoErro: response.data.mensagem};
+                        $('#error-modal').modal('toggle');
+                        $('#error-modal').modal({backdrop: 'static', keyboard: false});
+                        $scope.populaDadosCriacao(response.data.cursoCriacao, false);
+                    } else {
+                        $scope.populaDadosCriacao(response.data.cursoCriacao, true);
+                    }
+                    $scope.estadoAtual.curso = tempCurso;
+                    $scope.estadoAtual.modulo = tempModulo;
+                }, err => {
+                    $location.path("/cursos");
+                    Notification.error("Falha ao verificar cursos");
+                });
+            
+        }
+
+        $scope.getCompName = (i) => {
+            if ($scope.estadoAtual.modulo !== 10) return $scope.compList
+            return $scope.compList[i];
         }
 
         $scope.getCursos();
