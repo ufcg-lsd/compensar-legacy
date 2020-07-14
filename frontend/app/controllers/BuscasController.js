@@ -9,6 +9,7 @@ angular.module('app')
     $scope.closeInnerModal = (index) => {
         $("#addCompetencia" + index).modal('toggle');
     }
+    $scope.justList;
 
     window.onmouseup = () => {
         let parents = document.querySelectorAll("#areaSelecaoCriacaoQuestao");
@@ -26,8 +27,9 @@ angular.module('app')
     };
 
     $rootScope.activetab = $location.path();
-    
-    $rootScope.Questoes = [];
+    if (!$scope.justList) {
+        $rootScope.Questoes = [];
+    }
 
     $rootScope.totalQuestoes = 0;
     $rootScope.totalPags = 0; 
@@ -439,7 +441,7 @@ angular.module('app')
         return $rootScope.apenasAutor;
     };
 
-    if (!$rootScope.blockSearch) {
+    if (!$rootScope.blockSearch && !$scope.justList) {
         $scope.sendNewQuery($scope.search.competencias, $scope.search.conteudo);
     }
     $rootScope.blockSearch = false;

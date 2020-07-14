@@ -23,7 +23,6 @@ import springboot.enums.EstadoQuestao;
 import springboot.exception.data.NoPendentQuestionException;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.exception.data.RegisterNotFoundException;
-import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.repository.QuestaoRepository;
@@ -147,7 +146,8 @@ public class QuestaoService {
 			"}"
 		)));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"autorInfo\": false } }")));
-		iniciaColecoes();
+		if (arrayParametros.size() == 0)
+			iniciaColecoes();
 
 		/*
 		enunciado = (enunciado.equals("null")) ? "null" : enunciado;

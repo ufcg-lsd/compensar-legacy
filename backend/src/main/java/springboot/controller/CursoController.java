@@ -15,10 +15,13 @@ import io.swagger.annotations.ApiResponse;
 import org.springframework.http.MediaType;
 import springboot.dto.output.CursoOutput;
 import springboot.dto.output.ModuloCursoOutput;
+import springboot.dto.output.QuestaoOutput;
+import springboot.enums.EstadoQuestao;
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.*;
 import springboot.model.ModuloCurso.EstadoModulo;
 import springboot.repository.CompetenciaRepository;
+import springboot.service.AvaliacaoService;
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
@@ -54,7 +57,13 @@ public class CursoController {
     private UsuarioService usuarioService;
 
     @Autowired
+    QuestionSearchController questionSearchController;
+
+    @Autowired
     private QuestaoService questaoService;
+
+    @Autowired
+    private AvaliacaoService avaliacaoService;
 
     @ApiOperation("Permite pegar a tela atual do usuário no curso de avaliação.\r\n")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
@@ -169,9 +178,6 @@ public class CursoController {
             }
             //TODO mudar visualização da avaliação final
             ModuloCurso finalModule = new ModuloCurso("COMP_AVALIAÇÃO FINAL");
-            for(int i = 0; i < 9; i++) {
-                finalModule.getQuestoes().add(null);
-            }
             usuario.getCursoCriacao().add(finalModule);
             usuario.getCursoCriacao().get(10).setEstado(EstadoModulo.PRATICA);
             usuario = usuarioService.update(usuario, usuario.getEmail());
@@ -324,25 +330,22 @@ public class CursoController {
         ModuloCurso modAvaliacao = usuario.getCursoCriacao().get(10);
         outputAvaliacao.setNome(modAvaliacao.getNome());
         outputAvaliacao.setEstado(modAvaliacao.getEstado());
-        //TODO mudar visualização da avaliação final
-        /*
+
         if (modAvaliacao.getEstado().equals(EstadoModulo.PRATICA)) {
-            modAvaliacao.setQuestoes(new ArrayList<>());
-            for(String comp : COMP_NAMES) {
-                // Get 2 samples of questions (one with an one without competencia) unordered
-                List<Questao> samples = questaoService.getSamples(comp);
-                for(Questao q : samples) {
-                    modAvaliacao.getQuestoes().add(q.getId());
-                    outputAvaliacao.getQuestoes().add(q.getEnunciado());
+            if (modAvaliacao.getQuestoes().size() > 0) {
+                try {
+                    String questao = modAvaliacao.getQuestoes().get(0);
+                    outputAvaliacao.getQuestoesDetalhadas().add(questionSearchController.getById(usuario, questao));
+                    outputAvaliacao.getQuestoes().add(questao);
+                } catch (Exception e) {
+                    usuario.getCursoCriacao().get(10).getQuestoes().clear();
                 }
             }
-        }*/
+        }
 
         if (ativo) {
             outputAvaliacao.setEstado(EstadoModulo.INATIVO);
         }
-
-        usuario.getCursoCriacao().set(10, modAvaliacao);
 
 
         ret.add(outputAvaliacao);
@@ -405,7 +408,35 @@ public class CursoController {
                             mensagem = "Problema interno ao classificar questão, tente novamente!";
                         }
                     } else {
-                        // TODO mudar visualização da avaliação final
+                        try {
+                            Questao q;
+                            String questao = modulo.getQuestoes().get(0);
+                            q = questaoService.getById(questao);
+                            if (!q.getAutor().equals(usuario.getEmail())) {
+                                mensagem = "A questão precisa ser de sua autoria!";
+                            } else if (q.getEstado() != EstadoQuestao.PUBLICADA) {
+                                mensagem = "Você deve criar uma nova questão para prosseguir!";
+                            } else {
+                                Avaliacao avaliacaoAutor = null;
+                                List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questao);
+                                for(Avaliacao a : avaliacoes) {
+                                    if (a.getAutor().equals(usuario.getEmail())) {
+                                        avaliacaoAutor = a;
+                                        break;
+                                    }
+                                }
+
+                                if (avaliacaoAutor == null) {
+                                    mensagem = "Sua questão não foi avaliada apropriadamente!";
+                                } else if (!avaliacaoAutor.getCompetencias().equals(q.getCompetencias())) {
+                                    mensagem = "Você deve criar uma nova questão para prosseguir!";
+                                } else {
+                                    modulo.setEstado(EstadoModulo.FINALIZADO);
+                                }
+                            }
+                        } catch (Exception e) {
+                            mensagem = "Você deve criar uma nova questão para prosseguir!";
+                        }
                     }
                 }
                 usuario.getCursoCriacao().set(i, modulo);
@@ -426,26 +457,23 @@ public class CursoController {
     @ApiOperation("Registra questão criada na avaliação final do usuário logado.\r\n")
     @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
     @RequestMapping(value = "/cursoCriacao/newQuestion", method = RequestMethod.POST)
-    public ResponseEntity<CursoOutput> registraAvaliacaoCriacao(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody NewQuestion newQuestion) {
-        int competencia = newQuestion.competencia;
-        String questao = newQuestion.questao;
+    public ResponseEntity<CursoOutput> registraCriacaoQuestao(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody String questao) {
+
         if (usuario.getCursoCriacao() == null || usuario.getCursoCriacao().size() == 0) {
             return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
         }
 
-        List<String> modulo = usuario.getCursoCriacao().get(10).getQuestoes();
+        List<String> modulo = new ArrayList<>();
+        modulo.add(questao);
 
         String mensagem = null;
 
-        if (modulo.get(competencia) == null) {
-            try {
-                questaoService.getById(questao);
-                modulo.set(competencia, questao);
-            } catch (RegisterNotFoundException e) {
-                mensagem = "A questão especificada não existe";
-            }
-        } else {
-            mensagem = "Já existe uma questão criada para esta competência";
+        try {
+            questaoService.getById(questao);
+            usuario.getCursoCriacao().get(10).setQuestoes(modulo);
+            usuario = usuarioService.update(usuario, usuario.getEmail());
+        } catch (RegisterNotFoundException e) {
+            mensagem = "A questão especificada não existe";
         }
 
         return auxCursoCriacao(usuario, mensagem);

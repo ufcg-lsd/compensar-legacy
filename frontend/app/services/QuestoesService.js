@@ -61,7 +61,7 @@ angular.module('app')
             hideModals();
             $rootScope.loading = false;
             Notification.success('Questão removida com sucesso!');
-            $location.path("/questoes");
+            $location.path($location.path());
             return response;
           }).catch(function (err) {
             if (err.status == 400) {
@@ -90,14 +90,15 @@ angular.module('app')
         hideModals();
 
         Notification.success('Questão atualizada com sucesso!');
-        $location.path("/questoes");
+        
+        $location.path($location.path());
         return response;
     },function(err){
       if (err.status == 400) {
         $rootScope.forceSignOut();
       } else {
         Notification.error('Falha ao atualizar questão!');
-        $location.path("/questoes");
+        $location.path($location.path());
       }
       $rootScope.loading = false;
       return err;
@@ -115,14 +116,14 @@ service.publicaQuestao = function (questao) {
       hideModals();
 
       Notification.success('Questão publicada com sucesso!');
-      $location.path("/questoes");
+      $location.path($location.path());
       return response;
   },function(err){
     if (err.status == 400) {
       $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao publicar questão!');
-          $location.path("/questoes");
+          $location.path($location.path());
     }
     return err;
   });
@@ -182,7 +183,7 @@ service.publicaQuestao = function (questao) {
 
   return $http.delete(host + 'listaquestoes/' + lista.id, AuthService.getAuthorization()).
     then(function (response) {
-      $location.path("/questoes");
+      $location.path($location.path());
       Notification.success('Lista removida com sucesso!');
       return response;
     }).catch(function (err) {
@@ -190,7 +191,7 @@ service.publicaQuestao = function (questao) {
         $rootScope.forceSignOut();
       } else {
         Notification.error('Falha ao remover lista!');
-        $location.path("/questoes");      
+        $location.path($location.path());      
       }
       return err;
     });
@@ -220,7 +221,7 @@ service.sendUpdateLista = function (lista,novaLista) {
       $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao atualizar lista!');
-        $location.path("/questoes");
+        $location.path($location.path());
     }
     return err;
   });
@@ -288,7 +289,7 @@ service.aprovaQuestao = function(questao, novaQuestao) {
       $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao aprovar da questão!');
-      $location.path("/questoes");
+      $location.path($location.path());
       $rootScope.loading = false;
       hideModals();
     }
@@ -311,7 +312,7 @@ service.rejeitaQuestao = function(questao) {
     }
     $rootScope.loading = false;
     Notification.success('Questão rejeitada com sucesso!');
-    $location.path("/questoes");
+    $location.path($location.path());
     $rootScope.loading = false;
     hideModals();
     return response;
@@ -320,7 +321,7 @@ service.rejeitaQuestao = function(questao) {
       $rootScope.forceSignOut();
     } else {
       Notification.error('Falha ao rejeitar a questão!');
-      $location.path("/questoes");
+      $location.path($location.path());
       $rootScope.loading = false;
       hideModals();
     }

@@ -5,7 +5,6 @@ angular.module('app')
         $rootScope.activetab = $location.path();
         $scope.trechoSelecionado = "abc";
         $scope.highlightType = true;
-        $scope.contId;
 
         $scope.setHighlightType = (type) => {$scope.highlightType = type;}
 

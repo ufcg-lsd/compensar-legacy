@@ -29,9 +29,18 @@ angular.module('app')
             curso: -1,
             modulo: -1,
             estado: "",
+            respostasAnteriores: true
         };
 
-        
+        $scope.comparaCompetencias = (comp1, comp2) => {
+            if (comp1.length !== comp2.length) return false;
+            for(let x of comp1) {
+                if (comp2.indexOf(x) === -1) return false;
+            }
+            return true;
+        }
+
+        $scope.insideCurso;
 
         $scope.goToCursoAvaliacao = () => {
             $scope.estadoAtual.curso = 0;
@@ -307,6 +316,7 @@ angular.module('app')
             if (!semCursoDefinido) {
                 $scope.updateTreeView();
             }
+            $rootScope.Questoes = $scope.cursoCriacao[10].questoesDetalhadas;
         }
 
         $scope.nextStepCriacao = () => {
@@ -359,6 +369,26 @@ angular.module('app')
             $scope.updateTreeView();
         }
 
+        $scope.getAvaliacaoCriacao = () => {
+            if ($rootScope.Questoes.length === 0) return 'SEM_RESPOSTA';
+            if ($rootScope.Questoes[0].estado === 'RASCUNHO') return 'RASCUNHO';
+            if ($rootScope.Questoes[0].estado === 'PEND_AVALIACAO' || $rootScope.Questoes[0].estado === 'PEND_APROVACAO') return 'PENDENTE';
+            if ($rootScope.Questoes[0].estado === 'REJEITADA' || !$scope.comparaCompetencias($rootScope.Questoes[0].competencias, $rootScope.Questoes[0].competenciasAvaliacoes[1])) {
+                return 'REJEITADA';
+            }
+            return 'ACEITA';
+        }
+
+
+        $scope.podeCriarResposta = () => {
+            let aceitaveis = ['SEM_RESPOSTA', 'RASCUNHO', 'REJEITADA'];
+            return aceitaveis.indexOf($scope.getAvaliacaoCriacao()) !== -1;
+        }
+
+        $scope.podeProsseguir = () => {
+            return $scope.getAvaliacaoCriacao() === 'ACEITA';
+        }
+
         $scope.getCursos = () => {
             $http.get(host + 'cursos/', AuthService.getAuthorization()).then(
             response => {
@@ -373,7 +403,7 @@ angular.module('app')
         $scope.newQuestion = (modulo, questao) => {
             console.log(modulo);
             console.log(questao);
-            $http.post(host + 'cursoCriacao/newQuestion', { newQuestion: {competencia: modulo, questao: questao.id}}, AuthService.getAuthorization()).then(
+            $http.post(host + 'cursoCriacao/newQuestion', questao.id, AuthService.getAuthorization()).then(
                 response => {
                     $rootScope.loading = false;
                     let tempCurso = $scope.estadoAtual.curso;

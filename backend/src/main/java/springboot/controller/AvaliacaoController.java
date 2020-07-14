@@ -54,7 +54,7 @@ public class AvaliacaoController {
                 )
         );
         questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
-        if (questao.getQtdAvaliacoes() >= 3) {
+        if (questao.getQtdAvaliacoes() == 3) {
             HashSet<CompetenciaType> tempNewCompetencias = new HashSet<>();
             List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(avaliacao.getQuestao());
             for (CompetenciaType competencia: CompetenciaType.values()) {

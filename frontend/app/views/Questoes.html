@@ -589,12 +589,15 @@
                                                     <div ng-switch = "isAutor(questao.emailAutor) && questao.estado === 'RASCUNHO'">
                                                         <div id="alterarQuestao" ng-switch-when="true">
                                                             <button  type="button" class="btn btn-outline-light text-dark" ng-click="removeQuestao(questao)">
+                                                                <md-tooltip md-direction="top" md-z-index="10000">Excluir questão</md-tooltip>
                                                                 <i class="fas fa-trash text-danger"></i>
                                                             </button>
                                                             <button type="button" class="btn btn-outline-light text-dark" data-toggle="modal" ng-click="atualizaQuestao(questao, false)" data-target="#editar{{$index}}"> 
+                                                                <md-tooltip md-direction="top" md-z-index="10000">Editar questão</md-tooltip>
                                                                 <i  class="fas fa-edit"></i>
                                                             </button>
                                                             <button  type="button" class="btn btn-outline-light text-dark" ng-click="publicaQuestao(questao)">
+                                                                <md-tooltip md-direction="top" md-z-index="10000">Submeter para publicação</md-tooltip>
                                                                 <i class="fas fa-lock text-success"></i>
                                                             </button>
                                                         </div>
