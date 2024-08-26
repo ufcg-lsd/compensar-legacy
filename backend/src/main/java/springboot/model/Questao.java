@@ -40,8 +40,12 @@ public class Questao {
 	@TextIndexed
 	private String enunciado;
 
+	private String originalEnunciado;
+
 	@TextIndexed
 	private Set<CompetenciaType> competencias;
+
+	private Set<CompetenciaType> competenciasClassificador;
 
 	private String fonte;
 
@@ -49,7 +53,7 @@ public class Questao {
 
 	private String espelho;
 	
-	private String conteudo;
+	private HashSet<String> conteudo;
 
 	private List<Alternativa> alternativas;
 
@@ -73,17 +77,19 @@ public class Questao {
 	 * 
 	 * 
 	 */
-	public Questao(String tipo, String conteudo, String enunciado, String fonte, String autor, String espelho,
+	public Questao(String tipo, HashSet<String> conteudo, String enunciado, String fonte, String autor, String espelho,
 			List<Alternativa> alternativas, Collection<CompetenciaType> competencias) {
 
 		this.tipo = tipo;
 		this.conteudo = conteudo;
 		this.enunciado = enunciado;
+		this.originalEnunciado = enunciado;
 		this.fonte = fonte;
 		this.autor = autor;
 		this.espelho = espelho;
 		this.alternativas = alternativas;
 		this.competencias = new HashSet<CompetenciaType>(competencias);
+		this.competenciasClassificador = new HashSet<CompetenciaType>(competencias);
 		this.qtdAvaliacoes = 0;
 		this.ultimoAcesso = System.currentTimeMillis();
 		this.estado = EstadoQuestao.RASCUNHO;
@@ -122,11 +128,11 @@ public class Questao {
 	
 	
 
-	public String getConteudo() {
+	public HashSet<String> getConteudo() {
 		return conteudo;
 	}
 
-	public void setConteudo(String conteudo) {
+	public void setConteudo(HashSet<String> conteudo) {
 		this.conteudo = conteudo;
 	}
 
@@ -195,6 +201,13 @@ public class Questao {
 		this.enunciado = enunciado;
 	}
 
+	public String getOriginalEnunciado() {
+		return originalEnunciado;
+	}
+
+	public void setOriginalEnunciado(String originalEnunciado) {
+		this.originalEnunciado = originalEnunciado;
+	}
 
 	public Set<CompetenciaType> getCompetencias() {
 		return competencias;
@@ -204,7 +217,14 @@ public class Questao {
 	public void setCompetencias(Set<CompetenciaType> competencias) {
 		this.competencias = competencias;
 	}
-	
+
+	public Set<CompetenciaType> getCompetenciasClassificador() {
+		return competenciasClassificador;
+	}
+
+	public void setCompetenciasClassificador(Set<CompetenciaType> competenciasClassificador) {
+		this.competenciasClassificador = competenciasClassificador;
+	}
 
 	public Float getScore() {
 		return score;

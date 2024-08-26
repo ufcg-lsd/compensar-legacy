@@ -18,14 +18,12 @@ angular.module('app')
     
                 $http.post(host + 'email', email).
                 then(function (response) {
-                    Notification.success("Mensagem enviada com sucesso!");        
-                    $location.path("/login");
+                    Notification.success("Mensagem enviada com sucesso!");
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio do email!");
-                        $location.path("/login");
                     }
                 }
                 );

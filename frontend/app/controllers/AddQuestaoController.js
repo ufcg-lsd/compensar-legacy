@@ -1,6 +1,6 @@
 /* global host, isOrContains, highlight */
 angular.module('app')
-    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification)
+    .controller('AddQuestaoController',  function($rootScope,$location,$scope,$http, $sce, AuthService, QuestoesService, $mdDialog, Notification, $route)
     {
         $rootScope.activetab = $location.path();
         $scope.trechoSelecionado = "abc";
@@ -27,40 +27,10 @@ angular.module('app')
             $("#myModal"+index).modal('toggle');
         }
 
-        // Ativadores das opções de edição no Quill Editor
-        $rootScope.editorModules = {
-            formula: true,
-            toolbar: [
-              ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-              ['blockquote'],
-
-              //[{ 'header': 1 }, { 'header': 2 }],               // custom button values
-              [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-              [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
-              [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-              [{ 'direction': 'rtl' }],                         // text direction
-
-              [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-              [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-
-              [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-              [{ 'font': [] }],
-              [{ 'align': [] }],
-
-              //['clean'],                                         // remove formatting button
-
-              ['formula','link','image']                         // link and image, video
-            ]
-        }
-        $rootScope.emptyModules = {
-            formula: true,
-            toolbar: null
-        };
-
         $scope.fonte = "";
         $scope.enunciado = "";
         $scope.tipo = "";
-        $scope.conteudo = "";
+        $scope.conteudo = [];
         $rootScope.avaliacao = {
             competencias: {
                 "COMP_ABSTRAÇÃO": "false",
@@ -117,13 +87,16 @@ angular.module('app')
             $http.post(host + 'questao', questaoSubj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $location.path("/buscas");
+                    if ($scope.$parent && $scope.$parent.newQuestion) {
+                        $scope.$parent.newQuestion($scope.contId, response.data);
+                    } else {
+                        $route.reload();
+                    }
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
-                        $location.path("/buscas");
                     }
                 }
             )
@@ -194,13 +167,16 @@ angular.module('app')
             $http.post(host + 'questao', questaoObj, AuthService.getAuthorization()).
                 then(function (response) {
                     Notification.success('Questão criada com sucesso!');
-                    $location.path("/buscas");
+                    if ($scope.$parent && $scope.$parent.newQuestion) {
+                        $scope.$parent.newQuestion($scope.contId, response.data);
+                    } else {
+                        $route.reload();
+                    }
                 },function(err){
                     if (err.status == 400) {
                         $rootScope.forceSignOut();
                     } else {
                         Notification.error("Falha no envio da questão");
-                        $location.path("/buscas");
                     }
                 }
             )
@@ -220,7 +196,7 @@ angular.module('app')
     
 
         $().ready(function() {
-            $('.selectpicker').selectpicker();
+            $rootScope.updateSelect('.selectpicker');
         });
 
         $scope.step = 1;
@@ -286,7 +262,7 @@ angular.module('app')
             $scope.inputError = false;
             if (passo === "anterior") {
                 $scope.prevStep();
-            } else if ($scope.conteudo === "" || $scope.conteudo === 'undefined') {
+            } else if ($scope.conteudo === [] || typeof $scope.conteudo === 'undefined') {
                 $scope.inputError = true;
             } else if ($scope.tipo === "Objetiva" && (( typeof $scope.corretas.Value1 === 'undefined' &&
                 typeof $scope.corretas.Value2 === 'undefined' && typeof $scope.corretas.Value3 === 'undefined' &&
@@ -297,7 +273,7 @@ angular.module('app')
 
                 $scope.inputError = true;
             } else if ($scope.tipo === "Subjetiva" && ($scope.resposta.espelho === "" || 
-                $scope.resposta.espelho === null || $scope.resposta.espelho === 'undefined')) {
+                $scope.resposta.espelho === null || typeof $scope.resposta.espelho === 'undefined')) {
                 $scope.inputError = true;
             } else {
                 $scope.nextStep();

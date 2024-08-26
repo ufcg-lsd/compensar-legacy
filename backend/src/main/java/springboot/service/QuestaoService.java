@@ -5,12 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -40,6 +35,7 @@ public class QuestaoService {
 	public static final int ENUNCIADO = 0;
 	public static final int COMPETENCIA = 1;
 	public static final int ESTADO = 2;
+	public static final int CONTEUDO = 7;
 
 	private ArrayList<String> arrayParametros = new ArrayList<String>();
 	private ArrayList<String> arrayQuery = new ArrayList<String>();
@@ -93,6 +89,10 @@ public class QuestaoService {
 
 
         questao.setId(id);
+		if (novaQuestao.getEstado() != EstadoQuestao.RASCUNHO) {
+			questao.setOriginalEnunciado(novaQuestao.getOriginalEnunciado());
+		}
+		questao.setCompetenciasClassificador(novaQuestao.getCompetenciasClassificador());
 
 		questaoRepository.save(questao);
 
@@ -125,14 +125,14 @@ public class QuestaoService {
 		arrayParametros.add("{\"autorInfo.nome\": { \"$regex\": ");
 		arrayParametros.add("{\"fonte\": { \"$regex\": ");
 		arrayParametros.add("{\"tipo\": { \"$regex\": ");
-		arrayParametros.add("{\"conteudo\": { \"$regex\": ");
+		arrayParametros.add("{\"conteudo\": { \"$in\": ");
 
 
 
 	}
 
 	public Page<Questao> getByEnunciadoCompetenciasAutorFonteTipo(String enunciado, HashSet<String> competencias,
-			String autorNome, String autorEmail, String fonte, String tipo, String conteudo, Set<EstadoQuestao> estados, int page, int size) {
+		String autorNome, String autorEmail, String fonte, String tipo, Set<String> conteudo, Set<EstadoQuestao> estados, int page, int size) {
 
 		List<CustomAggregationOperation>  aggList = new ArrayList<>();
 		aggList.add(new CustomAggregationOperation(Document.parse(
@@ -146,7 +146,8 @@ public class QuestaoService {
 			"}"
 		)));
 		aggList.add(new CustomAggregationOperation(Document.parse("{ \"$project\": { \"autorInfo\": false } }")));
-		iniciaColecoes();
+		if (arrayParametros.size() == 0)
+			iniciaColecoes();
 
 		/*
 		enunciado = (enunciado.equals("null")) ? "null" : enunciado;
@@ -160,7 +161,7 @@ public class QuestaoService {
 
 		if (competencias.contains(null))
 			parametros.add(new HashSet<>());
-		else if (competencias.contains("TODAS"))
+		else if (competencias.contains("COMP_TODAS"))
 			parametros.add("null");
 		else
 			parametros.add(competencias);
@@ -205,6 +206,18 @@ public class QuestaoService {
 							subQuery += ", ";
 						}
 						subQuery += "'" + estado + "'";
+					}
+					subQuery += "]}}";
+					arrayQuery.add(subQuery);
+				} else if (i == CONTEUDO) {
+					if (conteudo.isEmpty()) continue;
+					String subQuery = arrayParametros.get(CONTEUDO) + "[";
+
+					for(String conteudoItem : conteudo) {
+						if (!subQuery.endsWith("[")) {
+							subQuery += ", ";
+						}
+						subQuery += "'" + conteudoItem + "'";
 					}
 					subQuery += "]}}";
 					arrayQuery.add(subQuery);
@@ -284,7 +297,7 @@ public class QuestaoService {
 	private static String extractAllText(String htmlText) {
 	    Source source = new Source(htmlText);
 	    return source.getTextExtractor().toString();
-	}   
+	}
 
 	private CompetenciaType getCompetencia(String chave) {
 		CompetenciaType valor = null;
@@ -348,5 +361,82 @@ public class QuestaoService {
 		return results.get(0);
 	}
 
+	// Busca duas questões (uma com a competência recebida e outra sem a competência recebida) e as embaralha numa lista
+	public List<Questao> getSamples(String competencia) {
+		List<CustomAggregationOperation>  aggList1 = new ArrayList<>();
+		List<CustomAggregationOperation>  aggList2 = new ArrayList<>();
+		aggList1.add(new CustomAggregationOperation(Document.parse(
+				"{\n" +
+				"    $match: {\n" +
+				"        competencias: \"" + competencia + "\",\n" +
+				"        estado: \"PUBLICADA\"\n" +
+				"    }\n" +
+				"}"
+		)));
+		aggList2.add(new CustomAggregationOperation(Document.parse(
+				"{\n" +
+				"    $match: {\n" +
+				"        competencias: { $ne: \"" + competencia + "\" },\n" +
+				"        estado: \"PUBLICADA\"\n" +
+				"    }\n" +
+				"}"
+		)));
+		aggList1.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
+		aggList2.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
+		Aggregation agg = Aggregation.newAggregation(aggList1);
+		List<Questao> results = new ArrayList();
+		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
+			results.add(q);
+		}
+		agg = Aggregation.newAggregation(aggList2);
+		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
+			results.add(q);
+		}
+		//Embaralha a ordem de retrno das questões de exemplo (com ou sem a competência)
+		Collections.swap(results, 0, new Random().nextInt(2));
+		return results;
+	}
 
+	public Questao getSample(String competencia) {
+		return getSamples(competencia).get(new Random().nextInt(2));
+	}
+
+	public Boolean hasCompetencia(String competencia, Set<CompetenciaType> competencias) {
+		for (CompetenciaType c : competencias) {
+			if (c.name().equals(competencia)){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public Boolean evaluateQuestao(String competencia, String questao) {
+		Questao q = getById(questao);
+		return hasCompetencia(competencia, q.getCompetencias());
+	}
+
+	// Retorna lista de booleanos que representa se as questoes passadas como parametro possuem ou não a competência buscada
+	public List<Boolean> evaluateQuestoes(String competencia, List<String> questoes) {
+		List<Boolean> ret = new ArrayList<>();
+		for (String id : questoes) {
+			ret.add(evaluateQuestao(competencia, id));
+		}
+		return ret;
+	}
+
+
+
+	public boolean updateClassificador() {
+		List<Questao> l = questaoRepository.findAll();
+		for (Questao q : l) {
+			try {
+				q.setCompetenciasClassificador(getSetCompetencias(q.getEnunciado()));
+				questaoRepository.save(q);
+			}
+			catch (Exception e) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

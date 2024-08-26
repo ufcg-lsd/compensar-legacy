@@ -42,13 +42,11 @@ angular.module('app')
             $http.put(host + 'usuario/', user, AuthService.getAuthorization()).
             then(function (response) {
                 Notification.success("Usuario atualizado com Sucesso!");
-                $location.path("/meusdados");
             }, function (err){
                 if (err.status == 400) {
                     $rootScope.forceSignOut();
                 } else {
                     Notification.error("Falha ao Atualizar dados!");
-                    $location.path("/meusdados");
                 }
             })
         }
