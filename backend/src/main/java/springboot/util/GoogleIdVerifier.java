@@ -13,7 +13,7 @@ import java.util.Collections;
 
 public class GoogleIdVerifier {
 
-    static final String CLIENT_ID = "363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com";
+    static final String CLIENT_ID = "1024214029990-d9ppvf55b3sv7ias7b7uhltclj9b1j2g.apps.googleusercontent.com";
 
     static final GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
             .setAudience(Collections.singletonList(CLIENT_ID)).build();
