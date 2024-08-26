@@ -32,6 +32,10 @@
     />
     <link
       rel="stylesheet"
+      href="node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.css"
+    />
+    <link
+      rel="stylesheet"
       href="node_modules/angular-loading-bar/build/loading-bar.min.css"
     />
     <link
@@ -167,6 +171,15 @@
                 </li>
                 <li
                   class="nav-item"
+                  ng-class="{active: activetab == '/cursos'}"
+                >
+                  <a class="nav-link" href="/cursos">Cursos</a>
+                </li>
+                <!--
+                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Listas</a></li>
+                        -->
+                <li
+                  class="nav-item"
                   ng-class="{active: activetab == '/sobre'}"
                   onclick="goTo('#sobre')"
                 >
@@ -232,7 +245,10 @@
     <!-- Dependências do BootStrap -->
     <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="node_modules/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.js"></script>
+    <script src="node_modules/bootstrap-select/dist/js/i18n/defaults-pt_BR.js"></script>
+
     <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
     <!--Scripts Aplicação -->
     <script src="app/app.js"></script>
@@ -252,6 +268,8 @@
     <script src="app/controllers/AddQuestaoController.js"></script>
     <script src="app/controllers/BuscasController.js"></script>
     <script src="app/controllers/ImprimirListaController.js"></script>
+    <script src="app/controllers/CursosController.js"></script>
+
     <!--Plugins-->
     <script
       type="text/javascript"

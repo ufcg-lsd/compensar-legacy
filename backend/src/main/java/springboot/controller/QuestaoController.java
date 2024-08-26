@@ -2,6 +2,8 @@ package springboot.controller;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +28,11 @@ import springboot.enums.EstadoQuestao;
 import springboot.enums.PermissaoType;
 import springboot.exception.data.PermissionDeniedException;
 import springboot.model.Avaliacao;
+import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
+import springboot.service.ConteudoService;
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
@@ -51,8 +55,11 @@ public class QuestaoController {
 	@Autowired
 	UsuarioService usuarioService;
 
+	@Autowired
+	ConteudoService conteudoService;
+
 	private QuestaoOutput convert(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, forceAvaliacoes);
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, questaoService, forceAvaliacoes);
 	}
 
 	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
@@ -73,6 +80,26 @@ public class QuestaoController {
 				)
 		);
 		return convert(questaoSalva, usuario, false);
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
+	@RequestMapping(value = "/conteudo", method = RequestMethod.POST)
+	public Conteudo saveConteudo(@RequestBody String conteudo) throws IOException {
+		conteudoService.save(new Conteudo(conteudo));
+		return new Conteudo(conteudo);
+	}
+
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
+	@RequestMapping(value = "/conteudo", method = RequestMethod.GET)
+	public ResponseEntity<List<String>> getAllConteudo() throws IOException {
+		List<String> l = new ArrayList<>();
+		for (Conteudo conteudoItem : conteudoService.getAll()) {
+			if (!conteudoItem.getNome().equals("Outros"))
+				l.add(conteudoItem.getNome());
+		}
+		l.add("Outros");
+
+		return new ResponseEntity<List<String>>(l, HttpStatus.OK);
 	}
 
 	@ApiOperation("Permite apagar uma questão do sistema.")
@@ -157,7 +184,7 @@ public class QuestaoController {
 			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode aprovar/reprovar uma questão");
 		}
 		if (!questao.getEstado().equals(EstadoQuestao.PEND_APROVACAO)) {
-			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovar/reprovar");
+			throw new PermissionDeniedException("Apenas questões pendentes de apovação podem ser aprovadas/reprovadas");
 		}
 		novaQuestao.setEstado(EstadoQuestao.PUBLICADA);
 		questao = questaoService.update(novaQuestao, id);
@@ -178,5 +205,15 @@ public class QuestaoController {
 		questao.setEstado(EstadoQuestao.REJEITADA);
 		questao = questaoService.update(questao, id);
 		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
+	}
+
+	@ApiOperation("Atualizar competenciaClassificador questão já avaliada.")
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
+	@RequestMapping(value = "/updateClassificador", method = RequestMethod.GET)
+	public ResponseEntity<Boolean> updateCompetencias(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
+		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
+			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode atualizar a classificação automática das questões");
+		}
+		return new ResponseEntity<Boolean>(questaoService.updateClassificador(), HttpStatus.OK);
 	}
 }

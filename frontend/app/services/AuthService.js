@@ -1,6 +1,6 @@
 /* global host, signOut*/
 angular.module('app')
-  .factory('AuthService', function(localStorageService, $http, $rootScope, Notification, $location) {
+  .factory('AuthService', function(localStorageService, $http, $rootScope, Notification, $location, $interval) {
    const service = {};
 
    
@@ -39,6 +39,7 @@ angular.module('app')
 
     service.update_view = () => {
       if (localStorageService.get("Authorization") === null) {
+        $location.path("/login");
         return;
       }
       $http.get(host + 'auth/authenticate/', service.getAuthorization())
@@ -56,8 +57,10 @@ angular.module('app')
         }, function (err) {
           $rootScope.registered = false;
           if (err.status == 404) {
-            Notification.info("Complete seu cadastro");
-            $location.path("/signup");
+            if ($location.path() !== "/signup") {
+              Notification.info("Complete seu cadastro");
+              $location.path("/signup");
+            }
           } else if (err.status == 400) {
             $rootScope.forceSignOut();
           } else {

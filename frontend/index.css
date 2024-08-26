@@ -488,83 +488,6 @@ font-size: 64px;
     background-color: #555; /* Add a dark-grey background on hover */
   }
 
-
-  /* ============================================ CAROUSEL ========================================= */
-
-  @media (min-width: 768px) {
-
-    /* show 3 items */
-    .carousel-inner .active,
-    .carousel-inner .active + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item,
-    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
-        display: block;
-    }
-    
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
-    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
-        transition: none;
-    }
-    
-    .carousel-inner .carousel-item-next,
-    .carousel-inner .carousel-item-prev {
-      position: relative;
-      transform: translate3d(0, 0, 0);
-    }
-    
-    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: absolute;
-        top: 0;
-        right: -25%;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    
-    /* left or forward direction */
-    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
-    .carousel-item-next.carousel-item-left + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(-100%, 0, 0);
-        visibility: visible;
-    }
-    
-    /* farthest right hidden item must be abso position for animations */
-    .carousel-inner .carousel-item-prev.carousel-item-right {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        display: block;
-        visibility: visible;
-    }
-    
-    /* right or prev direction */
-    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
-    .carousel-item-prev.carousel-item-right + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
-    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
-        position: relative;
-        transform: translate3d(100%, 0, 0);
-        visibility: visible;
-        display: block;
-        visibility: visible;
-    }
-
-
-  }
-
-  body .carousel-control-prev-icon,
-  body .carousel-control-next-icon{
-    background-color:gray;
-  }
-
   .modal { overflow-y: auto !important; }
 
   @import url('https://fonts.googleapis.com/css?family=Oswald');
@@ -831,7 +754,7 @@ margin-inline-end: 20%;}
   right: 25px;
   position: absolute;
 }
-#espelho .ql-container {
+.ql-container {
   height: unset !important;
 }
 
@@ -853,7 +776,7 @@ label{
   margin-inline-start: 2%;
 }
 
-#buscas{
+#main{
   margin-block-start: 5%;
 }
 
@@ -953,7 +876,7 @@ label{
 
 
   @media screen and (max-width: 580px) {
-    #buscas{
+    #main{
       margin-block-start: 14%;
     }
 
@@ -967,4 +890,81 @@ label{
 
 
 
+ul.dropdown-menu.inner {
+  overflow-y: visible;
+}
 
+.dropdown-menu, .bootstrap-select {
+  width: 100% !important;
+}
+.bs-searchbox {
+  padding: 1% 2% !important;
+}
+.bs-searchbox input {
+  width: 94% !important;
+}
+
+[aria-expanded="false"] > .expanded,
+[aria-expanded="true"] > .collapsed {
+  display: none;
+}
+
+.bootstrap-select > .dropdown-menu.show {
+  transform: translate3d(0px, 37px, 0px) !important;
+}
+
+hr {
+  height: 1px !important;
+}
+
+/* ======================================= Cursos ====================== */
+
+.text-left {
+  text-align: left;
+}
+
+#curso-icon{
+  font-size: 56px;
+  text-align: center;
+  cursor: pointer;
+}
+
+#modulo-icon{
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+}
+
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23007bff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+
+/* Treeview component */
+.treeview .list-group-item{
+  cursor:pointer !important;
+}.treeview span.indent{
+  margin-left:20px !important;
+  margin-right:20px !important;
+}.treeview span.icon{
+  width:12px !important;
+  margin-right:5px !important;
+}
+.treeview .node-disabled{
+  color:silver !important;
+  cursor:not-allowed !important;
+}
+.node-treeview1{
+  color:#428bca !important;
+  border:none !important;
+}
+.node-treeview1:not(.node-disabled):hover{
+  background-color:#F5F5F5 !important;
+} 
+.node-selected {
+  background-color: #FFFFFF !important;
+  color: #28a745 !important;
+}

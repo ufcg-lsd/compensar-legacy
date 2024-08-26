@@ -40,21 +40,14 @@ public class UsuarioService {
 		return usuario;
 	}
 
-	public Usuario update(Usuario usuario, String email) {
+	public Usuario update(Usuario novoUsuario, String email) {
 		Optional<Usuario> optUsuario = usuarioRepository.findById(email);
 
 		if (!optUsuario.isPresent()) {
 			throw new RegisterNotFoundException(errorMessage);
 		}
 
-		Usuario novoUsuario = optUsuario.get();
-		novoUsuario.setEmail(usuario.getEmail());
-		novoUsuario.setNome(usuario.getNome());
-		novoUsuario.setIdade(usuario.getIdade());
-		novoUsuario.setCargo(usuario.getCargo());
-		novoUsuario.setCidade(usuario.getCidade());
-		novoUsuario.setAtivo(usuario.isAtivo());
-		novoUsuario.setNomeInstituicao(usuario.getNomeInstituicao());
+		novoUsuario.setEmail(email);
 
 		usuarioRepository.save(novoUsuario);
 

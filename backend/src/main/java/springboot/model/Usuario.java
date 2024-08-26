@@ -48,6 +48,10 @@ public class Usuario {
 	@TextIndexed
 	private List<PermissaoType> permissoes;
 
+	private List<ModuloCurso> cursoAvaliacao;
+
+	private List<ModuloCurso> cursoCriacao;
+
 	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {
 		this.nome = nome;
 		this.idade = idade;
@@ -61,6 +65,9 @@ public class Usuario {
 			permissoes.add(PermissaoType.ADMIN);
 			permissoes.add(PermissaoType.JUDGE);
 		}
+		this.cursoAvaliacao = new ArrayList<>();
+		this.cursoCriacao = new ArrayList<>();
+
 	}
 
 	public Usuario() {
@@ -129,6 +136,22 @@ public class Usuario {
 
 	public void setPermissoes(List<PermissaoType> permissoes) {
 		this.permissoes = permissoes;
+	}
+
+	public List<ModuloCurso> getCursoAvaliacao() {
+		return cursoAvaliacao;
+	}
+
+	public void setCursoAvaliacao(List<ModuloCurso> cursoAvaliacao) {
+		this.cursoAvaliacao = cursoAvaliacao;
+	}
+
+	public List<ModuloCurso> getCursoCriacao() {
+		return cursoCriacao;
+	}
+
+	public void setCursoCriacao(List<ModuloCurso> cursoCriacao) {
+		this.cursoCriacao = cursoCriacao;
 	}
 
 	@Override

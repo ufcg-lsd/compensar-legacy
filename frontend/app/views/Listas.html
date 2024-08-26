@@ -9,18 +9,24 @@
                         </div>  
                     </div>
                     <div ng-switch-when="true" class="row col">
-                        <div class="col-11 row">
-                            <h3 class="col-12 truncated" id="listName"> {{getName()}}</h3>
+                        <div class="col-8 offset-2 row">
+                            <h3 class="col-12" id="listName"> {{getName()}}</h3>
                         </div>
-                        <button type="button" class="btn btn-primary btn-sm col-auto mx-1" ng-click="imprimirLista()"> 
-                            <i class="fas fa-print"></i>
-                        </button>
-                        <button  type="button" class="btn btn-danger btn-sm col-auto mx-1" ng-click="removeLista()">
-                            <i class="fas fa-trash"></i>
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm col-auto mx-1" ng-click="atualizaLista()"> 
-                            <i class="fas fa-edit"></i>
-                        </button>
+                        <div class="col-2 row">
+                            
+                            <button type="button" class="btn btn-primary btn-sm col-auto mx-1" ng-click="imprimirLista()"> 
+                                <md-tooltip md-direction="top">Imprimir lista</md-tooltip>
+                                <i class="fas fa-print"></i>
+                            </button>
+                            <button  type="button" class="btn btn-danger btn-sm col-auto mx-1" ng-click="removeLista()">
+                                <md-tooltip md-direction="top">Excluir lista</md-tooltip>
+                                <i class="fas fa-trash"></i>
+                            </button>
+                            <button type="button" class="btn btn-primary btn-sm col-auto mx-1" ng-click="atualizaLista()"> 
+                                <md-tooltip md-direction="top">Editar lista</md-tooltip> 
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </div>
                         
                         
                     </div>
@@ -65,7 +71,7 @@
 
                         <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                         <div class="row">
-                            <div class="col-8" ng-controller="ListaQuestoesController">
+                            <div class="col-8">
                                 <button  type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)" ng-if="getPainelListaEmContrucao() || getListaEmEdicao()"> 
                                     <i class="fas fa-minus"></i>                               
                                 </button>
@@ -80,7 +86,7 @@
                             </div>
                         </div>
                         
-                        <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{questao.conteudo}}</div>
+                        <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{repaginaConteudo(questao.conteudo)}}</div>
         
                         <div class="ql-snow"><div class="enunciadoCompactado ql-editor" ng-bind-html="enunciadoShow"></div></div>
         
@@ -91,8 +97,6 @@
                             </div>
                         </div>
         
-                        <hr>
-        
                         <!-- The Modal -->
                         <div class="modal" id="myModal{{$index}}">
                             <div class="modal-dialog modal-dialog-centered">
@@ -100,7 +104,7 @@
                                     
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                        <h4 class="modal-title">{{questao.conteudo}}</h4>
+                                        <h4 class="modal-title">{{repaginaConteudo(questao.conteudo)}}</h4>
                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     
@@ -178,7 +182,7 @@
 
                 <div>{{updateViewQuill(questao.enunciado,"enunciado")}}</div>
                 <div class="row">
-                    <div class="col-8" ng-controller="ListaQuestoesController">
+                    <div class="col-8">
                         <button  type="button" class="btn btn-danger btn-sm addLista" ng-click="removeQuestao(questao)" ng-if="getPainelListaEmContrucao() || getListaEmEdicao()"> 
                             <i class="fas fa-minus"></i>                               
                         </button>
@@ -193,7 +197,7 @@
                     </div>
                 </div>
                 
-                <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{questao.conteudo}}</div>
+                <div  class = "text-secondary"><b class = "text-body"> Conteúdo:</b> {{repaginaConteudo(questao.conteudo)}}</div>
 
                 <div class="ql-snow"><div class="enunciadoCompactado ql-editor" ng-bind-html="enunciadoShow"></div></div>
 
@@ -204,8 +208,6 @@
                     </div>
                 </div>
 
-                <hr>
-
                 <!-- The Modal -->
                 <div class="modal" id="myModal{{$index}}">
                     <div class="modal-dialog modal-dialog-centered">
@@ -213,7 +215,7 @@
                             
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h4 class="modal-title">{{questao.conteudo}}</h4>
+                                <h4 class="modal-title">{{repaginaConteudo(questao.conteudo)}}</h4>
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             
@@ -286,7 +288,7 @@
 
     </div>
 
-    <div class = "mt-3" ng-controller="ListaQuestoesController" ng-switch="getListaEmEdicao()">
+    <div class = "mt-3" ng-switch="getListaEmEdicao()">
         <hr>
             <div ng-switch-when="true">
                 <button type="button" class="btn btn-outline-danger left" ng-click="cancela()">Cancelar</button>

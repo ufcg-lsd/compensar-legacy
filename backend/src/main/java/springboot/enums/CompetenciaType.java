@@ -17,5 +17,7 @@ public enum CompetenciaType {
 	CompetenciaType(final String value) {
 	    this.value = value;
 	 }
+
+
 	
 }

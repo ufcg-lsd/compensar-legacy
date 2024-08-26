@@ -17,9 +17,11 @@ import io.swagger.annotations.ApiResponses;
 import springboot.dto.IO.QuestaoIO;
 import springboot.dto.output.QuestaoOutput;
 import springboot.enums.EstadoQuestao;
+import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
+import springboot.service.ConteudoService;
 import springboot.service.QuestaoService;
 import springboot.service.UsuarioService;
 
@@ -39,8 +41,11 @@ public class QuestionSearchController {
 	@Autowired
 	UsuarioService usuarioService;
 
+	@Autowired
+	ConteudoService conteudoService;
+
 	private QuestaoOutput convert(Questao questao, Usuario usuario) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, false);
+		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, questaoService, false);
 	}
 
 	
@@ -67,12 +72,17 @@ public class QuestionSearchController {
 	public Page<QuestaoOutput> getByEnunciadoCompetenciasAutorFonteTipo(@RequestAttribute(name="usuario") Usuario usuario,
 			@PathVariable("enunciado") String enunciado,
 			@PathVariable("competencias") HashSet<String> competencias,@PathVariable("autor") String autor,
-			@PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
+			@PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") HashSet<String> conteudo,
 			@PathVariable("page") int page,@PathVariable("size") int size) {
 		System.out.println(competencias);
 		Set<EstadoQuestao> estados = new HashSet<>();
+		Set<String> newConteudo = new HashSet<>();
+		for(String conteudoItem : conteudo) {
+			if (!conteudoItem.equals(""))
+				newConteudo.add(conteudoItem);
+		}
 		estados.add(EstadoQuestao.PUBLICADA);
-		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, autor, "", fonte, tipo,conteudo, estados, page,size).map(q -> this.convert(q, usuario));
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, autor, "", fonte, tipo,newConteudo, estados, page,size).map(q -> this.convert(q, usuario));
 	}
 
 	@ApiOperation("Fornece um array de questões que fazem o match com o enunciado, competências (cada uma entre aspas), "
@@ -81,10 +91,15 @@ public class QuestionSearchController {
 	@RequestMapping(value = "/questao/searchMy/{enunciado}/{competencias}/{estados}/{fonte}/{tipo}/{conteudo}/{page}/{size}", method = RequestMethod.GET)
 	public Page<QuestaoOutput> getMyQuestionsByEnunciadoCompetenciasAutorFonteTipo(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("enunciado") String enunciado,
 																			 @PathVariable("competencias") HashSet<String> competencias, @PathVariable("estados") HashSet<EstadoQuestao> estados,
-																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") String conteudo,
+																			 @PathVariable("fonte") String fonte, @PathVariable("tipo") String tipo, @PathVariable("conteudo") HashSet<String> conteudo,
 																			 @PathVariable("page") int page, @PathVariable("size") int size) {
+		Set<String> newConteudo = new HashSet<>();
+		for(String conteudoItem : conteudo) {
+			if (!conteudoItem.equals(""))
+				newConteudo.add(conteudoItem);
+		}
 		System.out.println(competencias);
-		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, "", usuario.getEmail(), fonte, tipo,conteudo, estados, page,size).map(q -> this.convert(q, usuario));
+		return questaoService.getByEnunciadoCompetenciasAutorFonteTipo(enunciado, competencias, "", usuario.getEmail(), fonte, tipo,newConteudo, estados, page,size).map(q -> this.convert(q, usuario));
 	}
 
 

@@ -36,8 +36,7 @@ public class UsuarioController {
 		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
 	}*/
 
-	@ApiOperation("Permite atualizar um usuário do sistema. Requer que o corpo do request contenha um objeto com os atributos de um usuário.\r\n"
-			+ "")
+	@ApiOperation("Permite atualizar um usuário do sistema. Requer que o corpo do request contenha um objeto com os atributos de um usuário.\r\n")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
 	@RequestMapping(value = "/usuario/", method = RequestMethod.PUT)
 	public ResponseEntity<Usuario> update(@RequestAttribute(name="usuario") Usuario oldUsuario, @RequestBody Usuario novoUsuario) {

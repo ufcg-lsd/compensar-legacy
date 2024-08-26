@@ -116,23 +116,18 @@ angular
         document.documentElement.scrollTop = 0;
       };
 
-      $(document).ready(function () {
-        $scope.scrollFunction();
-        if ($location.path() === "/questoes") {
-          QuestoesService.getListaQuestoes();
-        }
-      });
-      $rootScope.forceSignOut = function () {
-        if ($rootScope.loaded === true || $rootScope.loaded === undefined) {
-          $rootScope.loaded = false;
-          signOut();
-          Notification.warning(
-            "Seu login expirou, por favor faça login novamente!"
-          );
-          setTimeout(() => {
-            $rootScope.loaded = true;
-          }, 300);
-        }
-      };
-    }
-  );
+$(document).ready(function() {
+  $scope.scrollFunction();
+  if ($location.path() === '/questoes' && !$rootScope.listasRequest) {
+    QuestoesService.getListaQuestoes();
+  }
+});
+$rootScope.forceSignOut = function () {
+  if ($rootScope.loaded === true || typeof $rootScope.loaded === undefined) {
+    $rootScope.loaded = false;
+    signOut();
+    Notification.warning("Seu login expirou, por favor faça login novamente!");
+    setTimeout(() => { $rootScope.loaded = true; }, 300);
+  }
+}
+});

@@ -1,6 +1,6 @@
-<div class="row">
-    <div id = "buscas" class = "container">
-        <div class = "container col-lg-6 offset-sm-3"   id=headbox >
+<div class="row" ng-controller="AddQuestaoController">
+    <div id = "main" class = "container">
+        <div class = "container col-lg-6 offset-sm-3" ng-if="!justList"  id=headbox >
             <h3>CRIAR QUESTÃO</h3>
             <hr>
         </div>
@@ -19,12 +19,12 @@
                             <label ><h6>Tipo de Questão:</h6></label>
                             <div  class="col-1 addTipo">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" value="Objetiva"  id="customRadioInline1" name="tipo" class="custom-control-input" data-ng-model="tipo"> 
-                                            <label class="custom-control-label" for="customRadioInline1">Objetiva</label>
+                                            <input type="radio" value="Objetiva"  id="customRadioInline1{{contId}}" name="tipo" class="custom-control-input" data-ng-model="tipo"> 
+                                            <label class="custom-control-label" for="customRadioInline1{{contId}}">Objetiva</label>
                                         </div>
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio"  value="Subjetiva" id="customRadioInline2" name="tipo" class="custom-control-input"  data-ng-model="tipo">
-                                            <label class="custom-control-label" for="customRadioInline2">Subjetiva</label>
+                                            <input type="radio"  value="Subjetiva" id="customRadioInline2{{contId}}" name="tipo" class="custom-control-input"  data-ng-model="tipo">
+                                            <label class="custom-control-label" for="customRadioInline2{{contId}}">Subjetiva</label>
                                     </div>
                             </div>
                     </div> 
@@ -54,11 +54,11 @@
                         <label><h6>Enunciado:</h6></label>
                         <ng-quill-editor id = "quill" modules="editorModules" placeholder="Digite o enunciado da questão." 
                             ng-model="enunciado" on-content-changed="contentChanged()">                          
-                        </ng-quill-editor>               
+                        </ng-quill-editor>
                     </div>
 
 
-                    <div class = "conteudoAdd">         
+                    <div>         
                             <div ng-show="inputError" class="alert alert-warning">
                                 <strong>Atenção!</strong> Você deve preencher todos os campos.
                             </div>
@@ -90,49 +90,7 @@
                         <label><h6>Conteúdo:</h6></label>
                         <select class="form-control selectpicker" data-none-selected-text= "Selecione um conteúdo" 
                         data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
-                        data-live-search-normalize="true" ng-model="conteudo">
-                            <option value="">Selecione um conteúdo</option>
-                            <option data-tokens="somar">Adição</option>
-                            <option >Conjuntos</option>
-                            <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
-                            <option >Critérios de Divisibilidade</option>
-                            <option>Divisão</option>
-                            <option>Divisão de Frações</option>
-                            <option>Equação do Primeiro Grau</option>
-                            <option>Equação do Segundo Grau</option>
-                            <option>Estatística</option>
-                            <option>Expressões Numéricas</option>
-                            <option>Frações</option>
-                            <option data-tokens="Formas Geométricas">Geometria</option>
-                            <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
-                            <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
-                            <option>Inequação</option>
-                            <option>Juros Compostos</option>
-                            <option>Juros Simples</option>
-                            <option>Matrizes</option>
-                            <option>MDC: Máximo Divisor Comum</option>
-                            <option>MMC: Mínimo Múltiplo Comum</option>
-                            <option>Multiplicação</option>
-                            <option>Multiplicação de Frações</option>
-                            <option>Números Decimais</option>
-                            <option>Números Primos</option>
-                            <option>Potenciação</option>
-                            <option>PA: Progressão Aritmética</option>
-                            <option>PG: Progressão Geométrica</option>
-                            <option>Plano Cartesiano</option>
-                            <option>Porcentagem</option>
-                            <option>Produtos Notáveis</option>
-                            <option>Radiciação</option>
-                            <option>Razão e Proporção</option>
-                            <option>Sistemas Lineares</option>
-                            <option>Soma de Frações</option>
-                            <option>Subtração</option>
-                            <option>Subtração de Frações</option>
-                            <option>Tabuada</option>
-                            <option>Triângulo de Pascal</option>
-                            <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
-                            <option>Unidades de Medida</option>
-                            <option>Outros</option>
+                        data-live-search-normalize="true" multiple="true" ng-model="conteudo">
                         </select>
                     </div>
 
@@ -147,7 +105,7 @@
                             </div>
 
 
-                            <div class = "conteudoAdd"> 
+                            <div> 
                                 <div  ng-show="inputError" class="alert alert-warning">
                                     <strong>Atenção!</strong> Você deve preencher todos os campos.
                                 </div>
@@ -169,33 +127,33 @@
                             <div class="form-group row ">
                                 <div class = "col-sm-6">
                                     <div class="form-group row">
-                                        <label for="inputAlternativa1"><h6>a)</h6></label>
+                                        <label for="inputAlternativa1{{contId}}"><h6>a)</h6></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa a)" id="inputAlternativa1"  ng-model="alternativas.alternativa1">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa a)" id="inputAlternativa1{{contId}}"  ng-model="alternativas.alternativa1">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAlternativa2"><h6>b)</h6></label>
+                                        <label for="inputAlternativa2{{contId}}"><h6>b)</h6></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa b)" id="inputAlternativa2"  ng-model="alternativas.alternativa2">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa b)" id="inputAlternativa2{{contId}}"  ng-model="alternativas.alternativa2">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAlternativa3"><h6>c)</h6></label>
+                                        <label for="inputAlternativa3{{contId}}"><h6>c)</h6></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa c)" id="inputAlternativa3"  ng-model="alternativas.alternativa3">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa c)" id="inputAlternativa3{{contId}}"  ng-model="alternativas.alternativa3">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAlternativa4"><h6>d)</h6></label>
+                                        <label for="inputAlternativa4{{contId}}"><h6>d)</h6></label>
                                             <div class="col-sm-10">
-                                                <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa d)" id="inputAlternativa4"  ng-model="alternativas.alternativa4">
+                                                <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa d)" id="inputAlternativa4{{contId}}"  ng-model="alternativas.alternativa4">
                                             </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputAlternativa5"><h6>e)</h6></label>
+                                        <label for="inputAlternativa5{{contId}}"><h6>e)</h6></label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa e)" id="inputAlternativa5"  ng-model="alternativas.alternativa5">
+                                            <input type="text" class="form-control form-control-sm" placeholder="Digite a alternativa e)" id="inputAlternativa5{{contId}}"  ng-model="alternativas.alternativa5">
                                         </div>
                                     </div>                          
                                 </div>
@@ -284,7 +242,7 @@
                                         <button type="button" class="btn btn-primary" data-toggle="modal" ng-click="toggleAddCompetencia($index)" data-target="#addCompetencia{{$index}}">
                                             Conte-nos mais <i class="fas fa-edit"></i>
                                         </button>
-                                                <div class="modal fade" id="addCompetencia{{$index}}">
+                                                <div class="modal fade" id="addCompetencia{{$index}}{{contId}}">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content">
                                                         

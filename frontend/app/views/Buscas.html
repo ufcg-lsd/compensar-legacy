@@ -1,6 +1,6 @@
 <div class = "row">
 
-<div  id = "buscas" class="container" >
+<div  id = "main" class="container" >
     <div class="container col-lg-6 offset-sm-3" id=headbox >
         <h3> BUSCAR QUESTÕES</h3>
         <hr>
@@ -10,50 +10,8 @@
         <div  class="form-group conteudoSearch col-lg-6">
             <label><h6>Conteúdo:</h6></label>
             <select class="form-control selectpicker " 
-            data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" 
-             ng-model="conteudoSearch">
-                <option value="">Todos os conteúdos</option>
-                <option data-tokens="somar">Adição</option>
-                <option >Conjuntos</option>
-                <option data-tokens="Numéricos Complexos Racionais Reais Naturais Irracionais Inteiros">Conjuntos Numéricos</option>
-                <option >Critérios de Divisibilidade</option>
-                <option>Divisão</option>
-                <option>Divisão de Frações</option>
-                <option>Equação do Primeiro Grau</option>
-                <option>Equação do Segundo Grau</option>
-                <option>Estatística</option>
-                <option>Expressões Numéricas</option>
-                <option>Frações</option>
-                <option data-tokens="Formas Geométricas">Geometria</option>
-                <option data-tokens="Cilindro Cubo Cone Esfera Paralelepípedo">Geometria Espacial</option>
-                <option data-tokens="Ângulos Bissetriz Mediatriz Paralelogramo Retas Quadrado Retângulo Trapézio Triângulo">Geometria Plana</option>
-                <option>Inequação</option>
-                <option>Juros Compostos</option>
-                <option>Juros Simples</option>
-                <option>Matrizes</option>
-                <option>MDC: Máximo Divisor Comum</option>
-                <option>MMC: Mínimo Múltiplo Comum</option>
-                <option>Multiplicação</option>
-                <option>Multiplicação de Frações</option>
-                <option>Números Decimais</option>
-                <option>Números Primos</option>
-                <option>Potenciação</option>
-                <option>PA: Progressão Aritmética</option>
-                <option>PG: Progressão Geométrica</option>
-                <option>Plano Cartesiano</option>
-                <option>Porcentagem</option>
-                <option>Produtos Notáveis</option>
-                <option>Radiciação</option>
-                <option>Razão e Proporção</option>
-                <option>Sistemas Lineares</option>
-                <option>Soma de Frações</option>
-                <option>Subtração</option>
-                <option>Subtração de Frações</option>
-                <option>Tabuada</option>
-                <option>Triângulo de Pascal</option>
-                <option data-tokens="Seno Cosseno Tangente">Trigonometria</option>
-                <option>Unidades de Medida</option>
-                <option>Outros</option>
+            data-none-results-text= "Nenhum resultado encontrado" data-live-search="true" editable="true" 
+            multiple="true" ng-model="search.conteudo">
             </select>
         </div>
     </div>
@@ -63,46 +21,46 @@
     <div id = "competenciasSearch" class="row">  
             <div class="column">
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_ABSTRAÇÃO" id="customCheck7" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck7">Abstração</label>
                     </div>
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ALGORITMOS" id="customCheck10" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_ALGORITMOS" id="customCheck10" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck10">Algoritmos</label>
                     </div>
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_ANÁLISE" id="customCheck4" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_ANÁLISE" id="customCheck4" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck4">Análise</label>
                     </div>
             </div>
 
             <div class="column">   
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_AUTOMAÇÃO" id="customCheck9" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_AUTOMAÇÃO" id="customCheck9" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck9">Automação</label>
                     </div>
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_COLETA" id="customCheck2" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_COLETA" id="customCheck2" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck2">Coleta</label>
                         </div>
                         
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_DECOMPOSIÇÃO" id="customCheck6" ng-click="toggleCheck($event)"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_DECOMPOSIÇÃO" id="customCheck6" ng-click="toggleCheck($event)"> 
                         <label class="custom-control-label" for="customCheck6">Decomposição</label>
                 </div>
 
             </div>
             <div  class="column">
                     <div class="custom-control custom-checkbox custom-control-inline">
-                            <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_PARALELIZAÇÃO" id="customCheck3" ng-click="toggleCheck($event)"> 
+                            <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_PARALELIZAÇÃO" id="customCheck3" ng-click="toggleCheck($event)"> 
                             <label class="custom-control-label" for="customCheck3">Paralelização</label>
                     </div>
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_REPRESENTAÇÃO" id="customCheck5" ng-click="toggleCheck($event)"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_REPRESENTAÇÃO" id="customCheck5" ng-click="toggleCheck($event)"> 
                         <label class="custom-control-label" for="customCheck5">Representação</label>
                 </div>
                 <div class="custom-control custom-checkbox custom-control-inline">
-                        <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="COMP_SIMULAÇÃO" id="customCheck8" ng-click="toggleCheck($event)"> 
+                        <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_SIMULAÇÃO" id="customCheck8" ng-click="toggleCheck($event)"> 
                         <label class="custom-control-label" for="customCheck8">Simulação</label>
                 </div>
 
@@ -111,14 +69,14 @@
             </div>
             <div  class="column">
                 <div class="custom-control custom-checkbox custom-control">
-                    <input type="checkbox" class="custom-control-input" checklist-model="questao.competencias" value="TODAS" id="customCheck1" ng-click="toggleCheck($event)" checked>
+                    <input type="checkbox" class="custom-control-input" checklist-model="search.competencias" value="COMP_TODAS" id="customCheck1" ng-click="toggleCheck($event)" checked>
                     <label class="custom-control-label" for="customCheck1" >Todas</label>
                 </div>
             </div>
     </div>
     </div>
     <div id="sendBusca">
-            <button class="btn btn-primary" type="submit" ng-click="setPageStart(); setLocation();  sendNewQuery(questao.competencias, conteudoSearch)"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
+            <button class="btn btn-primary" type="submit" ng-click="setPageStart(); showResults();  sendNewQuery(search.competencias, search.conteudo)"><span><ion-icon id="lupa-icon" name="search"></ion-icon></button>
     </div>
 </div>
 </div>
