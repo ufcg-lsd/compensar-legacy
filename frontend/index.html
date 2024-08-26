@@ -1,217 +1,335 @@
 ﻿<!DOCTYPE html>
-<html ng-app="app"> 
-
-<head>
-    <base href="/index.html">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-signin-scope" content="profile email">
-    <meta name="google-signin-client_id" content="363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com">
-
-    <meta charset="UTF-8">
-    <title> ComPensar </title>
-    <link rel="shortcut icon" href="images/icon.png">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html ng-app="app">
+  <head>
+    <base href="/index.html" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="google-signin-client_id"
+      content="1024214029990-d9ppvf55b3sv7ias7b7uhltclj9b1j2g.apps.googleusercontent.com"
+    />
+    <meta charset="UTF-8" />
+    <title>ComPensar</title>
+    <link rel="shortcut icon" href="images/icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- CSS -->
-    <link href="index.css" rel="stylesheet" type="text/css">
+    <link href="index.css" rel="stylesheet" type="text/css" />
 
     <!-- Plugins -->
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    <link rel="stylesheet" href="node_modules/bootstrap-select/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="node_modules/angular-loading-bar/build/loading-bar.min.css">
-    <link rel="stylesheet" href="node_modules/angular-ui-notification/dist/angular-ui-notification.min.css">
-
-
-
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap-select/dist/css/bootstrap-select.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/angular-loading-bar/build/loading-bar.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="node_modules/angular-ui-notification/dist/angular-ui-notification.min.css"
+    />
 
     <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="node_modules/angular-material/angular-material.min.css">
+    <link
+      rel="stylesheet"
+      href="node_modules/angular-material/angular-material.min.css"
+    />
 
     <!--  Quill Editor  -->
-    <link rel="stylesheet" href="node_modules/quill/dist/quill.core.css">
-    <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css">
+    <link rel="stylesheet" href="node_modules/quill/dist/quill.core.css" />
+    <link rel="stylesheet" href="node_modules/quill/dist/quill.snow.css" />
 
     <!-- Katex-->
     <link rel="stylesheet" href="node_modules/katex/dist/katex.min.css" />
-</head>
+  </head>
 
-
-
-<body  class = "text-center">
-
-<!-- Aplicação -->
-
- <!-- ========================  NavBar  ============================================== -->
- <div>
-    <div ng-show="!printLista">
-    <div ng-show="!isLogged" id="navNotLogged">
-        
-      
-        <nav   class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
-
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-        </button>
-            
-        <div class="topnav collapse navbar-collapse" id="navbarSupportedContent"  ng-controller="LoginController">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item" ng-class="{active: activetab == '/login'}" onclick="goTo('body')"><a class="nav-link" href="/login">Inicio</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/sobre'}" onclick="goTo('#sobre')"><a class="nav-link" href="#sobre" >Sobre</a></li>
-                <li class="nav-item" ng-class="{active: activetab == '/contato'}" onclick="goTo('#contato')"><a class="nav-link" href="#contato" >Contato</a></li>         
-            </ul>
-        <div class="nav-item dropdown  barra"> 
-                <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
-                <img  ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image">
-
-                <div class="dropdown-menu dropdown-menu-right notLogged" aria-labelledby="navbarDropdown">
-                    <a> <div  id="signInButton" class="g-signin2" data-onsuccess="onSignIn"></div></a>
-                    <div id="myctrl"  ng-controller="LoginController">
-                    </div>
+  <body class="text-center" id="myctrl" ng-controller="LoginController">
+    <!-- Aplicação -->
+    <!-- ========================  NavBar  ============================================== -->
+    <div>
+      <div ng-show="!printLista">
+        <div ng-show="!isLogged" id="navNotLogged">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="topnav collapse navbar-collapse"
+              id="navbarSupportedContent"
+              ng-controller="LoginController"
+            >
+              <ul class="navbar-nav mr-auto">
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/login'}"
+                  onclick="goTo('body')"
+                >
+                  <a class="nav-link" href="/login">Inicio</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/sobre'}"
+                  onclick="goTo('#sobre')"
+                >
+                  <a class="nav-link" href="#sobre">Sobre</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/contato'}"
+                  onclick="goTo('#contato')"
+                >
+                  <a class="nav-link" href="#contato">Contato</a>
+                </li>
+              </ul>
+              <div class="nav-item dropdown barra">
+                <a
+                  class="dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                ></a>
+                <img
+                  ng-src="{{profile_image}}"
+                  class="rounded-circle img-fluid"
+                  alt="Placeholder image"
+                />
+                <div
+                  class="dropdown-menu dropdown-menu-right notLogged"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <div
+                    id="g_id_onload"
+                    data-client_id="1024214029990-d9ppvf55b3sv7ias7b7uhltclj9b1j2g.apps.googleusercontent.com"
+                    data-callback="onSignIn"
+                  ></div>
+                  <div class="g_id_signin" data-type="standard"></div>
+                </div>
+              </div>
             </div>
+          </nav>
         </div>
-            
+        <div ng-show="isLogged" id="navLogged">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="topnav collapse navbar-collapse"
+              id="navbarSupportedContent"
+              ng-controller="LoginController"
+            >
+              <ul class="navbar-nav mr-auto">
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/login'}"
+                  onclick="goTo('body')"
+                >
+                  <a class="nav-link" href="/login">Inicio</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: (activetab == '/buscas' || activetab == '/questoes')}"
+                >
+                  <a class="nav-link" href="/buscas">Buscar Questões</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/addQuestao'}"
+                >
+                  <a class="nav-link" href="/addQuestao">Criar Questões</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/sobre'}"
+                  onclick="goTo('#sobre')"
+                >
+                  <a class="nav-link" href="/login#sobre">Sobre</a>
+                </li>
+                <li
+                  class="nav-item"
+                  ng-class="{active: activetab == '/contato'}"
+                  onclick="goTo('#contato')"
+                >
+                  <a class="nav-link" href="/login#contato">Contato</a>
+                </li>
+              </ul>
+              <div class="nav-item dropdown barra">
+                <a
+                  class="dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                ></a>
+                <img
+                  ng-src="{{profile_image}}"
+                  class="rounded-circle img-fluid"
+                  alt="Placeholder image"
+                />
+                <div
+                  class="dropdown-menu justify-content-center logged dropdown-menu-right"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <h6 class="dropdown-header">{{nome_usuario}}</h6>
+                  <a class="dropdown-item" href="/meusdados">Meus Dados</a>
+                  <a class="dropdown-item" href="/questoes">Minhas Questões</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
+                  <div id="myctrl2" ng-controller="LoginController"></div>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
-        </nav>
+      </div>
     </div>
-    <div ng-show="isLogged" id="navLogged">
-            <nav  class= "navbar navbar-expand-lg navbar-light bg-light fixed-top">
- 
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                  
-                <div class="topnav collapse navbar-collapse" id="navbarSupportedContent" ng-controller="LoginController">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item" ng-class="{active: activetab == '/login'}" onclick="goTo('body')"><a class="nav-link" href="/login">Inicio</a></li>
-                        <li class="nav-item" ng-class="{active: (activetab == '/buscas' || activetab == '/questoes')}"><a class="nav-link" href="/buscas" >Buscar Questões</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/addQuestao'}"><a class="nav-link" href="/addQuestao" >Criar Questões</a></li>
-                        <!--
-                        <li class="nav-item" ng-class="{active: activetab == '/addLista'}"><a class="nav-link" href="/addLista" >Criar Listas</a></li>
-                        -->
-                        <li class="nav-item" ng-class="{active: activetab == '/sobre'}" onclick="goTo('#sobre')"><a class="nav-link" href="/login #sobre" >Sobre</a></li>
-                        <li class="nav-item" ng-class="{active: activetab == '/contato'}" onclick="goTo('#contato')"><a class="nav-link" href="/login #contato" >Contato</a></li>
-                    </ul>
-                <div class="nav-item dropdown barra">
-                        <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"  ></a>
-                        <img  ng-src="{{profile_image}}" class="rounded-circle img-fluid" alt="Placeholder image">
-                        <div class="dropdown-menu justify-content-center logged dropdown-menu-right" aria-labelledby="navbarDropdown">
-        
-                            <h6 class="dropdown-header">{{nome_usuario}}</h6>
-                            <a class="dropdown-item" href ="/meusdados">Meus Dados</a>
-                            <a class="dropdown-item" href ="/questoes">Minhas Questões</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item" onclick="signOut()">Sair</a>
-                            <div id="myctrl2" ng-controller="LoginController"></div>
-                    </div> 
-                </div> 
- 
-            </nav>
-    </div>
-    </div>
-</div>
 
-<div ng-controller="MainController"></div> 
-<div ng-view></div>
+    <div ng-controller="MainController"></div>
+    <div ng-view></div>
 
-<script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Angular JS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="node_modules/angular-aria/angular-aria.min.js"></script>
+    <script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/angular-sanitize/angular-sanitize.min.js"
+    ></script>
+    <script src="node_modules/angular-material/angular-material.min.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/angular-loading-bar/build/loading-bar.min.js"
+    ></script>
+    <!-- Dependências do BootStrap -->
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+    <!--Scripts Aplicação -->
+    <script src="app/app.js"></script>
+    <script src="app/util/highlight.js"></script>
+    <!--Services-->
+    <script src="app/services/AuthService.js"></script>
+    <script src="app/services/ProfileService.js"></script>
+    <script src="app/services/UserService.js"></script>
+    <script src="app/services/QuestoesService.js"></script>
+    <!--Controllers-->
+    <script src="app/controllers/MainController.js"></script>
+    <script src="app/controllers/ListaQuestoesController.js"></script>
+    <script src="app/controllers/LoginController.js"></script>
+    <script src="app/controllers/MeusDadosController.js"></script>
+    <script src="app/controllers/SignUpController.js"></script>
+    <script src="app/controllers/ContatoController.js"></script>
+    <script src="app/controllers/AddQuestaoController.js"></script>
+    <script src="app/controllers/BuscasController.js"></script>
+    <script src="app/controllers/ImprimirListaController.js"></script>
+    <!--Plugins-->
+    <script
+      type="text/javascript"
+      src="node_modules/checklist-model/checklist-model.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/ng-quill/src/ng-quill.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/quill/dist/quill.core.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/quill/dist/quill.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/katex/dist/katex.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"
+    ></script>
+    <!-- Login com Google -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 
+    <script>
+      function onSignIn(response) {
+        if (response.credential) {
+          const idToken = response.credential;
 
-<!-- Angular JS -->
-<script src="node_modules/angular/angular.min.js"></script>
-<script src="node_modules/angular-animate/angular-animate.min.js"></script>
-<script src="node_modules/angular-aria/angular-aria.min.js"></script>
-<script src="node_modules/angular-route/angular-route.min.js"></script>
-<script type="text/javascript" src="node_modules/angular-sanitize/angular-sanitize.min.js"></script>
-<script src="node_modules/angular-material/angular-material.min.js"></script>
-<script type='text/javascript' src='node_modules/angular-loading-bar/build/loading-bar.min.js'></script>
+          angular.element(document).ready(function () {
+            const scope = angular
+              .element(document.getElementById("myctrl"))
+              .scope();
+            if (scope && typeof scope.login === "function") {
+              scope.$apply(function () {
+                scope.login(idToken);
+              });
+            } else {
+              console.error("Erro ao acessar a função login.");
+            }
+          });
+        } else {
+          console.error("Erro ao obter o token de ID.");
+        }
+      }
 
+      function signOut() {
+        const auth2 = google.accounts.id;
+        angular.element(document.getElementById("myctrl2")).scope().sair();
+        auth2.disableAutoSelect();
+        console.log("User signed out.");
+      }
 
+      function goTo(selector) {
+        if (document.querySelector(selector)) {
+          document.querySelector(selector).scrollIntoView();
+        }
+      }
 
-<!-- Dependências do BootStrap -->   
-<script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
-<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      function hideModals() {
+        $("body").removeClass("modal-open");
+        $(".modal-backdrop").remove();
+      }
 
-<script src="node_modules/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
-
-
-
-<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
-
-<!--Scripts Aplicação -->
-<script src="app/app.js"></script>
-<script src="app/util/highlight.js"></script>
-
-<!--Services-->
-<script src="app/services/AuthService.js"></script>
-<script src="app/services/ProfileService.js"></script>
-<script src ="app/services/UserService.js"></script>
-<script src ="app/services/QuestoesService.js"></script>
-
-
-<!--Controllers-->
-<script src="app/controllers/MainController.js"></script>
-<script src="app/controllers/ListaQuestoesController.js"></script>
-<script src="app/controllers/LoginController.js"></script>
-<script src="app/controllers/MeusDadosController.js"> </script>
-<script src="app/controllers/SignUpController.js"> </script>
-<script src="app/controllers/ContatoController.js"></script>
-<script src="app/controllers/AddQuestaoController.js"></script>
-<script src="app/controllers/BuscasController.js"></script>
-<script src="app/controllers/ImprimirListaController.js"></script>
-
-<!--Plugins-->
-<script type="text/javascript" src='node_modules/checklist-model/checklist-model.js'></script>
-<script type="text/javascript" src='node_modules/angular-local-storage/dist/angular-local-storage.min.js'></script>
-<script type="text/javascript" src="node_modules/ng-quill/src/ng-quill.js"></script>
-<script type="text/javascript" src="node_modules/quill/dist/quill.core.js"></script>
-<script type="text/javascript" src="node_modules/quill/dist/quill.min.js"></script>
-<script type="text/javascript" src="node_modules/katex/dist/katex.min.js"></script>
-<script type="text/javascript" src="node_modules/angular-ui-notification/dist/angular-ui-notification.min.js"></script>
-
-<!-- Login com Google -->
-<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
-
-<!-- Testes com Gremlins.js 
-<script src="app/test/gremlins.min.js"></script>
-<script src="app/test/gremlinsTests.js"></script>
--->
-<script>  
-function onSignIn(googleUser) {
-    angular.element(document.getElementById('myctrl')).scope().login(googleUser.getBasicProfile(), googleUser.getAuthResponse(true));
-}
-function signOut() {
-    var auth2 = gapi.auth2.getAuthInstance();
-    angular.element(document.getElementById('myctrl2')).scope().sair();
-    auth2.signOut().then(function () {
-        console.log('User signed out.');
-    });
-}
-
-function onLoad() {
-    gapi.load('auth2', function() {
-        gapi.auth2.init().then(() => {})
-    });
-}
-
-function goTo(selector) {
-    if (document.querySelector(selector)) {
-        document.querySelector(selector).scrollIntoView();
-    }
-}
-
-function hideModals() {
-    $('body').removeClass('modal-open');
-    $('.modal-backdrop').remove();
-}
-
-function limpaTabsQuestoes() {
-    let navLinks = document.querySelectorAll(".nav-tabs .nav-link");
-    for (let link of navLinks) {
-        link.classList.remove("active");
-    }
-}
-</script>
-
-</body>
+      function limpaTabsQuestoes() {
+        let navLinks = document.querySelectorAll(".nav-tabs .nav-link");
+        for (let link of navLinks) {
+          link.classList.remove("active");
+        }
+      }
+    </script>
+  </body>
 </html>
