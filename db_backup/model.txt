@@ -1,0 +1,56 @@
+/*Um registro por linha */
+{
+    "_id": "", /* id da questão no BD */
+    "tipo": "", /* "Subjetiva" ou "Objetiva" */
+    "enunciado": "", /* enunciado da questão */
+    "competencias": ["COMP_DECOMPOSIÇÃO"], /* Competências identificadas na análise majoritária */
+    "fonte": "", /* Fonte de onde a questão foi retirada */
+    "autor": "", /* Email de quem inseriu a questão no sistema */
+    "conteudo": [], /* Lista de assuntos presentes na questão */
+    "avaliacoes": [
+        /* Lista de avaliações da questão */
+        { /* Modelo de avaliação de uma questão */
+            "_id": "", /* id da avaliação no BD */
+            "observacaoAvaliacao": "", /* observação com relação às competências encontradas na questão */
+            "observacaoQuestao": "", /* observação com relação a problemas encontrados na questão */
+            "competencias": ["COMP_DECOMPOSIÇÃO"], /* lista de competências encontradas na questão */
+            "infoCompetencias": ["COMP_DECOMPOSIÇÃO|RESTO_DO_ENUNCIADO"], /* competência representada no highlight + questão com destaque feito pelo usuário separados por | (pipe) */
+            "autor": "", /* Email de quem fez a avaliação */
+            "confianca": 0, /* Nível de confiança de quem fez a avaliação */
+            "avaliacaoPublicacao": "" /* "PRONTA", "PEQUENAS_ALTERACOES", "MUITAS_ALTERACOES" ou "FORA_CONTEXTO" */
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+find:"questao":"([^,]*)",
+replace:
+find:\},"observacaoA
+replace:,"observacaoA
+find:\{"\$oid":
+replace:
+*/
