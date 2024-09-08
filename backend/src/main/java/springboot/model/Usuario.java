@@ -61,7 +61,7 @@ public class Usuario {
 		this.email = email;
 		this.ativo = ativo;
 		this.permissoes = new ArrayList<>();
-		if (email.equals("joao.medeiros@ccc.ufcg.edu.br") || email.equals("joao.medeiros@ccc.ufcg.edu.br")) {
+		if (email.equals("joao.luciano@ccc.ufcg.edu.br") || email.equals("aepc.lacina@gmail.com")) {
 			permissoes.add(PermissaoType.ADMIN);
 			permissoes.add(PermissaoType.JUDGE);
 		}

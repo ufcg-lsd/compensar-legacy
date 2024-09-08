@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.TextScore;
+// import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -28,8 +28,8 @@ public class ListaQuestoes{
 
 	private List<String> questoes;
 	
-	@TextScore 
-	private Float score;
+	// @TextScore 
+	// private Float score;
 
 	public ListaQuestoes(String nomeLista, String autor, List<String> questoes) {
 		this.nomeLista = nomeLista;
@@ -73,11 +73,11 @@ public class ListaQuestoes{
 		this.questoes = questoes;
 	}
 
-	public Float getScore() {
-		return score;
-	}
+	// public Float getScore() {
+	// 	return score;
+	// }
 
-	public void setScore(Float score) {
-		this.score = score;
-	}
+	// public void setScore(Float score) {
+	// 	this.score = score;
+	// }
 }

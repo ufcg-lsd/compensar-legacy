@@ -19,7 +19,7 @@ import org.springframework.data.annotation.Id;
 
 import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.TextScore;
+// import org.springframework.data.mongodb.core.mapping.TextScore;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -63,8 +63,8 @@ public class Questao {
 
 	private EstadoQuestao estado;
 	
-	@TextScore 
-	private Float score;
+	// @TextScore 
+	// private Float score;
 
 	/**
 	 * Cria uma Questão com tipo, enunciado, fonte, autor e imagem.
@@ -226,13 +226,13 @@ public class Questao {
 		this.competenciasClassificador = competenciasClassificador;
 	}
 
-	public Float getScore() {
-		return score;
-	}
+	// public Float getScore() {
+	// 	return score;
+	// }
 
-	public void setScore(Float score) {
-		this.score = score;
-	}
+	// public void setScore(Float score) {
+	// 	this.score = score;
+	// }
 
 
 	public Integer getQtdAvaliacoes() {

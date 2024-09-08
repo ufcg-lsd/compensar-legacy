@@ -101,10 +101,10 @@ public class ListaQuestoesService {
 	public Page<ListaQuestoes> getByUser(Usuario user, int page, int size) {
 
 
-	    Sort sort = Sort.by(
-	    	    Sort.Order.desc("score"));
+	    // Sort sort = Sort.by(
+	    // 	    Sort.Order.desc("score"));
 	    
-	    Pageable pageable = PageRequest.of(page, size, sort);
+	    Pageable pageable = PageRequest.of(page, size);
 	    
 	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByAutor(user.getEmail(),pageable);
 
