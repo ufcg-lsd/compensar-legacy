@@ -239,9 +239,9 @@ public class QuestaoService {
 		parametros.clear();
 		arrayQuery.clear();
 
-		Sort sort = Sort.by(Sort.Order.desc("score"));
+		// Sort sort = Sort.by(Sort.Order.desc("score"));
 
-		Pageable pageable = PageRequest.of(page, size, sort);
+		Pageable pageable = PageRequest.of(page, size);
 
 		Aggregation agg = Aggregation.newAggregation(aggList);
 		List<Questao> results = mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults();
