@@ -101,6 +101,7 @@ public class CursoService {
      * @param evaluationMod O módulo final de avaliação.
      * @return Um objeto `ModuloCursoOutput` com as informações do módulo final.
      */
+    @SuppressWarnings("unlikely-arg-type")
     private ModuloCursoOutput processFinalModule(ModuloCurso evaluationMod, CourseType type, Usuario user) {
         ModuloCursoOutput evaluationOutput = new ModuloCursoOutput();
         evaluationOutput.setNome(evaluationMod.getNome());
