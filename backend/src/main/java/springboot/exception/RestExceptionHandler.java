@@ -50,28 +50,4 @@ public class RestExceptionHandler {
     public ResponseEntity<CustomRestOutput> handleMailException(Exception ex) {
         return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
-    /*
-    @ExceptionHandler(InvalidTokenExce.class)
-    public ResponseEntity<CustomRestError> handleWrongCredentialsException(Exception ex) {
-        return new ResponseEntity<>(new CustomRestOutput(ex), new HttpHeaders(), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler(InvalidDataException.class)
-    public ResponseEntity<CustomRestError> handleInvalidDataException(Exception ex) {
-        CustomRestError errorMessage = new CustomRestError(new Date(), ex.getMessage().getDescription(false));
-        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.UNPROCESSABLE_ENTITY);
-    }
-
-    @ExceptionHandler(InvalidTokenException.class)
-    public ResponseEntity<CustomRestError> handleInvalidTokenException(Exception ex) {
-        CustomRestError errorMessage = new CustomRestError(new Date(), ex.getMessage().getDescription(false));
-        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
-    }
-
-    @ExceptionHandler(NotAuthorizedException.class)
-    public ResponseEntity<CustomRestError> handleNotAuthorizedException(Exception ex) {
-        CustomRestError errorMessage = new CustomRestError(new Date(), ex.getMessage().getDescription(false));
-        return new ResponseEntity<>(errorMessage, new HttpHeaders(), HttpStatus.UNAUTHORIZED);
-    }*/
 }
