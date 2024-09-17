@@ -1,75 +1,66 @@
 package springboot.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
-
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import springboot.model.Usuario;
 import springboot.service.UsuarioService;
 
-@Controller
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "+")
-@Api(value = "UsuariosControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
-	@Autowired
-	UsuarioService usuarioService;
+    @Autowired
+    private UsuarioService usuarioService;
 
-	/*
-	@ApiOperation("Permite apagar um usuário do sistema.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.DELETE)
-	public ResponseEntity<Usuario> delete(@PathVariable("email") String email) {
-		Usuario usuario = usuarioService.delete(email);
-		return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);
-	}*/
+    /**
+     * Atualiza as informações do usuário logado.
+     *
+     * @param oldUsuario  O usuário logado atualmente (preenchido automaticamente
+     *                    pelo Spring).
+     * @param novoUsuario As novas informações do usuário, exceto o email.
+     * @return O usuário atualizado.
+     */
+    @Operation(summary = "Atualiza as informações do usuário logado. Requer que o corpo do request contenha um objeto com os atributos do usuário, exceto o e-mail.")
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = MediaType.APPLICATION_JSON_VALUE)}),
+    })
+    @PutMapping(value = "/usuario")
+    public ResponseEntity<Usuario> update(@RequestAttribute(name = "usuario") Usuario oldUsuario,
+                                          @RequestBody Usuario novoUsuario) {
+        Usuario updatedUsuario = usuarioService.update(
+            new Usuario(oldUsuario.getNome(), novoUsuario.getIdade(), novoUsuario.getNomeInstituicao(),
+                        novoUsuario.getCargo(), novoUsuario.getCidade(), oldUsuario.getEmail(), true),
+            oldUsuario.getEmail());
+        return new ResponseEntity<>(updatedUsuario, HttpStatus.OK);
+    }
 
-	@ApiOperation("Permite atualizar um usuário do sistema. Requer que o corpo do request contenha um objeto com os atributos de um usuário.\r\n")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario/", method = RequestMethod.PUT)
-	public ResponseEntity<Usuario> update(@RequestAttribute(name="usuario") Usuario oldUsuario, @RequestBody Usuario novoUsuario) {
-		Usuario updatedUsuario = usuarioService.update(new Usuario(oldUsuario.getNome(), novoUsuario.getIdade(), novoUsuario.getNomeInstituicao(), novoUsuario.getCargo(), novoUsuario.getCidade(), oldUsuario.getEmail(),true), oldUsuario.getEmail());
-		return new ResponseEntity<Usuario>(updatedUsuario, HttpStatus.OK);
-	}
-
-	/*
-	@ApiOperation("Fornece um array de objetos do tipo usuario registrados.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario", method = RequestMethod.GET)
-	public List<Usuario> getAll() {
-		return usuarioService.getAll();
-	}
-
-
-	@ApiOperation("Recupera um usuario com específico email.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario/{email}", method = RequestMethod.GET)
-	public Usuario getByEmail(@PathVariable("email") String email) {
-		return usuarioService.getById(email);
-	}*/
-
-	@ApiOperation("Recupera informaçoes do usuario atual.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-	@RequestMapping(value = "/usuario/", method = RequestMethod.GET)
-	public Usuario getActualUser(@RequestAttribute(name="usuario") Usuario usuario) {
-		return usuario;
-	}
-	/*
-	 * @RequestMapping(value = "/usuario/search/{nome}", method = RequestMethod.GET)
-	 * public Usuario searchByNome(@PathVariable("nome") String nome) { return
-	 * usuarioService.pesquisarPorNome(nome); }
-	 */
-
+    /**
+     * Recupera as informações do usuário atual logado.
+     *
+     * @param usuario O usuário logado atualmente (preenchido automaticamente pelo
+     *                Spring).
+     * @return O usuário logado.
+     */
+    @Operation(summary = "Recupera as informações do usuário atual logado.")
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "OK", content = {@io.swagger.v3.oas.annotations.media.Content(mediaType = MediaType.APPLICATION_JSON_VALUE)})
+    })
+    @GetMapping(value = "/usuario")
+    public ResponseEntity<Usuario> getActualUser(@RequestAttribute(name = "usuario") Usuario usuario) {
+        return new ResponseEntity<>(usuario, HttpStatus.OK);
+    }
 }

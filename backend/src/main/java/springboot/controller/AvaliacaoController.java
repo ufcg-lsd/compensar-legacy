@@ -1,15 +1,27 @@
 package springboot.controller;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import jakarta.validation.Valid;
 import springboot.dto.input.AvaliacaoInput;
 import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
@@ -19,28 +31,35 @@ import springboot.model.Usuario;
 import springboot.service.AvaliacaoService;
 import springboot.service.QuestaoService;
 
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.List;
-
-@Controller
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "+")
-@Api(value = "AvaliacaoControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
+@Tag(name = "AvaliacaoController", description = "API para gerenciar avaliações")
 public class AvaliacaoController {
 
     @Autowired
-    AvaliacaoService avaliacaoService;
+    private AvaliacaoService avaliacaoService;
 
     @Autowired
-    QuestaoService questaoService;
+    private QuestaoService questaoService;
 
-    @ApiOperation("Permite registrar uma nova avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Avaliacao.class) })
-    @RequestMapping(value = "/avaliacao", method = RequestMethod.POST)
-    public Avaliacao save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody AvaliacaoInput avaliacao) throws IOException {
-        Questao questao = questaoService.getById(avaliacao.getQuestao());
+    @Operation(summary = "Permite registrar uma nova avaliação no sistema.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Avaliação criada com sucesso", 
+                         content = @Content(mediaType = "application/json", 
+                         schema = @Schema(implementation = Avaliacao.class))),
+            @ApiResponse(responseCode = "404", description = "Questão não encontrada", content = @Content),
+            @ApiResponse(responseCode = "400", description = "Erro de validação", content = @Content)
+    })
+    @PostMapping("/avaliacao")
+    public ResponseEntity<Avaliacao> save(@RequestAttribute(name = "usuario") Usuario usuario,
+            @Valid @RequestBody AvaliacaoInput avaliacao) throws IOException {
+
+        Questao questao = questaoService.getById(avaliacao.getQuestaoId());
+        if (questao == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
         Avaliacao novaAvaliacao = avaliacaoService.save(
                 new Avaliacao(
                         avaliacao.getObservacaoAvaliacao(),
@@ -50,51 +69,36 @@ public class AvaliacaoController {
                         usuario.getEmail(),
                         questao.getId(),
                         avaliacao.getConfianca(),
-                        avaliacao.getAvaliacaoPublicacao()
-                )
-        );
-        questao.setQtdAvaliacoes(questao.getQtdAvaliacoes()+1);
+                        avaliacao.getAvaliacaoPublicacao()));
+
+        questao.setQtdAvaliacoes(questao.getQtdAvaliacoes() + 1);
+
         if (questao.getQtdAvaliacoes() == 3) {
-            HashSet<CompetenciaType> tempNewCompetencias = new HashSet<>();
-            List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(avaliacao.getQuestao());
-            for (CompetenciaType competencia: CompetenciaType.values()) {
-                int cnt = 0;
-                for (Avaliacao tempAvaliacao : avaliacoes) {
-                    if (tempAvaliacao.getCompetencias().contains(competencia))
-                        cnt++;
-                }
-                if (cnt >= 2) {
-                    tempNewCompetencias.add(competencia);
-                }
-                //System.out.println("competencia: "+competencia);
-            }
-            questao.setCompetencias(tempNewCompetencias);
+            HashSet<CompetenciaType> novasCompetencias = calcularCompetenciasComuns(avaliacao.getQuestaoId());
+            questao.setCompetencias(novasCompetencias);
             questao.setEstado(EstadoQuestao.PEND_APROVACAO);
         }
+
         questaoService.update(questao, questao.getId());
-        return novaAvaliacao;
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(novaAvaliacao);
     }
 
-    /*
+    private HashSet<CompetenciaType> calcularCompetenciasComuns(String questaoId) {
+        List<Avaliacao> avaliacoes = avaliacaoService.getAllByQuestao(questaoId);
+        HashSet<CompetenciaType> competenciasComuns = new HashSet<>();
 
-    @ApiOperation("Permite atualizar uma avaliação no sistema. Requer que o corpo do request contenha um objeto com os campos: observacoes, questao e competencias.\r\n"
-            + "")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Avaliacao.class) })
-    @RequestMapping(value = "/avaliacao/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Avaliacao> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody AvaliacaoInput avaliacao) {
-
-        Avaliacao updatedAvaliacao = avaliacaoService.update(
-                new Avaliacao(
-                        avaliacao.getObservacaoAvaliacao(),
-                        avaliacao.getObservacaoQuestao(),
-                        avaliacao.getCompetencias(),
-                        usuario.getEmail(),
-                        avaliacao.getQuestao(),
-                        avaliacao.getConfianca()
-                ),
-                id
-        );
-        return new ResponseEntity<Avaliacao>(updatedAvaliacao, HttpStatus.OK);
+        for (CompetenciaType competencia : CompetenciaType.values()) {
+            int contador = 0;
+            for (Avaliacao avaliacao : avaliacoes) {
+                if (avaliacao.getCompetencias().contains(competencia)) {
+                    contador++;
+                }
+            }
+            if (contador >= 2) {
+                competenciasComuns.add(competencia);
+            }
+        }
+        return competenciasComuns;
     }
-     */
 }
