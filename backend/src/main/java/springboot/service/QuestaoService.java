@@ -235,7 +235,6 @@ public class QuestaoService {
 
 		aggList.add(1, new CustomAggregationOperation(Document.parse(query)));
 
-		System.out.println(query);
 		parametros.clear();
 		arrayQuery.clear();
 
@@ -361,44 +360,49 @@ public class QuestaoService {
 		return results.get(0);
 	}
 
-	// Busca duas questões (uma com a competência recebida e outra sem a competência recebida) e as embaralha numa lista
 	public List<Questao> getSamples(String competencia) {
-		List<CustomAggregationOperation>  aggList1 = new ArrayList<>();
-		List<CustomAggregationOperation>  aggList2 = new ArrayList<>();
+		List<CustomAggregationOperation> aggList1 = new ArrayList<>();
+		List<CustomAggregationOperation> aggList2 = new ArrayList<>();
+
 		aggList1.add(new CustomAggregationOperation(Document.parse(
-				"{\n" +
-				"    $match: {\n" +
-				"        competencias: \"" + competencia + "\",\n" +
-				"        estado: \"PUBLICADA\"\n" +
-				"    }\n" +
-				"}"
-		)));
+				"{\n"
+						.concat("    $match: {\n")
+						.concat("        competencias: \"").concat(competencia).concat("\",\n")
+						.concat("        estado: \"PUBLICADA\"\n")
+						.concat("    }\n")
+						.concat("}"))));
+
 		aggList2.add(new CustomAggregationOperation(Document.parse(
-				"{\n" +
-				"    $match: {\n" +
-				"        competencias: { $ne: \"" + competencia + "\" },\n" +
-				"        estado: \"PUBLICADA\"\n" +
-				"    }\n" +
-				"}"
-		)));
+				"{\n"
+						.concat("    $match: {\n")
+						.concat("        competencias: { $ne: \"").concat(competencia).concat("\" },\n")
+						.concat("        estado: \"PUBLICADA\"\n")
+						.concat("    }\n")
+						.concat("}"))));
+
 		aggList1.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
 		aggList2.add(new CustomAggregationOperation(Document.parse("{ $sample: { size: 1 } }")));
+
 		Aggregation agg = Aggregation.newAggregation(aggList1);
-		List<Questao> results = new ArrayList();
+		List<Questao> results = new ArrayList<>();
+
 		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
 			results.add(q);
 		}
+
 		agg = Aggregation.newAggregation(aggList2);
+
 		for (Questao q : mongoTemplate.aggregate(agg, "questao", Questao.class).getMappedResults()) {
 			results.add(q);
 		}
-		//Embaralha a ordem de retrno das questões de exemplo (com ou sem a competência)
-		Collections.swap(results, 0, new Random().nextInt(2));
+
+		Collections.swap(results, 0, new Random().nextInt(Math.max(0, results.size())));
 		return results;
 	}
 
 	public Questao getSample(String competencia) {
-		return getSamples(competencia).get(new Random().nextInt(2));
+		List<Questao> samples = getSamples(competencia);
+		return samples.get(new Random().nextInt(Math.max(0, samples.size())));
 	}
 
 	public Boolean hasCompetencia(String competencia, Set<CompetenciaType> competencias) {
@@ -415,7 +419,6 @@ public class QuestaoService {
 		return hasCompetencia(competencia, q.getCompetencias());
 	}
 
-	// Retorna lista de booleanos que representa se as questoes passadas como parametro possuem ou não a competência buscada
 	public List<Boolean> evaluateQuestoes(String competencia, List<String> questoes) {
 		List<Boolean> ret = new ArrayList<>();
 		for (String id : questoes) {
@@ -423,8 +426,6 @@ public class QuestaoService {
 		}
 		return ret;
 	}
-
-
 
 	public boolean updateClassificador() {
 		List<Questao> l = questaoRepository.findAll();
