@@ -554,7 +554,7 @@ angular.module('app')
             observacaoAvaliacao: $rootScope.avaliacao.obsAvaliacao,
             observacaoQuestao: $rootScope.avaliacao.obsQuestao,
             avaliacaoPublicacao: $rootScope.avaliacao.avaliacaoPublicacao,
-            questao: $rootScope.questaoSobAvaliacao.id,
+            questaoId: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
             infoCompetencias: arr2,
             confianca: $rootScope.avaliacao.confianca
