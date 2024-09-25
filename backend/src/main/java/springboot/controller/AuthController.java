@@ -26,6 +26,12 @@ import springboot.model.Usuario;
 import springboot.service.UsuarioService;
 import springboot.util.GoogleIdVerifier;
 
+/**
+ * Controlador responsável por gerenciar as operações de autenticação e cadastro de usuários.
+ * 
+ * Utiliza a API do Google para verificar tokens e validações antes de permitir que
+ * um usuário seja autenticado ou registrado no sistema.
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
@@ -35,6 +41,11 @@ public class AuthController {
     @Autowired
     private UsuarioService usuarioService;
 
+    /**
+     * Autentica um usuário no sistema.
+     * 
+     * @return uma resposta HTTP contendo uma mensagem de sucesso e a data da autenticação.
+     */
     @Operation(summary = "Permite autenticar um usuário no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso!")
@@ -44,6 +55,16 @@ public class AuthController {
         return ResponseEntity.ok(new CustomRestOutput(new Date(), "Usuário autenticado com sucesso!"));
     }
 
+    /**
+     * Registra um novo usuário no sistema. O token JWT fornecido no cabeçalho da requisição é validado
+     * para garantir que seja um token legítimo do Google.
+     * 
+     * @param usuario os dados do usuário a serem cadastrados.
+     * @param token o token JWT fornecido no cabeçalho "Authorization".
+     * @return uma resposta HTTP contendo uma mensagem de sucesso e a data do cadastro.
+     * @throws InvalidTokenException se o token for inválido ou mal formatado.
+     * @throws UserAlreadyExistException se o usuário já estiver cadastrado no sistema.
+     */
     @Operation(summary = "Permite cadastrar um usuário no sistema")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Usuário cadastrado com sucesso!"),
@@ -69,10 +90,22 @@ public class AuthController {
         return ResponseEntity.ok(new CustomRestOutput(new Date(), "Usuário cadastrado com sucesso!"));
     }
 
+    /**
+     * Extrai o token JWT removendo o prefixo "Bearer ".
+     * 
+     * @param token o token JWT completo.
+     * @return o token JWT sem o prefixo.
+     */
     private String extractToken(String token) {
         return token.substring(7); // Remove "Bearer "
     }
 
+    /**
+     * Valida o formato do token JWT. O token deve começar com o prefixo "Bearer ".
+     * 
+     * @param token o token JWT a ser validado.
+     * @throws InvalidTokenException se o token for nulo ou não começar com "Bearer ".
+     */
     private void validateToken(String token) {
         if (token == null || !token.startsWith("Bearer ")) {
             throw new InvalidTokenException();

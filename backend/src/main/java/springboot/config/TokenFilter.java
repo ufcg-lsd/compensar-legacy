@@ -21,11 +21,30 @@ import jakarta.servlet.http.HttpServletResponse;
 import springboot.service.UsuarioService;
 import springboot.util.GoogleIdVerifier;
 
+/**
+ * Filtro de autenticação que intercepta requisições HTTP e verifica a
+ * validade de um token JWT fornecido no cabeçalho da requisição.
+ * Se o token for válido e o usuário estiver registrado no sistema,
+ * a requisição é encaminhada para o próximo filtro da cadeia. Caso contrário,
+ * uma resposta de erro é enviada.
+ */
 public class TokenFilter extends GenericFilterBean {
 
     @Autowired
     private UsuarioService usuarioService;
 
+    /**
+     * Intercepta requisições HTTP, validando o token JWT no cabeçalho da
+     * requisição.
+     * Se o token for válido e o usuário registrado, a requisição é encaminhada.
+     * 
+     * @param request  a requisição HTTP
+     * @param response a resposta HTTP
+     * @param chain    a cadeia de filtros
+     * @throws IOException      se ocorrer um erro durante o processamento do token
+     *                          ou da requisição
+     * @throws ServletException se ocorrer um erro durante o processamento do filtro
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -79,7 +98,7 @@ public class TokenFilter extends GenericFilterBean {
      * @param token    o token JWT a ser validado
      * @param response a resposta HTTP para enviar erros, se necessário
      * @return o payload do token se for válido, ou null caso contrário
-     * @throws IOException
+     * @throws IOException se ocorrer um erro durante a validação do token
      */
     private GoogleIdToken.Payload validateToken(String token, HttpServletResponse response) throws IOException {
         try {
@@ -111,7 +130,7 @@ public class TokenFilter extends GenericFilterBean {
      * @param email    o e-mail do usuário
      * @param response a resposta HTTP para enviar erros, se necessário
      * @return true se o usuário estiver registrado, false caso contrário
-     * @throws IOException
+     * @throws IOException se ocorrer um erro durante a verificação do usuário
      */
     private boolean isUserRegistered(String email, HttpServletResponse response) throws IOException {
         try {

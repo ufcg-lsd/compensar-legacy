@@ -18,6 +18,10 @@ import jakarta.validation.Valid;
 import springboot.model.Email;
 import springboot.service.EmailService;
 
+/**
+ * Controlador responsável pelo envio de emails no sistema.
+ * Este controlador permite o envio de um email simples de um usuário para o administrador.
+ */
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
@@ -27,6 +31,15 @@ public class EmailController {
     @Autowired
     private EmailService emailService;
 
+    /**
+     * Envia um email simples de um usuário para o administrador do sistema.
+     * O email deve ser passado no corpo da requisição, e deve ser validado antes de ser enviado.
+     * 
+     * @param email objeto contendo as informações do email a ser enviado, validado automaticamente.
+     * @return uma resposta HTTP indicando o sucesso ou falha do envio.
+     *         - 200 OK se o email foi enviado com sucesso.
+     *         - 500 Internal Server Error se houver um erro ao tentar enviar o email.
+     */
     @Operation(summary = "Permite registrar um email de um user para o admin.")
     @ApiResponses(value = { 
         @ApiResponse(responseCode = "200", description = "Email enviado com sucesso"),
