@@ -179,10 +179,6 @@ public class Questao {
 		return score;
 	}
 
-	public void setScore(Float score) {
-		this.score = score;
-	}
-
 	public Integer getQtdAvaliacoes() {
 		return qtdAvaliacoes;
 	}

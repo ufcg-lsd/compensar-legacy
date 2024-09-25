@@ -88,8 +88,4 @@ public class ListaQuestoes {
 	public Float getScore() {
 		return score;
 	}
-
-	public void setScore(Float score) {
-		this.score = score;
-	}
 }
