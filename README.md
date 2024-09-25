@@ -1,4 +1,4 @@
-# 🌟 ComPensar
+# 📚 ComPensar
 
 **Ambiente de Estudo ao Pensamento Computacional 1.1**
 
@@ -119,7 +119,9 @@ Este projeto está sob a licença [MIT](LICENSE).
 
 - Google Sign-In Client ID:
   - backend: `CLIENT_ID` na classe `GoogleIdVerifier`
-  - frontend: 
+  - frontend: frontend > index.html em dois lugares
+    - `<meta name="google-signin-client_id" content="<aqui>" data-callback="onSignIn" />`
+    - `<div id="g_id_onload" data-client_id="<aqui>" />`
 
 > P: "Mas eu substituo pelo quê?"
 > 
