@@ -1,4 +1,4 @@
-# 🌟 ComPensar
+# 📚 ComPensar
 
 **Ambiente de Estudo ao Pensamento Computacional 1.1**
 
