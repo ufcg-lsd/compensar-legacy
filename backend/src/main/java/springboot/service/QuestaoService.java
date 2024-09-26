@@ -265,9 +265,6 @@ public class QuestaoService {
 		os.write(enunciadoText.getBytes());
 		os.flush();
 		os.close();
-		int responseCode = postConnection.getResponseCode();
-
-
 		BufferedReader in = new BufferedReader(new InputStreamReader(
 				postConnection.getInputStream()));
 		String inputLine;
