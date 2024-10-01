@@ -1,21 +1,24 @@
 package springboot.util;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import springboot.exception.auth.InvalidTokenException;
 import springboot.model.Usuario;
 import springboot.service.UsuarioService;
 
 import java.util.Collections;
 
+import com.google.api.client.json.gson.GsonFactory;
+
 public class GoogleIdVerifier {
 
-    static final String CLIENT_ID = "363497084086-sj4dhuvvkmcivpbl0h2fgrrvnm0229og.apps.googleusercontent.com";
+    static final String CLIENT_ID = "1024214029990-d9ppvf55b3sv7ias7b7uhltclj9b1j2g.apps.googleusercontent.com";
 
-    static final GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), JacksonFactory.getDefaultInstance())
+    static final GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(new NetHttpTransport(), GsonFactory.getDefaultInstance())
             .setAudience(Collections.singletonList(CLIENT_ID)).build();
 
     public static GoogleIdToken.Payload getPayload(String tokenString) {
@@ -26,7 +29,7 @@ public class GoogleIdVerifier {
             } else {
                 throw new InvalidTokenException();
             }
-        } catch (Exception e) {
+        } catch (IOException | GeneralSecurityException | InvalidTokenException e) {
             throw new InvalidTokenException();
         }
     }
@@ -44,7 +47,7 @@ public class GoogleIdVerifier {
             } else {
                 throw new InvalidTokenException();
             }
-        } catch (Exception e) {
+        } catch (IOException | GeneralSecurityException | InvalidTokenException e) {
             throw new InvalidTokenException();
         }
     }

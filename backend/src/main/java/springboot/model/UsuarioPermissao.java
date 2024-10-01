@@ -1,36 +1,32 @@
 package springboot.model;
 
-
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.validation.constraints.NotNull;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import springboot.enums.PermissaoType;
 
+import java.util.Objects;
 
 @Document(collection = "usuario-permissao")
 public class UsuarioPermissao {
-	
-	@NotNull
+
 	@Id
-	@TextIndexed
+	@Email(message = "E-mail deve ser válido")
+	@NotBlank(message = "E-mail não pode ser vazio")
 	private String email;
-	
-    @Enumerated(EnumType.STRING)
-	@NotNull
-	@TextIndexed
+
+	@Enumerated(EnumType.STRING)
+	@NotNull(message = "Permissão não pode ser nula")
 	private PermissaoType permissao;
-	
-	
+
 	public UsuarioPermissao() {
-		
 	}
-	
+
 	public UsuarioPermissao(String email, PermissaoType permissao) {
 		this.email = email;
 		this.permissao = permissao;
@@ -54,41 +50,21 @@ public class UsuarioPermissao {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((permissao == null) ? 0 : permissao.hashCode());
-		return result;
+		return Objects.hash(email, permissao);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
+		if (obj == null || getClass() != obj.getClass())
 			return false;
 		UsuarioPermissao other = (UsuarioPermissao) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (permissao == null) {
-			if (other.permissao != null)
-				return false;
-		} else if (!permissao.equals(other.permissao))
-			return false;
-		return true;
+		return Objects.equals(email, other.email) && permissao == other.permissao;
 	}
 
 	@Override
 	public String toString() {
-		return "UsuarioPermissao [email=" + email + ", permissao=" + permissao + "]";
+		return "UsuarioPermissao [email=".concat(email).concat(", permissao=").concat(permissao.toString()).concat("]");
 	}
-	
-	
-	
-	
 }

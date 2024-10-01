@@ -1,11 +1,8 @@
 package springboot.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import springboot.exception.data.RegisterNotFoundException;
 import springboot.model.Usuario;
 import springboot.repository.UsuarioRepository;
@@ -13,65 +10,67 @@ import springboot.repository.UsuarioRepository;
 @Service
 public class UsuarioService {
 
-	private final String errorMessage = "Usuário ainda não registrado no sistema!";
+	private static final String ERROR_MESSAGE = "Usuário ainda não registrado no sistema!";
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	public UsuarioService() {
-	}
-
+	/**
+	 * Salva um novo usuário no banco de dados.
+	 *
+	 * @param usuario O usuário a ser salvo.
+	 * @return O usuário salvo.
+	 */
 	public Usuario save(Usuario usuario) {
-		usuarioRepository.save(usuario);
-		return usuario;
+		return usuarioRepository.save(usuario);
 	}
-	
 
+	/**
+	 * Deleta um usuário existente pelo e-mail.
+	 *
+	 * @param email O e-mail do usuário a ser deletado.
+	 * @return O usuário deletado.
+	 * @throws RegisterNotFoundException Se o usuário não for encontrado.
+	 */
 	public Usuario delete(String email) {
-		Optional<Usuario> optUsuario = usuarioRepository.findById(email);
+		Usuario usuario = usuarioRepository.findById(email)
+				.orElseThrow(() -> new RegisterNotFoundException(ERROR_MESSAGE));
 
-		if (!optUsuario.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		Usuario usuario = optUsuario.get();
 		usuarioRepository.delete(usuario);
-
 		return usuario;
 	}
 
+	/**
+	 * Atualiza as informações de um usuário existente.
+	 *
+	 * @param novoUsuario O objeto com as novas informações do usuário.
+	 * @param email       O e-mail do usuário a ser atualizado.
+	 * @return O usuário atualizado.
+	 * @throws RegisterNotFoundException Se o usuário não for encontrado.
+	 */
 	public Usuario update(Usuario novoUsuario, String email) {
-		Optional<Usuario> optUsuario = usuarioRepository.findById(email);
-
-		if (!optUsuario.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		novoUsuario.setEmail(email);
-
-		usuarioRepository.save(novoUsuario);
-
-		return novoUsuario;
+		usuarioRepository.findById(email).orElseThrow(() -> new RegisterNotFoundException(ERROR_MESSAGE));
+		return usuarioRepository.save(novoUsuario);
 	}
 
+	/**
+	 * Recupera todos os usuários do banco de dados.
+	 *
+	 * @return A lista de todos os usuários.
+	 */
 	public List<Usuario> getAll() {
 		return usuarioRepository.findAll();
 	}
 
-	public Usuario getById(String email) {
-		Optional<Usuario> optUsuario = usuarioRepository.findById(email);
-
-		if (!optUsuario.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		return optUsuario.get();
-	}
-
-
-	/*
-	 * public Usuario pesquisarPorNome(String nome) { return
-	 * usuarioRepository.pesquisarPorNome(nome); }
+	/**
+	 * Recupera um usuário específico pelo e-mail.
+	 *
+	 * @param email O e-mail do usuário a ser recuperado.
+	 * @return O usuário encontrado.
+	 * @throws RegisterNotFoundException Se o usuário não for encontrado.
 	 */
-
+	public Usuario getById(String email) {
+		return usuarioRepository.findById(email)
+				.orElseThrow(() -> new RegisterNotFoundException(ERROR_MESSAGE));
+	}
 }

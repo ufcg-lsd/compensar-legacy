@@ -15,7 +15,7 @@ angular.module('app')
 
         $rootScope.loading = true;
 
-        $http.get(host + 'usuario/', AuthService.getAuthorization()).
+        $http.get(host + 'usuario', AuthService.getAuthorization()).
         then(function (response) { 
             console.log($rootScope.loading);
 
@@ -39,7 +39,7 @@ angular.module('app')
                 nomeInstituicao: $scope.instituicao_usuario 
             };
 
-            $http.put(host + 'usuario/', user, AuthService.getAuthorization()).
+            $http.put(host + 'usuario', user, AuthService.getAuthorization()).
             then(function (response) {
                 Notification.success("Usuario atualizado com Sucesso!");
             }, function (err){

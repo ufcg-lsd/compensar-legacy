@@ -1,23 +1,14 @@
 package springboot.controller;
 
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import springboot.dto.IO.QuestaoIO;
 import springboot.dto.input.AvaliacaoInput;
 import springboot.dto.input.QuestaoInput;
@@ -27,158 +18,150 @@ import springboot.enums.CompetenciaType;
 import springboot.enums.EstadoQuestao;
 import springboot.enums.PermissaoType;
 import springboot.exception.data.PermissionDeniedException;
-import springboot.model.Avaliacao;
 import springboot.model.Conteudo;
 import springboot.model.Questao;
 import springboot.model.Usuario;
-import springboot.service.AvaliacaoService;
 import springboot.service.ConteudoService;
 import springboot.service.QuestaoService;
-import springboot.service.UsuarioService;
 
-@Controller
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "+")
-@Api(value = "QuestaoControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
+@Tag(name = "QuestaoController", description = "Controlador de operações relacionadas a Questões")
 public class QuestaoController {
+    @Autowired
+    private QuestaoService questaoService;
 
-	@Autowired
-	QuestaoService questaoService;
+    @Autowired
+    private AvaliacaoController avaliacaoController;
 
-	@Autowired
-	AvaliacaoController avaliacaoController;
+    @Autowired
+    private ConteudoService conteudoService;
 
-	@Autowired
-	AvaliacaoService avaliacaoService;
+    @Autowired
+    private QuestaoIO questaoIO;
 
-	@Autowired
-	UsuarioService usuarioService;
+    private QuestaoOutput convertToDto(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
+        return questaoIO.toDto(questao, usuario, forceAvaliacoes);
+    }
 
-	@Autowired
-	ConteudoService conteudoService;
+    @PostMapping("/questao")
+    @Operation(summary = "Permite registrar uma nova questão no sistema.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
+    public QuestaoOutput saveQuestao(@RequestAttribute(name = "usuario") Usuario usuario,
+            @RequestBody QuestaoInput questaoInput) throws IOException {
+        Questao questaoSalva = questaoService.save(QuestaoIO.toEntity(questaoInput, usuario.getEmail()));
+        AvaliacaoInput avaliacaoInput = new AvaliacaoInput(
+                questaoInput.getObsAvaliacao(), "", questaoSalva.getId(),
+                questaoInput.getCompetenciasAvaliacao(), questaoInput.getInfoCompetenciasAvaliacao(),
+                questaoInput.getConfiancaAvaliacao(), AvaliacaoPublicacao.PRONTA);
+        avaliacaoController.save(usuario, avaliacaoInput);
+        return convertToDto(questaoSalva, usuario, false);
+    }
 
-	private QuestaoOutput convert(Questao questao, Usuario usuario, boolean forceAvaliacoes) {
-		return QuestaoIO.convert(questao, usuario, usuarioService, avaliacaoService, questaoService, forceAvaliacoes);
-	}
+    @PostMapping("/conteudo")
+    @Operation(summary = "Permite salvar um novo conteúdo no sistema.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = Conteudo.class)))
+    })
+    public ResponseEntity<Conteudo> saveConteudo(@RequestBody String conteudo) {
+        Conteudo conteudoSalvo = conteudoService.save(new Conteudo(conteudo));
+        return ResponseEntity.ok(conteudoSalvo);
+    }
 
-	@ApiOperation("Permite registrar uma nova questão no sistema. Requer que o corpo do request contenha um objeto com os campos: tipo, enunciado, fonte, autor, imagem, conteudo, espelho ou alternativas.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao", method = RequestMethod.POST)
-	public QuestaoOutput save(@RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		Questao questaoSalva =  questaoService.save(QuestaoIO.convert(questao, usuario.getEmail()));
-		avaliacaoController.save(usuario,
-				new AvaliacaoInput(
-						questao.getObsAvaliacao(),
-						"",
-						questaoSalva.getId(),
-						questao.getCompetenciasAvaliacao(),
-						questao.getInfoCompetenciasAvaliacao(),
-						questao.getConfiancaAvaliacao(),
-						AvaliacaoPublicacao.PRONTA
-				)
-		);
-		return convert(questaoSalva, usuario, false);
-	}
+    @GetMapping("/conteudo")
+    @Operation(summary = "Recupera todos os conteúdos do sistema.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = String.class)))
+    })
+    public ResponseEntity<List<String>> getAllConteudo() {
+        List<String> conteudos = conteudoService.getAll().stream()
+                .map(Conteudo::getNome)
+                .filter(nome -> !nome.equals("Outros"))
+                .collect(Collectors.toList());
+        conteudos.add("Outros");
+        return ResponseEntity.ok(conteudos);
+    }
 
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
-	@RequestMapping(value = "/conteudo", method = RequestMethod.POST)
-	public Conteudo saveConteudo(@RequestBody String conteudo) throws IOException {
-		conteudoService.save(new Conteudo(conteudo));
-		return new Conteudo(conteudo);
-	}
+    @DeleteMapping("/questao/{id}")
+    @Operation(summary = "Permite apagar uma questão do sistema.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
+    public ResponseEntity<QuestaoOutput> deleteQuestao(@RequestAttribute(name = "usuario") Usuario usuario,
+            @PathVariable("id") String id) {
+        Questao questao = questaoService.getById(id);
+        validateUserAuthorization(usuario, questao);
+        validateQuestaoState(questao, EstadoQuestao.RASCUNHO, "Apenas questões rascunho podem ser removidas");
 
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Conteudo.class) })
-	@RequestMapping(value = "/conteudo", method = RequestMethod.GET)
-	public ResponseEntity<List<String>> getAllConteudo() throws IOException {
-		List<String> l = new ArrayList<>();
-		for (Conteudo conteudoItem : conteudoService.getAll()) {
-			if (!conteudoItem.getNome().equals("Outros"))
-				l.add(conteudoItem.getNome());
-		}
-		l.add("Outros");
+        Questao deletedQuestao = questaoService.delete(id);
+        return ResponseEntity.ok(convertToDto(deletedQuestao, usuario, false));
+    }
 
-		return new ResponseEntity<List<String>>(l, HttpStatus.OK);
-	}
+    @PutMapping("/questao/{id}")
+    @Operation(summary = "Permite atualizar uma questão do sistema.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
+    public ResponseEntity<QuestaoOutput> updateQuestao(@PathVariable("id") String id,
+            @RequestAttribute(name = "usuario") Usuario usuario, @RequestBody QuestaoInput questaoInput)
+            throws IOException {
+        Questao oldQuestao = questaoService.getById(id);
+        validateQuestaoState(oldQuestao, EstadoQuestao.RASCUNHO, "Uma questão definitiva não pode ser mais alterada");
 
-	@ApiOperation("Permite apagar uma questão do sistema.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<QuestaoOutput> delete(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id) {
-		Questao questao = questaoService.getById(id);
-		if (!questao.getAutor().equals(usuario.getEmail())) {
-			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
-		}
-		if (!questao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
-			throw new PermissionDeniedException("Apenas questões rascunho podem ser removidas");
-		}
-		questao = questaoService.delete(id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
-	}
+        Questao updatedQuestao = questaoService.update(QuestaoIO.toEntity(questaoInput, usuario.getEmail()), id);
+        return ResponseEntity.ok(convertToDto(updatedQuestao, usuario, false));
+    }
 
-	@ApiOperation("Permite atualizar uma questão do sistema. Requer que o corpo do request contenha um objeto com os atributos de uma questão subjetiva.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<QuestaoOutput> update(@PathVariable("id") String id, @RequestAttribute(name="usuario") Usuario usuario, @RequestBody QuestaoInput questao) throws IOException {
-		Questao q = QuestaoIO.convert(questao, usuario.getEmail());
-		q.setQtdAvaliacoes(1);
-		Questao oldQuestion = questaoService.getById(id);
-		if (!oldQuestion.getEstado().equals(EstadoQuestao.RASCUNHO)) {
-			throw new PermissionDeniedException("Uma questão definitiva não pode ser mais alterada");
-		}
-		Questao updatedQuestao = questaoService.update(q, id);
+    @PostMapping("/competencias")
+    @Operation(summary = "Retorna a(s) competência(s) para o enunciado.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = CompetenciaType.class)))
+    })
+    public Set<CompetenciaType> getCompetencias(@RequestBody String enunciado) throws IOException {
+        return questaoService.getSetCompetencias(enunciado);
+    }
 
+    @GetMapping("/questao/pendente")
+    @Operation(summary = "Fornece uma questão pendente de avaliação para o usuário.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = Questao.class)))
+    })
+    public QuestaoOutput getPendente(@RequestAttribute(name = "usuario") Usuario usuario) throws IOException {
+        return convertToDto(questaoService.getPendente(usuario), usuario, false);
+    }
 
-		return new ResponseEntity<QuestaoOutput>(convert(updatedQuestao, usuario, false), HttpStatus.OK);
-	}
+    @GetMapping("/questao/avaliada")
+    @Operation(summary = "Fornece uma questão pendente de aprovação para publicação para o usuário.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
+    public QuestaoOutput getAvaliada(@RequestAttribute(name = "usuario") Usuario usuario) {
+        return convertToDto(questaoService.getAvaliada(), usuario, true);
+    }
 
+    @PutMapping("/questao/publish/{id}")
+    @Operation(summary = "Permite enviar questão para avaliação.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
+    public ResponseEntity<QuestaoOutput> publishQuestao(@RequestAttribute(name = "usuario") Usuario usuario,
+            @PathVariable("id") String id) throws IOException {
+        Questao questao = questaoService.getById(id);
+        validateUserAuthorization(usuario, questao);
+        validateQuestaoState(questao, EstadoQuestao.RASCUNHO, "Apenas questões rascunho podem ser publicadas");
 
-	@ApiOperation("Retorna a(s) competência(s) para o enunciado.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK") })
-	@RequestMapping(value = "/competencias", method = RequestMethod.POST)
-	public Set<CompetenciaType> getSetCompetencias(@RequestBody String enunciado) throws IOException {
-		return questaoService.getSetCompetencias(enunciado);
-	}
+        questao.setEstado(EstadoQuestao.PEND_AVALIACAO);
+        Questao publishedQuestao = questaoService.update(questao, id);
+        return ResponseEntity.ok(convertToDto(publishedQuestao, usuario, false));
+    }
 
-	@ApiOperation("Fornece uma questão pendente de avaliação para o usuário.\r\n" + "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/pendente/", method = RequestMethod.GET)
-	public QuestaoOutput getPendente(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
-		return convert(questaoService.getPendente(usuario), usuario, false);
-	}
-
-	@ApiOperation("Fornece uma questão pendente de aprovação para publicação para o usuário.\r\n" + "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/avaliada/", method = RequestMethod.GET)
-	public QuestaoOutput getAvaliada(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
-		return convert(questaoService.getAvaliada(), usuario, true);
-	}
-
-	@ApiOperation("Permite enviar questão para avaliação.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/publish/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<QuestaoOutput> publish(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id) throws IOException {
-		Questao questao = questaoService.getById(id);
-		if (!questao.getAutor().equals(usuario.getEmail())) {
-			throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
-		}
-		if (!questao.getEstado().equals(EstadoQuestao.RASCUNHO)) {
-			throw new PermissionDeniedException("Apenas questões rascunho podem ser publicadas");
-		}
-		questao.setEstado(EstadoQuestao.PEND_AVALIACAO);
-		questao = questaoService.update(questao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
-	}
-
-	@ApiOperation("Aprovar questão já avaliada.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/aprove/{id}", method = RequestMethod.PUT)
+    @PutMapping("/questao/aprove/{id}")
+    @Operation(summary = "Aprova uma questão já avaliada.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
 	public ResponseEntity<QuestaoOutput> aprovarQuestao(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id, @RequestBody QuestaoInput novaQuestaoInput) throws IOException {
 		Questao questao = questaoService.getById(id);
-		Questao novaQuestao = QuestaoIO.convert(novaQuestaoInput, questao.getAutor());
+		Questao novaQuestao = QuestaoIO.toEntity(novaQuestaoInput, questao.getAutor());
 
 		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
 			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode aprovar/reprovar uma questão");
@@ -188,12 +171,13 @@ public class QuestaoController {
 		}
 		novaQuestao.setEstado(EstadoQuestao.PUBLICADA);
 		questao = questaoService.update(novaQuestao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
+		return ResponseEntity.ok(convertToDto(questao, usuario, false));
 	}
 
-	@ApiOperation("Rejeitar questão já avaliada.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/questao/reject/{id}", method = RequestMethod.PUT)
+	@PutMapping("/questao/reject/{id}")
+    @Operation(summary = "Permite rejeitar questão já avaliada.", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
 	public ResponseEntity<QuestaoOutput> rejeitarQuestao(@RequestAttribute(name="usuario") Usuario usuario, @PathVariable("id") String id) throws IOException {
 		Questao questao = questaoService.getById(id);
 		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
@@ -204,16 +188,29 @@ public class QuestaoController {
 		}
 		questao.setEstado(EstadoQuestao.REJEITADA);
 		questao = questaoService.update(questao, id);
-		return new ResponseEntity<QuestaoOutput>(convert(questao, usuario, false), HttpStatus.OK);
+		return ResponseEntity.ok(convertToDto(questao, usuario, false));
 	}
 
-	@ApiOperation("Atualizar competenciaClassificador questão já avaliada.")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Questao.class) })
-	@RequestMapping(value = "/updateClassificador", method = RequestMethod.GET)
+	@GetMapping("/updateClassificador")
+    @Operation(summary = "Atualiza competenciaClassificador questão já avaliada", responses = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(schema = @Schema(implementation = QuestaoOutput.class)))
+    })
 	public ResponseEntity<Boolean> updateCompetencias(@RequestAttribute(name="usuario") Usuario usuario) throws IOException {
 		if (!usuario.getPermissoes().contains(PermissaoType.JUDGE)) {
 			throw new PermissionDeniedException("Apenas um usuário com permissão de juiz pode atualizar a classificação automática das questões");
 		}
-		return new ResponseEntity<Boolean>(questaoService.updateClassificador(), HttpStatus.OK);
+		return ResponseEntity.ok(questaoService.updateClassificador());
 	}
+
+    private void validateUserAuthorization(Usuario usuario, Questao questao) {
+        if (!questao.getAutor().equals(usuario.getEmail())) {
+            throw new PermissionDeniedException("A questão é de propriedade de outro usuário");
+        }
+    }
+
+    private void validateQuestaoState(Questao questao, EstadoQuestao estado, String errorMessage) {
+        if (!questao.getEstado().equals(estado)) {
+            throw new IllegalStateException(errorMessage);
+        }
+    }
 }

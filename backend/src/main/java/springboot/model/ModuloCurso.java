@@ -3,18 +3,23 @@ package springboot.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe que representa um módulo de curso, com seu estado, questões associadas
+ * e erros.
+ */
 public class ModuloCurso {
 
     private String nome;
-
     private EstadoModulo estado;
+    private int erros;
+    private List<String> questoes; // IDs das questões
+    private int numeroExemplo; // Video de exemplo atual (pode não existir)
 
-    private Integer erros;
-
-    private List<String> questoes; // Questões que foram carregadas para receber resposta
-
-    private int numeroExemplo; //Indica qual é o video de exemplo atual
-
+    /**
+     * Construtor para inicializar o módulo do curso com um nome.
+     * 
+     * @param nome O nome do módulo.
+     */
     public ModuloCurso(String nome) {
         this.nome = nome;
         this.estado = EstadoModulo.DESCRICAO;
@@ -39,24 +44,20 @@ public class ModuloCurso {
         this.estado = estado;
     }
 
-    public Integer getErros() {
+    public int getErros() {
         return erros;
     }
 
-    public void setErros(Integer erros) {
-        this.erros = erros;
-    }
-
-    public void addErro() {
+    public void incrementarErros() {
         this.erros++;
     }
 
-    public void zeraErros() {
+    public void resetarErros() {
         this.erros = 0;
     }
 
     public List<String> getQuestoes() {
-        return questoes;
+        return new ArrayList<>(questoes);
     }
 
     public void setQuestoes(List<String> questoes) {
@@ -76,6 +77,6 @@ public class ModuloCurso {
         DESCRICAO,
         EXEMPLOS,
         PRATICA,
-        FINALIZADO;
+        FINALIZADO
     }
 }

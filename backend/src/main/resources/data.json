@@ -165,13 +165,13 @@
     "cursoAvaliacao": {
       "video": "",
       "descricao": "",
-      "exemplos": [],
+      "videoExemplos": [],
       "textoExemplos": []
     },
     "cursoCriacao": {
       "video": "",
       "descricao": "",
-      "exemplos": [],
+      "videoExemplos": [],
       "textoExemplos": []
     }
   },
@@ -181,7 +181,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -195,7 +195,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -213,7 +213,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -227,7 +227,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -244,7 +244,7 @@
     "nome": "COMP_ANÁLISE",
     "cursoAvaliacao": {
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -258,7 +258,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -276,7 +276,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -290,7 +290,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -308,7 +308,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -322,7 +322,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -340,7 +340,7 @@
     "cursoAvaliacao": {
       "video": "",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -354,7 +354,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -372,7 +372,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -386,7 +386,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -404,7 +404,7 @@
     "cursoAvaliacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -418,7 +418,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -436,7 +436,7 @@
     "cursoAvaliacao": {
       "video": null,
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"
@@ -450,7 +450,7 @@
     "cursoCriacao": {
       "video": "https://www.youtube.com/embed/qbnTZCj0ugI?enablejsapi=1",
       "descricao": "<p>Texto de exemplo, que pode ser substituído por qualquer texto feito no editor do quill</p>",
-      "exemplos": [
+      "videoExemplos": [
         "https://www.youtube.com/embed/qpxLusH4quY?enablejsapi=1",
         "https://www.youtube.com/embed/mUXo-S7gzds?enablejsapi=1",
         "https://www.youtube.com/embed/6hfOvs8pY1k?enablejsapi=1"

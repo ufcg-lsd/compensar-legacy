@@ -1,8 +1,5 @@
 package springboot.dto.output;
 
-import springboot.model.ModuloCurso;
-import springboot.model.Questao;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class CursoOutput {
 
     public CursoOutput() {
         this.cursoAvaliacao = new ArrayList<>();
-        this.cursoCriacao = cursoCriacao;
+        this.cursoCriacao = new ArrayList<>();
     }
 
     public String getMensagem() {

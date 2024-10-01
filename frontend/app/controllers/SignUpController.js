@@ -14,7 +14,7 @@ angular.module('app')
                 nomeInstituicao: $scope.nomeInstituicao
             };
 
-            $http.post(host + 'auth/signup/', usuario, AuthService.getAuthorization()).
+            $http.post(host + 'auth/signup', usuario, AuthService.getAuthorization()).
                 then(function () {
                     Notification.success("Cadastro efetuado com Sucesso!");
                     $rootScope.registered = true;

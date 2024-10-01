@@ -1,9 +1,6 @@
 package springboot.dto.output;
 
-import springboot.model.ListaQuestoes;
 import springboot.model.Questao;
-import springboot.model.Usuario;
-
 import java.util.List;
 
 public class ListaQuestoesOutput {

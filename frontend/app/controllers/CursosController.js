@@ -217,7 +217,7 @@ angular.module('app')
         $scope.nextStepAvaliacao = () => {
             if ($scope.estadoAtual.modulo === $scope.progressoAvaliacao.modulo && $scope.estadoAtual.estado === $scope.progressoAvaliacao.estado) {
                 $rootScope.loading = true;
-                $http.post(host + 'cursoAvaliacao/', $scope.progressoAvaliacao.respostas, AuthService.getAuthorization()).then(
+                $http.post(host + 'cursoAvaliacao', $scope.progressoAvaliacao.respostas, AuthService.getAuthorization()).then(
                     response => {
                         $rootScope.loading = false;
                         if (response.data.mensagem) {
@@ -322,7 +322,7 @@ angular.module('app')
         $scope.nextStepCriacao = () => {
             if ($scope.estadoAtual.modulo === $scope.progressoCriacao.modulo && $scope.estadoAtual.estado === $scope.progressoCriacao.estado) {
                 $rootScope.loading = true;
-                $http.post(host + 'cursoCriacao/', $scope.progressoCriacao.respostas, AuthService.getAuthorization()).then(
+                $http.post(host + 'cursoCriacao', $scope.progressoCriacao.respostas, AuthService.getAuthorization()).then(
                     response => {
                         $rootScope.loading = false;
                         if (response.data.mensagem) {
@@ -390,7 +390,7 @@ angular.module('app')
         }
 
         $scope.getCursos = () => {
-            $http.get(host + 'cursos/', AuthService.getAuthorization()).then(
+            $http.get(host + 'cursos', AuthService.getAuthorization()).then(
             response => {
                 $scope.populaDadosAvaliacao(response.data.cursoAvaliacao, false, true);
                 $scope.populaDadosCriacao(response.data.cursoCriacao, false, true);

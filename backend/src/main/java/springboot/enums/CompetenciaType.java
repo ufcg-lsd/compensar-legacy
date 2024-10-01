@@ -10,14 +10,11 @@ public enum CompetenciaType {
 	COMP_SIMULAÇÃO("simulation"),
 	COMP_AUTOMAÇÃO("automation"),
 	COMP_ALGORITMOS("algorithms");
-	
-	
+
 	public final String value;
 
 	CompetenciaType(final String value) {
-	    this.value = value;
-	 }
+		this.value = value;
+	}
 
-
-	
 }

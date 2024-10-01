@@ -1,7 +1,7 @@
 package springboot.aepcinitializr;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,7 +24,7 @@ public class UsuarioControllerTest extends AepcApplicationTests {
 	private Usuario usuario;
 	private Usuario usuarioUpdated;
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(usuarioController).build();
 		this.usuario = new Usuario("marcelo", 19, "UFCG", "Aluno", "Remígio", "marcelo@gmail.com", true);
@@ -33,18 +33,31 @@ public class UsuarioControllerTest extends AepcApplicationTests {
 	}
 
 	@Test
-	public void testGETAllUsuario() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.get("/api/usuario"))
-				.andExpect(MockMvcResultMatchers.status().isOk());
+	public void testGETUsuario() throws Exception {
+	    this.mockMvc.perform(MockMvcRequestBuilders.get("/api/usuario")
+	            .requestAttr("usuario", this.usuario)  // Simulando o usuário logado
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
 	@Test
-	public void testPOSTUsuario() throws Exception {
-		this.mockMvc
-				.perform(MockMvcRequestBuilders.post("/api/usuario").content(asJsonString(this.usuario))
-						.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON))
-				.andExpect(MockMvcResultMatchers.status().isOk());
+	public void testGETAllUsuario() throws Exception {
+	    this.mockMvc.perform(MockMvcRequestBuilders.get("/api/usuario/all")
+	            .accept(MediaType.APPLICATION_JSON))
+	            .andExpect(MockMvcResultMatchers.status().isOk());
 	}
+
+	// TODO: Comentado pois essa função não existe
+	// @Test
+	// public void testPOSTUsuario() throws Exception {
+	//     this.mockMvc.perform(MockMvcRequestBuilders.post("/api/usuario")
+	//             .content(asJsonString(this.usuario)) 
+	//             .contentType(MediaType.APPLICATION_JSON)
+	//             .accept(MediaType.APPLICATION_JSON)
+	//             .requestAttr("usuario", this.usuario)) // Simulando o usuário logado
+	//             .andExpect(MockMvcResultMatchers.status().isOk());
+	// }
+
 
 	public static String asJsonString(final Object obj) {
 		try {
@@ -56,11 +69,11 @@ public class UsuarioControllerTest extends AepcApplicationTests {
 		}
 	}
 
-	@Test
-	public void testDELETEUsuario() throws Exception {
-		this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/usuario/" + this.usuario.getEmail())
-				.contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
-	}
+	 @Test
+	 public void testDELETEUsuario() throws Exception {
+	 	this.mockMvc.perform(MockMvcRequestBuilders.delete("/api/usuario/" + this.usuario.getEmail())
+	 			.contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+	 }
 
 	@Test
 	public void testGETQuestaoUsuarioById() throws Exception {
@@ -72,9 +85,12 @@ public class UsuarioControllerTest extends AepcApplicationTests {
 
 	@Test
 	public void testPUTUsuario() throws Exception {
-		String body = (new ObjectMapper()).valueToTree(usuarioUpdated).toString();
-		this.mockMvc.perform(MockMvcRequestBuilders.put("/api/usuario/" + this.usuario.getEmail()).content(body)
-				.contentType(MediaType.APPLICATION_JSON)).andExpect(MockMvcResultMatchers.status().isOk());
+		String body = asJsonString(usuarioUpdated);
+		this.mockMvc.perform(MockMvcRequestBuilders.put("/api/usuario")
+				.requestAttr("usuario", this.usuario)
+				.content(body)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
 }

@@ -233,25 +233,26 @@ angular.module('app')
             } else {
                 $scope.alertEspelho = false;
                 document.querySelector(".ql-editor").contentEditable = false;
-                $scope.getCompetencias().then((response) => {
-                    if(response.status === 200) {
-                        let tmp = $sce.trustAsHtml($scope.enunciado);
-                        $rootScope.avaliacao.maisInfo = {
-                            "COMP_ABSTRAÇÃO": tmp,
-                            "COMP_ALGORITMOS": tmp,
-                            "COMP_ANÁLISE": tmp,
-                            "COMP_AUTOMAÇÃO": tmp,
-                            "COMP_COLETA": tmp,
-                            "COMP_DECOMPOSIÇÃO": tmp,
-                            "COMP_PARALELIZAÇÃO": tmp,
-                            "COMP_REPRESENTAÇÃO": tmp,
-                            "COMP_SIMULAÇÃO": tmp
-                        };
+                // TODO: Comentei este trecho pra que funcione a criação de questões já que o classificador está off
+                // $scope.getCompetencias().then((response) => {
+                //     if(response.status === 200) {
+                //         let tmp = $sce.trustAsHtml($scope.enunciado);
+                //         $rootScope.avaliacao.maisInfo = {
+                //             "COMP_ABSTRAÇÃO": tmp,
+                //             "COMP_ALGORITMOS": tmp,
+                //             "COMP_ANÁLISE": tmp,
+                //             "COMP_AUTOMAÇÃO": tmp,
+                //             "COMP_COLETA": tmp,
+                //             "COMP_DECOMPOSIÇÃO": tmp,
+                //             "COMP_PARALELIZAÇÃO": tmp,
+                //             "COMP_REPRESENTAÇÃO": tmp,
+                //             "COMP_SIMULAÇÃO": tmp
+                //         };
                         $scope.nextStep();
-                    } else {
-                        document.querySelector(".ql-editor").contentEditable = true;
-                    }
-                });
+                //     } else {
+                //         document.querySelector(".ql-editor").contentEditable = true;
+                //     }
+                // });
             }
         }
 

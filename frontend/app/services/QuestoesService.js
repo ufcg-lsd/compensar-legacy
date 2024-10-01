@@ -24,32 +24,43 @@ angular.module('app')
    },
 
 
-   service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
-    let estados =  query.estados.length === 0 ? ' ' : query.estados.join(",");
-    let competencias =  query.competencias.length === 0 ? ' ' : query.competencias.join(",");
-    let conteudo =  query.conteudo.length === 0 ? ' ' : query.conteudo.join(",");
-    return $http.get(host + 'questao/' + ((apenasAutor) ? 'searchMy/' : 'search/') + query.enunciado + '/' + competencias + '/' + ((apenasAutor) ? estados + '/' : '')
-    + ((apenasAutor) ? '' : query.autor + '/') + query.fonte + '/' + query.tipo + '/' + conteudo + '/' + pageNumber + '/' + usersPerPage, AuthService.getAuthorization()).
-      then(function (response) {
+service.sendQuery = function (query, pageNumber, usersPerPage, apenasAutor) {
+    let estados = query.estados.length === 0 ? '' : query.estados.join(",");
+    let competencias = query.competencias.length === 0 ? '' : query.competencias.join(",");
+    let conteudo = query.conteudo.length === 0 ? '' : query.conteudo.join(",");
+    console.log(apenasAutor)
+
+    // Construção da URL com parâmetros query (em vez de path parameters)
+    let url = host + (apenasAutor ? 'questao/searchMy?' : 'questao/search?') +
+              'enunciado=' + encodeURIComponent(query.enunciado || 'null') + 
+              '&competencias=' + encodeURIComponent(competencias) +
+              (apenasAutor ? '&estados=' + encodeURIComponent(estados) : '') +
+              '&autor=' + encodeURIComponent(apenasAutor ? '' : query.autor || 'null') +
+              '&fonte=' + encodeURIComponent(query.fonte || 'null') +
+              '&tipo=' + encodeURIComponent(query.tipo || 'null') +
+              '&conteudo=' + encodeURIComponent(conteudo) +
+              '&page=' + pageNumber +
+              '&size=' + usersPerPage;
+
+    return $http.get(url, AuthService.getAuthorization())
+      .then(function (response) {
         $rootScope.Questoes = response.data.content;
         $rootScope.totalQuestoes = response.data.totalElements;
         $rootScope.pageNumber = response.data.number;
         $rootScope.totalPags = response.data.totalPages;
         $rootScope.loading = false;
 
-
         if (query.enunciado !== "") $rootScope.adicionaMarcadores(query.enunciado);
 
-
         return response;
-     
       }, function (err) {
         if (err.status == 400) {
           $rootScope.forceSignOut();
         }
         return err;
       });
-   },
+};
+
 
 
   
@@ -248,7 +259,7 @@ service.getCompetencias = function (enunciado) {
 }
 
 service.getQuestaoPendente = function() {
-  return $http.get(host + 'questao/pendente/', AuthService.getAuthorization())
+  return $http.get(host + 'questao/pendente', AuthService.getAuthorization())
   .then(function(response) {
     $rootScope.questaoSobAvaliacao = response.data;
     $rootScope.questaoSobAvaliacao.enunciado = $sce.trustAsHtml($rootScope.questaoSobAvaliacao.enunciado);
@@ -264,7 +275,7 @@ service.getQuestaoPendente = function() {
 }
 
 service.getQuestaoAvaliada = function() {
-  return $http.get(host + 'questao/avaliada/', AuthService.getAuthorization())
+  return $http.get(host + 'questao/avaliada', AuthService.getAuthorization())
   .then(function(response) {
     return response;
   }, function(err) {

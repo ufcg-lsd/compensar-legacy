@@ -1,8 +1,6 @@
 package springboot.dto.output;
 
 import springboot.model.ModuloCurso;
-import springboot.model.Questao;
-
 import java.util.ArrayList;
 import java.util.List;
 
