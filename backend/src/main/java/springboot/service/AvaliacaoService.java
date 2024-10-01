@@ -11,49 +11,39 @@ import springboot.model.Avaliacao;
 import springboot.repository.AvaliacaoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AvaliacaoService {
-
-    private final String errorMessage = "Avaliação não está cadastrada.";
-
     @Autowired
-    public AvaliacaoRepository avaliacaoRepository;
+    private AvaliacaoRepository avaliacaoRepository;
+
+    private static final String ERROR_MESSAGE = "Avaliação não está cadastrada.";
+
+    public AvaliacaoService() {
+    }
+
+    public AvaliacaoService(AvaliacaoRepository avaliacaoRepository) {
+        this.avaliacaoRepository = avaliacaoRepository;
+    }
 
     public Avaliacao save(Avaliacao avaliacao) {
-        avaliacaoRepository.save(avaliacao);
-        return avaliacao;
+        return avaliacaoRepository.save(avaliacao);
     }
 
     public Avaliacao update(Avaliacao avaliacao, String id) {
-        Optional<Avaliacao> optAvaliacao = avaliacaoRepository.findById(id);
+        Avaliacao existingAvaliacao = findAvaliacaoById(id);
 
-        if (!optAvaliacao.isPresent()) {
-            throw new RegisterNotFoundException(errorMessage);
-        }
-
-        avaliacao.setId(id);
-
-        if (!avaliacao.getAutor().equals(optAvaliacao.get().getAutor())) {
+        if (!avaliacao.getAutor().equals(existingAvaliacao.getAutor())) {
             throw new PermissionDeniedException("A avaliação foi criada por outro usuário.");
         }
 
-        avaliacaoRepository.save(avaliacao);
-
-        return avaliacao;
+        avaliacao.setId(id);
+        return avaliacaoRepository.save(avaliacao);
     }
 
     public Avaliacao delete(String id) {
-        Optional<Avaliacao> optAvaliacao = avaliacaoRepository.findById(id);
-
-        if (!optAvaliacao.isPresent()) {
-            throw new RegisterNotFoundException(errorMessage);
-        }
-
-        Avaliacao avaliacao = optAvaliacao.get();
+        Avaliacao avaliacao = findAvaliacaoById(id);
         avaliacaoRepository.delete(avaliacao);
-
         return avaliacao;
     }
 
@@ -63,18 +53,15 @@ public class AvaliacaoService {
     }
 
     public Avaliacao getById(String id) {
-        Optional<Avaliacao> optAvaliacao = avaliacaoRepository.findById(id);
-
-        if (!optAvaliacao.isPresent()) {
-            throw new RegisterNotFoundException(errorMessage);
-        }
-
-        return optAvaliacao.get();
+        return findAvaliacaoById(id);
     }
 
     public List<Avaliacao> getAllByQuestao(String questao) {
         return avaliacaoRepository.getAllByQuestao(questao);
     }
 
-
+    private Avaliacao findAvaliacaoById(String id) {
+        return avaliacaoRepository.findById(id)
+                .orElseThrow(() -> new RegisterNotFoundException(ERROR_MESSAGE));
+    }
 }

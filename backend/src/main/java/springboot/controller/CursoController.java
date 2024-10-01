@@ -5,12 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
-import org.springframework.http.MediaType;
 import springboot.dto.output.CursoOutput;
 import springboot.dto.output.ModuloCursoOutput;
 import springboot.enums.CourseType;
@@ -26,9 +27,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api")
-@CrossOrigin(origins = "+")
-@Api(value = "UsuariosControllerAPI", produces = MediaType.APPLICATION_JSON_VALUE)
-
+@CrossOrigin(origins = "*")
+@Tag(name = "CursoController", description = "API para gerenciar cursos")
 public class CursoController {
     public static final String COMP_NAMES[] = new String[] {
             "COMP_ABSTRAÇÃO",
@@ -57,9 +57,11 @@ public class CursoController {
      * @param user Usuário logado no sistema, injetado pelo framework.
      * @return ResponseEntity contendo o estado atual do curso de avaliação.
      */
-    @ApiOperation("Permite pegar a tela atual do usuário no curso de avaliação.\r\n")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-    @RequestMapping(value = "/cursoAvaliacao/", method = RequestMethod.GET)
+    @Operation(summary = "Retorna a tela atual do usuário no curso de avaliação.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class)))
+    })
+    @GetMapping(value = "/cursoAvaliacao")
     public ResponseEntity<CursoOutput> getReviewCourse(@RequestAttribute(name = "usuario") Usuario user) {
         return cursoService.auxCursoAvaliacoes(user, null);
     }
@@ -75,9 +77,11 @@ public class CursoController {
      * @return Um ResponseEntity contendo o CursoOutput atualizado e status HTTP de
      *         sucesso.
      */
-    @ApiOperation("Cria novos cursos para o usuário logado.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-    @GetMapping(value = "/cursos/")
+    @Operation(summary = "Cria novos cursos para o usuário logado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class)))
+    })
+    @GetMapping(value = "/cursos")
     public ResponseEntity<CursoOutput> newCourses(@RequestAttribute(name = "usuario") Usuario user) {
         try {
             if (cursoService.isCourseListEmpty(user.getCursoAvaliacao()))
@@ -91,7 +95,7 @@ public class CursoController {
             List<ModuloCursoOutput> cursoCriacao = cursoService.processModules(user.getCursoCriacao(),
                     CourseType.CRIACAO, user);
 
-            user = usuarioService.update(user, user.getEmail());
+            usuarioService.update(user, user.getEmail());
 
             CursoOutput moduleStats = new CursoOutput(null, cursoAvaliacao, cursoCriacao);
 
@@ -109,14 +113,17 @@ public class CursoController {
      * @param answers Lista de respostas fornecidas pelo usuário.
      * @return ResponseEntity contendo o resultado da operação.
      */
-    @ApiOperation("Avança no curso de avaliação para o usuário logado.\r\n")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-    @RequestMapping(value = "/cursoAvaliacao/", method = RequestMethod.POST)
+    @Operation(summary = "Avança no curso de avaliação para o usuário logado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class)))
+    })
+    @PostMapping(value = "/cursoAvaliacao")
     public ResponseEntity<CursoOutput> advanceReviewCourse(@RequestAttribute(name = "usuario") Usuario user,
             @RequestBody List<Boolean> answers) {
 
-        if (cursoService.isCourseListEmpty(user.getCursoAvaliacao()))
-            return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
+        if (cursoService.isCourseListEmpty(user.getCursoAvaliacao())) {
+            return new ResponseEntity<>(new CursoOutput(), HttpStatus.NOT_FOUND);
+        }
 
         String message = null;
 
@@ -142,12 +149,12 @@ public class CursoController {
      * @return ResponseEntity contendo o estado atual do curso de criação
      *         ou um erro caso ocorra alguma falha.
      */
-    @ApiOperation("Obtém a tela atual do usuário no curso de criação de questões.")
+    @Operation(summary = "Obtém a tela atual do usuário no curso de criação de questões.")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "OK", response = CursoOutput.class),
-            @ApiResponse(code = 404, message = "Curso de criação de questões não encontrado", response = CursoOutput.class)
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class))),
+            @ApiResponse(responseCode = "404", description = "Curso de criação de questões não encontrado", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class)))
     })
-    @GetMapping("/cursoCriacao/")
+    @GetMapping("/cursoCriacao")
     public ResponseEntity<CursoOutput> getCreationCourse(@RequestAttribute(name = "usuario") Usuario user) {
         return cursoService.auxCursoCriacao(user, null);
     }
@@ -164,14 +171,17 @@ public class CursoController {
      * @param answers Lista de respostas fornecidas pelo usuário.
      * @return ResponseEntity com o resultado do avanço no curso de criação.
      */
-    @ApiOperation("Avança no curso de criação de questões para o usuário logado.\r\n")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-    @RequestMapping(value = "/cursoCriacao/", method = RequestMethod.POST)
+    @Operation(summary = "Avança no curso de criação de questões para o usuário logado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class)))
+    })
+    @PostMapping(value = "/cursoCriacao")
     public ResponseEntity<CursoOutput> advanceCreationCourse(@RequestAttribute(name = "usuario") Usuario user,
             @RequestBody List<String> answers) {
 
-        if (cursoService.isCourseListEmpty(user.getCursoCriacao()))
-            return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
+        if (cursoService.isCourseListEmpty(user.getCursoCriacao())) {
+            return new ResponseEntity<>(new CursoOutput(), HttpStatus.NOT_FOUND);
+        }
 
         String message = null;
 
@@ -199,14 +209,16 @@ public class CursoController {
      * @return ResponseEntity com o resultado do registro da questão no curso de
      *         criação.
      */
-    @ApiOperation("Registra uma nova questão criada na avaliação final do usuário logado.")
-    @ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Usuario.class) })
-    @RequestMapping(value = "/cursoCriacao/newQuestion", method = RequestMethod.POST)
+    @Operation(summary = "Registra uma nova questão criada na avaliação final do usuário logado.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(implementation = CursoOutput.class))),
+            @ApiResponse(responseCode = "404", description = "Questão não encontrada", content = @Content)
+    })
+    @PostMapping(value = "/cursoCriacao/newQuestion")
     public ResponseEntity<CursoOutput> registraCriacaoQuestao(
             @RequestAttribute(name = "usuario") Usuario user,
             @RequestBody String question) {
 
-        // Verifica se o curso de criação do usuário está presente e não está vazio.
         if (cursoService.isCourseListEmpty(user.getCursoCriacao())) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new CursoOutput());
         }
@@ -214,20 +226,14 @@ public class CursoController {
         String message = null;
 
         try {
-            // Verifica se a questão existe no sistema.
             questaoService.getById(question);
-
-            // Adiciona a questão ao módulo apropriado no curso de criação do usuário.
             user.getCursoCriacao().get(10).setQuestoes(Collections.singletonList(question));
             user = usuarioService.update(user, user.getEmail());
 
         } catch (RegisterNotFoundException e) {
-            // Define mensagem de erro caso a questão não seja encontrada.
             message = "A questão especificada não existe.";
         }
 
-        // Retorna o resultado do processamento do curso de criação.
         return cursoService.auxCursoCriacao(user, message);
     }
-
 }

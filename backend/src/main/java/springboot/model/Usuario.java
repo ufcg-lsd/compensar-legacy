@@ -1,12 +1,11 @@
 package springboot.model;
 
-
-import javax.validation.constraints.NotNull;
-
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.index.TextIndexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import springboot.enums.PermissaoType;
 
 import java.util.ArrayList;
@@ -15,44 +14,36 @@ import java.util.List;
 @Document(collection = "usuario")
 public class Usuario {
 
-    @NotNull
-    @TextIndexed
+	@NotBlank(message = "Nome não pode ser vazio")
 	private String nome;
-    
-    @NotNull
-    @TextIndexed
+
+	@NotNull(message = "Idade não pode ser nula")
 	private int idade;
 
-    @NotNull
-    @TextIndexed
+	@NotBlank(message = "Nome da instituição não pode ser vazio")
 	private String nomeInstituicao;
-    
-    @NotNull
-    @TextIndexed
+
+	@NotBlank(message = "Cargo não pode ser vazio")
 	private String cargo;
-    
-    @NotNull
-    @TextIndexed
+
+	@NotBlank(message = "Cidade não pode ser vazia")
 	private String cidade;
 
-    @NotNull
-    @TextIndexed
-	@Id	
+	@Id
+	@Email(message = "E-mail deve ser válido")
+	@NotBlank(message = "E-mail não pode ser vazio")
 	private String email;
 
-    @NotNull
-    @TextIndexed
 	private boolean ativo;
 
-	@NotNull
-	@TextIndexed
-	private List<PermissaoType> permissoes;
+	private List<PermissaoType> permissoes = new ArrayList<>();
 
-	private List<ModuloCurso> cursoAvaliacao;
+	private List<ModuloCurso> cursoAvaliacao = new ArrayList<>();
 
-	private List<ModuloCurso> cursoCriacao;
+	private List<ModuloCurso> cursoCriacao = new ArrayList<>();
 
-	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email, boolean ativo) {
+	public Usuario(String nome, int idade, String nomeInstituicao, String cargo, String cidade, String email,
+			boolean ativo) {
 		this.nome = nome;
 		this.idade = idade;
 		this.nomeInstituicao = nomeInstituicao;
@@ -60,18 +51,33 @@ public class Usuario {
 		this.cidade = cidade;
 		this.email = email;
 		this.ativo = ativo;
-		this.permissoes = new ArrayList<>();
-		if (email.equals("joao.luciano@ccc.ufcg.edu.br") || email.equals("aepc.lacina@gmail.com")) {
-			permissoes.add(PermissaoType.ADMIN);
-			permissoes.add(PermissaoType.JUDGE);
-		}
-		this.cursoAvaliacao = new ArrayList<>();
-		this.cursoCriacao = new ArrayList<>();
-
+		adicionarPermissoesPadrao(email);
 	}
 
 	public Usuario() {
 
+	}
+
+	public Usuario(boolean ativo, String cargo, String cidade, String email, int idade, String nome,
+			String nomeInstituicao) {
+		this.ativo = ativo;
+		this.cargo = cargo;
+		this.cidade = cidade;
+		this.email = email;
+		this.idade = idade;
+		this.nome = nome;
+		this.nomeInstituicao = nomeInstituicao;
+	}
+
+	private void adicionarPermissoesPadrao(String email) {
+		if (isEmailAdmin(email)) {
+			permissoes.add(PermissaoType.ADMIN);
+			permissoes.add(PermissaoType.JUDGE);
+		}
+	}
+
+	private boolean isEmailAdmin(String email) {
+		return "joao.luciano@ccc.ufcg.edu.br".equals(email) || "aepc.lacina@gmail.com".equals(email);
 	}
 
 	public String getNome() {
@@ -81,7 +87,7 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public int getIdade() {
 		return idade;
 	}
@@ -181,7 +187,7 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [nomeCompleto=" + nome + ", nomeInstituicao=" + nomeInstituicao + ", email=" + email + "]";
+		return "Usuario [nome=".concat(nome).concat(", nomeInstituicao=").concat(nomeInstituicao).concat(", email=")
+				.concat(email).concat("]");
 	}
-
 }

@@ -63,8 +63,7 @@ public class CursoService {
         for (int i = 0; i < modules.size() - 1; i++) {
             ModuloCurso module = modules.get(i);
 
-            @SuppressWarnings("unlikely-arg-type")
-            Curso course = courseType.equals("AVALIACAO")
+            Curso course = courseType.equals(CourseType.AVALIACAO)
                     ? competenciaRepository.findById(module.getNome()).get().getCursoAvaliacao()
                     : competenciaRepository.findById(module.getNome()).get().getCursoCriacao();
             ModuloCursoOutput moduleOutput = createCourseModuleOutput(module, course, courseType);
@@ -101,30 +100,25 @@ public class CursoService {
      * @param evaluationMod O módulo final de avaliação.
      * @return Um objeto `ModuloCursoOutput` com as informações do módulo final.
      */
-    @SuppressWarnings("unlikely-arg-type")
     private ModuloCursoOutput processFinalModule(ModuloCurso evaluationMod, CourseType type, Usuario user) {
         ModuloCursoOutput evaluationOutput = new ModuloCursoOutput();
         evaluationOutput.setNome(evaluationMod.getNome());
         evaluationOutput.setEstado(evaluationMod.getEstado());
 
         if (evaluationMod.getEstado().equals(EstadoModulo.PRATICA)) {
-            if (type.equals("CRIACAO")) {
-                if (evaluationMod.getQuestoes().size() > 0) {
-
+            if (type.equals(CourseType.CRIACAO)) {
+                if (!evaluationMod.getQuestoes().isEmpty()) {
                     try {
                         String question = evaluationMod.getQuestoes().get(0);
                         evaluationOutput.getQuestoesDetalhadas().add(questionSearchController.getById(user,
                                 question));
-
                         evaluationOutput.getQuestoes().add(question);
-
                     } catch (Exception e) {
                         user.getCursoCriacao().get(10).getQuestoes().clear();
                     }
                 }
             } else {
                 evaluationMod.setQuestoes(new ArrayList<>());
-
                 for (String comp : COMP_NAMES) {
                     Questao sample = questaoService.getSample(comp);
                     evaluationMod.getQuestoes().add(sample.getId());
@@ -153,17 +147,11 @@ public class CursoService {
         output.setVideo(course.getVideo());
 
         switch (module.getEstado()) {
-            case EXEMPLOS:
-                updateExamples(module, course, output);
-                break;
-            case PRATICA:
-                addPracticeDetails(module, course, output, courseType);
-                break;
-            case FINALIZADO:
-                addExamplesAndTexts(module, course, output);
-                break;
-            default:
-                break;
+            case EXEMPLOS -> updateExamples(module, course, output);
+            case PRATICA -> addPracticeDetails(module, course, output, courseType);
+            case FINALIZADO -> addExamplesAndTexts(course, output);
+            default -> {
+            }
         }
 
         return output;
@@ -177,9 +165,9 @@ public class CursoService {
      * @param output O objeto de saída a ser atualizado.
      */
     private void updateExamples(ModuloCurso module, Curso course, ModuloCursoOutput output) {
-        int index = (module.getNumeroExemplo() + 1) % course.getExemplos().size();
+        int index = (module.getNumeroExemplo() + 1) % course.getVideoExemplos().size();
         module.setNumeroExemplo(index);
-        output.getExemplos().add(course.getExemplos().get(index));
+        output.getExemplos().add(course.getVideoExemplos().get(index));
         output.getTextoExemplos().add(course.getTextoExemplos().get(index));
     }
 
@@ -191,8 +179,8 @@ public class CursoService {
      * @param output O objeto `ModuloCursoOutput` onde os exemplos e textos serão
      *               adicionados.
      */
-    private void addExamplesAndTexts(ModuloCurso module, Curso course, ModuloCursoOutput output) {
-        output.setExemplos(course.getExemplos());
+    private void addExamplesAndTexts(Curso course, ModuloCursoOutput output) {
+        output.setExemplos(course.getVideoExemplos());
         output.setTextoExemplos(course.getTextoExemplos());
     }
 
@@ -204,13 +192,12 @@ public class CursoService {
      * @param output     O objeto de saída a ser atualizado.
      * @param courseType O tipo de curso acessado.
      */
-    @SuppressWarnings("unlikely-arg-type")
     private void addPracticeDetails(ModuloCurso module, Curso course, ModuloCursoOutput output, CourseType courseType) {
         int index = module.getNumeroExemplo();
-        output.getExemplos().add(course.getExemplos().get(index));
+        output.getExemplos().add(course.getVideoExemplos().get(index));
         output.getTextoExemplos().add(course.getTextoExemplos().get(index));
 
-        if (courseType.equals("AVALIACAO")) {
+        if (courseType.equals(CourseType.AVALIACAO)) {
             List<Questao> samples = questaoService.getSamples(module.getNome());
 
             for (Questao q : samples) {
@@ -231,11 +218,11 @@ public class CursoService {
     public ResponseEntity<CursoOutput> auxCursoAvaliacoes(@RequestAttribute(name = "usuario") Usuario user,
             String message) {
         if (isCourseListEmpty(user.getCursoAvaliacao()))
-            return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CursoOutput(), HttpStatus.NOT_FOUND);
 
         List<ModuloCursoOutput> outputList = processModules(user.getCursoAvaliacao(), CourseType.AVALIACAO, user);
 
-        user = usuarioService.update(user, user.getEmail());
+        usuarioService.update(user, user.getEmail());
 
         return new ResponseEntity<>(new CursoOutput(message, outputList, null), HttpStatus.OK);
     }
@@ -295,13 +282,13 @@ public class CursoService {
     public ResponseEntity<CursoOutput> auxCursoCriacao(@RequestAttribute(name = "usuario") Usuario user,
             String message) {
         if (isCourseListEmpty(user.getCursoCriacao()))
-            return new ResponseEntity<CursoOutput>(new CursoOutput(), HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(new CursoOutput(), HttpStatus.NOT_FOUND);
 
         List<ModuloCursoOutput> outputList = processModules(user.getCursoCriacao(), CourseType.CRIACAO, user);
 
-        user = usuarioService.update(user, user.getEmail());
+        usuarioService.update(user, user.getEmail());
 
-        return new ResponseEntity<CursoOutput>(new CursoOutput(message, null, outputList), HttpStatus.OK);
+        return new ResponseEntity<>(new CursoOutput(message, null, outputList), HttpStatus.OK);
     }
 
     /**
@@ -318,18 +305,14 @@ public class CursoService {
         boolean sendToBack = false;
 
         switch (module.getEstado()) {
-            case DESCRICAO:
-                processStateDescription(module, index);
-                break;
-            case EXEMPLOS:
-                module.setEstado(EstadoModulo.PRATICA);
-                break;
-            case PRATICA:
+            case DESCRICAO -> processStateDescription(module, index);
+            case EXEMPLOS -> module.setEstado(EstadoModulo.PRATICA);
+            case PRATICA -> {
                 message = processStatePractice(user, answers, index, module);
                 sendToBack = checkNeedReturn(module);
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
 
         user.getCursoAvaliacao().set(index, module);
@@ -356,18 +339,14 @@ public class CursoService {
         String message = null;
 
         switch (module.getEstado()) {
-            case DESCRICAO:
-                processStateDescription(module, index);
-                break;
-            case EXEMPLOS:
-                module.setEstado(EstadoModulo.PRATICA);
-                break;
-            case PRATICA:
+            case DESCRICAO -> processStateDescription(module, index);
+            case EXEMPLOS -> module.setEstado(EstadoModulo.PRATICA);
+            case PRATICA -> {
                 message = processStatePractice(user, answers, module, index);
                 sendToBack = checkNeedReturn(module);
-                break;
-            default:
-                break;
+            }
+            default -> {
+            }
         }
 
         user.getCursoCriacao().set(index, module);
@@ -404,9 +383,8 @@ public class CursoService {
      * @return Mensagem de feedback para o usuário.
      */
     private String processStatePractice(Usuario user, List<Boolean> answers, int index, ModuloCurso module) {
-        String message = null;
-        int total = 0;
-        int errors = 0;
+        int total;
+        int errors;
 
         if (index == user.getCursoAvaliacao().size() - 1) {
             total = 9;
@@ -416,8 +394,7 @@ public class CursoService {
             errors = evaluateIntermediateResponses(answers, module, total);
         }
 
-        message = checkForErrors(user, module, total, errors, index);
-        return message;
+        return checkForErrors(user, module, total, errors, index);
     }
 
     /**
@@ -430,15 +407,10 @@ public class CursoService {
      * @return Mensagem de feedback para o usuário.
      */
     private String processStatePractice(Usuario user, List<String> answers, ModuloCurso module, int index) {
-        String message = null;
+        if (index != 10)
+            return evaluateCompetence(user, answers, module);
 
-        if (index != 10) {
-            message = evaluateCompetence(user, answers, module);
-        } else {
-            message = evaluateFinalQuestion(user, module);
-        }
-
-        return message;
+        return evaluateFinalQuestion(user, module);
     }
 
     /**
@@ -452,13 +424,12 @@ public class CursoService {
     private int evaluateFinalAnswers(List<Boolean> answers, ModuloCurso module, int total) {
         int errors = 0;
         if (answers == null || answers.size() != total) {
-            return total; // Erro total
+            return total;
         }
-        for (int j = 0; j < total; j++) {
-            if (!answers.get(j).equals(questaoService.evaluateQuestao(COMP_NAMES[j], module.getQuestoes().get(j)))) {
+        for (int j = 0; j < total; j++)
+            if (!answers.get(j).equals(questaoService.evaluateQuestao(COMP_NAMES[j], module.getQuestoes().get(j))))
                 errors++;
-            }
-        }
+
         return errors;
     }
 
@@ -495,7 +466,7 @@ public class CursoService {
 
         if (100 * errors <= total * 30) { // Erros <= 30%
             module.setEstado(EstadoModulo.FINALIZADO);
-            module.zeraErros();
+            module.resetarErros();
         } else if (index == user.getCursoAvaliacao().size() - 1) {
             message = "Você obteve menos de 70% de acerto, tente novamente ou volte e estude mais um pouco sobre as competências!";
         } else {
@@ -514,23 +485,25 @@ public class CursoService {
      */
     private String handleErrorModule(ModuloCurso module, String context) {
         String message;
-        module.addErro();
+        module.incrementarErros();
 
-        if (module.getErros() == 2) {
-            message = String.format(
-                    "Percebemos que você teve dificuldade %s, por isso deve voltar e ver mais um exemplo!",
-                    context.equals("Competencia") ? "com essa competência"
-                            : "em identificar a competência nas questões apresentadas");
-            module.setEstado(EstadoModulo.EXEMPLOS);
-        } else if (module.getErros() == 3) {
-            message = String.format(
-                    "Como você não conseguiu identificar bem %s, veja uma nova competência e depois tentaremos essa novamente!",
-                    context.equals("Competencia") ? "a competência"
-                            : "a presença ou ausência da competência nas questões apresentadas");
-            module.zeraErros();
-            module.setEstado(EstadoModulo.DESCRICAO);
-        } else {
-            message = String.format("%s, tente novamente!",
+        switch (module.getErros()) {
+            case 2 -> {
+                message = String.format(
+                        "Percebemos que você teve dificuldade %s, por isso deve voltar e ver mais um exemplo!",
+                        context.equals("Competencia") ? "com essa competência"
+                                : "em identificar a competência nas questões apresentadas");
+                module.setEstado(EstadoModulo.EXEMPLOS);
+            }
+            case 3 -> {
+                message = String.format(
+                        "Como você não conseguiu identificar bem %s, veja uma nova competência e depois tentaremos essa novamente!",
+                        context.equals("Competencia") ? "a competência"
+                                : "a presença ou ausência da competência nas questões apresentadas");
+                module.resetarErros();
+                module.setEstado(EstadoModulo.DESCRICAO);
+            }
+            default -> message = String.format("%s, tente novamente!",
                     context.equals("Competencia")
                             ? "Não conseguimos identificar a presença da competência atual no enunciado a presença da competência atual no enunciado"
                             : "Você não conseguiu identificar a presença ou ausência da competência nas questões apresentadas");
@@ -602,22 +575,18 @@ public class CursoService {
      * @return Mensagem de feedback para o usuário.
      */
     private String evaluateFinalQuestion(Usuario user, ModuloCurso module) {
-        String message = null;
-
         try {
             Questao question = questaoService.getById(module.getQuestoes().get(0));
-            if (!question.getAutor().equals(user.getEmail())) {
-                message = "A questão precisa ser de sua autoria!";
-            } else if (question.getEstado() != EstadoQuestao.PUBLICADA) {
-                message = "Você deve criar uma nova questão para prosseguir!";
-            } else {
-                message = validateEvaluationQuestion(user, question, module);
-            }
-        } catch (Exception e) {
-            message = "Você deve criar uma nova questão para prosseguir!";
-        }
+            if (!question.getAutor().equals(user.getEmail()))
+                return "A questão precisa ser de sua autoria!";
+            else if (question.getEstado() != EstadoQuestao.PUBLICADA)
+                return "Você deve criar uma nova questão para prosseguir!";
+            else
+                return validateEvaluationQuestion(user, question, module);
 
-        return message;
+        } catch (Exception e) {
+            return "Você deve criar uma nova questão para prosseguir!";
+        }
     }
 
     /**
@@ -640,7 +609,7 @@ public class CursoService {
                 message = handleErrorModule(module, "Competencia");
             } else {
                 module.setEstado(EstadoModulo.FINALIZADO);
-                module.zeraErros();
+                module.resetarErros();
             }
         } catch (Exception e) {
             message = "Problema interno ao classificar questão, tente novamente!";

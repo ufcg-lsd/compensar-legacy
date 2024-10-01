@@ -42,10 +42,10 @@ angular.module('app')
         $location.path("/login");
         return;
       }
-      $http.get(host + 'auth/authenticate/', service.getAuthorization())
+      $http.get(host + 'auth/authenticate', service.getAuthorization())
         .then(function () {
           $rootScope.registered = true;
-          $http.get(host + 'usuario/', service.getAuthorization()).
+          $http.get(host + 'usuario', service.getAuthorization()).
             then(function (response) {
     
                 $rootScope.instituicao_usuario = response.data.nomeInstituicao,

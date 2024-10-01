@@ -1,57 +1,64 @@
 package springboot.dto.input;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.Optional;
 
-public class UsuarioInput {
+/**
+ * DTO para representar a entrada de dados de um usuário.
+ */
+public final class UsuarioInput {
 
     @JsonProperty("cargo")
-    String cargo;
+    private final String cargo;
 
     @JsonProperty("cidade")
-    String cidade;
+    private final String cidade;
 
     @JsonProperty("idade")
-    int idade;
+    private final int idade;
 
     @JsonProperty("nomeInstituicao")
-    String nomeInstituicao;
+    private final String nomeInstituicao;
 
-    public UsuarioInput( String cargo, String cidade, int idade, String nomeInstituicao) {
-        this.cargo = cargo;
-        this.cidade = cidade;
+    /**
+     * Construtor para inicializar um UsuarioInput.
+     *
+     * @param cargo           O cargo ou função do usuário.
+     * @param cidade          A cidade de residência do usuário.
+     * @param idade           A idade do usuário.
+     * @param nomeInstituicao O nome da instituição associada ao usuário.
+     * @throws IllegalArgumentException Se algum parâmetro obrigatório for nulo ou
+     *                                  inválido.
+     */
+    public UsuarioInput(String cargo, String cidade, int idade, String nomeInstituicao) {
+        this.cargo = Optional.ofNullable(cargo)
+                .filter(c -> !c.trim().isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException("O cargo não pode ser nulo ou vazio."));
+        this.cidade = Optional.ofNullable(cidade)
+                .filter(c -> !c.trim().isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException("A cidade não pode ser nula ou vazia."));
+        if (idade < 0) {
+            throw new IllegalArgumentException("A idade não pode ser negativa.");
+        }
         this.idade = idade;
-        this.nomeInstituicao = nomeInstituicao;
+        this.nomeInstituicao = Optional.ofNullable(nomeInstituicao)
+                .filter(n -> !n.trim().isEmpty())
+                .orElseThrow(() -> new IllegalArgumentException("O nome da instituição não pode ser nulo ou vazio."));
     }
 
     public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
     public String getCidade() {
         return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
     }
 
     public int getIdade() {
         return idade;
     }
 
-    public void setIdade(int idade) {
-        this.idade = idade;
-    }
-
     public String getNomeInstituicao() {
         return nomeInstituicao;
-    }
-
-    public void setNomeInstituicao(String nomeInstituicao) {
-        this.nomeInstituicao = nomeInstituicao;
     }
 }

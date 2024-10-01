@@ -1,9 +1,5 @@
 package springboot.service;
 
-import java.util.ArrayList;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,103 +14,58 @@ import springboot.repository.ListaQuestoesRepository;
 
 @Service
 public class ListaQuestoesService {
-	
-	private final String errorMessage = "Lista de Questões não está cadastrada.";
-	public static final int NOME_LISTA = 0;
 
-	
-	private ArrayList<String> arrayParametros = new ArrayList<String>();
-	private ArrayList<String> arrayOperadores = new ArrayList<String>();
-	private ArrayList<String> arrayQuery = new ArrayList<String>();
-	private ArrayList<Object> parametros = new ArrayList<Object>();
+	private static final String ERROR_MESSAGE = "Lista de Questões não está cadastrada.";
 
-	@Autowired
-	private ListaQuestoesRepository listaQuestoesRepository;
+	private final ListaQuestoesRepository listaQuestoesRepository;
 
+	public ListaQuestoesService(ListaQuestoesRepository listaQuestoesRepository) {
+		this.listaQuestoesRepository = listaQuestoesRepository;
+	}
 
 	public ListaQuestoes save(ListaQuestoes listaQuestoes) {
-		listaQuestoesRepository.save(listaQuestoes);
-		return listaQuestoes;
+		return listaQuestoesRepository.save(listaQuestoes);
 	}
-	
-	
+
 	public ListaQuestoes update(ListaQuestoes listaQuestoes, String id) {
-		Optional<ListaQuestoes> optListaQuestoes = listaQuestoesRepository.findById(id);
+		ListaQuestoes existingListaQuestoes = findListaQuestoesById(id);
 
-		if (!optListaQuestoes.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		ListaQuestoes novaListaQuestoes = optListaQuestoes.get();
-
-		if (!listaQuestoes.getAutor().equals(novaListaQuestoes.getAutor())) {
+		if (!listaQuestoes.getAutor().equals(existingListaQuestoes.getAutor())) {
 			throw new PermissionDeniedException("A lista é de propriedade de outro usuário");
 		}
 
-		novaListaQuestoes.setNomeLista(listaQuestoes.getNomeLista());
-		novaListaQuestoes.setAutor(listaQuestoes.getAutor());
-		novaListaQuestoes.setQuestoes(listaQuestoes.getQuestoes());
+		existingListaQuestoes.setNomeLista(listaQuestoes.getNomeLista());
+		existingListaQuestoes.setAutor(listaQuestoes.getAutor());
+		existingListaQuestoes.setQuestoes(listaQuestoes.getQuestoes());
 
-		listaQuestoesRepository.save(novaListaQuestoes);
-
-		return novaListaQuestoes;
+		return listaQuestoesRepository.save(existingListaQuestoes);
 	}
 
 	public ListaQuestoes delete(String id) {
-		Optional<ListaQuestoes> optListaQuestoes = listaQuestoesRepository.findById(id);
-
-		if (!optListaQuestoes.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		ListaQuestoes listaQuestoes = optListaQuestoes.get();
+		ListaQuestoes listaQuestoes = findListaQuestoesById(id);
 		listaQuestoesRepository.delete(listaQuestoes);
-
 		return listaQuestoes;
 	}
 
-	
-	private void iniciaColecoes() {
-		arrayParametros.add("{$text:{$search:");
-		arrayParametros.add("{email:");
-
-		arrayOperadores.add("{'$or':[");
-		arrayOperadores.add("{'$and':[");
-	}
-	
 	public Page<ListaQuestoes> getAll(Usuario usuario, int page, int size) {
 		Pageable pageable = PageRequest.of(page, size);
 		return listaQuestoesRepository.getByAutor(usuario.getEmail(), pageable);
 	}
-	
-	
+
 	public ListaQuestoes getById(String id) {
-		Optional<ListaQuestoes> optListaQuestoes = listaQuestoesRepository.findById(id);
-
-		if (!optListaQuestoes.isPresent()) {
-			throw new RegisterNotFoundException(errorMessage);
-		}
-
-		return optListaQuestoes.get();
+		return findListaQuestoesById(id);
 	}
 
 	public Page<ListaQuestoes> getByUser(Usuario user, int page, int size) {
+		Sort sort = Sort.by(
+				Sort.Order.desc("score"));
 
-
-	    // Sort sort = Sort.by(
-	    // 	    Sort.Order.desc("score"));
-	    
-	    Pageable pageable = PageRequest.of(page, size);
-	    
-	    Page<ListaQuestoes> pagina = listaQuestoesRepository.getByAutor(user.getEmail(),pageable);
-
-	    
-		return pagina;
+		Pageable pageable = PageRequest.of(page, size, sort);
+		return listaQuestoesRepository.getByAutor(user.getEmail(), pageable);
 	}
 
-	private boolean isNull(Object parametro) {
-		return parametro.equals("null");
+	private ListaQuestoes findListaQuestoesById(String id) {
+		return listaQuestoesRepository.findById(id)
+				.orElseThrow(() -> new RegisterNotFoundException(ERROR_MESSAGE));
 	}
-
-
 }

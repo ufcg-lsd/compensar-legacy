@@ -1,24 +1,19 @@
 package springboot.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.annotation.Id;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Conteudo {
     @Id
-    private String nome;
+    private final String nome;
 
-    @JsonCreator
-    public Conteudo(@JsonProperty("nome")String nome) {
+    public Conteudo(@JsonProperty("nome") String nome) {
         this.nome = nome;
     }
 
-
+    @JsonProperty("nome")
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 }
