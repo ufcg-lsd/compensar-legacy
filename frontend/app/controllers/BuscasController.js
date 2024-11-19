@@ -387,16 +387,16 @@ angular.module('app')
             $scope.update.espelho === null || typeof $scope.update.espelho === 'undefined')) {
             $scope.inputError = true;
         } else if (!$scope.editingAprovacao && $scope.update.enunciado !== $scope.update.tempEnunciado) {
-            QuestoesService.getCompetencias($scope.update.tempEnunciado).then(() => {
-                $rootScope.repaginaCompetencias($rootScope.competencias);
-                $('#ModalEdicao').modal('toggle');
-                $('#ModalEdicao').modal({backdrop: 'static', keyboard: false});
+            // QuestoesService.getCompetencias($scope.update.tempEnunciado).then(() => {
+            //     $rootScope.repaginaCompetencias($rootScope.competencias);
+            //     $('#ModalEdicao').modal('toggle');
+            //     $('#ModalEdicao').modal({backdrop: 'static', keyboard: false});
                 
-                $('a[href$="#ModalEdicao"]').on( "click", function() {
-                    $('#ModalEdicao').modal('show');
-                });
+            //     $('a[href$="#ModalEdicao"]').on( "click", function() {
+            //         $('#ModalEdicao').modal('show');
+            //     });
                 $scope.update.enunciado = $scope.update.tempEnunciado;
-            });
+            // });
             
         } else {
             $scope.update.enunciado = $scope.update.tempEnunciado;
@@ -554,7 +554,7 @@ angular.module('app')
             observacaoAvaliacao: $rootScope.avaliacao.obsAvaliacao,
             observacaoQuestao: $rootScope.avaliacao.obsQuestao,
             avaliacaoPublicacao: $rootScope.avaliacao.avaliacaoPublicacao,
-            questao: $rootScope.questaoSobAvaliacao.id,
+            questaoId: $rootScope.questaoSobAvaliacao.id,
             competencias: arr,
             infoCompetencias: arr2,
             confianca: $rootScope.avaliacao.confianca

@@ -1,45 +1,58 @@
 package springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import springboot.model.Email;
- 
-@Controller
-@RestController
-@RequestMapping(value = "/api")
-@CrossOrigin(origins = "+")
-public class EmailController {
- 
-    @Autowired
-    public JavaMailSender emailSender;
- 
-	@ApiOperation("Permite registrar um email de um user para o admin.\r\n"
-			+ "")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = Email.class) })
-	@RequestMapping(value = "/email", method = RequestMethod.POST)
-    public void sendSimpleEmail(@RequestBody Email email) {
- 
-        // Create a Simple MailMessage.
-        SimpleMailMessage message = new SimpleMailMessage();
-         
-        message.setTo("aepc.lacina@gmail.com");
-        message.setSubject(email.getSubject());
-        message.setText("From: " + email.getUsername() + "\n" + email.getMessage());
-        message.setReplyTo(email.getEmail()	);
-        message.setFrom(email.getEmail());
+import springboot.service.EmailService;
 
-        // Send Message!
-        this.emailSender.send(message);
+/**
+ * Controlador responsável pelo envio de emails no sistema.
+ * Este controlador permite o envio de um email simples de um usuário para o administrador.
+ */
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
+@Validated
+public class EmailController {
+
+    @Autowired
+    private EmailService emailService;
+
+    /**
+     * Envia um email simples de um usuário para o administrador do sistema.
+     * O email deve ser passado no corpo da requisição, e deve ser validado antes de ser enviado.
+     * 
+     * @param email objeto contendo as informações do email a ser enviado, validado automaticamente.
+     * @return uma resposta HTTP indicando o sucesso ou falha do envio.
+     *         - 200 OK se o email foi enviado com sucesso.
+     *         - 500 Internal Server Error se houver um erro ao tentar enviar o email.
+     */
+    @Operation(summary = "Permite registrar um email de um user para o admin.")
+    @ApiResponses(value = { 
+        @ApiResponse(responseCode = "200", description = "Email enviado com sucesso"),
+        @ApiResponse(responseCode = "400", description = "Erro de validação de entrada"),
+        @ApiResponse(responseCode = "500", description = "Erro ao enviar o email")
+    })
+    @PostMapping("/email")
+    public ResponseEntity<String> sendSimpleEmail(@Valid @RequestBody Email email) {
+        try {
+            emailService.sendEmail(email);
+            return ResponseEntity.ok("Email enviado com sucesso!");
+        } catch (MailException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao enviar o email");
+        }
     }
 }
